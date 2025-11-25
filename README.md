@@ -35,7 +35,3 @@ Siehe [LICENSE](LICENSE) für Details.
 ## Autor
 
 © 2025 Simon Luthe / Revisor
-
----
-
-🤖 Entwickelt mit Unterstützung von [Claude Code](https://claude.ai/code)
