@@ -1,0 +1,929 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
+import 'app_localizations.dart';
+
+// ignore_for_file: type=lint
+
+/// The translations for Dutch Flemish (`nl`).
+class AppLocalizationsNl extends AppLocalizations {
+  AppLocalizationsNl([String locale = 'nl']) : super(locale);
+
+  @override
+  String get appTitle => 'Kijk!';
+
+  @override
+  String get areaAutobahn => 'Snelweg';
+
+  @override
+  String get areaKirche => 'Kerk';
+
+  @override
+  String get areaLand => 'Platteland';
+
+  @override
+  String get areaSelectionQuestion => 'Waar reis je?';
+
+  @override
+  String get areaStadt => 'Stad';
+
+  @override
+  String get areaZoo => 'Dierentuin';
+
+  @override
+  String get areaZuHause => 'Thuis';
+
+  @override
+  String get areaZug => 'Trein';
+
+  @override
+  String get bingoDouble => '🎊 DOUBLE BINGO! 🎊';
+
+  @override
+  String get bingoFinal => '🏆 YOU WON! 🏆';
+
+  @override
+  String get bingoMultiple => '⭐ %lldx BINGO! ⭐';
+
+  @override
+  String get bingoSingle => '🎉 BINGO! 🎉';
+
+  @override
+  String get bingoTriple => '🌟 TRIPLE BINGO! 🌟';
+
+  @override
+  String get buttonContinue => 'Doorgaan';
+
+  @override
+  String get categoryBesondereOrte => 'Plaatsen';
+
+  @override
+  String get categoryBesondereOrteDescription =>
+      'Ontdek bijzondere plaatsen zoals kerk, thuis of dierentuin';
+
+  @override
+  String get categoryReise => 'Reis';
+
+  @override
+  String get categoryReiseDescription =>
+      'Ontdek dingen op je reis in de stad, op het platteland of op de snelweg';
+
+  @override
+  String get categorySelectionQuestion => 'Welk thema wil je?';
+
+  @override
+  String get einfachIntuitiv => 'Simpel & Intuïtief';
+
+  @override
+  String get emptyKey => '🎺';
+
+  @override
+  String get entwickeltVonSimonMitTjelle4UndKeke2 =>
+      'Ontwikkeld door Simon\nmet Tjelle (4) en Keke (2)';
+
+  @override
+  String get familie => 'Familie';
+
+  @override
+  String get findeUnbegrenztVieleDingeUndErkundeDeineUmgebung =>
+      'Vind onbeperkt dingen\nen verken je omgeving!';
+
+  @override
+  String get gameSoundOff => 'Geluid uit';
+
+  @override
+  String get gameSoundOn => 'Geluid aan';
+
+  @override
+  String get gameTextOff => 'Tekst uit';
+
+  @override
+  String get gameTextOn => 'Tekst aan';
+
+  @override
+  String get gameYourBingos => 'Jouw Bingo\'s:';
+
+  @override
+  String get gamemodeJagdDescription =>
+      'Speel samen of concurreer. Stel in hoeveel bingo\'s nodig zijn om te winnen.';
+
+  @override
+  String get gamemodeJagdName => 'Bingo Jacht';
+
+  @override
+  String get gamemodeSelectionQuestion => 'Welk spel wil je spelen?';
+
+  @override
+  String get gamemodeSucheDescription =>
+      'Verzamel zoveel bingo\'s als je wilt. Zoek samen of alleen.';
+
+  @override
+  String get gamemodeSucheName => 'Kijk!';
+
+  @override
+  String get guckMal => 'Kijk!';
+
+  @override
+  String get idealFuerBewusstenMedienkonsumUnterwegs =>
+      'Ideaal voor bewust mediagebruik onderweg';
+
+  @override
+  String get itemAdventskranz => 'Adventskrans';
+
+  @override
+  String get itemAffe => 'Aap';
+
+  @override
+  String get itemAltar => 'Altaar';
+
+  @override
+  String get itemAmpel => 'Verkeerslicht';
+
+  @override
+  String get itemAnhaenger => 'Aanhanger';
+
+  @override
+  String get itemAra => 'Macaw';
+
+  @override
+  String get itemAusfahrt => 'Afrit';
+
+  @override
+  String get itemBagger => 'Graafmachine';
+
+  @override
+  String get itemBahnhof => 'Treinstation';
+
+  @override
+  String get itemBall => 'Bal';
+
+  @override
+  String get itemBaum => 'Boom';
+
+  @override
+  String get itemBaustelle => 'Bouwplaats';
+
+  @override
+  String get itemBesteck => 'Bestek';
+
+  @override
+  String get itemBesucherinnen => 'Visitors';
+
+  @override
+  String get itemBett => 'Bed';
+
+  @override
+  String get itemBibel => 'Bijbel';
+
+  @override
+  String get itemBild => 'Schilderij';
+
+  @override
+  String get itemBison => 'Bison';
+
+  @override
+  String get itemBlauesAuto => 'Blauwe Auto';
+
+  @override
+  String get itemBlauesSchild => 'Blauw Bord';
+
+  @override
+  String get itemBlumen => 'Bloemen';
+
+  @override
+  String get itemBlumenZuhause => 'Bloemen';
+
+  @override
+  String get itemBraunbaer => 'Brown Bear';
+
+  @override
+  String get itemBriefkasten => 'Brievenbus';
+
+  @override
+  String get itemBruecke => 'Brug';
+
+  @override
+  String get itemBuch => 'Boek';
+
+  @override
+  String get itemBuntglasfenster => 'Stained Glass Window';
+
+  @override
+  String get itemBuntstifte => 'Kleurpotloden';
+
+  @override
+  String get itemBus => 'Bus';
+
+  @override
+  String get itemBushaltestelle => 'Bushalte';
+
+  @override
+  String get itemCafe => 'Café';
+
+  @override
+  String get itemCamper => 'Camper';
+
+  @override
+  String get itemChriststollen => 'Kerststol';
+
+  @override
+  String get itemController => 'Controller';
+
+  @override
+  String get itemDudubox => 'DuDu-Doos';
+
+  @override
+  String get itemEisbaer => 'Polar Bear';
+
+  @override
+  String get itemEisenbahn => 'Speelgoedtrein';
+
+  @override
+  String get itemElefant => 'Olifant';
+
+  @override
+  String get itemEmpore => 'Gallery';
+
+  @override
+  String get itemEngel => 'Engel';
+
+  @override
+  String get itemErntekrone => 'Harvest Crown';
+
+  @override
+  String get itemEscooter => 'E-Step';
+
+  @override
+  String get itemFahrrad => 'Fiets';
+
+  @override
+  String get itemFeld => 'Veld';
+
+  @override
+  String get itemFenster => 'Raam';
+
+  @override
+  String get itemFernseher => 'Televisie';
+
+  @override
+  String get itemFeuerwehrauto => 'Brandweerauto';
+
+  @override
+  String get itemFisch => 'Vis';
+
+  @override
+  String get itemFlamingo => 'Flamingo';
+
+  @override
+  String get itemFlugzeug => 'Vliegtuig';
+
+  @override
+  String get itemFluss => 'Rivier';
+
+  @override
+  String get itemGelbesAuto => 'Gele Auto';
+
+  @override
+  String get itemGelbesSchild => 'Geel Bord';
+
+  @override
+  String get itemGesangbuch => 'Gezangenboek';
+
+  @override
+  String get itemGeschenke => 'Cadeaus';
+
+  @override
+  String get itemGiraffe => 'Giraffe';
+
+  @override
+  String get itemGlocke => 'Klok';
+
+  @override
+  String get itemGlocken => 'Klokken';
+
+  @override
+  String get itemGluehbirne => 'Gloeilamp';
+
+  @override
+  String get itemGrosseBaustelle => 'Grote Bouwplaats';
+
+  @override
+  String get itemGruenesAuto => 'Groene Auto';
+
+  @override
+  String get itemGuerteltier => 'Armadillo';
+
+  @override
+  String get itemHaus => 'Huis';
+
+  @override
+  String get itemHerd => 'Fornuis';
+
+  @override
+  String get itemHochhaus => 'Wolkenkrabber';
+
+  @override
+  String get itemHochspannung => 'Hoogspanning';
+
+  @override
+  String get itemHund => 'Hond';
+
+  @override
+  String get itemIce => 'Hogesnelheidstrein';
+
+  @override
+  String get itemJaguar => 'Jaguar';
+
+  @override
+  String get itemKaenguru => 'Kangoeroe';
+
+  @override
+  String get itemKamel => 'Kameel';
+
+  @override
+  String get itemKanzel => 'Pulpit';
+
+  @override
+  String get itemKatze => 'Kat';
+
+  @override
+  String get itemKekse => 'Koekjes';
+
+  @override
+  String get itemKelch => 'Chalice';
+
+  @override
+  String get itemKerze => 'Kaars';
+
+  @override
+  String get itemKinderwagen => 'Kinderwagen';
+
+  @override
+  String get itemKircheGebaeude => 'Kerk';
+
+  @override
+  String get itemKirchenbank => 'Pew';
+
+  @override
+  String get itemKirchenturm => 'Church Tower';
+
+  @override
+  String get itemKlemmbaustein => 'Bouwstenen';
+
+  @override
+  String get itemKlingelbeutel => 'Collection Bag';
+
+  @override
+  String get itemKochtopf => 'Pan';
+
+  @override
+  String get itemKoffer => 'Koffer';
+
+  @override
+  String get itemKopfhoerer => 'Koptelefoon';
+
+  @override
+  String get itemKrankenwagen => 'Ambulance';
+
+  @override
+  String get itemKreuz => 'Kruis';
+
+  @override
+  String get itemKrokodil => 'Krokodil';
+
+  @override
+  String get itemKronleuchter => 'Chandelier';
+
+  @override
+  String get itemKuehlschrank => 'Koelkast';
+
+  @override
+  String get itemKuh => 'Koe';
+
+  @override
+  String get itemKuscheltiere => 'Knuffels';
+
+  @override
+  String get itemLamm => 'Lamb';
+
+  @override
+  String get itemLammMitFahne => 'Lamb with Flag';
+
+  @override
+  String get itemLampe => 'Lamp';
+
+  @override
+  String get itemLaptop => 'Laptop';
+
+  @override
+  String get itemLesepult => 'Lectern';
+
+  @override
+  String get itemLieferwagen => 'Bestelwagen';
+
+  @override
+  String get itemLkw => 'Vrachtwagen';
+
+  @override
+  String get itemLoewe => 'Leeuw';
+
+  @override
+  String get itemMalbuch => 'Kleurboek';
+
+  @override
+  String get itemMandrill => 'Mandrill';
+
+  @override
+  String get itemMikrofon => 'Microphone';
+
+  @override
+  String get itemMotorrad => 'Motorfiets';
+
+  @override
+  String get itemMuellauto => 'Vuilniswagen';
+
+  @override
+  String get itemMuelltonne => 'Vuilnisbak';
+
+  @override
+  String get itemOfen => 'Oven';
+
+  @override
+  String get itemOpferstock => 'Offering Box';
+
+  @override
+  String get itemOrangUtan => 'Orangutan';
+
+  @override
+  String get itemOrgel => 'Orgel';
+
+  @override
+  String get itemOsterkerze => 'Easter Candle';
+
+  @override
+  String get itemOtter => 'Otter';
+
+  @override
+  String get itemParkplatz => 'Parkeerplaats';
+
+  @override
+  String get itemPastor => 'Pastor';
+
+  @override
+  String get itemPastorin => 'Pastor';
+
+  @override
+  String get itemPavian => 'Baboon';
+
+  @override
+  String get itemPelikanKirche => 'Pelican';
+
+  @override
+  String get itemPelikanZoo => 'Pelican';
+
+  @override
+  String get itemPferd => 'Paard';
+
+  @override
+  String get itemPflanze => 'Plant';
+
+  @override
+  String get itemPinguin => 'Penguin';
+
+  @override
+  String get itemPinsel => 'Kwast';
+
+  @override
+  String get itemPinselohrschwein => 'Red River Hog';
+
+  @override
+  String get itemPolizeiauto => 'Politieauto';
+
+  @override
+  String get itemPraeriehund => 'Prairie Dog';
+
+  @override
+  String get itemPuppe => 'Pop';
+
+  @override
+  String get itemPuzzle => 'Puzzel';
+
+  @override
+  String get itemRastplatz => 'Rustplaats';
+
+  @override
+  String get itemRegal => 'Boekenplank';
+
+  @override
+  String get itemReh => 'Hert';
+
+  @override
+  String get itemReisebus => 'Touringcar';
+
+  @override
+  String get itemRoller => 'Step';
+
+  @override
+  String get itemRotesAuto => 'Rode Auto';
+
+  @override
+  String get itemRucksack => 'Rugzak';
+
+  @override
+  String get itemSatellitenschuessel => 'Schotelantenne';
+
+  @override
+  String get itemSbahn => 'Stadsgewestelijk Trein';
+
+  @override
+  String get itemSchaf => 'Sheep';
+
+  @override
+  String get itemSchafe => 'Schapen';
+
+  @override
+  String get itemSchaffner => 'Conducteur';
+
+  @override
+  String get itemSchallplatte => 'Vinylplaat';
+
+  @override
+  String get itemSchaukel => 'Schommel';
+
+  @override
+  String get itemSchere => 'Schaar';
+
+  @override
+  String get itemScheune => 'Schuur';
+
+  @override
+  String get itemSchiff => 'Nave';
+
+  @override
+  String get itemSchildkroete => 'Schildpad';
+
+  @override
+  String get itemSchlange => 'Slang';
+
+  @override
+  String get itemSchneeEule => 'Snowy Owl';
+
+  @override
+  String get itemSchneeeule => 'Sneeuwuil';
+
+  @override
+  String get itemSchneeflocke => 'Sneeuwvlok';
+
+  @override
+  String get itemSchneemann => 'Sneeuwpop';
+
+  @override
+  String get itemSchnitzereien => 'Carvings';
+
+  @override
+  String get itemSchornstein => 'Schoorsteen';
+
+  @override
+  String get itemSchule => 'School';
+
+  @override
+  String get itemSchwermeinchen => 'Cavia';
+
+  @override
+  String get itemSchwippbogen => 'Kaarsboog';
+
+  @override
+  String get itemSee => 'Meer';
+
+  @override
+  String get itemSeehund => 'Seal';
+
+  @override
+  String get itemSessel => 'Fauteuil';
+
+  @override
+  String get itemSikahHirsch => 'Sikahert';
+
+  @override
+  String get itemSikahirsch => 'Sika Deer';
+
+  @override
+  String get itemSofa => 'Bank';
+
+  @override
+  String get itemSolarzellen => 'Zonnepanelen';
+
+  @override
+  String get itemSpielplatz => 'Speeltuin';
+
+  @override
+  String get itemStachelschwein => 'Porcupine';
+
+  @override
+  String get itemStopschild => 'Stopbord';
+
+  @override
+  String get itemStrassenlaterne => 'Straatlantaarn';
+
+  @override
+  String get itemStrauss => 'Struisvogel';
+
+  @override
+  String get itemStuhl => 'Stoel';
+
+  @override
+  String get itemSupermarkt => 'Supermarkt';
+
+  @override
+  String get itemTankstelle => 'Tankstation';
+
+  @override
+  String get itemTapir => 'Tapir';
+
+  @override
+  String get itemTasse => 'Kopje';
+
+  @override
+  String get itemTaube => 'Dove';
+
+  @override
+  String get itemTaufbecken => 'Doopvont';
+
+  @override
+  String get itemTaxi => 'Taxi';
+
+  @override
+  String get itemTeller => 'Bord';
+
+  @override
+  String get itemTempolimit => 'Snelheidslimiet';
+
+  @override
+  String get itemTiger => 'Tijger';
+
+  @override
+  String get itemTisch => 'Tafel';
+
+  @override
+  String get itemToilette => 'Toilet';
+
+  @override
+  String get itemTrampolin => 'Trampoline';
+
+  @override
+  String get itemTransporter => 'Busje';
+
+  @override
+  String get itemTrecker => 'Tractor';
+
+  @override
+  String get itemTreppe => 'Trap';
+
+  @override
+  String get itemTuer => 'Deur';
+
+  @override
+  String get itemTunnel => 'Tunnel';
+
+  @override
+  String get itemUhrKirche => 'Klok';
+
+  @override
+  String get itemUhrZug => 'Klok';
+
+  @override
+  String get itemVoegel => 'Vogels';
+
+  @override
+  String get itemWald => 'Bos';
+
+  @override
+  String get itemWalross => 'Walrus';
+
+  @override
+  String get itemWanduhr => 'Wandklok';
+
+  @override
+  String get itemWaschbecken => 'Wastafel';
+
+  @override
+  String get itemWaschmaschine => 'Wasmachine';
+
+  @override
+  String get itemWasserschwein => 'Capybara';
+
+  @override
+  String get itemWeihnachtsbaum => 'Kerstboom';
+
+  @override
+  String get itemWeihnachtsbaumverkauf => 'Kerstbomenverkoop';
+
+  @override
+  String get itemWeihnachtsdeko => 'Kerstversiering';
+
+  @override
+  String get itemWeihnachtslichterkette => 'Kerstlichtjes';
+
+  @override
+  String get itemWeihnachtsmann => 'Kerstman';
+
+  @override
+  String get itemWeihnachtsmarkt => 'Kerstmarkt';
+
+  @override
+  String get itemWeihnachtsstern => 'Kerstster';
+
+  @override
+  String get itemWiese => 'Weide';
+
+  @override
+  String get itemWindrad => 'Windmolen';
+
+  @override
+  String get itemZebra => 'Zebra';
+
+  @override
+  String get itemZebrastreifen => 'Zebrapad';
+
+  @override
+  String get itemZiege => 'Geit';
+
+  @override
+  String get itemZug => 'Trein';
+
+  @override
+  String get itemZuganzeiger => 'Vertrekbord';
+
+  @override
+  String get jagdModus => 'Jachtmodus';
+
+  @override
+  String get jedeReiseWirdZumAbenteuer => 'Elke reis wordt een avontuur!';
+
+  @override
+  String get key200individuellgezeichneteitems =>
+      '> 200 Individueel Getekende Items!';
+
+  @override
+  String get key6vollstaendigeuebersetzungen => '6 Volledige Vertalingen';
+
+  @override
+  String get key7bereiche => '7 Gebieden';
+
+  @override
+  String get legFestWieVieleBingosDuBrauchstUmZuGewinnen =>
+      'Bepaal hoeveel bingo\'s\nje nodig hebt om te winnen!';
+
+  @override
+  String get lld => '%1\$lld %2\$@';
+
+  @override
+  String get lldLld => '%1\$lld + %2\$lld = ?';
+
+  @override
+  String get paedagogischWertvoll => 'Educatieve\nWaarde';
+
+  @override
+  String get parentalGateCancel => 'Annuleren';
+
+  @override
+  String get parentalGateError => 'Fout antwoord. Probeer opnieuw.';
+
+  @override
+  String get parentalGateExplanation =>
+      'Deze link leidt naar een externe website. Los de volgende taak op om door te gaan.';
+
+  @override
+  String get parentalGateQuestion => 'Los het rekenvraagstuk op:';
+
+  @override
+  String get parentalGateSubmit => 'Controleren';
+
+  @override
+  String get parentalGateTitle => 'Volwassenen gebied';
+
+  @override
+  String get perfektFuer => 'Perfect voor:';
+
+  @override
+  String get seasonFruehlingSommer => 'Lente/Zomer';
+
+  @override
+  String get seasonHerbstWinter => 'Herfst/Winter';
+
+  @override
+  String get seasonSelectionQuestion => 'Welk seizoen is het?';
+
+  @override
+  String get seasonSommer => 'Lente en Zomer';
+
+  @override
+  String get seasonWinter => 'Herfst en Winter';
+
+  @override
+  String get settingsImprint => 'Colofon';
+
+  @override
+  String get settingsInOrt => 'in Hennstedt';
+
+  @override
+  String get settingsMadeWith => 'Gemaakt met';
+
+  @override
+  String get settingsPrivacy => 'Privacybeleid';
+
+  @override
+  String get settingsSupport => 'Ondersteuning';
+
+  @override
+  String get settingsTitle => 'Informatie';
+
+  @override
+  String get settingsVersion => 'Versie 1.0';
+
+  @override
+  String get sizeLong => 'Lang';
+
+  @override
+  String get sizeMedium => 'Middel';
+
+  @override
+  String get sizeQuick => 'Snel';
+
+  @override
+  String get sizeSelectionQuestion => 'Hoe lang duurt de reis?';
+
+  @override
+  String get spielSoWieDuWillst => 'Speel zoals je wilt!';
+
+  @override
+  String get targetbingosQuestion => 'Hoeveel bingo\'s?';
+
+  @override
+  String get themeBluepurple => 'Melkweg';
+
+  @override
+  String get themeDeepblue => 'Diepzee';
+
+  @override
+  String get themeGreenmint => 'Oase';
+
+  @override
+  String get themeLightblue => 'Kristal';
+
+  @override
+  String get themePinkred => 'Flamingo';
+
+  @override
+  String get themePinkyellow => 'Zomer';
+
+  @override
+  String get themeChristmas => 'Kerst';
+
+  @override
+  String get themeSelectionTitle => 'Kies je kleur';
+
+  @override
+  String get tippeWasDuSiehst => 'Tik wat je ziet!';
+
+  @override
+  String get victoryBackToStart => 'Terug naar Start';
+
+  @override
+  String get victoryBingoPlural => 'Bingo\'s behaald!';
+
+  @override
+  String get victoryBingoSingular => 'Bingo behaald!';
+
+  @override
+  String get victoryPlayAgain => 'Opnieuw Spelen';
+
+  @override
+  String get victoryWon => 'Je hebt gewonnen!';
+
+  @override
+  String get weltweitSpielbar => 'Wereldwijd Speelbaar';
+
+  @override
+  String get zweiSpielmodi => 'Twee Spelmodi';
+
+  @override
+  String get seasonFruehling_sommerName => 'Lente/Zomer';
+
+  @override
+  String get seasonFruehling_sommerDescription =>
+      'Beleef het warme seizoen met items als koeien, schapen en bloeiende natuur.';
+
+  @override
+  String get seasonHerbst_winterName => 'Herfst/Winter';
+
+  @override
+  String get seasonHerbst_winterDescription =>
+      'Ontdek het koude seizoen met winterse items en herfstmotieven.';
+
+  @override
+  String get seasonSpecialTimesName => 'Speciale Tijden';
+
+  @override
+  String get seasonSpecialTimesDescription =>
+      'Kerstitems zijn beschikbaar vanaf 1 december.';
+}
