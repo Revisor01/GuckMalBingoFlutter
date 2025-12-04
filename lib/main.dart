@@ -12,9 +12,6 @@ import 'viewmodels/bingo_game_viewmodel.dart';
 import 'views/game_mode_selection_view.dart';
 import 'views/selection_views.dart';
 import 'views/bingo_game_view.dart';
-import 'views/settings_view.dart';
-import 'views/theme_selection_view.dart';
-import 'models/background_theme.dart';
 import 'l10n/app_localizations.dart';
 import 'views/snowfall_widget.dart';
 import 'utilities/debug_utils.dart';
@@ -254,12 +251,6 @@ class _NavigationCoordinatorState extends State<NavigationCoordinator> {
         ),
       ),
     );
-  }
-
-  void _onBackToStart() {
-    setState(() {
-      _config = GameConfig(); // Reset config
-    });
   }
 
   @override

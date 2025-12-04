@@ -73,7 +73,6 @@ class BingoGameViewModel extends ChangeNotifier {
 
   late GameAudioPlayer _audioPlayer;
   Set<BingoTypeWithIndex> _completedBingos = {};
-  Future<void>? _animationTask;
   bool _isDisposed = false;
 
   BingoGameViewModel({required this.config}) {
@@ -132,7 +131,6 @@ class BingoGameViewModel extends ChangeNotifier {
     isFinalVictory = false;
     blinkingIndex = null;
     blinkingAllIndices.clear();
-    _animationTask = null;
     generateBoard();
     notifyListeners();
   }
@@ -253,7 +251,6 @@ class BingoGameViewModel extends ChangeNotifier {
       bingoCount = currentBingos.length;
       blinkingIndex = null;
       blinkingAllIndices.clear();
-      _animationTask = null;
     }
 
     // Bei Suche-Modus: Prüfen ob gesamtes Feld voll ist
@@ -276,7 +273,7 @@ class BingoGameViewModel extends ChangeNotifier {
   }
 
   void _startBlinkAnimation(List<int> indices) {
-    _animationTask = Future(() async {
+    Future(() async {
       // Sequenziell durch alle Indices blinken (1, 2, 3, 4, 5)
       for (final index in indices) {
         if (_isDisposed) return;

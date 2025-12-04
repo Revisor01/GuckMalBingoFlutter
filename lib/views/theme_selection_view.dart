@@ -161,7 +161,7 @@ class _ThemeSelectionViewState extends State<ThemeSelectionView> {
                               Switch(
                                 value: _snowfallEnabled,
                                 onChanged: _toggleSnowfall,
-                                activeColor: Colors.lightBlue,
+                                activeTrackColor: Colors.lightBlue,
                               ),
                             ],
                           ),

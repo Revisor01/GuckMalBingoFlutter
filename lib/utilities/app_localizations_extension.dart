@@ -293,11 +293,6 @@ extension AppLocalizationsX on AppLocalizations {
       case 'themeSelectionTitle': return themeSelectionTitle;
       case 'tippeWasDuSiehst': return tippeWasDuSiehst;
       case 'victoryBackToStart': return victoryBackToStart;
-      case 'seasonFruehlingSommer': return seasonFruehlingSommer;
-      case 'seasonHerbstWinter': return seasonHerbstWinter;
-      case 'seasonSelectionQuestion': return seasonSelectionQuestion;
-      case 'seasonSommer': return seasonSommer;
-      case 'seasonWinter': return seasonWinter;
       case 'victoryBingoPlural': return victoryBingoPlural;
       case 'victoryBingoSingular': return victoryBingoSingular;
       case 'victoryPlayAgain': return victoryPlayAgain;

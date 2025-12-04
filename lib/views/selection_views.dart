@@ -5,7 +5,6 @@ import '../models/season.dart';
 import '../models/area.dart';
 import '../models/background_theme.dart';
 import '../utilities/background_pattern_view.dart';
-import '../utilities/app_colors.dart';
 import '../l10n/app_localizations.dart';
 import '../utilities/app_localizations_extension.dart';
 
