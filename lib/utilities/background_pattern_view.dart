@@ -182,7 +182,7 @@ class BackgroundPatternView extends StatelessWidget {
                         child: Icon(
                           pos.icon,
                           size: 45,
-                          color: Colors.white.withOpacity(0.2),
+                          color: Colors.white.withValues(alpha: 0.2),
                           weight: 100, // thin
                         ),
                       ),

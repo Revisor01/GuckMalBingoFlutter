@@ -39,8 +39,8 @@ class AppColors {
   // Gebiete-Gradients
   static final LinearGradient autobahnGradient = LinearGradient(
     colors: [
-      Colors.blue.withOpacity(0.8),
-      Colors.blue.withOpacity(0.6),
+      Colors.blue.withValues(alpha: 0.8),
+      Colors.blue.withValues(alpha: 0.6),
     ],
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
@@ -48,8 +48,8 @@ class AppColors {
 
   static final LinearGradient landGradient = LinearGradient(
     colors: [
-      successGreen.withOpacity(0.8),
-      successGreen.withOpacity(0.6),
+      successGreen.withValues(alpha: 0.8),
+      successGreen.withValues(alpha: 0.6),
     ],
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
@@ -57,8 +57,8 @@ class AppColors {
 
   static final LinearGradient stadtGradient = LinearGradient(
     colors: [
-      Colors.red.withOpacity(0.8),
-      Colors.red.withOpacity(0.6),
+      Colors.red.withValues(alpha:0.8),
+      Colors.red.withValues(alpha:0.6),
     ],
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
@@ -66,8 +66,8 @@ class AppColors {
 
   static final LinearGradient zugGradient = LinearGradient(
     colors: [
-      Colors.purple.withOpacity(0.8),
-      Colors.purple.withOpacity(0.6),
+      Colors.purple.withValues(alpha:0.8),
+      Colors.purple.withValues(alpha:0.6),
     ],
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
@@ -76,8 +76,8 @@ class AppColors {
   // Spielmodi-Gradients
   static final LinearGradient sucheGradient = LinearGradient(
     colors: [
-      successGreen.withOpacity(0.9),
-      successGreen.withOpacity(0.7),
+      successGreen.withValues(alpha:0.9),
+      successGreen.withValues(alpha:0.7),
     ],
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
@@ -85,8 +85,8 @@ class AppColors {
 
   static final LinearGradient jagdGradient = LinearGradient(
     colors: [
-      Colors.orange.withOpacity(0.9),
-      Colors.orange.withOpacity(0.7),
+      Colors.orange.withValues(alpha:0.9),
+      Colors.orange.withValues(alpha:0.7),
     ],
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
@@ -102,14 +102,14 @@ extension AdaptiveButtonStyle on Widget {
     return Container(
       decoration: BoxDecoration(
         color: isDark
-            ? Colors.white.withOpacity(0.15)
-            : Colors.white.withOpacity(0.25),
+            ? Colors.white.withValues(alpha:0.15)
+            : Colors.white.withValues(alpha:0.25),
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
             color: isDark
-                ? Colors.white.withOpacity(0.1)
-                : Colors.black.withOpacity(0.15),
+                ? Colors.white.withValues(alpha:0.1)
+                : Colors.black.withValues(alpha:0.15),
             blurRadius: 8,
             offset: const Offset(0, 4),
           ),
@@ -123,15 +123,15 @@ extension AdaptiveButtonStyle on Widget {
   Widget glassCard() {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.1),
+        color: Colors.white.withValues(alpha:0.1),
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
-          color: Colors.white.withOpacity(0.2),
+          color: Colors.white.withValues(alpha:0.2),
           width: 1,
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
+            color: Colors.black.withValues(alpha:0.1),
             blurRadius: 15,
             offset: const Offset(0, 8),
           ),

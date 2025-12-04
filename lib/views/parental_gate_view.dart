@@ -112,7 +112,7 @@ class _ParentalGateViewState extends State<ParentalGateView> {
                 l10n.parentalGateExplanation,
                 style: TextStyle(
                   fontSize: 16,
-                  color: Colors.white.withOpacity(0.9),
+                  color: Colors.white.withValues(alpha:0.9),
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -123,7 +123,7 @@ class _ParentalGateViewState extends State<ParentalGateView> {
               Container(
                 padding: const EdgeInsets.all(24),
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.15),
+                  color: Colors.white.withValues(alpha:0.15),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Column(
@@ -133,7 +133,7 @@ class _ParentalGateViewState extends State<ParentalGateView> {
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
-                        color: Colors.white.withOpacity(0.8),
+                        color: Colors.white.withValues(alpha:0.8),
                       ),
                     ),
 
@@ -212,7 +212,7 @@ class _ParentalGateViewState extends State<ParentalGateView> {
                         horizontal: 32,
                         vertical: 16,
                       ),
-                      backgroundColor: Colors.grey.withOpacity(0.3),
+                      backgroundColor: Colors.grey.withValues(alpha:0.3),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),

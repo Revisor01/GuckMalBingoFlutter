@@ -103,7 +103,7 @@ class _GameModeSelectionViewState extends State<GameModeSelectionView> {
                                       child: Container(
                                         padding: const EdgeInsets.all(12),
                                         decoration: BoxDecoration(
-                                          color: Colors.white.withOpacity(0.2),
+                                          color: Colors.white.withValues(alpha:0.2),
                                           shape: BoxShape.circle,
                                         ),
                                         child: const Icon(
@@ -149,7 +149,7 @@ class _GameModeSelectionViewState extends State<GameModeSelectionView> {
                                       child: Container(
                                         padding: const EdgeInsets.all(12),
                                         decoration: BoxDecoration(
-                                          color: Colors.white.withOpacity(0.2),
+                                          color: Colors.white.withValues(alpha:0.2),
                                           shape: BoxShape.circle,
                                         ),
                                         child: const Icon(
@@ -191,7 +191,7 @@ class _GameModeSelectionViewState extends State<GameModeSelectionView> {
                               style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
-                                color: Colors.white.withOpacity(0.9),
+                                color: Colors.white.withValues(alpha:0.9),
                               ),
                               textAlign: TextAlign.center,
                             ),
@@ -243,7 +243,7 @@ class _GameModeSelectionViewState extends State<GameModeSelectionView> {
                                         AppLocalizations.of(context)!.gamemodeSucheDescription,
                                         style: TextStyle(
                                           fontSize: 14,
-                                          color: Colors.white.withOpacity(0.8),
+                                          color: Colors.white.withValues(alpha:0.8),
                                         ),
                                       ),
                                     ],
@@ -268,7 +268,7 @@ class _GameModeSelectionViewState extends State<GameModeSelectionView> {
                                         AppLocalizations.of(context)!.gamemodeJagdDescription,
                                         style: TextStyle(
                                           fontSize: 14,
-                                          color: Colors.white.withOpacity(0.8),
+                                          color: Colors.white.withValues(alpha:0.8),
                                         ),
                                       ),
                                     ],
@@ -324,8 +324,8 @@ class GameModeButton extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 20),
           decoration: BoxDecoration(
             color: brightness == Brightness.dark
-                ? Colors.white.withOpacity(0.15)
-                : Colors.white.withOpacity(0.25),
+                ? Colors.white.withValues(alpha:0.15)
+                : Colors.white.withValues(alpha:0.25),
             borderRadius: BorderRadius.circular(16),
           ),
           child: Row(
@@ -352,7 +352,7 @@ class GameModeButton extends StatelessWidget {
               Icon(
                 Icons.chevron_right,
                 size: 24,
-                color: Colors.white.withOpacity(0.5),
+                color: Colors.white.withValues(alpha:0.5),
               ),
               const SizedBox(width: 24),
             ],

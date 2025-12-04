@@ -151,7 +151,7 @@ class _ContentView extends StatelessWidget {
                         child: Container(
                           padding: const EdgeInsets.all(12),
                           decoration: BoxDecoration(
-                            color: Colors.white.withOpacity(0.2),
+                            color: Colors.white.withValues(alpha:0.2),
                             shape: BoxShape.circle,
                           ),
                           child: const Icon(
@@ -174,7 +174,7 @@ class _ContentView extends StatelessWidget {
                         child: Container(
                           padding: const EdgeInsets.all(12),
                           decoration: BoxDecoration(
-                            color: Colors.white.withOpacity(0.2),
+                            color: Colors.white.withValues(alpha:0.2),
                             shape: BoxShape.circle,
                           ),
                           child: const Icon(
@@ -213,7 +213,7 @@ class _ContentView extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
-                    color: Colors.white.withOpacity(0.9),
+                    color: Colors.white.withValues(alpha:0.9),
                   ),
                 ),
                 const SizedBox(height: 8),
@@ -221,7 +221,7 @@ class _ContentView extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                   decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.2),
+                    color: Colors.white.withValues(alpha:0.2),
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Row(
@@ -237,7 +237,7 @@ class _ContentView extends StatelessWidget {
                             shape: BoxShape.circle,
                             color: index < viewModel.bingoCount
                                 ? Colors.yellow
-                                : Colors.white.withOpacity(0.3),
+                                : Colors.white.withValues(alpha:0.3),
                           ),
                         ),
                       ),
@@ -283,7 +283,7 @@ class _ContentView extends StatelessWidget {
                       vertical: 10,
                     ),
                     decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.2),
+                      color: Colors.white.withValues(alpha:0.2),
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Row(
@@ -327,7 +327,7 @@ class _ContentView extends StatelessWidget {
                       vertical: 10,
                     ),
                     decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.2),
+                      color: Colors.white.withValues(alpha:0.2),
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Row(
@@ -378,18 +378,18 @@ class BingoGrid extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: brightness == Brightness.dark
-            ? Colors.white.withOpacity(0.15)
-            : Colors.white.withOpacity(0.25),
+            ? Colors.white.withValues(alpha:0.15)
+            : Colors.white.withValues(alpha:0.25),
         borderRadius: BorderRadius.circular(28),
         border: Border.all(
-          color: Colors.white.withOpacity(0.3),
+          color: Colors.white.withValues(alpha:0.3),
           width: 1.5,
         ),
         boxShadow: [
           BoxShadow(
             color: brightness == Brightness.dark
-                ? Colors.white.withOpacity(0.1)
-                : Colors.black.withOpacity(0.15),
+                ? Colors.white.withValues(alpha:0.1)
+                : Colors.black.withValues(alpha:0.15),
             blurRadius: 20,
             offset: const Offset(0, 10),
           ),
@@ -487,9 +487,9 @@ class BingoCellView extends StatelessWidget {
                   )
                 : LinearGradient(
                     colors: [
-                      Colors.white.withOpacity(
+                      Colors.white.withValues(alpha:
                           brightness == Brightness.dark ? 0.25 : 0.45),
-                      Colors.white.withOpacity(
+                      Colors.white.withValues(alpha:
                           brightness == Brightness.dark ? 0.2 : 0.4),
                     ],
                     begin: Alignment.topLeft,
@@ -499,16 +499,16 @@ class BingoCellView extends StatelessWidget {
             border: Border.all(
               color: isClicked
                   ? AppColors.successGreenDark
-                  : Colors.white.withOpacity(0.4),
+                  : Colors.white.withValues(alpha:0.4),
               width: isClicked ? 2.5 : 1,
             ),
             boxShadow: [
               BoxShadow(
                 color: isClicked
-                    ? AppColors.successGreen.withOpacity(0.3)
+                    ? AppColors.successGreen.withValues(alpha:0.3)
                     : (brightness == Brightness.dark
-                        ? Colors.white.withOpacity(0.05)
-                        : Colors.black.withOpacity(0.1)),
+                        ? Colors.white.withValues(alpha:0.05)
+                        : Colors.black.withValues(alpha:0.1)),
                 blurRadius: 3,
                 offset: const Offset(0, 2),
               ),
@@ -548,7 +548,7 @@ class BingoCellView extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.all(4),
               decoration: BoxDecoration(
-                color: Colors.black.withOpacity(0.6),
+                color: Colors.black.withValues(alpha:0.6),
                 borderRadius: BorderRadius.circular(4),
               ),
               child: Text(
@@ -611,15 +611,15 @@ class WinMessageView extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
       decoration: BoxDecoration(
-        color: Colors.black.withOpacity(0.5),
+        color: Colors.black.withValues(alpha:0.5),
         borderRadius: BorderRadius.circular(24),
         border: Border.all(
-          color: Colors.white.withOpacity(0.4),
+          color: Colors.white.withValues(alpha:0.4),
           width: 2,
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.3),
+            color: Colors.black.withValues(alpha:0.3),
             blurRadius: 12,
             offset: const Offset(0, 6),
           ),

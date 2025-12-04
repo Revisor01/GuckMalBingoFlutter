@@ -80,7 +80,7 @@ class _ThemeSelectionViewState extends State<ThemeSelectionView> {
                             child: Container(
                               padding: const EdgeInsets.all(12),
                               decoration: BoxDecoration(
-                                color: Colors.white.withOpacity(0.2),
+                                color: Colors.white.withValues(alpha:0.2),
                                 shape: BoxShape.circle,
                               ),
                               child: const Icon(
@@ -136,8 +136,8 @@ class _ThemeSelectionViewState extends State<ThemeSelectionView> {
                           padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
                           decoration: BoxDecoration(
                             color: brightness == Brightness.dark
-                                ? Colors.white.withOpacity(0.15)
-                                : Colors.white.withOpacity(0.25),
+                                ? Colors.white.withValues(alpha:0.15)
+                                : Colors.white.withValues(alpha:0.25),
                             borderRadius: BorderRadius.circular(16),
                           ),
                           child: Row(
@@ -208,8 +208,8 @@ class ThemeButton extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 20),
           decoration: BoxDecoration(
             color: brightness == Brightness.dark
-                ? Colors.white.withOpacity(0.15)
-                : Colors.white.withOpacity(0.25),
+                ? Colors.white.withValues(alpha:0.15)
+                : Colors.white.withValues(alpha:0.25),
             borderRadius: BorderRadius.circular(16),
             border: isSelected
                 ? Border.all(
@@ -229,7 +229,7 @@ class ThemeButton extends StatelessWidget {
                   gradient: theme.gradient,
                   borderRadius: BorderRadius.circular(8),
                   border: Border.all(
-                    color: Colors.white.withOpacity(0.5),
+                    color: Colors.white.withValues(alpha:0.5),
                     width: 2,
                   ),
                 ),
@@ -252,7 +252,7 @@ class ThemeButton extends StatelessWidget {
                 size: 24,
                 color: isSelected
                     ? AppColors.successGreen
-                    : Colors.white.withOpacity(0.3),
+                    : Colors.white.withValues(alpha:0.3),
               ),
               const SizedBox(width: 24),
             ],

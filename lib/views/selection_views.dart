@@ -80,7 +80,7 @@ class _BaseSelectionViewState extends State<_BaseSelectionView> {
                           child: Container(
                             padding: const EdgeInsets.all(12),
                             decoration: BoxDecoration(
-                              color: Colors.white.withOpacity(0.2),
+                              color: Colors.white.withValues(alpha:0.2),
                               shape: BoxShape.circle,
                             ),
                             child: const Icon(
@@ -125,7 +125,7 @@ class _BaseSelectionViewState extends State<_BaseSelectionView> {
                               style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
-                                color: Colors.white.withOpacity(0.9),
+                                color: Colors.white.withValues(alpha:0.9),
                               ),
                               textAlign: TextAlign.center,
                             ),
@@ -226,7 +226,7 @@ class _ThemeCategorySelectionViewState extends State<ThemeCategorySelectionView>
                                   child: Container(
                                     padding: const EdgeInsets.all(12),
                                     decoration: BoxDecoration(
-                                      color: Colors.white.withOpacity(0.2),
+                                      color: Colors.white.withValues(alpha:0.2),
                                       shape: BoxShape.circle,
                                     ),
                                     child: const Icon(
@@ -266,7 +266,7 @@ class _ThemeCategorySelectionViewState extends State<ThemeCategorySelectionView>
                               style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
-                                color: Colors.white.withOpacity(0.9),
+                                color: Colors.white.withValues(alpha:0.9),
                               ),
                               textAlign: TextAlign.center,
                             ),
@@ -322,7 +322,7 @@ class _ThemeCategorySelectionViewState extends State<ThemeCategorySelectionView>
                                           AppLocalizations.of(context)!.getByKey(theme.descriptionKey) ?? theme.descriptionKey,
                                           style: TextStyle(
                                             fontSize: 14,
-                                            color: Colors.white.withOpacity(0.8),
+                                            color: Colors.white.withValues(alpha:0.8),
                                           ),
                                         ),
                                       ),
@@ -420,7 +420,7 @@ class _SeasonSelectionViewState extends State<SeasonSelectionView> {
                                   child: Container(
                                     padding: const EdgeInsets.all(12),
                                     decoration: BoxDecoration(
-                                      color: Colors.white.withOpacity(0.2),
+                                      color: Colors.white.withValues(alpha:0.2),
                                       shape: BoxShape.circle,
                                     ),
                                     child: const Icon(
@@ -460,7 +460,7 @@ class _SeasonSelectionViewState extends State<SeasonSelectionView> {
                               style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
-                                color: Colors.white.withOpacity(0.9),
+                                color: Colors.white.withValues(alpha:0.9),
                               ),
                               textAlign: TextAlign.center,
                             ),
@@ -514,7 +514,7 @@ class _SeasonSelectionViewState extends State<SeasonSelectionView> {
                                         AppLocalizations.of(context)!.seasonFruehling_sommerDescription,
                                         style: TextStyle(
                                           fontSize: 14,
-                                          color: Colors.white.withOpacity(0.8),
+                                          color: Colors.white.withValues(alpha:0.8),
                                         ),
                                       ),
                                     ],
@@ -539,7 +539,7 @@ class _SeasonSelectionViewState extends State<SeasonSelectionView> {
                                         AppLocalizations.of(context)!.seasonHerbst_winterDescription,
                                         style: TextStyle(
                                           fontSize: 14,
-                                          color: Colors.white.withOpacity(0.8),
+                                          color: Colors.white.withValues(alpha:0.8),
                                         ),
                                       ),
                                     ],
@@ -564,7 +564,7 @@ class _SeasonSelectionViewState extends State<SeasonSelectionView> {
                                         AppLocalizations.of(context)!.seasonSpecialTimesDescription,
                                         style: TextStyle(
                                           fontSize: 14,
-                                          color: Colors.white.withOpacity(0.8),
+                                          color: Colors.white.withValues(alpha:0.8),
                                         ),
                                       ),
                                     ],
@@ -768,7 +768,7 @@ class _TargetBingosViewState extends State<TargetBingosView> {
                           child: Container(
                             padding: const EdgeInsets.all(12),
                             decoration: BoxDecoration(
-                              color: Colors.white.withOpacity(0.2),
+                              color: Colors.white.withValues(alpha:0.2),
                               shape: BoxShape.circle,
                             ),
                             child: const Icon(
@@ -812,7 +812,7 @@ class _TargetBingosViewState extends State<TargetBingosView> {
                               style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
-                                color: Colors.white.withOpacity(0.9),
+                                color: Colors.white.withValues(alpha:0.9),
                               ),
                               textAlign: TextAlign.center,
                             ),
@@ -840,7 +840,7 @@ class _TargetBingosViewState extends State<TargetBingosView> {
                                     Icons.remove_circle,
                                     size: 50,
                                     color: Colors.white
-                                        .withOpacity(_targetBingos > 1 ? 1.0 : 0.3),
+                                        .withValues(alpha:_targetBingos > 1 ? 1.0 : 0.3),
                                   ),
                                 ),
                               ),
@@ -879,7 +879,7 @@ class _TargetBingosViewState extends State<TargetBingosView> {
                                     Icons.add_circle,
                                     size: 50,
                                     color: Colors.white
-                                        .withOpacity(_targetBingos < 10 ? 1.0 : 0.3),
+                                        .withValues(alpha:_targetBingos < 10 ? 1.0 : 0.3),
                                   ),
                                 ),
                               ),
@@ -900,8 +900,8 @@ class _TargetBingosViewState extends State<TargetBingosView> {
                                   padding: const EdgeInsets.symmetric(vertical: 20),
                                   decoration: BoxDecoration(
                                     color: brightness == Brightness.dark
-                                        ? Colors.white.withOpacity(0.15)
-                                        : Colors.white.withOpacity(0.25),
+                                        ? Colors.white.withValues(alpha:0.15)
+                                        : Colors.white.withValues(alpha:0.25),
                                     borderRadius: BorderRadius.circular(16),
                                   ),
                                   child: Row(
@@ -921,7 +921,7 @@ class _TargetBingosViewState extends State<TargetBingosView> {
                                       Icon(
                                         Icons.chevron_right,
                                         size: 24,
-                                        color: Colors.white.withOpacity(0.5),
+                                        color: Colors.white.withValues(alpha:0.5),
                                       ),
                                       const SizedBox(width: 24),
                                     ],
@@ -973,8 +973,8 @@ class _SelectionButton extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 20),
           decoration: BoxDecoration(
             color: brightness == Brightness.dark
-                ? Colors.white.withOpacity(0.15)
-                : Colors.white.withOpacity(0.25),
+                ? Colors.white.withValues(alpha:0.15)
+                : Colors.white.withValues(alpha:0.25),
             borderRadius: BorderRadius.circular(16),
           ),
           child: Row(
@@ -1001,7 +1001,7 @@ class _SelectionButton extends StatelessWidget {
               Icon(
                 Icons.chevron_right,
                 size: 24,
-                color: Colors.white.withOpacity(0.5),
+                color: Colors.white.withValues(alpha:0.5),
               ),
               const SizedBox(width: 24),
             ],
@@ -1043,8 +1043,8 @@ class _SizeButton extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 20),
           decoration: BoxDecoration(
             color: brightness == Brightness.dark
-                ? Colors.white.withOpacity(0.15)
-                : Colors.white.withOpacity(0.25),
+                ? Colors.white.withValues(alpha:0.15)
+                : Colors.white.withValues(alpha:0.25),
             borderRadius: BorderRadius.circular(16),
           ),
           child: Row(
@@ -1075,7 +1075,7 @@ class _SizeButton extends StatelessWidget {
                       subtitle,
                       style: TextStyle(
                         fontSize: 14,
-                        color: Colors.white.withOpacity(0.7),
+                        color: Colors.white.withValues(alpha:0.7),
                       ),
                     ),
                   ],
@@ -1084,7 +1084,7 @@ class _SizeButton extends StatelessWidget {
               Icon(
                 Icons.chevron_right,
                 size: 24,
-                color: Colors.white.withOpacity(0.5),
+                color: Colors.white.withValues(alpha:0.5),
               ),
               const SizedBox(width: 24),
             ],

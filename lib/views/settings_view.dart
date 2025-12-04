@@ -106,7 +106,7 @@ class _SettingsViewState extends State<SettingsView> {
                           child: Container(
                             padding: const EdgeInsets.all(12),
                             decoration: BoxDecoration(
-                              color: Colors.white.withOpacity(0.2),
+                              color: Colors.white.withValues(alpha:0.2),
                               shape: BoxShape.circle,
                             ),
                             child: const Icon(
@@ -187,7 +187,7 @@ class _SettingsViewState extends State<SettingsView> {
                           'Version $_version',
                           style: TextStyle(
                             fontSize: 12,
-                            color: Colors.white.withOpacity(0.7),
+                            color: Colors.white.withValues(alpha:0.7),
                           ),
                         ),
                         const SizedBox(height: 8),
@@ -198,7 +198,7 @@ class _SettingsViewState extends State<SettingsView> {
                               AppLocalizations.of(context)!.settingsMadeWith,
                               style: TextStyle(
                                 fontSize: 10,
-                                color: Colors.white.withOpacity(0.6),
+                                color: Colors.white.withValues(alpha:0.6),
                               ),
                             ),
                             const SizedBox(width: 4),
@@ -212,7 +212,7 @@ class _SettingsViewState extends State<SettingsView> {
                               AppLocalizations.of(context)!.settingsInOrt,
                               style: TextStyle(
                                 fontSize: 10,
-                                color: Colors.white.withOpacity(0.6),
+                                color: Colors.white.withValues(alpha:0.6),
                               ),
                             ),
                           ],
@@ -260,8 +260,8 @@ class SettingsLinkButton extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 20),
           decoration: BoxDecoration(
             color: brightness == Brightness.dark
-                ? Colors.white.withOpacity(0.15)
-                : Colors.white.withOpacity(0.25),
+                ? Colors.white.withValues(alpha:0.15)
+                : Colors.white.withValues(alpha:0.25),
             borderRadius: BorderRadius.circular(16),
           ),
           child: Row(
@@ -286,7 +286,7 @@ class SettingsLinkButton extends StatelessWidget {
               Icon(
                 Icons.open_in_new,
                 size: 20,
-                color: Colors.white.withOpacity(0.5),
+                color: Colors.white.withValues(alpha:0.5),
               ),
               const SizedBox(width: 24),
             ],
