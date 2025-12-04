@@ -142,7 +142,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get itemAnhaenger => 'Aanhanger';
 
   @override
-  String get itemAra => 'Macaw';
+  String get itemAra => 'Ara';
 
   @override
   String get itemAusfahrt => 'Afrit';
@@ -166,7 +166,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get itemBesteck => 'Bestek';
 
   @override
-  String get itemBesucherinnen => 'Visitors';
+  String get itemBesucherinnen => 'Bezoekers';
 
   @override
   String get itemBett => 'Bed';
@@ -178,7 +178,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get itemBild => 'Schilderij';
 
   @override
-  String get itemBison => 'Bison';
+  String get itemBison => 'Bizon';
 
   @override
   String get itemBlauesAuto => 'Blauwe Auto';
@@ -193,7 +193,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get itemBlumenZuhause => 'Bloemen';
 
   @override
-  String get itemBraunbaer => 'Brown Bear';
+  String get itemBraunbaer => 'Bruine Beer';
 
   @override
   String get itemBriefkasten => 'Brievenbus';
@@ -205,7 +205,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get itemBuch => 'Boek';
 
   @override
-  String get itemBuntglasfenster => 'Stained Glass Window';
+  String get itemBuntglasfenster => 'Glas-in-loodraam';
 
   @override
   String get itemBuntstifte => 'Kleurpotloden';
@@ -226,13 +226,13 @@ class AppLocalizationsNl extends AppLocalizations {
   String get itemChriststollen => 'Kerststol';
 
   @override
-  String get itemController => 'Controller';
+  String get itemController => 'Spelbesturing';
 
   @override
   String get itemDudubox => 'DuDu-Doos';
 
   @override
-  String get itemEisbaer => 'Polar Bear';
+  String get itemEisbaer => 'IJsbeer';
 
   @override
   String get itemEisenbahn => 'Speelgoedtrein';
@@ -241,13 +241,13 @@ class AppLocalizationsNl extends AppLocalizations {
   String get itemElefant => 'Olifant';
 
   @override
-  String get itemEmpore => 'Gallery';
+  String get itemEmpore => 'Galerij';
 
   @override
   String get itemEngel => 'Engel';
 
   @override
-  String get itemErntekrone => 'Harvest Crown';
+  String get itemErntekrone => 'Oogstkroon';
 
   @override
   String get itemEscooter => 'E-Step';
@@ -340,7 +340,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get itemKamel => 'Kameel';
 
   @override
-  String get itemKanzel => 'Pulpit';
+  String get itemKanzel => 'Kansel';
 
   @override
   String get itemKatze => 'Kat';
@@ -349,7 +349,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get itemKekse => 'Koekjes';
 
   @override
-  String get itemKelch => 'Chalice';
+  String get itemKelch => 'Kelk';
 
   @override
   String get itemKerze => 'Kaars';
@@ -361,16 +361,16 @@ class AppLocalizationsNl extends AppLocalizations {
   String get itemKircheGebaeude => 'Kerk';
 
   @override
-  String get itemKirchenbank => 'Pew';
+  String get itemKirchenbank => 'Kerkbank';
 
   @override
-  String get itemKirchenturm => 'Church Tower';
+  String get itemKirchenturm => 'Kerktoren';
 
   @override
   String get itemKlemmbaustein => 'Bouwstenen';
 
   @override
-  String get itemKlingelbeutel => 'Collection Bag';
+  String get itemKlingelbeutel => 'Collectezak';
 
   @override
   String get itemKochtopf => 'Pan';
@@ -391,7 +391,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get itemKrokodil => 'Krokodil';
 
   @override
-  String get itemKronleuchter => 'Chandelier';
+  String get itemKronleuchter => 'Kroonluchter';
 
   @override
   String get itemKuehlschrank => 'Koelkast';
@@ -403,10 +403,10 @@ class AppLocalizationsNl extends AppLocalizations {
   String get itemKuscheltiere => 'Knuffels';
 
   @override
-  String get itemLamm => 'Lamb';
+  String get itemLamm => 'Lam';
 
   @override
-  String get itemLammMitFahne => 'Lamb with Flag';
+  String get itemLammMitFahne => 'Lam met Vlag';
 
   @override
   String get itemLampe => 'Lamp';
@@ -415,7 +415,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get itemLaptop => 'Laptop';
 
   @override
-  String get itemLesepult => 'Lectern';
+  String get itemLesepult => 'Lessenaar';
 
   @override
   String get itemLieferwagen => 'Bestelwagen';
@@ -430,10 +430,10 @@ class AppLocalizationsNl extends AppLocalizations {
   String get itemMalbuch => 'Kleurboek';
 
   @override
-  String get itemMandrill => 'Mandrill';
+  String get itemMandrill => 'Mandril';
 
   @override
-  String get itemMikrofon => 'Microphone';
+  String get itemMikrofon => 'Microfoon';
 
   @override
   String get itemMotorrad => 'Motorfiets';
@@ -448,16 +448,16 @@ class AppLocalizationsNl extends AppLocalizations {
   String get itemOfen => 'Oven';
 
   @override
-  String get itemOpferstock => 'Offering Box';
+  String get itemOpferstock => 'Offerblok';
 
   @override
-  String get itemOrangUtan => 'Orangutan';
+  String get itemOrangUtan => 'Orang-oetan';
 
   @override
   String get itemOrgel => 'Orgel';
 
   @override
-  String get itemOsterkerze => 'Easter Candle';
+  String get itemOsterkerze => 'Paaskaars';
 
   @override
   String get itemOtter => 'Otter';
@@ -466,19 +466,19 @@ class AppLocalizationsNl extends AppLocalizations {
   String get itemParkplatz => 'Parkeerplaats';
 
   @override
-  String get itemPastor => 'Pastor';
+  String get itemPastor => 'Dominee';
 
   @override
-  String get itemPastorin => 'Pastor';
+  String get itemPastorin => 'Dominee';
 
   @override
-  String get itemPavian => 'Baboon';
+  String get itemPavian => 'Baviaan';
 
   @override
-  String get itemPelikanKirche => 'Pelican';
+  String get itemPelikanKirche => 'Pelikaan';
 
   @override
-  String get itemPelikanZoo => 'Pelican';
+  String get itemPelikanZoo => 'Pelikaan';
 
   @override
   String get itemPferd => 'Paard';
@@ -487,19 +487,19 @@ class AppLocalizationsNl extends AppLocalizations {
   String get itemPflanze => 'Plant';
 
   @override
-  String get itemPinguin => 'Penguin';
+  String get itemPinguin => 'Pinguïn';
 
   @override
   String get itemPinsel => 'Kwast';
 
   @override
-  String get itemPinselohrschwein => 'Red River Hog';
+  String get itemPinselohrschwein => 'Penseeloorzwijn';
 
   @override
   String get itemPolizeiauto => 'Politieauto';
 
   @override
-  String get itemPraeriehund => 'Prairie Dog';
+  String get itemPraeriehund => 'Prairiehond';
 
   @override
   String get itemPuppe => 'Pop';
@@ -535,7 +535,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get itemSbahn => 'Stadsgewestelijk Trein';
 
   @override
-  String get itemSchaf => 'Sheep';
+  String get itemSchaf => 'Schaap';
 
   @override
   String get itemSchafe => 'Schapen';
@@ -556,7 +556,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get itemScheune => 'Schuur';
 
   @override
-  String get itemSchiff => 'Nave';
+  String get itemSchiff => 'Schip';
 
   @override
   String get itemSchildkroete => 'Schildpad';
@@ -565,7 +565,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get itemSchlange => 'Slang';
 
   @override
-  String get itemSchneeEule => 'Snowy Owl';
+  String get itemSchneeEule => 'Sneeuwuil';
 
   @override
   String get itemSchneeeule => 'Sneeuwuil';
@@ -577,7 +577,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get itemSchneemann => 'Sneeuwpop';
 
   @override
-  String get itemSchnitzereien => 'Carvings';
+  String get itemSchnitzereien => 'Houtsnijwerk';
 
   @override
   String get itemSchornstein => 'Schoorsteen';
@@ -595,7 +595,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get itemSee => 'Meer';
 
   @override
-  String get itemSeehund => 'Seal';
+  String get itemSeehund => 'Zeehond';
 
   @override
   String get itemSessel => 'Fauteuil';
@@ -604,7 +604,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get itemSikahHirsch => 'Sikahert';
 
   @override
-  String get itemSikahirsch => 'Sika Deer';
+  String get itemSikahirsch => 'Sikahert';
 
   @override
   String get itemSofa => 'Bank';
@@ -616,7 +616,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get itemSpielplatz => 'Speeltuin';
 
   @override
-  String get itemStachelschwein => 'Porcupine';
+  String get itemStachelschwein => 'Stekelvarken';
 
   @override
   String get itemStopschild => 'Stopbord';
@@ -643,7 +643,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get itemTasse => 'Kopje';
 
   @override
-  String get itemTaube => 'Dove';
+  String get itemTaube => 'Duif';
 
   @override
   String get itemTaufbecken => 'Doopvont';

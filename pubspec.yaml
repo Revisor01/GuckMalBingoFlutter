@@ -17,9 +17,6 @@ dependencies:
   # State Management
   provider: ^6.1.1
 
-  # Navigation
-  go_router: ^14.0.0
-
   # Audio
   audioplayers: ^6.0.0
 

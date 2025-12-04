@@ -12,11 +12,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 /// Damit können wir testen, ob die Weihnachts-Items ab 1. Dezember erscheinen.
 ///
 /// Beispiel: DateTime(2025, 12, 2) simuliert den 2. Dezember 2025
-/// Auf null setzen, um das echte Systemdatum zu verwenden.
-DateTime? debugOverrideDate = null; // Für Release: null setzen
+/// Im Release-Mode wird immer das echte Systemdatum verwendet.
+DateTime? debugOverrideDate = kReleaseMode ? null : null;
 
 /// Gibt das aktuelle Datum zurück - entweder das Debug-Datum oder das echte Datum
+/// Im Release-Mode wird immer das echte Systemdatum verwendet.
 DateTime getCurrentDate() {
+  if (kReleaseMode) return DateTime.now();
   return debugOverrideDate ?? DateTime.now();
 }
 
