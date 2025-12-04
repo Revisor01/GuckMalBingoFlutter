@@ -55,7 +55,7 @@ class _SettingsViewState extends State<SettingsView> {
         initialChildSize: 0.85,
         minChildSize: 0.5,
         maxChildSize: 0.95,
-        builder: (context, scrollController) => ParentalGateView(),
+        builder: (context, scrollController) => const ParentalGateView(),
       ),
     );
 

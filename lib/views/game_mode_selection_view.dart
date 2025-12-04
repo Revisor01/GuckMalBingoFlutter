@@ -91,11 +91,11 @@ class _GameModeSelectionViewState extends State<GameModeSelectionView> {
                                           context: context,
                                           isScrollControlled: true,
                                           backgroundColor: Colors.transparent,
-                                          builder: (context) => Padding(
-                                            padding: const EdgeInsets.only(
+                                          builder: (context) => const Padding(
+                                            padding: EdgeInsets.only(
                                               top: 60,
                                             ),
-                                            child: const SettingsView(),
+                                            child: SettingsView(),
                                           ),
                                         );
                                       },
