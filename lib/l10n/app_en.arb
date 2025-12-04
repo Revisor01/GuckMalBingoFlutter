@@ -253,6 +253,7 @@
   "key7bereiche": "7 Areas",
   "legFestWieVieleBingosDuBrauchstUmZuGewinnen": "Set how many bingos\nyou need to win!",
   "lld": "%1$lld %2$@",
+  "lldLld": "%1$lld + %2$lld = ?",
   "paedagogischWertvoll": "Educational\nValue",
   "parentalGateCancel": "Cancel",
   "parentalGateError": "Wrong answer. Try again.",

@@ -253,6 +253,7 @@
   "key7bereiche": "7 Domaines",
   "legFestWieVieleBingosDuBrauchstUmZuGewinnen": "Définissez combien de bingos\nvous devez gagner !",
   "lld": "%1$lld %2$@",
+  "lldLld": "%1$lld + %2$lld = ?",
   "paedagogischWertvoll": "Valeur\nÉducative",
   "parentalGateCancel": "Annuler",
   "parentalGateError": "Mauvaise réponse. Réessaye.",

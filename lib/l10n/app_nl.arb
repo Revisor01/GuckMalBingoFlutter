@@ -253,6 +253,7 @@
   "key7bereiche": "7 Gebieden",
   "legFestWieVieleBingosDuBrauchstUmZuGewinnen": "Bepaal hoeveel bingo's\nje nodig hebt om te winnen!",
   "lld": "%1$lld %2$@",
+  "lldLld": "%1$lld + %2$lld = ?",
   "paedagogischWertvoll": "Educatieve\nWaarde",
   "parentalGateCancel": "Annuleren",
   "parentalGateError": "Fout antwoord. Probeer opnieuw.",
