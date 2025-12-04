@@ -835,6 +835,9 @@ class AppLocalizationsNl extends AppLocalizations {
   String get settingsSupport => 'Ondersteuning';
 
   @override
+  String get settingsSnowfall => 'Sneeuwval';
+
+  @override
   String get settingsTitle => 'Informatie';
 
   @override

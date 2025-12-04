@@ -193,15 +193,13 @@ enum BackgroundTheme {
     );
   }
 
-  /// Lade gespeichertes Theme (Christmas-Theme automatisch in der Weihnachtszeit)
+  /// Lade gespeichertes Theme (Christmas-Theme als Default in der Weihnachtszeit)
   static Future<BackgroundTheme> loadSavedTheme() async {
-    // Weihnachts-Special: Automatisch Christmas-Theme in der Weihnachtszeit
-    if (isChristmasSeason()) {
-      return BackgroundTheme.christmas;
-    }
-
     final prefs = await SharedPreferences.getInstance();
-    final themeName = prefs.getString('backgroundTheme') ?? 'lightBlue';
+
+    // Weihnachts-Special: Christmas-Theme als Default wenn noch kein Theme gespeichert
+    final defaultTheme = isChristmasSeason() ? 'christmas' : 'lightBlue';
+    final themeName = prefs.getString('backgroundTheme') ?? defaultTheme;
 
     // Migration: alte deutsche Namen auf neue englische Namen mappen
     const migrationMap = {

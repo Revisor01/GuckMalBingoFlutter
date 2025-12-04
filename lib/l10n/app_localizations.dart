@@ -1738,6 +1738,12 @@ abstract class AppLocalizations {
   /// **'Support'**
   String get settingsSupport;
 
+  /// No description provided for @settingsSnowfall.
+  ///
+  /// In de, this message translates to:
+  /// **'Schneefall'**
+  String get settingsSnowfall;
+
   /// No description provided for @settingsTitle.
   ///
   /// In de, this message translates to:

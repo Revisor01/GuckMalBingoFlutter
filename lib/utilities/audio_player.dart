@@ -67,26 +67,24 @@ class GameAudioPlayer {
     }
   }
 
-  /// Zufälliger Click-Sound (Glocken in der Weihnachtszeit)
+  /// Zufälliger Click-Sound (immer normale Clicks)
   Future<void> playClickSound() async {
     if (!soundEnabled) return;
-
-    // Weihnachts-Special: Glocken-Sound im Dezember/Anfang Januar
-    if (isChristmasSeason()) {
-      final randomBell = (_christmasBellSounds..shuffle()).first;
-      final success = await _playSoundWithFallback(randomBell);
-      if (success) return;
-    }
-
-    // Standard Click-Sound
     final randomSound = (_clickSounds..shuffle()).first;
     await _playSound(randomSound);
   }
 
-  /// Zufälliger Bingo-Sound (nur bei Bingo!)
+  /// Zufälliger Bingo-Sound (normale + Weihnachts-Sounds in der Weihnachtszeit)
   Future<void> playBingoSound({required int count}) async {
     if (!soundEnabled) return;
-    final randomSound = (_bingoSounds..shuffle()).first;
+
+    // In der Weihnachtszeit: Alle Sounds (normale + Weihnachts-Glocken)
+    List<String> availableSounds = [..._bingoSounds];
+    if (isChristmasSeason()) {
+      availableSounds.addAll(_christmasBellSounds);
+    }
+
+    final randomSound = (availableSounds..shuffle()).first;
     await _playSound(randomSound);
   }
 
@@ -127,7 +125,17 @@ class GameAudioPlayer {
     }
   }
 
+  /// Stoppt alle laufenden Sounds sofort
+  Future<void> stop() async {
+    try {
+      await _audioPlayer.stop();
+    } catch (e) {
+      // Fehler ignorieren
+    }
+  }
+
   void dispose() {
+    _audioPlayer.stop(); // Sound sofort stoppen
     _audioPlayer.dispose();
   }
 }

@@ -1,3 +1,6 @@
+import 'package:flutter/foundation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 /// Debug Utilities für Testing
 ///
 /// Hier können Debug-Variablen gesetzt werden, die das Verhalten der App
@@ -26,4 +29,25 @@ bool isChristmasSeason() {
   // Januar (bis 6.1.)
   if (now.month == 1 && now.day <= 6) return true;
   return false;
+}
+
+/// Schneefall-Einstellung als ValueNotifier für reaktives UI
+final snowfallEnabledNotifier = ValueNotifier<bool>(true);
+
+/// Lade Schneefall-Einstellung aus SharedPreferences
+Future<void> loadSnowfallSetting() async {
+  final prefs = await SharedPreferences.getInstance();
+  snowfallEnabledNotifier.value = prefs.getBool('snowfallEnabled') ?? true;
+}
+
+/// Speichere Schneefall-Einstellung
+Future<void> setSnowfallEnabled(bool enabled) async {
+  snowfallEnabledNotifier.value = enabled;
+  final prefs = await SharedPreferences.getInstance();
+  await prefs.setBool('snowfallEnabled', enabled);
+}
+
+/// Prüft ob Schneefall angezeigt werden soll
+bool shouldShowSnowfall() {
+  return isChristmasSeason() && snowfallEnabledNotifier.value;
 }

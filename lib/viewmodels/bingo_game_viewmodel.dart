@@ -322,6 +322,11 @@ class BingoGameViewModel extends ChangeNotifier {
     }
   }
 
+  /// Stoppt alle Sounds sofort (für Zurück-Navigation)
+  void stopAllSounds() {
+    _audioPlayer.stop();
+  }
+
   @override
   void dispose() {
     _audioPlayer.dispose();

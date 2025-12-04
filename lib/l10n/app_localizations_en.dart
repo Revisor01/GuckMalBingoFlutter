@@ -835,6 +835,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsSupport => 'Support';
 
   @override
+  String get settingsSnowfall => 'Snowfall';
+
+  @override
   String get settingsTitle => 'Information';
 
   @override

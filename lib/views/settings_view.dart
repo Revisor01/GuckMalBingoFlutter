@@ -46,10 +46,14 @@ class _SettingsViewState extends State<SettingsView> {
     final result = await showModalBottomSheet<bool>(
       context: context,
       isScrollControlled: true,
+      isDismissible: true,
+      enableDrag: true,
       backgroundColor: Colors.transparent,
-      builder: (context) => Padding(
-        padding: const EdgeInsets.only(top: 60),
-        child: ParentalGateView(),
+      builder: (context) => DraggableScrollableSheet(
+        initialChildSize: 0.85,
+        minChildSize: 0.5,
+        maxChildSize: 0.95,
+        builder: (context, scrollController) => ParentalGateView(),
       ),
     );
 

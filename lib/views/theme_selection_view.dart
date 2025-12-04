@@ -23,11 +23,13 @@ class ThemeSelectionView extends StatefulWidget {
 
 class _ThemeSelectionViewState extends State<ThemeSelectionView> {
   late BackgroundTheme _currentTheme;
+  bool _snowfallEnabled = true;
 
   @override
   void initState() {
     super.initState();
     _currentTheme = widget.selectedTheme;
+    _snowfallEnabled = snowfallEnabledNotifier.value;
   }
 
   void _selectTheme(BackgroundTheme theme) {
@@ -36,6 +38,13 @@ class _ThemeSelectionViewState extends State<ThemeSelectionView> {
     });
     theme.save();
     widget.onThemeSelected(theme);
+  }
+
+  void _toggleSnowfall(bool enabled) {
+    setState(() {
+      _snowfallEnabled = enabled;
+    });
+    setSnowfallEnabled(enabled);
   }
 
   @override
@@ -118,6 +127,47 @@ class _ThemeSelectionViewState extends State<ThemeSelectionView> {
                             .toList(),
                       ),
                     ),
+
+                    // Schneefall-Toggle (nur in der Weihnachtszeit)
+                    if (isChristmasSeason()) ...[
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 30),
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
+                          decoration: BoxDecoration(
+                            color: brightness == Brightness.dark
+                                ? Colors.white.withOpacity(0.15)
+                                : Colors.white.withOpacity(0.25),
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: Row(
+                            children: [
+                              const Icon(
+                                Icons.ac_unit,
+                                size: 28,
+                                color: Colors.lightBlue,
+                              ),
+                              const SizedBox(width: 16),
+                              Expanded(
+                                child: Text(
+                                  AppLocalizations.of(context)!.settingsSnowfall,
+                                  style: const TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                              Switch(
+                                value: _snowfallEnabled,
+                                onChanged: _toggleSnowfall,
+                                activeColor: Colors.lightBlue,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
 
                     const SizedBox(height: 60),
                   ],

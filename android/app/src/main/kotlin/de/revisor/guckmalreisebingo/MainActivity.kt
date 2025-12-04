@@ -1,4 +1,4 @@
-package com.simonluthe.guck_mal_bingo
+package de.revisor.guckmalreisebingo
 
 import io.flutter.embedding.android.FlutterActivity
 

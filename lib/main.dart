@@ -19,11 +19,14 @@ import 'l10n/app_localizations.dart';
 import 'views/snowfall_widget.dart';
 import 'utilities/debug_utils.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // Hide status bar for immersive experience (wie in iOS app)
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+
+  // Lade Schneefall-Einstellung
+  await loadSnowfallSetting();
 
   runApp(const GuckMalBingoApp());
 }
@@ -89,11 +92,16 @@ class GuckMalBingoApp extends StatelessWidget {
           textScaleFactor = 0.95;
         }
 
-        // Weihnachts-Special: Schneefalleffekt im Dezember/Anfang Januar
-        Widget wrappedChild = SnowfallWidget(
-          enabled: isChristmasSeason(),
-          snowflakeCount: 40,
-          child: child!,
+        // Weihnachts-Special: Schneefalleffekt mit reaktivem Toggle
+        Widget wrappedChild = ValueListenableBuilder<bool>(
+          valueListenable: snowfallEnabledNotifier,
+          builder: (context, snowfallEnabled, _) {
+            return SnowfallWidget(
+              enabled: isChristmasSeason() && snowfallEnabled,
+              snowflakeCount: 40,
+              child: child!,
+            );
+          },
         );
 
         return MediaQuery(

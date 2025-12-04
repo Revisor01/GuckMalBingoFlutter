@@ -73,13 +73,19 @@ class _BingoGameViewState extends State<BingoGameView> {
                           child: _ContentView(
                             viewModel: viewModel,
                             isLandscape: true,
-                            onBack: () => Navigator.of(context).pop(),
+                            onBack: () {
+                              viewModel.stopAllSounds();
+                              Navigator.of(context).pop();
+                            },
                           ),
                         )
                       : _ContentView(
                           viewModel: viewModel,
                           isLandscape: false,
-                          onBack: () => Navigator.of(context).pop(),
+                          onBack: () {
+                            viewModel.stopAllSounds();
+                            Navigator.of(context).pop();
+                          },
                         ),
                 ),
 

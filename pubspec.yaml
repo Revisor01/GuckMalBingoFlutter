@@ -1,7 +1,7 @@
 name: guck_mal_bingo
 description: Guck mal! - Reise Bingo App für iOS und Android
 publish_to: 'none'
-version: 1.1.0+3
+version: 1.1.0+4
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
@@ -40,6 +40,13 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^3.0.0
+  flutter_native_splash: ^2.4.0
+
+# Native Splash Screen Config
+flutter_native_splash:
+  color: "#FFFFFF"
+  android: true
+  ios: false  # iOS hat schon LaunchScreen
 
 flutter:
   uses-material-design: true
