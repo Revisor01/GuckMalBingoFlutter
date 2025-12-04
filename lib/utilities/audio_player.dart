@@ -36,16 +36,16 @@ class GameAudioPlayer {
       (i) => 'sounds/click_${(i + 1).toString().padLeft(2, '0')}.mp3',
     );
 
-    // Weihnachts-Sounds (bells_01 bis bells_03) - TODO: Sound-Dateien hinzufügen
+    // Weihnachts-Bingo-Sounds (bingo_xmas1 bis bingo_xmas6)
     _christmasBellSounds = List.generate(
-      3,
-      (i) => 'sounds/bells_${(i + 1).toString().padLeft(2, '0')}.mp3',
+      6,
+      (i) => 'sounds/bingo_xmas${i + 1}.mp3',
     );
 
-    // Weihnachts-Victory-Sounds (christmas_victory_01 bis _03)
+    // Weihnachts-Victory-Sounds (victory_xmas1 bis victory_xmas3)
     _christmasVictorySounds = List.generate(
       3,
-      (i) => 'sounds/christmas_victory_${(i + 1).toString().padLeft(2, '0')}.mp3',
+      (i) => 'sounds/victory_xmas${i + 1}.mp3',
     );
   }
 
