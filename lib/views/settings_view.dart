@@ -28,6 +28,7 @@ class _SettingsViewState extends State<SettingsView> {
 
   Future<void> _loadTheme() async {
     final theme = await BackgroundTheme.loadSavedTheme();
+    if (!mounted) return;
     setState(() {
       _selectedTheme = theme;
       _themeLoaded = true;
@@ -36,6 +37,7 @@ class _SettingsViewState extends State<SettingsView> {
 
   Future<void> _loadVersion() async {
     final packageInfo = await PackageInfo.fromPlatform();
+    if (!mounted) return;
     setState(() {
       _version = '${packageInfo.version} (${packageInfo.buildNumber})';
     });

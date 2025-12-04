@@ -37,6 +37,7 @@ class _BaseSelectionViewState extends State<_BaseSelectionView> {
 
   Future<void> _loadTheme() async {
     final theme = await BackgroundTheme.loadSavedTheme();
+    if (!mounted) return;
     setState(() {
       _selectedTheme = theme;
       _themeLoaded = true;
@@ -178,6 +179,7 @@ class _ThemeCategorySelectionViewState extends State<ThemeCategorySelectionView>
 
   Future<void> _loadTheme() async {
     final theme = await BackgroundTheme.loadSavedTheme();
+    if (!mounted) return;
     setState(() {
       _selectedTheme = theme;
       _themeLoaded = true;
@@ -371,6 +373,7 @@ class _SeasonSelectionViewState extends State<SeasonSelectionView> {
 
   Future<void> _loadTheme() async {
     final theme = await BackgroundTheme.loadSavedTheme();
+    if (!mounted) return;
     setState(() {
       _selectedTheme = theme;
       _themeLoaded = true;
@@ -723,6 +726,7 @@ class _TargetBingosViewState extends State<TargetBingosView> {
 
   Future<void> _loadTheme() async {
     final theme = await BackgroundTheme.loadSavedTheme();
+    if (!mounted) return;
     setState(() {
       _selectedTheme = theme;
       _themeLoaded = true;

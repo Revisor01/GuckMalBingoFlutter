@@ -36,6 +36,7 @@ class _BingoGameViewState extends State<BingoGameView> {
 
   Future<void> _loadTheme() async {
     final theme = await BackgroundTheme.loadSavedTheme();
+    if (!mounted) return;
     setState(() {
       _selectedTheme = theme;
       _themeLoaded = true;

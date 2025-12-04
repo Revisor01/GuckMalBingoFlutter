@@ -37,6 +37,7 @@ class _GameModeSelectionViewState extends State<GameModeSelectionView> {
 
   Future<void> _loadTheme() async {
     final theme = await BackgroundTheme.loadSavedTheme();
+    if (!mounted) return;
     setState(() {
       _selectedTheme = theme;
       _themeLoaded = true;
