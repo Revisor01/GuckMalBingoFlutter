@@ -995,7 +995,7 @@ class BingoItemsData {
     BingoItem(
       emoji: '',
       name: 'itemLammMitFahne',
-      imageName: 'lamm mit fahne',
+      imageName: 'lamm_mit_fahne',
       areas: _areas([Area.kirche]),
       seasons: [],
     ),
@@ -1545,7 +1545,7 @@ class BingoItemsData {
     BingoItem(
       emoji: '',
       name: 'itemOrangUtan',
-      imageName: 'orang utan',
+      imageName: 'orang_utan',
       areas: _areas([Area.zoo]),
       seasons: [],
     ),
@@ -1641,7 +1641,7 @@ class BingoItemsData {
     BingoItem(
       emoji: '',
       name: 'itemSikahHirsch',
-      imageName: 'sikah hirsch',
+      imageName: 'sikah_hirsch',
       areas: _areas([Area.zoo]),
       seasons: [],
     ),
