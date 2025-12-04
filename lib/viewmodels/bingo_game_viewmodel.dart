@@ -74,6 +74,7 @@ class BingoGameViewModel extends ChangeNotifier {
   late GameAudioPlayer _audioPlayer;
   Set<BingoTypeWithIndex> _completedBingos = {};
   Future<void>? _animationTask;
+  bool _isDisposed = false;
 
   BingoGameViewModel({required this.config}) {
     _audioPlayer = GameAudioPlayer();
@@ -264,6 +265,7 @@ class BingoGameViewModel extends ChangeNotifier {
         notifyListeners();
 
         Future.delayed(const Duration(milliseconds: 500), () {
+          if (_isDisposed) return;
           showVictoryDialog = true;
           notifyListeners();
         });
@@ -277,18 +279,22 @@ class BingoGameViewModel extends ChangeNotifier {
     _animationTask = Future(() async {
       // Sequenziell durch alle Indices blinken (1, 2, 3, 4, 5)
       for (final index in indices) {
+        if (_isDisposed) return;
         blinkingIndex = index;
         notifyListeners();
         await Future.delayed(const Duration(milliseconds: 250)); // 0.25s pro Symbol
+        if (_isDisposed) return;
         blinkingIndex = null;
         notifyListeners();
         await Future.delayed(const Duration(milliseconds: 20)); // 0.02s Pause
       }
 
+      if (_isDisposed) return;
       // Dann alle neuen Bingo-Indices zusammen blinken
       blinkingAllIndices = Set.from(indices);
       notifyListeners();
       await Future.delayed(const Duration(milliseconds: 400)); // 0.4s alle zusammen
+      if (_isDisposed) return;
       blinkingAllIndices.clear();
       notifyListeners();
     });
@@ -302,6 +308,7 @@ class BingoGameViewModel extends ChangeNotifier {
 
       // Victory Dialog nach kurzer Verzögerung
       Future.delayed(const Duration(milliseconds: 500), () {
+        if (_isDisposed) return;
         showVictoryDialog = true;
         notifyListeners();
       });
@@ -316,6 +323,7 @@ class BingoGameViewModel extends ChangeNotifier {
       notifyListeners();
 
       Future.delayed(const Duration(seconds: 2), () {
+        if (_isDisposed) return;
         showWinMessage = false;
         notifyListeners();
       });
@@ -329,6 +337,7 @@ class BingoGameViewModel extends ChangeNotifier {
 
   @override
   void dispose() {
+    _isDisposed = true;
     _audioPlayer.dispose();
     super.dispose();
   }
