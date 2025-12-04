@@ -195,37 +195,46 @@ enum BackgroundTheme {
 
   /// Lade gespeichertes Theme (Christmas-Theme als Default in der Weihnachtszeit)
   static Future<BackgroundTheme> loadSavedTheme() async {
-    final prefs = await SharedPreferences.getInstance();
+    try {
+      final prefs = await SharedPreferences.getInstance();
 
-    // Weihnachts-Special: Christmas-Theme als Default wenn noch kein Theme gespeichert
-    final defaultTheme = isChristmasSeason() ? 'christmas' : 'lightBlue';
-    final themeName = prefs.getString('backgroundTheme') ?? defaultTheme;
+      // Weihnachts-Special: Christmas-Theme als Default wenn noch kein Theme gespeichert
+      final defaultTheme = isChristmasSeason() ? 'christmas' : 'lightBlue';
+      final themeName = prefs.getString('backgroundTheme') ?? defaultTheme;
 
-    // Migration: alte deutsche Namen auf neue englische Namen mappen
-    const migrationMap = {
-      'Himmelblau': 'lightBlue',
-      'Meeresgrün': 'lightBlue',
-      'Abendsonne': 'lightBlue',
-      'Dschungel': 'lightBlue',
-      'Nachtmodus': 'lightBlue',
-      'turquoise': 'lightBlue',
-      'sunset': 'lightBlue',
-      'forest': 'lightBlue',
-      'pinkPurple': 'lightBlue',
-    };
+      // Migration: alte deutsche Namen auf neue englische Namen mappen
+      const migrationMap = {
+        'Himmelblau': 'lightBlue',
+        'Meeresgrün': 'lightBlue',
+        'Abendsonne': 'lightBlue',
+        'Dschungel': 'lightBlue',
+        'Nachtmodus': 'lightBlue',
+        'turquoise': 'lightBlue',
+        'sunset': 'lightBlue',
+        'forest': 'lightBlue',
+        'pinkPurple': 'lightBlue',
+      };
 
-    if (migrationMap.containsKey(themeName)) {
-      final newName = migrationMap[themeName]!;
-      await prefs.setString('backgroundTheme', newName);
-      return BackgroundTheme.fromString(newName);
+      if (migrationMap.containsKey(themeName)) {
+        final newName = migrationMap[themeName]!;
+        await prefs.setString('backgroundTheme', newName);
+        return BackgroundTheme.fromString(newName);
+      }
+
+      return BackgroundTheme.fromString(themeName);
+    } catch (e) {
+      // Fallback bei SharedPreferences-Fehler
+      return isChristmasSeason() ? BackgroundTheme.christmas : BackgroundTheme.lightBlue;
     }
-
-    return BackgroundTheme.fromString(themeName);
   }
 
   /// Speichere Theme
   Future<void> save() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString('backgroundTheme', value);
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString('backgroundTheme', value);
+    } catch (e) {
+      // Speicherfehler ignorieren - Theme ist bereits im RAM
+    }
   }
 }

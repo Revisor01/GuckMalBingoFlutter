@@ -30,9 +30,6 @@ dependencies:
   package_info_plus: ^9.0.0
   google_fonts: ^6.1.0
 
-  # Localization
-  flutter_localization: ^0.2.0
-
 dev_dependencies:
   flutter_test:
     sdk: flutter

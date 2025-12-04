@@ -1,9 +1,25 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'debug_utils.dart';
 
-/// AudioPlayer - Portiert von Swift
-/// Verwaltet alle Sound-Effekte der App
+/// AudioPlayer - Singleton Pattern
+/// Verwaltet alle Sound-Effekte der App mit einer einzigen Instanz
 class GameAudioPlayer {
+  // Singleton instance
+  static GameAudioPlayer? _instance;
+  static GameAudioPlayer get instance {
+    _instance ??= GameAudioPlayer._internal();
+    return _instance!;
+  }
+
+  // Factory constructor returns singleton
+  factory GameAudioPlayer() => instance;
+
+  // Private constructor
+  GameAudioPlayer._internal() {
+    _loadSoundFiles();
+    _preloadSounds();
+  }
+
   final AudioPlayer _audioPlayer = AudioPlayer();
   late List<String> _bingoSounds;
   late List<String> _victorySounds;
@@ -11,11 +27,6 @@ class GameAudioPlayer {
   late List<String> _christmasBellSounds;
   late List<String> _christmasVictorySounds;
   bool soundEnabled = true;
-
-  GameAudioPlayer() {
-    _loadSoundFiles();
-    _preloadSounds();
-  }
 
   void _loadSoundFiles() {
     // Sammle alle Bingo-Sounds (bingo_01 bis bingo_25)
@@ -134,8 +145,15 @@ class GameAudioPlayer {
     }
   }
 
+  /// Stoppt Audio aber behält Singleton am Leben (für ViewModel dispose)
+  void reset() {
+    _audioPlayer.stop();
+  }
+
+  /// Komplett dispose - nur bei App-Ende aufrufen
   void dispose() {
-    _audioPlayer.stop(); // Sound sofort stoppen
+    _audioPlayer.stop();
     _audioPlayer.dispose();
+    _instance = null;
   }
 }

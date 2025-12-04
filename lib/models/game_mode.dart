@@ -38,16 +38,6 @@ enum GameMode {
     }
   }
 
-  /// Emoji (deprecated, aber für Kompatibilität)
-  String get emoji {
-    switch (this) {
-      case GameMode.suche:
-        return '🔍';
-      case GameMode.jagd:
-        return '🎯';
-    }
-  }
-
   /// Parse from string value
   static GameMode fromString(String value) {
     return GameMode.values.firstWhere(

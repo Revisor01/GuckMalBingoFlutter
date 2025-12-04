@@ -38,15 +38,24 @@ final snowfallEnabledNotifier = ValueNotifier<bool>(true);
 
 /// Lade Schneefall-Einstellung aus SharedPreferences
 Future<void> loadSnowfallSetting() async {
-  final prefs = await SharedPreferences.getInstance();
-  snowfallEnabledNotifier.value = prefs.getBool('snowfallEnabled') ?? true;
+  try {
+    final prefs = await SharedPreferences.getInstance();
+    snowfallEnabledNotifier.value = prefs.getBool('snowfallEnabled') ?? true;
+  } catch (e) {
+    // Fallback zu Standard-Wert bei Fehler
+    snowfallEnabledNotifier.value = true;
+  }
 }
 
 /// Speichere Schneefall-Einstellung
 Future<void> setSnowfallEnabled(bool enabled) async {
   snowfallEnabledNotifier.value = enabled;
-  final prefs = await SharedPreferences.getInstance();
-  await prefs.setBool('snowfallEnabled', enabled);
+  try {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('snowfallEnabled', enabled);
+  } catch (e) {
+    // Speicherfehler ignorieren, Wert ist bereits im Notifier gesetzt
+  }
 }
 
 /// Prüft ob Schneefall angezeigt werden soll

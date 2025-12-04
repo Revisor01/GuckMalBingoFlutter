@@ -72,26 +72,6 @@ enum Area {
     }
   }
 
-  /// Emoji (deprecated, aber für Kompatibilität)
-  String get emoji {
-    switch (this) {
-      case Area.autobahn:
-        return '🛣️';
-      case Area.land:
-        return '🌾';
-      case Area.stadt:
-        return '🏙️';
-      case Area.zug:
-        return '🚂';
-      case Area.kirche:
-        return '⛪';
-      case Area.zuHause:
-        return '🏠';
-      case Area.zoo:
-        return '🦁';
-    }
-  }
-
   /// Parse from string value
   static Area fromString(String value) {
     return Area.values.firstWhere(

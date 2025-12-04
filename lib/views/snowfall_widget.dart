@@ -27,13 +27,31 @@ class _SnowfallWidgetState extends State<SnowfallWidget>
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 60), // Langsamer
-    )..repeat();
+      duration: const Duration(seconds: 60),
+    );
+
+    // Nur starten wenn enabled
+    if (widget.enabled) {
+      _controller.repeat();
+    }
 
     _snowflakes = List.generate(
       widget.snowflakeCount,
       (index) => Snowflake(),
     );
+  }
+
+  @override
+  void didUpdateWidget(SnowfallWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    // Controller pausieren/fortsetzen wenn enabled sich ändert
+    if (widget.enabled != oldWidget.enabled) {
+      if (widget.enabled) {
+        _controller.repeat();
+      } else {
+        _controller.stop();
+      }
+    }
   }
 
   @override

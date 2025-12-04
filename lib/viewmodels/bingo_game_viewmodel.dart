@@ -338,7 +338,7 @@ class BingoGameViewModel extends ChangeNotifier {
   @override
   void dispose() {
     _isDisposed = true;
-    _audioPlayer.dispose();
+    _audioPlayer.reset(); // Reset statt dispose - Singleton bleibt am Leben
     super.dispose();
   }
 }
