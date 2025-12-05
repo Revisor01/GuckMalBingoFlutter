@@ -53,6 +53,13 @@ class GuckMalBingoApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
         brightness: Brightness.light,
+        // Fade-Transition statt Slide verhindert weißen Blitz
+        pageTransitionsTheme: const PageTransitionsTheme(
+          builders: {
+            TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
+            TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+          },
+        ),
         textTheme: GoogleFonts.nunitoTextTheme(
           ThemeData.light().textTheme.copyWith(
             displayLarge: const TextStyle(fontWeight: FontWeight.bold),
@@ -67,6 +74,13 @@ class GuckMalBingoApp extends StatelessWidget {
       darkTheme: ThemeData(
         useMaterial3: true,
         brightness: Brightness.dark,
+        // Fade-Transition statt Slide verhindert weißen Blitz
+        pageTransitionsTheme: const PageTransitionsTheme(
+          builders: {
+            TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
+            TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+          },
+        ),
         textTheme: GoogleFonts.nunitoTextTheme(
           ThemeData.dark().textTheme.copyWith(
             displayLarge: const TextStyle(fontWeight: FontWeight.bold),
