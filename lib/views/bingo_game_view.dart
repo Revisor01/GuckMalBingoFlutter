@@ -669,11 +669,11 @@ class VictoryDialogView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Weihnachts-Special: Elegantes Burgundy-Theme im Dezember
+    // Weihnachts-Special: Fröhliches Weihnachtsrot im Dezember
     final isChristmas = isChristmasSeason();
-    final bgColor = isChristmas ? const Color(0xFF722F37) : AppColors.successGreen; // Elegantes Burgundy
+    final bgColor = isChristmas ? const Color(0xFFC41E3A) : AppColors.successGreen; // Knalliges Weihnachtsrot
     final iconData = isChristmas ? Icons.park : Icons.emoji_events; // Weihnachtsbaum statt Trophy
-    final iconColor = isChristmas ? const Color(0xFFFFD700) : Colors.yellow; // Gold für Weihnachtsbaum
+    final iconColor = isChristmas ? const Color(0xFF228B22) : Colors.yellow; // Grüner Weihnachtsbaum
 
     return Container(
       color: Colors.black.withValues(alpha: 0.4),
