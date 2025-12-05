@@ -108,27 +108,9 @@ class _ThemeSelectionViewState extends State<ThemeSelectionView> {
                       ),
                     ),
 
-                    const SizedBox(height: 60),
+                    const SizedBox(height: 40),
 
-                    // Theme Buttons (Christmas nur in Weihnachtszeit)
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 30),
-                      child: Column(
-                        children: BackgroundTheme.values
-                            .where((theme) => theme != BackgroundTheme.christmas || isChristmasSeason())
-                            .map((theme) => Padding(
-                                  padding: const EdgeInsets.only(bottom: 20),
-                                  child: ThemeButton(
-                                    theme: theme,
-                                    isSelected: _currentTheme == theme,
-                                    onTap: () => _selectTheme(theme),
-                                  ),
-                                ))
-                            .toList(),
-                      ),
-                    ),
-
-                    // Schneefall-Toggle (nur in der Weihnachtszeit)
+                    // Schneefall-Toggle (nur in der Weihnachtszeit) - OBEN
                     if (isChristmasSeason()) ...[
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -167,9 +149,28 @@ class _ThemeSelectionViewState extends State<ThemeSelectionView> {
                           ),
                         ),
                       ),
+                      const SizedBox(height: 30),
                     ],
 
-                    const SizedBox(height: 60),
+                    // Theme Buttons (Christmas nur in Weihnachtszeit)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 30),
+                      child: Column(
+                        children: BackgroundTheme.values
+                            .where((theme) => theme != BackgroundTheme.christmas || isChristmasSeason())
+                            .map((theme) => Padding(
+                                  padding: const EdgeInsets.only(bottom: 20),
+                                  child: ThemeButton(
+                                    theme: theme,
+                                    isSelected: _currentTheme == theme,
+                                    onTap: () => _selectTheme(theme),
+                                  ),
+                                ))
+                            .toList(),
+                      ),
+                    ),
+
+                    const SizedBox(height: 40),
                   ],
                 ),
               ),

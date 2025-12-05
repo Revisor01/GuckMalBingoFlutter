@@ -84,11 +84,11 @@ enum BackgroundTheme {
       case BackgroundTheme.christmas:
         return LinearGradient(
           colors: [
-            _hexToColor('#1a472a'), // Dunkles Tannengrün
-            _hexToColor('#8B0000'), // Dunkelrot
-            _hexToColor('#5c0000'), // Tiefes Rot
+            _hexToColor('#0d1b2a'), // Tiefes Mitternachtsblau
+            _hexToColor('#1b263b'), // Dunkles Nachtblau
+            _hexToColor('#722f37'), // Elegantes Burgundy
           ],
-          stops: const [0.0, 0.45, 1.0], // Bisschen mehr Grün
+          stops: const [0.0, 0.4, 1.0],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
         );
@@ -161,11 +161,11 @@ enum BackgroundTheme {
       case BackgroundTheme.christmas:
         return const LinearGradient(
           colors: [
-            Color.fromRGBO(13, 45, 26, 1.0), // Sehr dunkles Grün
-            Color.fromRGBO(23, 56, 40, 1.0), // Dunkles Grün
-            Color.fromRGBO(70, 0, 0, 1.0), // Sehr dunkles Rot
+            Color.fromRGBO(8, 15, 25, 1.0), // Sehr dunkles Mitternachtsblau
+            Color.fromRGBO(15, 22, 35, 1.0), // Dunkles Nachtblau
+            Color.fromRGBO(60, 25, 30, 1.0), // Dunkles Burgundy
           ],
-          stops: [0.0, 0.5, 1.0],
+          stops: [0.0, 0.4, 1.0],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
         );

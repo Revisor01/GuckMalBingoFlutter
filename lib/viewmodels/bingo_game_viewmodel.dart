@@ -77,6 +77,8 @@ class BingoGameViewModel extends ChangeNotifier {
 
   BingoGameViewModel({required this.config}) {
     _audioPlayer = GameAudioPlayer();
+    // Übernehme Sound-State vom Singleton (persistiert über Spiele hinweg)
+    soundEnabled = _audioPlayer.soundEnabled;
 
     // Generate board immediately for faster loading
     final totalCells = config.gridSize * config.gridSize;
@@ -119,6 +121,10 @@ class BingoGameViewModel extends ChangeNotifier {
   void toggleSound() {
     soundEnabled = !soundEnabled;
     _audioPlayer.soundEnabled = soundEnabled;
+    // Stoppe laufenden Sound sofort wenn gemutet
+    if (!soundEnabled) {
+      _audioPlayer.stop();
+    }
     notifyListeners();
   }
 
