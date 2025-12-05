@@ -15,6 +15,8 @@
 		<string>it</string>
 		<string>nl</string>
 	</array>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>CFBundleDisplayName</key>
 	<string>Guck mal!</string>
 	<key>CFBundleExecutable</key>
