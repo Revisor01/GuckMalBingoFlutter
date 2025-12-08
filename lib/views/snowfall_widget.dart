@@ -21,6 +21,7 @@ class _SnowfallWidgetState extends State<SnowfallWidget>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late List<Snowflake> _snowflakes;
+  double _lastProgress = 0.0;
 
   @override
   void initState() {
@@ -74,10 +75,24 @@ class _SnowfallWidgetState extends State<SnowfallWidget>
             child: AnimatedBuilder(
               animation: _controller,
               builder: (context, child) {
+                // Berechne deltaTime (Zeit seit letztem Frame in Sekunden)
+                final currentProgress = _controller.value;
+                var deltaProgress = currentProgress - _lastProgress;
+
+                // Handle wrap-around wenn Animation von 1.0 auf 0.0 springt
+                if (deltaProgress < 0) {
+                  deltaProgress += 1.0;
+                }
+
+                // deltaProgress ist Anteil von 60 Sekunden, also * 60 für Sekunden
+                final deltaTime = deltaProgress * 60.0;
+                _lastProgress = currentProgress;
+
                 return CustomPaint(
                   painter: SnowfallPainter(
                     snowflakes: _snowflakes,
-                    animation: _controller,
+                    progress: currentProgress,
+                    deltaTime: deltaTime,
                   ),
                 );
               },
@@ -90,7 +105,7 @@ class _SnowfallWidgetState extends State<SnowfallWidget>
 }
 
 class Snowflake {
-  late double x;
+  late double baseX; // Ausgangsposition für horizontales Schwingen
   late double y;
   late double size;
   late double speed;
@@ -99,53 +114,70 @@ class Snowflake {
   late double initialPhase;
 
   Snowflake() {
+    _init();
+  }
+
+  void _init() {
     final random = Random();
-    x = random.nextDouble();
+    baseX = random.nextDouble();
     y = random.nextDouble();
-    size = 2 + random.nextDouble() * 4; // 2-6 pixels
-    speed = 0.0003 + random.nextDouble() * 0.0007; // Super langsam: 0.0003-0.001
-    swingAmplitude = 0.005 + random.nextDouble() * 0.01; // Sanfteres Schwingen
-    swingSpeed = 0.3 + random.nextDouble() * 0.5; // Langsameres Schwingen
+    size = 2 + random.nextDouble() * 3; // 2-5 pixels (etwas kleiner)
+    speed = 0.015 + random.nextDouble() * 0.01; // Langsam: 0.015-0.025 pro Sekunde
+    swingAmplitude = 0.01 + random.nextDouble() * 0.015; // Sehr sanftes Schwingen
+    swingSpeed = 0.5 + random.nextDouble() * 0.5; // Langsames Schwingen: 0.5-1 Zyklen pro 60s
     initialPhase = random.nextDouble() * 2 * pi;
   }
 
-  void update(double progress, Size size) {
-    // Move down
-    y = (y + speed) % 1.0;
-
-    // Swing horizontally
+  // Berechnet aktuelle X-Position (oszilliert um baseX)
+  double getX(double progress) {
     final swingOffset =
         sin(progress * swingSpeed * 2 * pi + initialPhase) * swingAmplitude;
-    x = (x + swingOffset) % 1.0;
+    return (baseX + swingOffset).clamp(0.0, 1.0);
+  }
+
+  void update(double deltaTime) {
+    // Move down (frame-rate unabhängig)
+    y += speed * deltaTime;
+
+    // Reset wenn unten angekommen
+    if (y > 1.0) {
+      _init();
+      y = -0.05; // Startet knapp über dem Bildschirm
+    }
   }
 }
 
 class SnowfallPainter extends CustomPainter {
   final List<Snowflake> snowflakes;
-  final Animation<double> animation;
+  final double progress; // 0.0 - 1.0 über 60 Sekunden
+  final double deltaTime; // Zeit seit letztem Frame in Sekunden
 
   SnowfallPainter({
     required this.snowflakes,
-    required this.animation,
+    required this.progress,
+    required this.deltaTime,
   });
 
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = Colors.white.withValues(alpha: 0.8)
+      ..color = Colors.white.withValues(alpha: 0.7)
       ..style = PaintingStyle.fill;
 
     for (var snowflake in snowflakes) {
-      snowflake.update(animation.value, size);
+      snowflake.update(deltaTime);
 
-      final dx = snowflake.x * size.width;
+      final dx = snowflake.getX(progress) * size.width;
       final dy = snowflake.y * size.height;
 
-      canvas.drawCircle(
-        Offset(dx, dy),
-        snowflake.size,
-        paint,
-      );
+      // Nur zeichnen wenn im sichtbaren Bereich
+      if (dy >= 0) {
+        canvas.drawCircle(
+          Offset(dx, dy),
+          snowflake.size,
+          paint,
+        );
+      }
     }
   }
 
