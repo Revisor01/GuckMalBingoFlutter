@@ -958,38 +958,57 @@ class AppLocalizationsEn extends AppLocalizations {
   String get accessibilitySoundToggle => 'Toggle sound';
 
   @override
-  String get onboardingWelcomeTitle => 'Welcome!';
+  String get onboardingWelcomeTitle => 'Look!';
+
+  @override
+  String get onboardingWelcomeSubtitle => 'Bingo for Kids';
 
   @override
   String get onboardingWelcomeDesc =>
-      'Look! is a travel bingo for the whole family. Discover your surroundings together and collect bingos!';
+      'Look out the window together and discover the world! Who can find the things on the game board?';
+
+  @override
+  String get onboardingCategoriesTitle => 'Two Themes';
+
+  @override
+  String get onboardingCategoriesDesc =>
+      'Travel: Perfect for on the go – on the highway, in the city, in the countryside or on the train.\n\nPlaces: For special trips – at the zoo, in church or at home.';
+
+  @override
+  String get onboardingBingoTitle => 'How Bingo Works';
+
+  @override
+  String get onboardingBingoDesc =>
+      'See something outside? Tap it on the board! A complete row – horizontal, vertical or diagonal – makes a bingo!';
+
+  @override
+  String get onboardingBingoAccessibility =>
+      'Example shows a 3x3 game board with a diagonal bingo line';
 
   @override
   String get onboardingModesTitle => 'Two Game Modes';
 
   @override
   String get onboardingModesDesc =>
-      'Bingo Search: Play relaxed and collect as many bingos as you want.\n\nBingo Hunt: Set a goal and play to win!';
+      'Look! Search: Play relaxed and collect as many bingos as you want.\n\nBingo Hunt: Set a goal – whoever gets the bingos first wins!';
 
   @override
-  String get onboardingPlayTitle => 'How to Play';
-
-  @override
-  String get onboardingPlayDesc =>
-      'See something on your game board? Tap it! Complete a row horizontally, vertically or diagonally – and you have a bingo!';
-
-  @override
-  String get onboardingReadyTitle => 'Let\'s Go!';
+  String get onboardingReadyTitle => 'Ready?';
 
   @override
   String get onboardingReadyDesc =>
-      'Choose your game mode, theme and board size. Then the journey can begin!';
+      'Choose your theme, location and board size. Then look out the window together – the discovery journey begins!';
 
   @override
   String get onboardingNext => 'Next';
 
   @override
-  String get onboardingStart => 'Start Playing';
+  String get onboardingStart => 'Let\'s Go!';
+
+  @override
+  String onboardingPageLabel(int current, int total) {
+    return 'Page $current of $total';
+  }
 
   @override
   String get settingsHelp => 'Tutorial';

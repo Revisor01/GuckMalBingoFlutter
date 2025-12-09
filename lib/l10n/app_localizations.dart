@@ -1981,14 +1981,50 @@ abstract class AppLocalizations {
   /// No description provided for @onboardingWelcomeTitle.
   ///
   /// In de, this message translates to:
-  /// **'Willkommen!'**
+  /// **'Guck mal!'**
   String get onboardingWelcomeTitle;
+
+  /// No description provided for @onboardingWelcomeSubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Bingo für Kinder'**
+  String get onboardingWelcomeSubtitle;
 
   /// No description provided for @onboardingWelcomeDesc.
   ///
   /// In de, this message translates to:
-  /// **'Guck mal! ist ein Reise-Bingo für die ganze Familie. Entdeckt gemeinsam eure Umgebung und sammelt Bingos!'**
+  /// **'Schaut gemeinsam aus dem Fenster und entdeckt die Welt! Wer findet die Dinge auf dem Spielfeld?'**
   String get onboardingWelcomeDesc;
+
+  /// No description provided for @onboardingCategoriesTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Zwei Themenwelten'**
+  String get onboardingCategoriesTitle;
+
+  /// No description provided for @onboardingCategoriesDesc.
+  ///
+  /// In de, this message translates to:
+  /// **'Reise: Perfekt für unterwegs – auf der Autobahn, in der Stadt, auf dem Land oder im Zug.\n\nOrte: Für besondere Ausflüge – im Zoo, in der Kirche oder zu Hause.'**
+  String get onboardingCategoriesDesc;
+
+  /// No description provided for @onboardingBingoTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'So funktioniert Bingo'**
+  String get onboardingBingoTitle;
+
+  /// No description provided for @onboardingBingoDesc.
+  ///
+  /// In de, this message translates to:
+  /// **'Seht ihr etwas draußen? Tippt es auf dem Spielfeld an! Eine komplette Reihe – horizontal, vertikal oder diagonal – ergibt ein Bingo!'**
+  String get onboardingBingoDesc;
+
+  /// No description provided for @onboardingBingoAccessibility.
+  ///
+  /// In de, this message translates to:
+  /// **'Beispiel zeigt ein 3x3 Spielfeld mit einer diagonalen Bingo-Linie'**
+  String get onboardingBingoAccessibility;
 
   /// No description provided for @onboardingModesTitle.
   ///
@@ -1999,31 +2035,19 @@ abstract class AppLocalizations {
   /// No description provided for @onboardingModesDesc.
   ///
   /// In de, this message translates to:
-  /// **'Bingo Suche: Spielt entspannt und sammelt so viele Bingos wie ihr wollt.\n\nBingo Jagd: Legt ein Ziel fest und spielt um den Sieg!'**
+  /// **'Guck mal! Suche: Spielt entspannt und sammelt so viele Bingos wie ihr wollt.\n\nBingo Jagd: Legt ein Ziel fest – wer die Bingos zuerst schafft, gewinnt!'**
   String get onboardingModesDesc;
-
-  /// No description provided for @onboardingPlayTitle.
-  ///
-  /// In de, this message translates to:
-  /// **'So geht\'s'**
-  String get onboardingPlayTitle;
-
-  /// No description provided for @onboardingPlayDesc.
-  ///
-  /// In de, this message translates to:
-  /// **'Seht ihr etwas auf eurem Spielfeld? Tippt darauf! Schafft eine Reihe horizontal, vertikal oder diagonal – und ihr habt ein Bingo!'**
-  String get onboardingPlayDesc;
 
   /// No description provided for @onboardingReadyTitle.
   ///
   /// In de, this message translates to:
-  /// **'Los geht\'s!'**
+  /// **'Bereit?'**
   String get onboardingReadyTitle;
 
   /// No description provided for @onboardingReadyDesc.
   ///
   /// In de, this message translates to:
-  /// **'Wählt euren Spielmodus, das Thema und die Spielfeldgröße. Dann kann die Reise beginnen!'**
+  /// **'Wählt Thema, Ort und Spielfeldgröße. Dann schaut gemeinsam aus dem Fenster – die Entdeckungsreise beginnt!'**
   String get onboardingReadyDesc;
 
   /// No description provided for @onboardingNext.
@@ -2035,8 +2059,14 @@ abstract class AppLocalizations {
   /// No description provided for @onboardingStart.
   ///
   /// In de, this message translates to:
-  /// **'Jetzt spielen'**
+  /// **'Los geht\'s!'**
   String get onboardingStart;
+
+  /// No description provided for @onboardingPageLabel.
+  ///
+  /// In de, this message translates to:
+  /// **'Seite {current} von {total}'**
+  String onboardingPageLabel(int current, int total);
 
   /// No description provided for @settingsHelp.
   ///

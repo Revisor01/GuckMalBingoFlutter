@@ -312,15 +312,26 @@
   "accessibilityThemeButton": "Choose color theme",
   "accessibilityTextToggle": "Toggle text visibility",
   "accessibilitySoundToggle": "Toggle sound",
-  "onboardingWelcomeTitle": "Welcome!",
-  "onboardingWelcomeDesc": "Look! is a travel bingo for the whole family. Discover your surroundings together and collect bingos!",
+  "onboardingWelcomeTitle": "Look!",
+  "onboardingWelcomeSubtitle": "Bingo for Kids",
+  "onboardingWelcomeDesc": "Look out the window together and discover the world! Who can find the things on the game board?",
+  "onboardingCategoriesTitle": "Two Themes",
+  "onboardingCategoriesDesc": "Travel: Perfect for on the go – on the highway, in the city, in the countryside or on the train.\n\nPlaces: For special trips – at the zoo, in church or at home.",
+  "onboardingBingoTitle": "How Bingo Works",
+  "onboardingBingoDesc": "See something outside? Tap it on the board! A complete row – horizontal, vertical or diagonal – makes a bingo!",
+  "onboardingBingoAccessibility": "Example shows a 3x3 game board with a diagonal bingo line",
   "onboardingModesTitle": "Two Game Modes",
-  "onboardingModesDesc": "Bingo Search: Play relaxed and collect as many bingos as you want.\n\nBingo Hunt: Set a goal and play to win!",
-  "onboardingPlayTitle": "How to Play",
-  "onboardingPlayDesc": "See something on your game board? Tap it! Complete a row horizontally, vertically or diagonally – and you have a bingo!",
-  "onboardingReadyTitle": "Let's Go!",
-  "onboardingReadyDesc": "Choose your game mode, theme and board size. Then the journey can begin!",
+  "onboardingModesDesc": "Look! Search: Play relaxed and collect as many bingos as you want.\n\nBingo Hunt: Set a goal – whoever gets the bingos first wins!",
+  "onboardingReadyTitle": "Ready?",
+  "onboardingReadyDesc": "Choose your theme, location and board size. Then look out the window together – the discovery journey begins!",
   "onboardingNext": "Next",
-  "onboardingStart": "Start Playing",
+  "onboardingStart": "Let's Go!",
+  "onboardingPageLabel": "Page {current} of {total}",
+  "@onboardingPageLabel": {
+    "placeholders": {
+      "current": {"type": "int"},
+      "total": {"type": "int"}
+    }
+  },
   "settingsHelp": "Tutorial"
 }

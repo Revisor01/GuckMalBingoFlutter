@@ -958,38 +958,57 @@ class AppLocalizationsDe extends AppLocalizations {
   String get accessibilitySoundToggle => 'Ton ein- oder ausschalten';
 
   @override
-  String get onboardingWelcomeTitle => 'Willkommen!';
+  String get onboardingWelcomeTitle => 'Guck mal!';
+
+  @override
+  String get onboardingWelcomeSubtitle => 'Bingo für Kinder';
 
   @override
   String get onboardingWelcomeDesc =>
-      'Guck mal! ist ein Reise-Bingo für die ganze Familie. Entdeckt gemeinsam eure Umgebung und sammelt Bingos!';
+      'Schaut gemeinsam aus dem Fenster und entdeckt die Welt! Wer findet die Dinge auf dem Spielfeld?';
+
+  @override
+  String get onboardingCategoriesTitle => 'Zwei Themenwelten';
+
+  @override
+  String get onboardingCategoriesDesc =>
+      'Reise: Perfekt für unterwegs – auf der Autobahn, in der Stadt, auf dem Land oder im Zug.\n\nOrte: Für besondere Ausflüge – im Zoo, in der Kirche oder zu Hause.';
+
+  @override
+  String get onboardingBingoTitle => 'So funktioniert Bingo';
+
+  @override
+  String get onboardingBingoDesc =>
+      'Seht ihr etwas draußen? Tippt es auf dem Spielfeld an! Eine komplette Reihe – horizontal, vertikal oder diagonal – ergibt ein Bingo!';
+
+  @override
+  String get onboardingBingoAccessibility =>
+      'Beispiel zeigt ein 3x3 Spielfeld mit einer diagonalen Bingo-Linie';
 
   @override
   String get onboardingModesTitle => 'Zwei Spielmodi';
 
   @override
   String get onboardingModesDesc =>
-      'Bingo Suche: Spielt entspannt und sammelt so viele Bingos wie ihr wollt.\n\nBingo Jagd: Legt ein Ziel fest und spielt um den Sieg!';
+      'Guck mal! Suche: Spielt entspannt und sammelt so viele Bingos wie ihr wollt.\n\nBingo Jagd: Legt ein Ziel fest – wer die Bingos zuerst schafft, gewinnt!';
 
   @override
-  String get onboardingPlayTitle => 'So geht\'s';
-
-  @override
-  String get onboardingPlayDesc =>
-      'Seht ihr etwas auf eurem Spielfeld? Tippt darauf! Schafft eine Reihe horizontal, vertikal oder diagonal – und ihr habt ein Bingo!';
-
-  @override
-  String get onboardingReadyTitle => 'Los geht\'s!';
+  String get onboardingReadyTitle => 'Bereit?';
 
   @override
   String get onboardingReadyDesc =>
-      'Wählt euren Spielmodus, das Thema und die Spielfeldgröße. Dann kann die Reise beginnen!';
+      'Wählt Thema, Ort und Spielfeldgröße. Dann schaut gemeinsam aus dem Fenster – die Entdeckungsreise beginnt!';
 
   @override
   String get onboardingNext => 'Weiter';
 
   @override
-  String get onboardingStart => 'Jetzt spielen';
+  String get onboardingStart => 'Los geht\'s!';
+
+  @override
+  String onboardingPageLabel(int current, int total) {
+    return 'Seite $current von $total';
+  }
 
   @override
   String get settingsHelp => 'Anleitung';

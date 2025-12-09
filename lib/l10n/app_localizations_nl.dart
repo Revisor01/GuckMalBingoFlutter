@@ -958,38 +958,57 @@ class AppLocalizationsNl extends AppLocalizations {
   String get accessibilitySoundToggle => 'Geluid aan of uit';
 
   @override
-  String get onboardingWelcomeTitle => 'Welkom!';
+  String get onboardingWelcomeTitle => 'Kijk!';
+
+  @override
+  String get onboardingWelcomeSubtitle => 'Bingo voor kinderen';
 
   @override
   String get onboardingWelcomeDesc =>
-      'Kijk! is een reisbingo voor het hele gezin. Ontdek samen je omgeving en verzamel bingo\'s!';
+      'Kijk samen uit het raam en ontdek de wereld! Wie vindt de dingen op het speelbord?';
+
+  @override
+  String get onboardingCategoriesTitle => 'Twee themawerelden';
+
+  @override
+  String get onboardingCategoriesDesc =>
+      'Reis: Perfect voor onderweg – op de snelweg, in de stad, op het platteland of in de trein.\n\nPlaatsen: Voor speciale uitjes – in de dierentuin, in de kerk of thuis.';
+
+  @override
+  String get onboardingBingoTitle => 'Zo werkt Bingo';
+
+  @override
+  String get onboardingBingoDesc =>
+      'Zie je iets buiten? Tik het aan op het bord! Een complete rij – horizontaal, verticaal of diagonaal – is een bingo!';
+
+  @override
+  String get onboardingBingoAccessibility =>
+      'Voorbeeld toont een 3x3 speelbord met een diagonale bingo-lijn';
 
   @override
   String get onboardingModesTitle => 'Twee spelmodi';
 
   @override
   String get onboardingModesDesc =>
-      'Bingo Zoeken: Speel ontspannen en verzamel zoveel bingo\'s als je wilt.\n\nBingo Jacht: Stel een doel en speel om te winnen!';
+      'Kijk! Zoeken: Speel ontspannen en verzamel zoveel bingo\'s als je wilt.\n\nBingo Jacht: Stel een doel – wie de bingo\'s het eerst heeft, wint!';
 
   @override
-  String get onboardingPlayTitle => 'Zo werkt het';
-
-  @override
-  String get onboardingPlayDesc =>
-      'Zie je iets op je speelbord? Tik erop! Maak een rij horizontaal, verticaal of diagonaal – en je hebt een bingo!';
-
-  @override
-  String get onboardingReadyTitle => 'Laten we gaan!';
+  String get onboardingReadyTitle => 'Klaar?';
 
   @override
   String get onboardingReadyDesc =>
-      'Kies je spelmodus, thema en bordgrootte. Dan kan de reis beginnen!';
+      'Kies thema, locatie en bordgrootte. Kijk dan samen uit het raam – het avontuur begint!';
 
   @override
   String get onboardingNext => 'Volgende';
 
   @override
-  String get onboardingStart => 'Begin met spelen';
+  String get onboardingStart => 'Daar gaan we!';
+
+  @override
+  String onboardingPageLabel(int current, int total) {
+    return 'Pagina $current van $total';
+  }
 
   @override
   String get settingsHelp => 'Handleiding';

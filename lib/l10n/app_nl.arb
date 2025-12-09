@@ -312,15 +312,26 @@
   "accessibilityThemeButton": "Kleurthema kiezen",
   "accessibilityTextToggle": "Tekst tonen of verbergen",
   "accessibilitySoundToggle": "Geluid aan of uit",
-  "onboardingWelcomeTitle": "Welkom!",
-  "onboardingWelcomeDesc": "Kijk! is een reisbingo voor het hele gezin. Ontdek samen je omgeving en verzamel bingo's!",
+  "onboardingWelcomeTitle": "Kijk!",
+  "onboardingWelcomeSubtitle": "Bingo voor kinderen",
+  "onboardingWelcomeDesc": "Kijk samen uit het raam en ontdek de wereld! Wie vindt de dingen op het speelbord?",
+  "onboardingCategoriesTitle": "Twee themawerelden",
+  "onboardingCategoriesDesc": "Reis: Perfect voor onderweg – op de snelweg, in de stad, op het platteland of in de trein.\n\nPlaatsen: Voor speciale uitjes – in de dierentuin, in de kerk of thuis.",
+  "onboardingBingoTitle": "Zo werkt Bingo",
+  "onboardingBingoDesc": "Zie je iets buiten? Tik het aan op het bord! Een complete rij – horizontaal, verticaal of diagonaal – is een bingo!",
+  "onboardingBingoAccessibility": "Voorbeeld toont een 3x3 speelbord met een diagonale bingo-lijn",
   "onboardingModesTitle": "Twee spelmodi",
-  "onboardingModesDesc": "Bingo Zoeken: Speel ontspannen en verzamel zoveel bingo's als je wilt.\n\nBingo Jacht: Stel een doel en speel om te winnen!",
-  "onboardingPlayTitle": "Zo werkt het",
-  "onboardingPlayDesc": "Zie je iets op je speelbord? Tik erop! Maak een rij horizontaal, verticaal of diagonaal – en je hebt een bingo!",
-  "onboardingReadyTitle": "Laten we gaan!",
-  "onboardingReadyDesc": "Kies je spelmodus, thema en bordgrootte. Dan kan de reis beginnen!",
+  "onboardingModesDesc": "Kijk! Zoeken: Speel ontspannen en verzamel zoveel bingo's als je wilt.\n\nBingo Jacht: Stel een doel – wie de bingo's het eerst heeft, wint!",
+  "onboardingReadyTitle": "Klaar?",
+  "onboardingReadyDesc": "Kies thema, locatie en bordgrootte. Kijk dan samen uit het raam – het avontuur begint!",
   "onboardingNext": "Volgende",
-  "onboardingStart": "Begin met spelen",
+  "onboardingStart": "Daar gaan we!",
+  "onboardingPageLabel": "Pagina {current} van {total}",
+  "@onboardingPageLabel": {
+    "placeholders": {
+      "current": {"type": "int"},
+      "total": {"type": "int"}
+    }
+  },
   "settingsHelp": "Handleiding"
 }

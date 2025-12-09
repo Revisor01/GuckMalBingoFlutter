@@ -112,6 +112,9 @@ class Snowflake {
   late double swingAmplitude;
   late double swingSpeed;
   late double initialPhase;
+  late double opacity; // Leichte Opazitäts-Variation
+  late double speedWobblePhase; // Für leichte Geschwindigkeits-Variation
+  late double speedWobbleAmount; // Wie viel Wobble
 
   Snowflake() {
     _init();
@@ -126,6 +129,9 @@ class Snowflake {
     swingAmplitude = 0.01 + random.nextDouble() * 0.015; // Sehr sanftes Schwingen
     swingSpeed = 0.5 + random.nextDouble() * 0.5; // Langsames Schwingen: 0.5-1 Zyklen pro 60s
     initialPhase = random.nextDouble() * 2 * pi;
+    opacity = 0.5 + random.nextDouble() * 0.4; // 0.5-0.9 Opazität
+    speedWobblePhase = random.nextDouble() * 2 * pi;
+    speedWobbleAmount = 0.1 + random.nextDouble() * 0.1; // 10-20% Geschwindigkeits-Variation
   }
 
   // Berechnet aktuelle X-Position (oszilliert um baseX)
@@ -135,9 +141,15 @@ class Snowflake {
     return (baseX + swingOffset).clamp(0.0, 1.0);
   }
 
-  void update(double deltaTime) {
-    // Move down (frame-rate unabhängig)
-    y += speed * deltaTime;
+  // Berechnet aktuelle Geschwindigkeit mit leichtem Wobble
+  double getSpeed(double progress) {
+    final wobble = sin(progress * 3 * pi + speedWobblePhase) * speedWobbleAmount;
+    return speed * (1.0 + wobble);
+  }
+
+  void update(double deltaTime, double progress) {
+    // Move down mit leichtem Geschwindigkeits-Wobble (frame-rate unabhängig)
+    y += getSpeed(progress) * deltaTime;
 
     // Reset wenn unten angekommen
     if (y > 1.0) {
@@ -160,18 +172,18 @@ class SnowfallPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = Colors.white.withValues(alpha: 0.7)
-      ..style = PaintingStyle.fill;
-
     for (var snowflake in snowflakes) {
-      snowflake.update(deltaTime);
+      snowflake.update(deltaTime, progress);
 
       final dx = snowflake.getX(progress) * size.width;
       final dy = snowflake.y * size.height;
 
       // Nur zeichnen wenn im sichtbaren Bereich
       if (dy >= 0) {
+        final paint = Paint()
+          ..color = Colors.white.withValues(alpha: snowflake.opacity)
+          ..style = PaintingStyle.fill;
+
         canvas.drawCircle(
           Offset(dx, dy),
           snowflake.size,

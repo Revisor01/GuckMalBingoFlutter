@@ -959,38 +959,57 @@ class AppLocalizationsFr extends AppLocalizations {
   String get accessibilitySoundToggle => 'Activer ou désactiver le son';
 
   @override
-  String get onboardingWelcomeTitle => 'Bienvenue !';
+  String get onboardingWelcomeTitle => 'Regarde !';
+
+  @override
+  String get onboardingWelcomeSubtitle => 'Bingo pour enfants';
 
   @override
   String get onboardingWelcomeDesc =>
-      'Regarde ! est un bingo de voyage pour toute la famille. Découvrez ensemble votre environnement et collectionnez des bingos !';
+      'Regardez ensemble par la fenêtre et découvrez le monde ! Qui trouve les choses sur le plateau ?';
+
+  @override
+  String get onboardingCategoriesTitle => 'Deux univers';
+
+  @override
+  String get onboardingCategoriesDesc =>
+      'Voyage : Parfait pour les trajets – sur l\'autoroute, en ville, à la campagne ou en train.\n\nLieux : Pour les sorties spéciales – au zoo, à l\'église ou à la maison.';
+
+  @override
+  String get onboardingBingoTitle => 'Comment fonctionne le Bingo';
+
+  @override
+  String get onboardingBingoDesc =>
+      'Vous voyez quelque chose dehors ? Touchez-le sur le plateau ! Une ligne complète – horizontale, verticale ou diagonale – fait un bingo !';
+
+  @override
+  String get onboardingBingoAccessibility =>
+      'L\'exemple montre un plateau 3x3 avec une ligne de bingo diagonale';
 
   @override
   String get onboardingModesTitle => 'Deux modes de jeu';
 
   @override
   String get onboardingModesDesc =>
-      'Recherche Bingo : Jouez tranquillement et collectionnez autant de bingos que vous voulez.\n\nChasse au Bingo : Fixez un objectif et jouez pour gagner !';
+      'Regarde ! Recherche : Jouez tranquillement et collectionnez autant de bingos que vous voulez.\n\nChasse au Bingo : Fixez un objectif – le premier à avoir les bingos gagne !';
 
   @override
-  String get onboardingPlayTitle => 'Comment jouer';
-
-  @override
-  String get onboardingPlayDesc =>
-      'Vous voyez quelque chose sur votre plateau ? Touchez-le ! Complétez une ligne horizontale, verticale ou diagonale – et vous avez un bingo !';
-
-  @override
-  String get onboardingReadyTitle => 'C\'est parti !';
+  String get onboardingReadyTitle => 'Prêts ?';
 
   @override
   String get onboardingReadyDesc =>
-      'Choisissez votre mode de jeu, votre thème et la taille du plateau. Ensuite, le voyage peut commencer !';
+      'Choisissez thème, lieu et taille du plateau. Puis regardez ensemble par la fenêtre – l\'aventure commence !';
 
   @override
   String get onboardingNext => 'Suivant';
 
   @override
-  String get onboardingStart => 'Commencer à jouer';
+  String get onboardingStart => 'C\'est parti !';
+
+  @override
+  String onboardingPageLabel(int current, int total) {
+    return 'Page $current sur $total';
+  }
 
   @override
   String get settingsHelp => 'Tutoriel';

@@ -312,15 +312,26 @@
   "accessibilityThemeButton": "Farbthema wählen",
   "accessibilityTextToggle": "Text ein- oder ausblenden",
   "accessibilitySoundToggle": "Ton ein- oder ausschalten",
-  "onboardingWelcomeTitle": "Willkommen!",
-  "onboardingWelcomeDesc": "Guck mal! ist ein Reise-Bingo für die ganze Familie. Entdeckt gemeinsam eure Umgebung und sammelt Bingos!",
+  "onboardingWelcomeTitle": "Guck mal!",
+  "onboardingWelcomeSubtitle": "Bingo für Kinder",
+  "onboardingWelcomeDesc": "Schaut gemeinsam aus dem Fenster und entdeckt die Welt! Wer findet die Dinge auf dem Spielfeld?",
+  "onboardingCategoriesTitle": "Zwei Themenwelten",
+  "onboardingCategoriesDesc": "Reise: Perfekt für unterwegs – auf der Autobahn, in der Stadt, auf dem Land oder im Zug.\n\nOrte: Für besondere Ausflüge – im Zoo, in der Kirche oder zu Hause.",
+  "onboardingBingoTitle": "So funktioniert Bingo",
+  "onboardingBingoDesc": "Seht ihr etwas draußen? Tippt es auf dem Spielfeld an! Eine komplette Reihe – horizontal, vertikal oder diagonal – ergibt ein Bingo!",
+  "onboardingBingoAccessibility": "Beispiel zeigt ein 3x3 Spielfeld mit einer diagonalen Bingo-Linie",
   "onboardingModesTitle": "Zwei Spielmodi",
-  "onboardingModesDesc": "Bingo Suche: Spielt entspannt und sammelt so viele Bingos wie ihr wollt.\n\nBingo Jagd: Legt ein Ziel fest und spielt um den Sieg!",
-  "onboardingPlayTitle": "So geht's",
-  "onboardingPlayDesc": "Seht ihr etwas auf eurem Spielfeld? Tippt darauf! Schafft eine Reihe horizontal, vertikal oder diagonal – und ihr habt ein Bingo!",
-  "onboardingReadyTitle": "Los geht's!",
-  "onboardingReadyDesc": "Wählt euren Spielmodus, das Thema und die Spielfeldgröße. Dann kann die Reise beginnen!",
+  "onboardingModesDesc": "Guck mal! Suche: Spielt entspannt und sammelt so viele Bingos wie ihr wollt.\n\nBingo Jagd: Legt ein Ziel fest – wer die Bingos zuerst schafft, gewinnt!",
+  "onboardingReadyTitle": "Bereit?",
+  "onboardingReadyDesc": "Wählt Thema, Ort und Spielfeldgröße. Dann schaut gemeinsam aus dem Fenster – die Entdeckungsreise beginnt!",
   "onboardingNext": "Weiter",
-  "onboardingStart": "Jetzt spielen",
+  "onboardingStart": "Los geht's!",
+  "onboardingPageLabel": "Seite {current} von {total}",
+  "@onboardingPageLabel": {
+    "placeholders": {
+      "current": {"type": "int"},
+      "total": {"type": "int"}
+    }
+  },
   "settingsHelp": "Anleitung"
 }

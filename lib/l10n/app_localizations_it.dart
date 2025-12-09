@@ -958,38 +958,57 @@ class AppLocalizationsIt extends AppLocalizations {
   String get accessibilitySoundToggle => 'Attiva o disattiva suono';
 
   @override
-  String get onboardingWelcomeTitle => 'Benvenuto!';
+  String get onboardingWelcomeTitle => 'Guarda!';
+
+  @override
+  String get onboardingWelcomeSubtitle => 'Bingo per bambini';
 
   @override
   String get onboardingWelcomeDesc =>
-      'Guarda! è un bingo da viaggio per tutta la famiglia. Scoprite insieme l\'ambiente circostante e collezionate bingo!';
+      'Guardate insieme fuori dalla finestra e scoprite il mondo! Chi trova le cose sul tabellone?';
+
+  @override
+  String get onboardingCategoriesTitle => 'Due mondi tematici';
+
+  @override
+  String get onboardingCategoriesDesc =>
+      'Viaggio: Perfetto per gli spostamenti – in autostrada, in città, in campagna o in treno.\n\nLuoghi: Per gite speciali – allo zoo, in chiesa o a casa.';
+
+  @override
+  String get onboardingBingoTitle => 'Come funziona il Bingo';
+
+  @override
+  String get onboardingBingoDesc =>
+      'Vedi qualcosa fuori? Toccalo sul tabellone! Una riga completa – orizzontale, verticale o diagonale – fa un bingo!';
+
+  @override
+  String get onboardingBingoAccessibility =>
+      'L\'esempio mostra un tabellone 3x3 con una linea di bingo diagonale';
 
   @override
   String get onboardingModesTitle => 'Due modalità di gioco';
 
   @override
   String get onboardingModesDesc =>
-      'Ricerca Bingo: Gioca rilassato e colleziona tutti i bingo che vuoi.\n\nCaccia al Bingo: Stabilisci un obiettivo e gioca per vincere!';
+      'Guarda! Ricerca: Gioca rilassato e colleziona tutti i bingo che vuoi.\n\nCaccia al Bingo: Stabilisci un obiettivo – chi ottiene i bingo per primo vince!';
 
   @override
-  String get onboardingPlayTitle => 'Come giocare';
-
-  @override
-  String get onboardingPlayDesc =>
-      'Vedi qualcosa sul tuo tabellone? Toccalo! Completa una riga orizzontale, verticale o diagonale – e hai un bingo!';
-
-  @override
-  String get onboardingReadyTitle => 'Iniziamo!';
+  String get onboardingReadyTitle => 'Pronti?';
 
   @override
   String get onboardingReadyDesc =>
-      'Scegli la modalità di gioco, il tema e la dimensione del tabellone. Poi il viaggio può cominciare!';
+      'Scegli tema, luogo e dimensione del tabellone. Poi guardate insieme fuori dalla finestra – inizia l\'avventura!';
 
   @override
   String get onboardingNext => 'Avanti';
 
   @override
-  String get onboardingStart => 'Inizia a giocare';
+  String get onboardingStart => 'Iniziamo!';
+
+  @override
+  String onboardingPageLabel(int current, int total) {
+    return 'Pagina $current di $total';
+  }
 
   @override
   String get settingsHelp => 'Tutorial';

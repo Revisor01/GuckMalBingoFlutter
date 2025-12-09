@@ -312,15 +312,26 @@
   "accessibilityThemeButton": "Choisir le thème de couleur",
   "accessibilityTextToggle": "Afficher ou masquer le texte",
   "accessibilitySoundToggle": "Activer ou désactiver le son",
-  "onboardingWelcomeTitle": "Bienvenue !",
-  "onboardingWelcomeDesc": "Regarde ! est un bingo de voyage pour toute la famille. Découvrez ensemble votre environnement et collectionnez des bingos !",
+  "onboardingWelcomeTitle": "Regarde !",
+  "onboardingWelcomeSubtitle": "Bingo pour enfants",
+  "onboardingWelcomeDesc": "Regardez ensemble par la fenêtre et découvrez le monde ! Qui trouve les choses sur le plateau ?",
+  "onboardingCategoriesTitle": "Deux univers",
+  "onboardingCategoriesDesc": "Voyage : Parfait pour les trajets – sur l'autoroute, en ville, à la campagne ou en train.\n\nLieux : Pour les sorties spéciales – au zoo, à l'église ou à la maison.",
+  "onboardingBingoTitle": "Comment fonctionne le Bingo",
+  "onboardingBingoDesc": "Vous voyez quelque chose dehors ? Touchez-le sur le plateau ! Une ligne complète – horizontale, verticale ou diagonale – fait un bingo !",
+  "onboardingBingoAccessibility": "L'exemple montre un plateau 3x3 avec une ligne de bingo diagonale",
   "onboardingModesTitle": "Deux modes de jeu",
-  "onboardingModesDesc": "Recherche Bingo : Jouez tranquillement et collectionnez autant de bingos que vous voulez.\n\nChasse au Bingo : Fixez un objectif et jouez pour gagner !",
-  "onboardingPlayTitle": "Comment jouer",
-  "onboardingPlayDesc": "Vous voyez quelque chose sur votre plateau ? Touchez-le ! Complétez une ligne horizontale, verticale ou diagonale – et vous avez un bingo !",
-  "onboardingReadyTitle": "C'est parti !",
-  "onboardingReadyDesc": "Choisissez votre mode de jeu, votre thème et la taille du plateau. Ensuite, le voyage peut commencer !",
+  "onboardingModesDesc": "Regarde ! Recherche : Jouez tranquillement et collectionnez autant de bingos que vous voulez.\n\nChasse au Bingo : Fixez un objectif – le premier à avoir les bingos gagne !",
+  "onboardingReadyTitle": "Prêts ?",
+  "onboardingReadyDesc": "Choisissez thème, lieu et taille du plateau. Puis regardez ensemble par la fenêtre – l'aventure commence !",
   "onboardingNext": "Suivant",
-  "onboardingStart": "Commencer à jouer",
+  "onboardingStart": "C'est parti !",
+  "onboardingPageLabel": "Page {current} sur {total}",
+  "@onboardingPageLabel": {
+    "placeholders": {
+      "current": {"type": "int"},
+      "total": {"type": "int"}
+    }
+  },
   "settingsHelp": "Tutoriel"
 }
