@@ -556,7 +556,7 @@ class BingoCellView extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(8),
           child: Image.asset(
-            'assets/images/${item.imageName}.png',
+            'assets/images/${item.imageName}.webp',
             fit: BoxFit.contain,
             opacity: AlwaysStoppedAnimation(isClicked ? 0.7 : 1.0),
             errorBuilder: (ctx, error, stackTrace) {
