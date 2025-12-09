@@ -1923,6 +1923,60 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Ab dem 1. Dezember sind Weihnachtsitems verfügbar.'**
   String get seasonSpecialTimesDescription;
+
+  /// No description provided for @accessibilityFound.
+  ///
+  /// In de, this message translates to:
+  /// **'gefunden'**
+  String get accessibilityFound;
+
+  /// No description provided for @accessibilityNotFound.
+  ///
+  /// In de, this message translates to:
+  /// **'noch nicht gefunden'**
+  String get accessibilityNotFound;
+
+  /// No description provided for @accessibilityTapToMark.
+  ///
+  /// In de, this message translates to:
+  /// **'Doppeltippen zum Markieren'**
+  String get accessibilityTapToMark;
+
+  /// No description provided for @accessibilityBackButton.
+  ///
+  /// In de, this message translates to:
+  /// **'Zurück'**
+  String get accessibilityBackButton;
+
+  /// No description provided for @accessibilityResetButton.
+  ///
+  /// In de, this message translates to:
+  /// **'Spiel zurücksetzen'**
+  String get accessibilityResetButton;
+
+  /// No description provided for @accessibilitySettingsButton.
+  ///
+  /// In de, this message translates to:
+  /// **'Einstellungen öffnen'**
+  String get accessibilitySettingsButton;
+
+  /// No description provided for @accessibilityThemeButton.
+  ///
+  /// In de, this message translates to:
+  /// **'Farbthema wählen'**
+  String get accessibilityThemeButton;
+
+  /// No description provided for @accessibilityTextToggle.
+  ///
+  /// In de, this message translates to:
+  /// **'Text ein- oder ausblenden'**
+  String get accessibilityTextToggle;
+
+  /// No description provided for @accessibilitySoundToggle.
+  ///
+  /// In de, this message translates to:
+  /// **'Ton ein- oder ausschalten'**
+  String get accessibilitySoundToggle;
 }
 
 class _AppLocalizationsDelegate

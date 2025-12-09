@@ -302,5 +302,14 @@
   "seasonHerbst_winterName": "Autumn/Winter",
   "seasonHerbst_winterDescription": "Discover the cold season with wintry items and autumnal motifs.",
   "seasonSpecialTimesName": "Special Times",
-  "seasonSpecialTimesDescription": "Christmas items are available from December 1st."
+  "seasonSpecialTimesDescription": "Christmas items are available from December 1st.",
+  "accessibilityFound": "found",
+  "accessibilityNotFound": "not found yet",
+  "accessibilityTapToMark": "Double tap to mark",
+  "accessibilityBackButton": "Back",
+  "accessibilityResetButton": "Reset game",
+  "accessibilitySettingsButton": "Open settings",
+  "accessibilityThemeButton": "Choose color theme",
+  "accessibilityTextToggle": "Toggle text visibility",
+  "accessibilitySoundToggle": "Toggle sound"
 }

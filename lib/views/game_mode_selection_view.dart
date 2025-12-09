@@ -83,33 +83,37 @@ class _GameModeSelectionViewState extends State<GameModeSelectionView> {
                                 // Settings Button
                                 Padding(
                                   padding: const EdgeInsets.only(left: 16),
-                                  child: Material(
-                                    color: Colors.transparent,
-                                    child: InkWell(
-                                      onTap: () {
-                                        showModalBottomSheet(
-                                          context: context,
-                                          isScrollControlled: true,
-                                          backgroundColor: Colors.transparent,
-                                          builder: (context) => const Padding(
-                                            padding: EdgeInsets.only(
-                                              top: 60,
+                                  child: Semantics(
+                                    button: true,
+                                    label: AppLocalizations.of(context)!.accessibilitySettingsButton,
+                                    child: Material(
+                                      color: Colors.transparent,
+                                      child: InkWell(
+                                        onTap: () {
+                                          showModalBottomSheet(
+                                            context: context,
+                                            isScrollControlled: true,
+                                            backgroundColor: Colors.transparent,
+                                            builder: (context) => const Padding(
+                                              padding: EdgeInsets.only(
+                                                top: 60,
+                                              ),
+                                              child: SettingsView(),
                                             ),
-                                            child: SettingsView(),
+                                          );
+                                        },
+                                        customBorder: const CircleBorder(),
+                                        child: Container(
+                                          padding: const EdgeInsets.all(12),
+                                          decoration: BoxDecoration(
+                                            color: Colors.white.withValues(alpha:0.2),
+                                            shape: BoxShape.circle,
                                           ),
-                                        );
-                                      },
-                                      customBorder: const CircleBorder(),
-                                      child: Container(
-                                        padding: const EdgeInsets.all(12),
-                                        decoration: BoxDecoration(
-                                          color: Colors.white.withValues(alpha:0.2),
-                                          shape: BoxShape.circle,
-                                        ),
-                                        child: const Icon(
-                                          Icons.info,
-                                          color: Colors.white,
-                                          size: 24,
+                                          child: const Icon(
+                                            Icons.info,
+                                            color: Colors.white,
+                                            size: 24,
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -121,41 +125,45 @@ class _GameModeSelectionViewState extends State<GameModeSelectionView> {
                                 // Theme Button
                                 Padding(
                                   padding: const EdgeInsets.only(right: 16),
-                                  child: Material(
-                                    color: Colors.transparent,
-                                    child: InkWell(
-                                      onTap: () {
-                                        showModalBottomSheet(
-                                          context: context,
-                                          isScrollControlled: true,
-                                          backgroundColor: Colors.transparent,
-                                          builder: (context) => Padding(
-                                            padding: const EdgeInsets.only(
-                                              top: 60,
+                                  child: Semantics(
+                                    button: true,
+                                    label: AppLocalizations.of(context)!.accessibilityThemeButton,
+                                    child: Material(
+                                      color: Colors.transparent,
+                                      child: InkWell(
+                                        onTap: () {
+                                          showModalBottomSheet(
+                                            context: context,
+                                            isScrollControlled: true,
+                                            backgroundColor: Colors.transparent,
+                                            builder: (context) => Padding(
+                                              padding: const EdgeInsets.only(
+                                                top: 60,
+                                              ),
+                                              child: ThemeSelectionView(
+                                                selectedTheme: _selectedTheme,
+                                                onThemeSelected: (theme) {
+                                                  setState(() {
+                                                    _selectedTheme = theme;
+                                                  });
+                                                  Navigator.of(context).pop();
+                                                },
+                                              ),
                                             ),
-                                            child: ThemeSelectionView(
-                                              selectedTheme: _selectedTheme,
-                                              onThemeSelected: (theme) {
-                                                setState(() {
-                                                  _selectedTheme = theme;
-                                                });
-                                                Navigator.of(context).pop();
-                                              },
-                                            ),
+                                          );
+                                        },
+                                        customBorder: const CircleBorder(),
+                                        child: Container(
+                                          padding: const EdgeInsets.all(12),
+                                          decoration: BoxDecoration(
+                                            color: Colors.white.withValues(alpha:0.2),
+                                            shape: BoxShape.circle,
                                           ),
-                                        );
-                                      },
-                                      customBorder: const CircleBorder(),
-                                      child: Container(
-                                        padding: const EdgeInsets.all(12),
-                                        decoration: BoxDecoration(
-                                          color: Colors.white.withValues(alpha:0.2),
-                                          shape: BoxShape.circle,
-                                        ),
-                                        child: const Icon(
-                                          Icons.palette,
-                                          color: Colors.white,
-                                          size: 24,
+                                          child: const Icon(
+                                            Icons.palette,
+                                            color: Colors.white,
+                                            size: 24,
+                                          ),
                                         ),
                                       ),
                                     ),

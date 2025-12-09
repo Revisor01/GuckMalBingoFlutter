@@ -929,4 +929,31 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get seasonSpecialTimesDescription =>
       'Kerstitems zijn beschikbaar vanaf 1 december.';
+
+  @override
+  String get accessibilityFound => 'gevonden';
+
+  @override
+  String get accessibilityNotFound => 'nog niet gevonden';
+
+  @override
+  String get accessibilityTapToMark => 'Dubbeltik om te markeren';
+
+  @override
+  String get accessibilityBackButton => 'Terug';
+
+  @override
+  String get accessibilityResetButton => 'Spel opnieuw starten';
+
+  @override
+  String get accessibilitySettingsButton => 'Instellingen openen';
+
+  @override
+  String get accessibilityThemeButton => 'Kleurthema kiezen';
+
+  @override
+  String get accessibilityTextToggle => 'Tekst tonen of verbergen';
+
+  @override
+  String get accessibilitySoundToggle => 'Geluid aan of uit';
 }

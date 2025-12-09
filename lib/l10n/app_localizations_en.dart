@@ -929,4 +929,31 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get seasonSpecialTimesDescription =>
       'Christmas items are available from December 1st.';
+
+  @override
+  String get accessibilityFound => 'found';
+
+  @override
+  String get accessibilityNotFound => 'not found yet';
+
+  @override
+  String get accessibilityTapToMark => 'Double tap to mark';
+
+  @override
+  String get accessibilityBackButton => 'Back';
+
+  @override
+  String get accessibilityResetButton => 'Reset game';
+
+  @override
+  String get accessibilitySettingsButton => 'Open settings';
+
+  @override
+  String get accessibilityThemeButton => 'Choose color theme';
+
+  @override
+  String get accessibilityTextToggle => 'Toggle text visibility';
+
+  @override
+  String get accessibilitySoundToggle => 'Toggle sound';
 }

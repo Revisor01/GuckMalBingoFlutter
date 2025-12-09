@@ -302,5 +302,14 @@
   "seasonHerbst_winterName": "Herfst/Winter",
   "seasonHerbst_winterDescription": "Ontdek het koude seizoen met winterse items en herfstmotieven.",
   "seasonSpecialTimesName": "Speciale Tijden",
-  "seasonSpecialTimesDescription": "Kerstitems zijn beschikbaar vanaf 1 december."
+  "seasonSpecialTimesDescription": "Kerstitems zijn beschikbaar vanaf 1 december.",
+  "accessibilityFound": "gevonden",
+  "accessibilityNotFound": "nog niet gevonden",
+  "accessibilityTapToMark": "Dubbeltik om te markeren",
+  "accessibilityBackButton": "Terug",
+  "accessibilityResetButton": "Spel opnieuw starten",
+  "accessibilitySettingsButton": "Instellingen openen",
+  "accessibilityThemeButton": "Kleurthema kiezen",
+  "accessibilityTextToggle": "Tekst tonen of verbergen",
+  "accessibilitySoundToggle": "Geluid aan of uit"
 }

@@ -302,5 +302,14 @@
   "seasonHerbst_winterName": "Autunno/Inverno",
   "seasonHerbst_winterDescription": "Scopri la stagione fredda con elementi invernali e motivi autunnali.",
   "seasonSpecialTimesName": "Tempi Speciali",
-  "seasonSpecialTimesDescription": "Gli elementi natalizi sono disponibili dal 1° dicembre."
+  "seasonSpecialTimesDescription": "Gli elementi natalizi sono disponibili dal 1° dicembre.",
+  "accessibilityFound": "trovato",
+  "accessibilityNotFound": "non ancora trovato",
+  "accessibilityTapToMark": "Doppio tocco per segnare",
+  "accessibilityBackButton": "Indietro",
+  "accessibilityResetButton": "Ricomincia il gioco",
+  "accessibilitySettingsButton": "Apri impostazioni",
+  "accessibilityThemeButton": "Scegli il tema colore",
+  "accessibilityTextToggle": "Mostra o nascondi testo",
+  "accessibilitySoundToggle": "Attiva o disattiva suono"
 }

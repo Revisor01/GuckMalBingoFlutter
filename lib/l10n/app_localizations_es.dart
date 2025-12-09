@@ -930,4 +930,31 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get seasonSpecialTimesDescription =>
       'Los elementos navideños están disponibles desde el 1 de diciembre.';
+
+  @override
+  String get accessibilityFound => 'encontrado';
+
+  @override
+  String get accessibilityNotFound => 'aún no encontrado';
+
+  @override
+  String get accessibilityTapToMark => 'Doble toque para marcar';
+
+  @override
+  String get accessibilityBackButton => 'Atrás';
+
+  @override
+  String get accessibilityResetButton => 'Reiniciar juego';
+
+  @override
+  String get accessibilitySettingsButton => 'Abrir configuración';
+
+  @override
+  String get accessibilityThemeButton => 'Elegir tema de color';
+
+  @override
+  String get accessibilityTextToggle => 'Mostrar u ocultar texto';
+
+  @override
+  String get accessibilitySoundToggle => 'Activar o desactivar sonido';
 }
