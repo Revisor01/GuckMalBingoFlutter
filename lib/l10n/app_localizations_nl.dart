@@ -841,7 +841,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get settingsTitle => 'Informatie';
 
   @override
-  String get settingsVersion => 'Versie 1.0';
+  String get settingsVersion => 'Versie 1.2.0';
 
   @override
   String get sizeLong => 'Lang';

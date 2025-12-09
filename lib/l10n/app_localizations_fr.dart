@@ -842,7 +842,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settingsTitle => 'Informations';
 
   @override
-  String get settingsVersion => 'Version 1.0';
+  String get settingsVersion => 'Version 1.2.0';
 
   @override
   String get sizeLong => 'Long';

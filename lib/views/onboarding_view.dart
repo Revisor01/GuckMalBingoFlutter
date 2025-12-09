@@ -301,7 +301,7 @@ class _OnboardingPage extends StatelessWidget {
             Text(
               title,
               style: const TextStyle(
-                fontSize: 28,
+                fontSize: 32,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
@@ -314,7 +314,7 @@ class _OnboardingPage extends StatelessWidget {
               Text(
                 subtitle!,
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 20,
                   fontWeight: FontWeight.w500,
                   color: Colors.white.withValues(alpha: 0.8),
                 ),
@@ -328,7 +328,7 @@ class _OnboardingPage extends StatelessWidget {
             Text(
               description,
               style: TextStyle(
-                fontSize: 16,
+                fontSize: 18,
                 color: Colors.white.withValues(alpha: 0.9),
                 height: 1.5,
               ),
@@ -342,7 +342,7 @@ class _OnboardingPage extends StatelessWidget {
 }
 
 /// Bingo-Erklärungsseite mit Grid-Visualisierung
-class _BingoExplanationPage extends StatelessWidget {
+class _BingoExplanationPage extends StatefulWidget {
   final String title;
   final String description;
 
@@ -352,46 +352,123 @@ class _BingoExplanationPage extends StatelessWidget {
   });
 
   @override
+  State<_BingoExplanationPage> createState() => _BingoExplanationPageState();
+}
+
+class _BingoExplanationPageState extends State<_BingoExplanationPage> {
+  final PageController _gridController = PageController();
+  int _currentGrid = 0;
+  static const _bingoTypes = [_BingoType.horizontal, _BingoType.vertical, _BingoType.diagonal];
+  static const _labels = ['Horizontal', 'Vertikal', 'Diagonal'];
+
+  @override
+  void initState() {
+    super.initState();
+    _startAutoRotation();
+  }
+
+  void _startAutoRotation() {
+    Future.delayed(const Duration(seconds: 3), () {
+      if (!mounted) return;
+      final nextPage = (_currentGrid + 1) % 3;
+      _gridController.animateToPage(
+        nextPage,
+        duration: const Duration(milliseconds: 400),
+        curve: Curves.easeInOut,
+      );
+      _startAutoRotation();
+    });
+  }
+
+  @override
+  void dispose() {
+    _gridController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
 
     return Semantics(
-      label: '$title. $description. ${l10n.onboardingBingoAccessibility}',
+      label: '${widget.title}. ${widget.description}. ${l10n.onboardingBingoAccessibility}',
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Drei Mini Bingo Grids nebeneinander
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: const [
-                _MiniBingoGrid(bingoType: _BingoType.horizontal),
-                _MiniBingoGrid(bingoType: _BingoType.vertical),
-                _MiniBingoGrid(bingoType: _BingoType.diagonal),
-              ],
+            // Rotierendes Bingo Grid
+            SizedBox(
+              height: 180,
+              child: PageView.builder(
+                controller: _gridController,
+                onPageChanged: (index) {
+                  setState(() => _currentGrid = index % 3);
+                },
+                itemBuilder: (context, index) {
+                  return Center(
+                    child: _MiniBingoGrid(
+                      bingoType: _bingoTypes[index % 3],
+                      size: 160,
+                    ),
+                  );
+                },
+              ),
             ),
 
-            const SizedBox(height: 30),
+            const SizedBox(height: 12),
+
+            // Label für aktuellen Bingo-Typ
+            Text(
+              _labels[_currentGrid],
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                color: Colors.white.withValues(alpha: 0.8),
+              ),
+            ),
+
+            // Dots Indicator
+            Padding(
+              padding: const EdgeInsets.only(top: 8),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: List.generate(3, (index) {
+                  return Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 4),
+                    width: _currentGrid == index ? 10 : 8,
+                    height: _currentGrid == index ? 10 : 8,
+                    decoration: BoxDecoration(
+                      color: _currentGrid == index
+                          ? Colors.white
+                          : Colors.white.withValues(alpha: 0.4),
+                      shape: BoxShape.circle,
+                    ),
+                  );
+                }),
+              ),
+            ),
+
+            const SizedBox(height: 24),
 
             // Title
             Text(
-              title,
+              widget.title,
               style: const TextStyle(
-                fontSize: 28,
+                fontSize: 32,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
               textAlign: TextAlign.center,
             ),
 
-            const SizedBox(height: 20),
+            const SizedBox(height: 16),
 
             // Description
             Text(
-              description,
+              widget.description,
               style: TextStyle(
-                fontSize: 16,
+                fontSize: 18,
                 color: Colors.white.withValues(alpha: 0.9),
                 height: 1.5,
               ),
@@ -409,8 +486,9 @@ enum _BingoType { horizontal, vertical, diagonal }
 /// Mini Bingo Grid zur Visualisierung
 class _MiniBingoGrid extends StatelessWidget {
   final _BingoType bingoType;
+  final double size;
 
-  const _MiniBingoGrid({required this.bingoType});
+  const _MiniBingoGrid({required this.bingoType, this.size = 100});
 
   // Bildnamen für das Demo-Grid (bekannte, gut erkennbare Items)
   static const _images = [
@@ -442,19 +520,19 @@ class _MiniBingoGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 100,
-      height: 100,
+      width: size,
+      height: size,
       decoration: BoxDecoration(
         color: Colors.white.withValues(alpha: 0.15),
         borderRadius: BorderRadius.circular(12),
       ),
-      padding: const EdgeInsets.all(4),
+      padding: const EdgeInsets.all(6),
       child: GridView.builder(
         physics: const NeverScrollableScrollPhysics(),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 3,
-          crossAxisSpacing: 3,
-          mainAxisSpacing: 3,
+          crossAxisSpacing: 4,
+          mainAxisSpacing: 4,
         ),
         itemCount: 9,
         itemBuilder: (context, index) {
@@ -464,12 +542,12 @@ class _MiniBingoGrid extends StatelessWidget {
               color: isFound
                   ? const Color(0xFF4CAF50)
                   : Colors.white.withValues(alpha: 0.3),
-              borderRadius: BorderRadius.circular(6),
+              borderRadius: BorderRadius.circular(8),
               border: isFound
-                  ? Border.all(color: const Color(0xFF388E3C), width: 1.5)
+                  ? Border.all(color: const Color(0xFF388E3C), width: 2)
                   : null,
             ),
-            padding: const EdgeInsets.all(2),
+            padding: const EdgeInsets.all(3),
             child: Image.asset(
               'assets/images/${_images[index]}.webp',
               fit: BoxFit.contain,

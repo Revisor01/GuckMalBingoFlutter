@@ -1753,7 +1753,7 @@ abstract class AppLocalizations {
   /// No description provided for @settingsVersion.
   ///
   /// In de, this message translates to:
-  /// **'Version 1.0'**
+  /// **'Version 1.2.0'**
   String get settingsVersion;
 
   /// No description provided for @sizeLong.

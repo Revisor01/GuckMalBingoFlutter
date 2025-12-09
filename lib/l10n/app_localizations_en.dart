@@ -841,7 +841,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsTitle => 'Information';
 
   @override
-  String get settingsVersion => 'Version 1.0';
+  String get settingsVersion => 'Version 1.2.0';
 
   @override
   String get sizeLong => 'Long';
