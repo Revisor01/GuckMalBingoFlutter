@@ -12,6 +12,7 @@ import 'viewmodels/bingo_game_viewmodel.dart';
 import 'views/game_mode_selection_view.dart';
 import 'views/selection_views.dart';
 import 'views/bingo_game_view.dart';
+import 'views/onboarding_view.dart';
 import 'l10n/app_localizations.dart';
 import 'views/snowfall_widget.dart';
 import 'utilities/debug_utils.dart';
@@ -139,6 +140,29 @@ class NavigationCoordinator extends StatefulWidget {
 
 class _NavigationCoordinatorState extends State<NavigationCoordinator> {
   GameConfig _config = GameConfig();
+  bool _showOnboarding = false;
+  bool _onboardingChecked = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _checkOnboarding();
+  }
+
+  Future<void> _checkOnboarding() async {
+    final seen = await hasSeenOnboarding();
+    if (!mounted) return;
+    setState(() {
+      _showOnboarding = !seen;
+      _onboardingChecked = true;
+    });
+  }
+
+  void _onOnboardingComplete() {
+    setState(() {
+      _showOnboarding = false;
+    });
+  }
 
   void _onModeSelected(GameMode mode) {
     setState(() {
@@ -269,6 +293,18 @@ class _NavigationCoordinatorState extends State<NavigationCoordinator> {
 
   @override
   Widget build(BuildContext context) {
+    // Warte bis Onboarding-Status geprüft wurde
+    if (!_onboardingChecked) {
+      return const SizedBox.shrink();
+    }
+
+    // Zeige Onboarding beim ersten Start
+    if (_showOnboarding) {
+      return OnboardingView(
+        onComplete: _onOnboardingComplete,
+      );
+    }
+
     return GameModeSelectionView(
       config: _config,
       onModeSelected: _onModeSelected,

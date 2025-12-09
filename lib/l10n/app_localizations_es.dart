@@ -957,4 +957,41 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get accessibilitySoundToggle => 'Activar o desactivar sonido';
+
+  @override
+  String get onboardingWelcomeTitle => '¡Bienvenido!';
+
+  @override
+  String get onboardingWelcomeDesc =>
+      '¡Mira! es un bingo de viaje para toda la familia. ¡Descubran juntos su entorno y coleccionen bingos!';
+
+  @override
+  String get onboardingModesTitle => 'Dos modos de juego';
+
+  @override
+  String get onboardingModesDesc =>
+      'Búsqueda de Bingo: Juega relajado y colecciona todos los bingos que quieras.\n\nCaza de Bingo: ¡Establece una meta y juega para ganar!';
+
+  @override
+  String get onboardingPlayTitle => 'Cómo jugar';
+
+  @override
+  String get onboardingPlayDesc =>
+      '¿Ves algo en tu tablero? ¡Tócalo! Completa una fila horizontal, vertical o diagonal – ¡y tienes un bingo!';
+
+  @override
+  String get onboardingReadyTitle => '¡Vamos!';
+
+  @override
+  String get onboardingReadyDesc =>
+      'Elige tu modo de juego, tema y tamaño del tablero. ¡Entonces puede comenzar el viaje!';
+
+  @override
+  String get onboardingNext => 'Siguiente';
+
+  @override
+  String get onboardingStart => 'Empezar a jugar';
+
+  @override
+  String get settingsHelp => 'Tutorial';
 }

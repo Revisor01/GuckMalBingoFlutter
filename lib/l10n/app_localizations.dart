@@ -1977,6 +1977,72 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Ton ein- oder ausschalten'**
   String get accessibilitySoundToggle;
+
+  /// No description provided for @onboardingWelcomeTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Willkommen!'**
+  String get onboardingWelcomeTitle;
+
+  /// No description provided for @onboardingWelcomeDesc.
+  ///
+  /// In de, this message translates to:
+  /// **'Guck mal! ist ein Reise-Bingo für die ganze Familie. Entdeckt gemeinsam eure Umgebung und sammelt Bingos!'**
+  String get onboardingWelcomeDesc;
+
+  /// No description provided for @onboardingModesTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Zwei Spielmodi'**
+  String get onboardingModesTitle;
+
+  /// No description provided for @onboardingModesDesc.
+  ///
+  /// In de, this message translates to:
+  /// **'Bingo Suche: Spielt entspannt und sammelt so viele Bingos wie ihr wollt.\n\nBingo Jagd: Legt ein Ziel fest und spielt um den Sieg!'**
+  String get onboardingModesDesc;
+
+  /// No description provided for @onboardingPlayTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'So geht\'s'**
+  String get onboardingPlayTitle;
+
+  /// No description provided for @onboardingPlayDesc.
+  ///
+  /// In de, this message translates to:
+  /// **'Seht ihr etwas auf eurem Spielfeld? Tippt darauf! Schafft eine Reihe horizontal, vertikal oder diagonal – und ihr habt ein Bingo!'**
+  String get onboardingPlayDesc;
+
+  /// No description provided for @onboardingReadyTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Los geht\'s!'**
+  String get onboardingReadyTitle;
+
+  /// No description provided for @onboardingReadyDesc.
+  ///
+  /// In de, this message translates to:
+  /// **'Wählt euren Spielmodus, das Thema und die Spielfeldgröße. Dann kann die Reise beginnen!'**
+  String get onboardingReadyDesc;
+
+  /// No description provided for @onboardingNext.
+  ///
+  /// In de, this message translates to:
+  /// **'Weiter'**
+  String get onboardingNext;
+
+  /// No description provided for @onboardingStart.
+  ///
+  /// In de, this message translates to:
+  /// **'Jetzt spielen'**
+  String get onboardingStart;
+
+  /// No description provided for @settingsHelp.
+  ///
+  /// In de, this message translates to:
+  /// **'Anleitung'**
+  String get settingsHelp;
 }
 
 class _AppLocalizationsDelegate

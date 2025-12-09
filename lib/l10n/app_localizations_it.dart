@@ -956,4 +956,41 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get accessibilitySoundToggle => 'Attiva o disattiva suono';
+
+  @override
+  String get onboardingWelcomeTitle => 'Benvenuto!';
+
+  @override
+  String get onboardingWelcomeDesc =>
+      'Guarda! è un bingo da viaggio per tutta la famiglia. Scoprite insieme l\'ambiente circostante e collezionate bingo!';
+
+  @override
+  String get onboardingModesTitle => 'Due modalità di gioco';
+
+  @override
+  String get onboardingModesDesc =>
+      'Ricerca Bingo: Gioca rilassato e colleziona tutti i bingo che vuoi.\n\nCaccia al Bingo: Stabilisci un obiettivo e gioca per vincere!';
+
+  @override
+  String get onboardingPlayTitle => 'Come giocare';
+
+  @override
+  String get onboardingPlayDesc =>
+      'Vedi qualcosa sul tuo tabellone? Toccalo! Completa una riga orizzontale, verticale o diagonale – e hai un bingo!';
+
+  @override
+  String get onboardingReadyTitle => 'Iniziamo!';
+
+  @override
+  String get onboardingReadyDesc =>
+      'Scegli la modalità di gioco, il tema e la dimensione del tabellone. Poi il viaggio può cominciare!';
+
+  @override
+  String get onboardingNext => 'Avanti';
+
+  @override
+  String get onboardingStart => 'Inizia a giocare';
+
+  @override
+  String get settingsHelp => 'Tutorial';
 }

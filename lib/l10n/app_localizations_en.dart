@@ -956,4 +956,41 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get accessibilitySoundToggle => 'Toggle sound';
+
+  @override
+  String get onboardingWelcomeTitle => 'Welcome!';
+
+  @override
+  String get onboardingWelcomeDesc =>
+      'Look! is a travel bingo for the whole family. Discover your surroundings together and collect bingos!';
+
+  @override
+  String get onboardingModesTitle => 'Two Game Modes';
+
+  @override
+  String get onboardingModesDesc =>
+      'Bingo Search: Play relaxed and collect as many bingos as you want.\n\nBingo Hunt: Set a goal and play to win!';
+
+  @override
+  String get onboardingPlayTitle => 'How to Play';
+
+  @override
+  String get onboardingPlayDesc =>
+      'See something on your game board? Tap it! Complete a row horizontally, vertically or diagonally – and you have a bingo!';
+
+  @override
+  String get onboardingReadyTitle => 'Let\'s Go!';
+
+  @override
+  String get onboardingReadyDesc =>
+      'Choose your game mode, theme and board size. Then the journey can begin!';
+
+  @override
+  String get onboardingNext => 'Next';
+
+  @override
+  String get onboardingStart => 'Start Playing';
+
+  @override
+  String get settingsHelp => 'Tutorial';
 }

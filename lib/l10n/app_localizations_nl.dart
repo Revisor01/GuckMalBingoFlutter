@@ -956,4 +956,41 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get accessibilitySoundToggle => 'Geluid aan of uit';
+
+  @override
+  String get onboardingWelcomeTitle => 'Welkom!';
+
+  @override
+  String get onboardingWelcomeDesc =>
+      'Kijk! is een reisbingo voor het hele gezin. Ontdek samen je omgeving en verzamel bingo\'s!';
+
+  @override
+  String get onboardingModesTitle => 'Twee spelmodi';
+
+  @override
+  String get onboardingModesDesc =>
+      'Bingo Zoeken: Speel ontspannen en verzamel zoveel bingo\'s als je wilt.\n\nBingo Jacht: Stel een doel en speel om te winnen!';
+
+  @override
+  String get onboardingPlayTitle => 'Zo werkt het';
+
+  @override
+  String get onboardingPlayDesc =>
+      'Zie je iets op je speelbord? Tik erop! Maak een rij horizontaal, verticaal of diagonaal – en je hebt een bingo!';
+
+  @override
+  String get onboardingReadyTitle => 'Laten we gaan!';
+
+  @override
+  String get onboardingReadyDesc =>
+      'Kies je spelmodus, thema en bordgrootte. Dan kan de reis beginnen!';
+
+  @override
+  String get onboardingNext => 'Volgende';
+
+  @override
+  String get onboardingStart => 'Begin met spelen';
+
+  @override
+  String get settingsHelp => 'Handleiding';
 }

@@ -956,4 +956,41 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get accessibilitySoundToggle => 'Ton ein- oder ausschalten';
+
+  @override
+  String get onboardingWelcomeTitle => 'Willkommen!';
+
+  @override
+  String get onboardingWelcomeDesc =>
+      'Guck mal! ist ein Reise-Bingo für die ganze Familie. Entdeckt gemeinsam eure Umgebung und sammelt Bingos!';
+
+  @override
+  String get onboardingModesTitle => 'Zwei Spielmodi';
+
+  @override
+  String get onboardingModesDesc =>
+      'Bingo Suche: Spielt entspannt und sammelt so viele Bingos wie ihr wollt.\n\nBingo Jagd: Legt ein Ziel fest und spielt um den Sieg!';
+
+  @override
+  String get onboardingPlayTitle => 'So geht\'s';
+
+  @override
+  String get onboardingPlayDesc =>
+      'Seht ihr etwas auf eurem Spielfeld? Tippt darauf! Schafft eine Reihe horizontal, vertikal oder diagonal – und ihr habt ein Bingo!';
+
+  @override
+  String get onboardingReadyTitle => 'Los geht\'s!';
+
+  @override
+  String get onboardingReadyDesc =>
+      'Wählt euren Spielmodus, das Thema und die Spielfeldgröße. Dann kann die Reise beginnen!';
+
+  @override
+  String get onboardingNext => 'Weiter';
+
+  @override
+  String get onboardingStart => 'Jetzt spielen';
+
+  @override
+  String get settingsHelp => 'Anleitung';
 }

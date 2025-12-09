@@ -311,5 +311,16 @@
   "accessibilitySettingsButton": "Abrir configuración",
   "accessibilityThemeButton": "Elegir tema de color",
   "accessibilityTextToggle": "Mostrar u ocultar texto",
-  "accessibilitySoundToggle": "Activar o desactivar sonido"
+  "accessibilitySoundToggle": "Activar o desactivar sonido",
+  "onboardingWelcomeTitle": "¡Bienvenido!",
+  "onboardingWelcomeDesc": "¡Mira! es un bingo de viaje para toda la familia. ¡Descubran juntos su entorno y coleccionen bingos!",
+  "onboardingModesTitle": "Dos modos de juego",
+  "onboardingModesDesc": "Búsqueda de Bingo: Juega relajado y colecciona todos los bingos que quieras.\n\nCaza de Bingo: ¡Establece una meta y juega para ganar!",
+  "onboardingPlayTitle": "Cómo jugar",
+  "onboardingPlayDesc": "¿Ves algo en tu tablero? ¡Tócalo! Completa una fila horizontal, vertical o diagonal – ¡y tienes un bingo!",
+  "onboardingReadyTitle": "¡Vamos!",
+  "onboardingReadyDesc": "Elige tu modo de juego, tema y tamaño del tablero. ¡Entonces puede comenzar el viaje!",
+  "onboardingNext": "Siguiente",
+  "onboardingStart": "Empezar a jugar",
+  "settingsHelp": "Tutorial"
 }

@@ -311,5 +311,16 @@
   "accessibilitySettingsButton": "Apri impostazioni",
   "accessibilityThemeButton": "Scegli il tema colore",
   "accessibilityTextToggle": "Mostra o nascondi testo",
-  "accessibilitySoundToggle": "Attiva o disattiva suono"
+  "accessibilitySoundToggle": "Attiva o disattiva suono",
+  "onboardingWelcomeTitle": "Benvenuto!",
+  "onboardingWelcomeDesc": "Guarda! è un bingo da viaggio per tutta la famiglia. Scoprite insieme l'ambiente circostante e collezionate bingo!",
+  "onboardingModesTitle": "Due modalità di gioco",
+  "onboardingModesDesc": "Ricerca Bingo: Gioca rilassato e colleziona tutti i bingo che vuoi.\n\nCaccia al Bingo: Stabilisci un obiettivo e gioca per vincere!",
+  "onboardingPlayTitle": "Come giocare",
+  "onboardingPlayDesc": "Vedi qualcosa sul tuo tabellone? Toccalo! Completa una riga orizzontale, verticale o diagonale – e hai un bingo!",
+  "onboardingReadyTitle": "Iniziamo!",
+  "onboardingReadyDesc": "Scegli la modalità di gioco, il tema e la dimensione del tabellone. Poi il viaggio può cominciare!",
+  "onboardingNext": "Avanti",
+  "onboardingStart": "Inizia a giocare",
+  "settingsHelp": "Tutorial"
 }

@@ -957,4 +957,41 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get accessibilitySoundToggle => 'Activer ou désactiver le son';
+
+  @override
+  String get onboardingWelcomeTitle => 'Bienvenue !';
+
+  @override
+  String get onboardingWelcomeDesc =>
+      'Regarde ! est un bingo de voyage pour toute la famille. Découvrez ensemble votre environnement et collectionnez des bingos !';
+
+  @override
+  String get onboardingModesTitle => 'Deux modes de jeu';
+
+  @override
+  String get onboardingModesDesc =>
+      'Recherche Bingo : Jouez tranquillement et collectionnez autant de bingos que vous voulez.\n\nChasse au Bingo : Fixez un objectif et jouez pour gagner !';
+
+  @override
+  String get onboardingPlayTitle => 'Comment jouer';
+
+  @override
+  String get onboardingPlayDesc =>
+      'Vous voyez quelque chose sur votre plateau ? Touchez-le ! Complétez une ligne horizontale, verticale ou diagonale – et vous avez un bingo !';
+
+  @override
+  String get onboardingReadyTitle => 'C\'est parti !';
+
+  @override
+  String get onboardingReadyDesc =>
+      'Choisissez votre mode de jeu, votre thème et la taille du plateau. Ensuite, le voyage peut commencer !';
+
+  @override
+  String get onboardingNext => 'Suivant';
+
+  @override
+  String get onboardingStart => 'Commencer à jouer';
+
+  @override
+  String get settingsHelp => 'Tutoriel';
 }

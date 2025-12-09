@@ -5,6 +5,7 @@ import '../utilities/background_pattern_view.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import '../l10n/app_localizations.dart';
 import 'parental_gate_view.dart';
+import 'onboarding_view.dart';
 
 /// SettingsView - Portiert von Swift
 class SettingsView extends StatefulWidget {
@@ -140,6 +141,27 @@ class _SettingsViewState extends State<SettingsView> {
                     padding: const EdgeInsets.symmetric(horizontal: 30),
                     child: Column(
                       children: [
+                        // Anleitung Button (öffnet Onboarding)
+                        SettingsButton(
+                          icon: Icons.lightbulb,
+                          iconColor: Colors.amber,
+                          title: AppLocalizations.of(context)!.settingsHelp,
+                          onTap: () {
+                            showModalBottomSheet(
+                              context: context,
+                              isScrollControlled: true,
+                              backgroundColor: Colors.transparent,
+                              builder: (context) => Padding(
+                                padding: const EdgeInsets.only(top: 60),
+                                child: OnboardingView(
+                                  showCloseButton: true,
+                                  onComplete: () => Navigator.of(context).pop(),
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                        const SizedBox(height: 16),
                         SettingsLinkButton(
                           icon: Icons.shield,
                           iconColor: Colors.blue,
@@ -231,6 +253,66 @@ class _SettingsViewState extends State<SettingsView> {
   }
 }
 
+
+/// Settings Button (ohne externen Link-Pfeil)
+class SettingsButton extends StatelessWidget {
+  final IconData icon;
+  final Color iconColor;
+  final String title;
+  final VoidCallback onTap;
+
+  const SettingsButton({
+    super.key,
+    required this.icon,
+    required this.iconColor,
+    required this.title,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final brightness = Theme.of(context).brightness;
+
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(16),
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 20),
+          decoration: BoxDecoration(
+            color: brightness == Brightness.dark
+                ? Colors.white.withValues(alpha: 0.15)
+                : Colors.white.withValues(alpha: 0.25),
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: Row(
+            children: [
+              const SizedBox(width: 24),
+              Icon(
+                icon,
+                size: 28,
+                color: iconColor,
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: Text(
+                  title,
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              const SizedBox(width: 24),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
 
 /// Settings Link Button
 class SettingsLinkButton extends StatelessWidget {

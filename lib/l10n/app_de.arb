@@ -311,5 +311,16 @@
   "accessibilitySettingsButton": "Einstellungen öffnen",
   "accessibilityThemeButton": "Farbthema wählen",
   "accessibilityTextToggle": "Text ein- oder ausblenden",
-  "accessibilitySoundToggle": "Ton ein- oder ausschalten"
+  "accessibilitySoundToggle": "Ton ein- oder ausschalten",
+  "onboardingWelcomeTitle": "Willkommen!",
+  "onboardingWelcomeDesc": "Guck mal! ist ein Reise-Bingo für die ganze Familie. Entdeckt gemeinsam eure Umgebung und sammelt Bingos!",
+  "onboardingModesTitle": "Zwei Spielmodi",
+  "onboardingModesDesc": "Bingo Suche: Spielt entspannt und sammelt so viele Bingos wie ihr wollt.\n\nBingo Jagd: Legt ein Ziel fest und spielt um den Sieg!",
+  "onboardingPlayTitle": "So geht's",
+  "onboardingPlayDesc": "Seht ihr etwas auf eurem Spielfeld? Tippt darauf! Schafft eine Reihe horizontal, vertikal oder diagonal – und ihr habt ein Bingo!",
+  "onboardingReadyTitle": "Los geht's!",
+  "onboardingReadyDesc": "Wählt euren Spielmodus, das Thema und die Spielfeldgröße. Dann kann die Reise beginnen!",
+  "onboardingNext": "Weiter",
+  "onboardingStart": "Jetzt spielen",
+  "settingsHelp": "Anleitung"
 }
