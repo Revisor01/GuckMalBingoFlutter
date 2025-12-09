@@ -2023,7 +2023,7 @@ abstract class AppLocalizations {
   /// No description provided for @onboardingBingoAccessibility.
   ///
   /// In de, this message translates to:
-  /// **'Beispiel zeigt ein 3x3 Spielfeld mit einer diagonalen Bingo-Linie'**
+  /// **'Drei Beispiele zeigen horizontale, vertikale und diagonale Bingo-Linien'**
   String get onboardingBingoAccessibility;
 
   /// No description provided for @onboardingModesTitle.

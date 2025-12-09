@@ -358,12 +358,19 @@ class _BingoExplanationPage extends StatelessWidget {
     return Semantics(
       label: '$title. $description. ${l10n.onboardingBingoAccessibility}',
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 30),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Mini Bingo Grid
-            _MiniBingoGrid(),
+            // Drei Mini Bingo Grids nebeneinander
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: const [
+                _MiniBingoGrid(bingoType: _BingoType.horizontal),
+                _MiniBingoGrid(bingoType: _BingoType.vertical),
+                _MiniBingoGrid(bingoType: _BingoType.diagonal),
+              ],
+            ),
 
             const SizedBox(height: 30),
 
@@ -397,29 +404,57 @@ class _BingoExplanationPage extends StatelessWidget {
   }
 }
 
+enum _BingoType { horizontal, vertical, diagonal }
+
 /// Mini Bingo Grid zur Visualisierung
 class _MiniBingoGrid extends StatelessWidget {
-  // Emojis für das Demo-Grid
-  static const _emojis = ['🚗', '🌳', '🏠', '🐕', '🚌', '☀️', '🐱', '🌸', '✈️'];
-  // Welche Zellen sind "gefunden" (diagonale Linie)
-  static const _found = [true, false, false, false, true, false, false, false, true];
+  final _BingoType bingoType;
+
+  const _MiniBingoGrid({required this.bingoType});
+
+  // Bildnamen für das Demo-Grid (bekannte, gut erkennbare Items)
+  static const _images = [
+    'rotesauto',   // 0
+    'baum',        // 1
+    'haus',        // 2
+    'hund',        // 3
+    'bus',         // 4
+    'blumen',      // 5
+    'katze',       // 6
+    'fahrrad',     // 7
+    'flugzeug',    // 8
+  ];
+
+  List<bool> get _found {
+    switch (bingoType) {
+      case _BingoType.horizontal:
+        // Mittlere Reihe (Index 3, 4, 5)
+        return [false, false, false, true, true, true, false, false, false];
+      case _BingoType.vertical:
+        // Mittlere Spalte (Index 1, 4, 7)
+        return [false, true, false, false, true, false, false, true, false];
+      case _BingoType.diagonal:
+        // Diagonal von links oben (Index 0, 4, 8)
+        return [true, false, false, false, true, false, false, false, true];
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 180,
-      height: 180,
+      width: 100,
+      height: 100,
       decoration: BoxDecoration(
         color: Colors.white.withValues(alpha: 0.15),
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(12),
       ),
-      padding: const EdgeInsets.all(8),
+      padding: const EdgeInsets.all(4),
       child: GridView.builder(
         physics: const NeverScrollableScrollPhysics(),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 3,
-          crossAxisSpacing: 6,
-          mainAxisSpacing: 6,
+          crossAxisSpacing: 3,
+          mainAxisSpacing: 3,
         ),
         itemCount: 9,
         itemBuilder: (context, index) {
@@ -429,19 +464,15 @@ class _MiniBingoGrid extends StatelessWidget {
               color: isFound
                   ? const Color(0xFF4CAF50)
                   : Colors.white.withValues(alpha: 0.3),
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.circular(6),
               border: isFound
-                  ? Border.all(color: const Color(0xFF388E3C), width: 2)
+                  ? Border.all(color: const Color(0xFF388E3C), width: 1.5)
                   : null,
             ),
-            child: Center(
-              child: Text(
-                _emojis[index],
-                style: TextStyle(
-                  fontSize: 28,
-                  color: isFound ? Colors.white.withValues(alpha: 0.8) : null,
-                ),
-              ),
+            padding: const EdgeInsets.all(2),
+            child: Image.asset(
+              'assets/images/${_images[index]}.webp',
+              fit: BoxFit.contain,
             ),
           );
         },

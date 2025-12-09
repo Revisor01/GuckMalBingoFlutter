@@ -983,7 +983,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get onboardingBingoAccessibility =>
-      'Beispiel zeigt ein 3x3 Spielfeld mit einer diagonalen Bingo-Linie';
+      'Drei Beispiele zeigen horizontale, vertikale und diagonale Bingo-Linien';
 
   @override
   String get onboardingModesTitle => 'Zwei Spielmodi';

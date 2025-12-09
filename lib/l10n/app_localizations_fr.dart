@@ -984,7 +984,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get onboardingBingoAccessibility =>
-      'L\'exemple montre un plateau 3x3 avec une ligne de bingo diagonale';
+      'Trois exemples montrent des lignes de bingo horizontales, verticales et diagonales';
 
   @override
   String get onboardingModesTitle => 'Deux modes de jeu';
