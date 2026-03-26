@@ -74,6 +74,7 @@ class BingoGameViewModel extends ChangeNotifier {
   late GameAudioPlayer _audioPlayer;
   Set<BingoTypeWithIndex> _completedBingos = {};
   bool _isDisposed = false;
+  int _blinkGeneration = 0;
 
   BingoGameViewModel({required this.config}) {
     _audioPlayer = GameAudioPlayer();
@@ -128,6 +129,7 @@ class BingoGameViewModel extends ChangeNotifier {
   }
 
   void resetGame() {
+    _blinkGeneration++; // Cancel laufende Blink-Animation
     clickedIndices.clear();
     bingoCount = 0;
     _completedBingos.clear();
@@ -278,25 +280,33 @@ class BingoGameViewModel extends ChangeNotifier {
   }
 
   void _startBlinkAnimation(List<int> indices) {
+    // Cancel vorherige Animation durch Erhoehen der Generation
+    _blinkGeneration++;
+    final myGeneration = _blinkGeneration;
+
+    // Sofort vorherige Animation-State zuruecksetzen
+    blinkingIndex = null;
+    blinkingAllIndices = {};
+
     Future(() async {
       // Sequenziell durch alle Indices blinken (1, 2, 3, 4, 5)
       for (final index in indices) {
-        if (_isDisposed) return;
+        if (_isDisposed || _blinkGeneration != myGeneration) return;
         blinkingIndex = index;
         notifyListeners();
         await Future.delayed(const Duration(milliseconds: 250)); // 0.25s pro Symbol
-        if (_isDisposed) return;
+        if (_isDisposed || _blinkGeneration != myGeneration) return;
         blinkingIndex = null;
         notifyListeners();
         await Future.delayed(const Duration(milliseconds: 20)); // 0.02s Pause
       }
 
-      if (_isDisposed) return;
+      if (_isDisposed || _blinkGeneration != myGeneration) return;
       // Dann alle neuen Bingo-Indices zusammen blinken
       blinkingAllIndices = Set.from(indices);
       notifyListeners();
       await Future.delayed(const Duration(milliseconds: 400)); // 0.4s alle zusammen
-      if (_isDisposed) return;
+      if (_isDisposed || _blinkGeneration != myGeneration) return;
       blinkingAllIndices.clear();
       notifyListeners();
     });
