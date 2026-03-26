@@ -3,12 +3,12 @@ import 'package:provider/provider.dart';
 import '../l10n/app_localizations.dart';
 import '../viewmodels/bingo_game_viewmodel.dart';
 import '../models/bingo_item.dart';
-import '../models/background_theme.dart';
 import '../models/game_mode.dart';
 import '../utilities/background_pattern_view.dart';
 import '../utilities/app_colors.dart';
 import '../utilities/app_localizations_extension.dart';
 import '../utilities/debug_utils.dart';
+import '../utilities/theme_provider.dart';
 
 /// BingoGameView - Portiert von Swift
 /// Hauptspiel-Ansicht mit Bingo-Grid
@@ -25,31 +25,9 @@ class BingoGameView extends StatefulWidget {
 }
 
 class _BingoGameViewState extends State<BingoGameView> {
-  late BackgroundTheme _selectedTheme;
-  bool _themeLoaded = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _loadTheme();
-  }
-
-  Future<void> _loadTheme() async {
-    final theme = await BackgroundTheme.loadSavedTheme();
-    if (!mounted) return;
-    setState(() {
-      _selectedTheme = theme;
-      _themeLoaded = true;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    if (!_themeLoaded) {
-      return const Scaffold(
-        body: Center(child: CircularProgressIndicator()),
-      );
-    }
+    final selectedTheme = context.watch<ThemeNotifier>().theme;
 
     return Consumer<BingoGameViewModel>(
       builder: (context, viewModel, child) {
@@ -60,7 +38,7 @@ class _BingoGameViewState extends State<BingoGameView> {
         return Scaffold(
           body: Container(
             decoration: BoxDecoration(
-              gradient: _selectedTheme.adaptiveGradient(brightness),
+              gradient: selectedTheme.adaptiveGradient(brightness),
             ),
             child: Stack(
               children: [
