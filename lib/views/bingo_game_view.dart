@@ -541,7 +541,7 @@ class BingoCellView extends StatelessWidget {
           child: Center(
             child: item.imageName != null
                 ? _buildImageContent(context)
-                : _buildEmojiContent(),
+                : _buildEmojiContent(context),
           ),
         ),
       ),
@@ -552,7 +552,6 @@ class BingoCellView extends StatelessWidget {
   Widget _buildImageContent(BuildContext context) {
     return Stack(
       children: [
-        // TODO: Load image from assets
         Padding(
           padding: const EdgeInsets.all(8),
           child: Image.asset(
@@ -561,7 +560,7 @@ class BingoCellView extends StatelessWidget {
             opacity: AlwaysStoppedAnimation(isClicked ? 0.7 : 1.0),
             errorBuilder: (ctx, error, stackTrace) {
               // Fallback to emoji
-              return _buildEmojiContent();
+              return _buildEmojiContent(context);
             },
           ),
         ),
@@ -593,7 +592,7 @@ class BingoCellView extends StatelessWidget {
     );
   }
 
-  Widget _buildEmojiContent() {
+  Widget _buildEmojiContent(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -604,7 +603,7 @@ class BingoCellView extends StatelessWidget {
         if (showText) ...[
           const SizedBox(height: 2),
           Text(
-            item.name, // TODO: Localize
+            AppLocalizations.of(context)!.getByKey(item.name) ?? item.name,
             style: TextStyle(
               fontSize: textSize,
               fontWeight: FontWeight.w600,
