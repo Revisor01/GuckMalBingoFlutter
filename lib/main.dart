@@ -20,8 +20,12 @@ import 'utilities/theme_provider.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Hide status bar for immersive experience (wie in iOS app)
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+  // Edge-to-Edge fuer Android 16+ (SDK 36)
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    statusBarColor: Colors.transparent,
+    systemNavigationBarColor: Colors.transparent,
+  ));
 
   // Lade Schneefall-Einstellung
   await loadSnowfallSetting();
