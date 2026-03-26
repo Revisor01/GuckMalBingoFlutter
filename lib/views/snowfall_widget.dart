@@ -194,5 +194,6 @@ class SnowfallPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(SnowfallPainter oldDelegate) => true;
+  bool shouldRepaint(SnowfallPainter oldDelegate) =>
+      oldDelegate.progress != progress;
 }
