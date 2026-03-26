@@ -82,23 +82,22 @@ class BingoGameViewModel extends ChangeNotifier {
 
     // Generate board immediately for faster loading
     final totalCells = config.gridSize * config.gridSize;
-    final itemList = BingoItemsData.itemsFor(
+    final sourceItems = BingoItemsData.itemsFor(
       area: config.area,
       season: config.season,
     );
-    board = (itemList..shuffle()).take(totalCells).toList();
+    final shuffled = List.of(sourceItems)..shuffle();
+    board = shuffled.take(totalCells).toList();
   }
 
   void generateBoard() {
     final totalCells = config.gridSize * config.gridSize;
-    final itemList = BingoItemsData.itemsFor(
+    final sourceItems = BingoItemsData.itemsFor(
       area: config.area,
       season: config.season,
     );
-
-    // Ensure board is always regenerated with correct size
-    board.clear();
-    board = (itemList..shuffle()).take(totalCells).toList();
+    final shuffled = List.of(sourceItems)..shuffle();
+    board = shuffled.take(totalCells).toList();
     notifyListeners();
   }
 
