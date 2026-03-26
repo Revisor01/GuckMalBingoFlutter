@@ -9,16 +9,18 @@ import '../utilities/theme_provider.dart';
 import '../l10n/app_localizations.dart';
 import '../utilities/app_localizations_extension.dart';
 
-/// Basis für alle Auswahl-Views
+/// Basis fuer alle Auswahl-Views
 class _BaseSelectionView extends StatelessWidget {
   final String title;
   final String question;
   final Widget content;
+  final Widget? footer;
 
   const _BaseSelectionView({
     required this.title,
     required this.question,
     required this.content,
+    this.footer,
   });
 
   @override
@@ -68,51 +70,9 @@ class _BaseSelectionView extends StatelessWidget {
 
                   // Content
                   Expanded(
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          // Title
-                          Padding(
-                            padding: EdgeInsets.only(
-                              top: isLandscape ? 10 : 20,
-                            ),
-                            child: Text(
-                              title,
-                              style: const TextStyle(
-                                fontSize: 42,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-
-                          // Question - kleiner Abstand zum Titel
-                          Padding(
-                            padding: EdgeInsets.only(
-                              top: isLandscape ? 10 : 20,
-                              bottom: isLandscape ? 15 : 20,
-                            ),
-                            child: Text(
-                              question,
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.white.withValues(alpha:0.9),
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-
-                          // Content - kleiner Abstand zur Frage
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 30),
-                            child: content,
-                          ),
-
-                          const SizedBox(height: 40),
-                        ],
-                      ),
-                    ),
+                    child: footer != null
+                        ? _buildWithFooter(context, isLandscape)
+                        : _buildWithScroll(context, isLandscape),
                   ),
                 ],
               ),
@@ -122,10 +82,89 @@ class _BaseSelectionView extends StatelessWidget {
       ),
     );
   }
+
+  /// Layout mit Footer: LayoutBuilder + Spacer zwischen content und footer
+  Widget _buildWithFooter(BuildContext context, bool isLandscape) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return SingleChildScrollView(
+          child: SizedBox(
+            height: constraints.maxHeight,
+            child: Column(
+              children: [
+                _buildTitleAndQuestion(context, isLandscape),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 30),
+                  child: content,
+                ),
+                const Spacer(),
+                footer!,
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  /// Layout ohne Footer: einfaches ScrollView
+  Widget _buildWithScroll(BuildContext context, bool isLandscape) {
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          _buildTitleAndQuestion(context, isLandscape),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30),
+            child: content,
+          ),
+          const SizedBox(height: 40),
+        ],
+      ),
+    );
+  }
+
+  /// Gemeinsamer Title + Question Block
+  Widget _buildTitleAndQuestion(BuildContext context, bool isLandscape) {
+    return Column(
+      children: [
+        // Title
+        Padding(
+          padding: EdgeInsets.only(
+            top: isLandscape ? 10 : 20,
+          ),
+          child: Text(
+            title,
+            style: const TextStyle(
+              fontSize: 42,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          ),
+        ),
+
+        // Question
+        Padding(
+          padding: EdgeInsets.only(
+            top: isLandscape ? 10 : 20,
+            bottom: isLandscape ? 15 : 20,
+          ),
+          child: Text(
+            question,
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w600,
+              color: Colors.white.withValues(alpha:0.9),
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ),
+      ],
+    );
+  }
 }
 
 /// Category Theme Selection
-class ThemeCategorySelectionView extends StatefulWidget {
+class ThemeCategorySelectionView extends StatelessWidget {
   final GameConfig config;
   final Function(CategoryTheme) onThemeSelected;
 
@@ -136,159 +175,35 @@ class ThemeCategorySelectionView extends StatefulWidget {
   });
 
   @override
-  State<ThemeCategorySelectionView> createState() => _ThemeCategorySelectionViewState();
-}
-
-class _ThemeCategorySelectionViewState extends State<ThemeCategorySelectionView> {
-  @override
   Widget build(BuildContext context) {
-    final theme = context.watch<ThemeNotifier>().theme;
-    final brightness = Theme.of(context).brightness;
-    final isLandscape = MediaQuery.of(context).size.width > MediaQuery.of(context).size.height;
-
-    return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: theme.adaptiveGradient(brightness),
-        ),
-        child: Stack(
-          children: [
-            const BackgroundPatternView(),
-            SafeArea(
-              child: LayoutBuilder(
-                builder: (context, constraints) {
-                  return SingleChildScrollView(
-                    child: SizedBox(
-                      height: constraints.maxHeight,
-                      child: Column(
-                        children: [
-                          // Back Button
-                          Padding(
-                            padding: const EdgeInsets.only(top: 8, left: 16),
-                            child: Align(
-                              alignment: Alignment.centerLeft,
-                              child: Material(
-                                color: Colors.transparent,
-                                child: InkWell(
-                                  onTap: () => Navigator.of(context).pop(),
-                                  customBorder: const CircleBorder(),
-                                  child: Container(
-                                    padding: const EdgeInsets.all(12),
-                                    decoration: BoxDecoration(
-                                      color: Colors.white.withValues(alpha:0.2),
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: const Icon(
-                                      Icons.chevron_left,
-                                      color: Colors.white,
-                                      size: 24,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-
-                          // Title
-                          Padding(
-                            padding: EdgeInsets.only(
-                              top: isLandscape ? 10 : 20,
-                            ),
-                            child: Text(
-                              AppLocalizations.of(context)!.appTitle,
-                              style: const TextStyle(
-                                fontSize: 42,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-
-                          // Question - kleiner Abstand zum Titel
-                          Padding(
-                            padding: EdgeInsets.only(
-                              top: isLandscape ? 10 : 20,
-                              bottom: isLandscape ? 15 : 20,
-                            ),
-                            child: Text(
-                              AppLocalizations.of(context)!.categorySelectionQuestion,
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.white.withValues(alpha:0.9),
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-
-                          // Category Buttons - kleiner Abstand zur Frage
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 30),
-                            child: Column(
-                              children: CategoryTheme.values
-                                  .map((theme) => Padding(
-                                        padding: const EdgeInsets.only(bottom: 16),
-                                        child: _SelectionButton(
-                                          title: theme.displayNameKey,
-                                          icon: theme.icon,
-                                          iconColor: theme == CategoryTheme.reise
-                                              ? Colors.blue
-                                              : Colors.red.shade700,
-                                          onTap: () => widget.onThemeSelected(theme),
-                                        ),
-                                      ))
-                                  .toList(),
-                            ),
-                          ),
-
-                          // Flexibler Abstand - drückt Erklärungen nach unten
-                          const Spacer(),
-
-                          // Erklärungen ganz unten - fester Abstand von unten
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(40, 0, 40, 40),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: CategoryTheme.values.map((theme) {
-                                return Padding(
-                                  padding: const EdgeInsets.only(bottom: 16),
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Builder(
-                                        builder: (context) => Text(
-                                          AppLocalizations.of(context)!.getByKey(theme.displayNameKey) ?? theme.displayNameKey,
-                                          style: const TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                      ),
-                                      const SizedBox(height: 4),
-                                      Builder(
-                                        builder: (context) => Text(
-                                          AppLocalizations.of(context)!.getByKey(theme.descriptionKey) ?? theme.descriptionKey,
-                                          style: TextStyle(
-                                            fontSize: 14,
-                                            color: Colors.white.withValues(alpha:0.8),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                );
-                              }).toList(),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
-          ],
+    return _BaseSelectionView(
+      title: AppLocalizations.of(context)!.appTitle,
+      question: AppLocalizations.of(context)!.categorySelectionQuestion,
+      content: Column(
+        children: CategoryTheme.values
+            .map((theme) => Padding(
+                  padding: const EdgeInsets.only(bottom: 16),
+                  child: _SelectionButton(
+                    title: theme.displayNameKey,
+                    icon: theme.icon,
+                    iconColor: theme == CategoryTheme.reise
+                        ? Colors.blue
+                        : Colors.red.shade700,
+                    onTap: () => onThemeSelected(theme),
+                  ),
+                ))
+            .toList(),
+      ),
+      footer: Padding(
+        padding: const EdgeInsets.fromLTRB(40, 0, 40, 40),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: CategoryTheme.values.map((theme) {
+            return _DescriptionItem(
+              title: AppLocalizations.of(context)!.getByKey(theme.displayNameKey) ?? theme.displayNameKey,
+              description: AppLocalizations.of(context)!.getByKey(theme.descriptionKey) ?? theme.descriptionKey,
+            );
+          }).toList(),
         ),
       ),
     );
@@ -296,7 +211,7 @@ class _ThemeCategorySelectionViewState extends State<ThemeCategorySelectionView>
 }
 
 /// Season Selection
-class SeasonSelectionView extends StatefulWidget {
+class SeasonSelectionView extends StatelessWidget {
   final GameConfig config;
   final Function(Season) onSeasonSelected;
 
@@ -307,204 +222,41 @@ class SeasonSelectionView extends StatefulWidget {
   });
 
   @override
-  State<SeasonSelectionView> createState() => _SeasonSelectionViewState();
-}
-
-class _SeasonSelectionViewState extends State<SeasonSelectionView> {
-  @override
   Widget build(BuildContext context) {
-    final theme = context.watch<ThemeNotifier>().theme;
-    final brightness = Theme.of(context).brightness;
-    final isLandscape = MediaQuery.of(context).size.width > MediaQuery.of(context).size.height;
-
-    return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: theme.adaptiveGradient(brightness),
-        ),
-        child: Stack(
+    return _BaseSelectionView(
+      title: AppLocalizations.of(context)!.appTitle,
+      question: AppLocalizations.of(context)!.seasonSelectionQuestion,
+      content: Column(
+        children: Season.mainCases
+            .map((season) => Padding(
+                  padding: const EdgeInsets.only(bottom: 16),
+                  child: _SelectionButton(
+                    title: season.displayNameKey,
+                    icon: season.icon,
+                    iconColor: season == Season.fruehling_sommer
+                        ? Colors.orange
+                        : Colors.blue,
+                    onTap: () => onSeasonSelected(season),
+                  ),
+                ))
+            .toList(),
+      ),
+      footer: Padding(
+        padding: const EdgeInsets.fromLTRB(40, 0, 40, 40),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const BackgroundPatternView(),
-            SafeArea(
-              child: LayoutBuilder(
-                builder: (context, constraints) {
-                  return SingleChildScrollView(
-                    child: SizedBox(
-                      height: constraints.maxHeight,
-                      child: Column(
-                        children: [
-                          // Back Button
-                          Padding(
-                            padding: const EdgeInsets.only(top: 8, left: 16),
-                            child: Align(
-                              alignment: Alignment.centerLeft,
-                              child: Material(
-                                color: Colors.transparent,
-                                child: InkWell(
-                                  onTap: () => Navigator.of(context).pop(),
-                                  customBorder: const CircleBorder(),
-                                  child: Container(
-                                    padding: const EdgeInsets.all(12),
-                                    decoration: BoxDecoration(
-                                      color: Colors.white.withValues(alpha:0.2),
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: const Icon(
-                                      Icons.chevron_left,
-                                      color: Colors.white,
-                                      size: 24,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-
-                          // Title
-                          Padding(
-                            padding: EdgeInsets.only(
-                              top: isLandscape ? 10 : 20,
-                            ),
-                            child: Text(
-                              AppLocalizations.of(context)!.appTitle,
-                              style: const TextStyle(
-                                fontSize: 42,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-
-                          // Question - kleiner Abstand zum Titel
-                          Padding(
-                            padding: EdgeInsets.only(
-                              top: isLandscape ? 10 : 20,
-                              bottom: isLandscape ? 15 : 20,
-                            ),
-                            child: Text(
-                              AppLocalizations.of(context)!.seasonSelectionQuestion,
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.white.withValues(alpha:0.9),
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-
-                          // Season Buttons - kleiner Abstand zur Frage
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 30),
-                            child: Column(
-                              children: Season.mainCases
-                                  .map((season) => Padding(
-                                        padding: const EdgeInsets.only(bottom: 16),
-                                        child: _SelectionButton(
-                                          title: season.displayNameKey,
-                                          icon: season.icon,
-                                          iconColor: season == Season.fruehling_sommer
-                                              ? Colors.orange
-                                              : Colors.blue,
-                                          onTap: () => widget.onSeasonSelected(season),
-                                        ),
-                                      ))
-                                  .toList(),
-                            ),
-                          ),
-
-                          // Flexibler Abstand - drückt Erklärungen nach unten
-                          const Spacer(),
-
-                          // Erklärungen ganz unten - fester Abstand von unten
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(40, 0, 40, 40),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                // Frühling/Sommer
-                                Padding(
-                                  padding: const EdgeInsets.only(bottom: 16),
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        AppLocalizations.of(context)!.seasonFruehling_sommerName,
-                                        style: const TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                      const SizedBox(height: 4),
-                                      Text(
-                                        AppLocalizations.of(context)!.seasonFruehling_sommerDescription,
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          color: Colors.white.withValues(alpha:0.8),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                // Herbst/Winter
-                                Padding(
-                                  padding: const EdgeInsets.only(bottom: 16),
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        AppLocalizations.of(context)!.seasonHerbst_winterName,
-                                        style: const TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                      const SizedBox(height: 4),
-                                      Text(
-                                        AppLocalizations.of(context)!.seasonHerbst_winterDescription,
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          color: Colors.white.withValues(alpha:0.8),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                // Besondere Zeiten
-                                Padding(
-                                  padding: const EdgeInsets.only(bottom: 16),
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        AppLocalizations.of(context)!.seasonSpecialTimesName,
-                                        style: const TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                      const SizedBox(height: 4),
-                                      Text(
-                                        AppLocalizations.of(context)!.seasonSpecialTimesDescription,
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          color: Colors.white.withValues(alpha:0.8),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
-                },
-              ),
+            _DescriptionItem(
+              title: AppLocalizations.of(context)!.seasonFruehling_sommerName,
+              description: AppLocalizations.of(context)!.seasonFruehling_sommerDescription,
+            ),
+            _DescriptionItem(
+              title: AppLocalizations.of(context)!.seasonHerbst_winterName,
+              description: AppLocalizations.of(context)!.seasonHerbst_winterDescription,
+            ),
+            _DescriptionItem(
+              title: AppLocalizations.of(context)!.seasonSpecialTimesName,
+              description: AppLocalizations.of(context)!.seasonSpecialTimesDescription,
             ),
           ],
         ),
@@ -624,7 +376,7 @@ class SizeSelectionView extends StatelessWidget {
   }
 }
 
-/// Target Bingos Selection (nur für Jagd-Modus)
+/// Target Bingos Selection (nur fuer Jagd-Modus)
 class TargetBingosView extends StatefulWidget {
   final GameConfig config;
   final Function(int) onTargetSelected;
@@ -644,207 +396,123 @@ class _TargetBingosViewState extends State<TargetBingosView> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = context.watch<ThemeNotifier>().theme;
     final brightness = Theme.of(context).brightness;
-    final isLandscape = MediaQuery.of(context).size.width > MediaQuery.of(context).size.height;
 
-    return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: theme.adaptiveGradient(brightness),
-        ),
-        child: Stack(
-          children: [
-            const BackgroundPatternView(),
-            SafeArea(
-              child: Column(
-                children: [
-                  // Back Button
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8, left: 16),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Material(
-                        color: Colors.transparent,
-                        child: InkWell(
-                          onTap: () => Navigator.of(context).pop(),
-                          customBorder: const CircleBorder(),
-                          child: Container(
-                            padding: const EdgeInsets.all(12),
-                            decoration: BoxDecoration(
-                              color: Colors.white.withValues(alpha:0.2),
-                              shape: BoxShape.circle,
-                            ),
-                            child: const Icon(
-                              Icons.chevron_left,
-                              color: Colors.white,
-                              size: 24,
-                            ),
-                          ),
-                        ),
+    return _BaseSelectionView(
+      title: AppLocalizations.of(context)!.appTitle,
+      question: AppLocalizations.of(context)!.targetbingosQuestion,
+      content: Column(
+        children: [
+          const SizedBox(height: 20),
+          // Plus/Minus Controls
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Material(
+                color: Colors.transparent,
+                child: InkWell(
+                  onTap: _targetBingos > 1
+                      ? () { setState(() { _targetBingos--; }); }
+                      : null,
+                  customBorder: const CircleBorder(),
+                  child: Icon(Icons.remove_circle, size: 50,
+                    color: Colors.white.withValues(alpha:_targetBingos > 1 ? 1.0 : 0.3)),
+                ),
+              ),
+              const SizedBox(width: 30),
+              SizedBox(
+                width: 100,
+                child: Text('$_targetBingos',
+                  style: const TextStyle(fontSize: 72, fontWeight: FontWeight.bold, color: Colors.white),
+                  textAlign: TextAlign.center),
+              ),
+              const SizedBox(width: 30),
+              Material(
+                color: Colors.transparent,
+                child: InkWell(
+                  onTap: _targetBingos < 10
+                      ? () { setState(() { _targetBingos++; }); }
+                      : null,
+                  customBorder: const CircleBorder(),
+                  child: Icon(Icons.add_circle, size: 50,
+                    color: Colors.white.withValues(alpha:_targetBingos < 10 ? 1.0 : 0.3)),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 40),
+          // Continue Button
+          Material(
+            color: Colors.transparent,
+            child: InkWell(
+              onTap: () => widget.onTargetSelected(_targetBingos),
+              borderRadius: BorderRadius.circular(16),
+              child: Container(
+                padding: const EdgeInsets.symmetric(vertical: 20),
+                decoration: BoxDecoration(
+                  color: brightness == Brightness.dark
+                      ? Colors.white.withValues(alpha:0.15)
+                      : Colors.white.withValues(alpha:0.25),
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: Row(
+                  children: [
+                    const SizedBox(width: 24),
+                    Expanded(
+                      child: Text(
+                        AppLocalizations.of(context)!.buttonContinue,
+                        style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600, color: Colors.white),
+                        textAlign: TextAlign.center,
                       ),
                     ),
-                  ),
-
-                  Expanded(
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          // Title
-                          Padding(
-                            padding: EdgeInsets.only(
-                              top: isLandscape ? 10 : 20,
-                            ),
-                            child: Text(
-                              AppLocalizations.of(context)!.appTitle,
-                              style: const TextStyle(
-                                fontSize: 42,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-
-                          // Question - kleiner Abstand zum Titel
-                          Padding(
-                            padding: EdgeInsets.only(
-                              top: isLandscape ? 10 : 20,
-                              bottom: isLandscape ? 15 : 20,
-                            ),
-                            child: Text(
-                              AppLocalizations.of(context)!.targetbingosQuestion,
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.white.withValues(alpha:0.9),
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-
-                          const SizedBox(height: 20),
-
-                          // Plus/Minus Controls
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              // Minus Button
-                              Material(
-                                color: Colors.transparent,
-                                child: InkWell(
-                                  onTap: _targetBingos > 1
-                                      ? () {
-                                          setState(() {
-                                            _targetBingos--;
-                                          });
-                                        }
-                                      : null,
-                                  customBorder: const CircleBorder(),
-                                  child: Icon(
-                                    Icons.remove_circle,
-                                    size: 50,
-                                    color: Colors.white
-                                        .withValues(alpha:_targetBingos > 1 ? 1.0 : 0.3),
-                                  ),
-                                ),
-                              ),
-
-                              const SizedBox(width: 30),
-
-                              // Number Display
-                              SizedBox(
-                                width: 100,
-                                child: Text(
-                                  '$_targetBingos',
-                                  style: const TextStyle(
-                                    fontSize: 72,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                  ),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ),
-
-                              const SizedBox(width: 30),
-
-                              // Plus Button
-                              Material(
-                                color: Colors.transparent,
-                                child: InkWell(
-                                  onTap: _targetBingos < 10
-                                      ? () {
-                                          setState(() {
-                                            _targetBingos++;
-                                          });
-                                        }
-                                      : null,
-                                  customBorder: const CircleBorder(),
-                                  child: Icon(
-                                    Icons.add_circle,
-                                    size: 50,
-                                    color: Colors.white
-                                        .withValues(alpha:_targetBingos < 10 ? 1.0 : 0.3),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-
-                          const SizedBox(height: 40),
-
-                          // Continue Button
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 30),
-                            child: Material(
-                              color: Colors.transparent,
-                              child: InkWell(
-                                onTap: () => widget.onTargetSelected(_targetBingos),
-                                borderRadius: BorderRadius.circular(16),
-                                child: Container(
-                                  padding: const EdgeInsets.symmetric(vertical: 20),
-                                  decoration: BoxDecoration(
-                                    color: brightness == Brightness.dark
-                                        ? Colors.white.withValues(alpha:0.15)
-                                        : Colors.white.withValues(alpha:0.25),
-                                    borderRadius: BorderRadius.circular(16),
-                                  ),
-                                  child: Row(
-                                    children: [
-                                      const SizedBox(width: 24),
-                                      Expanded(
-                                        child: Text(
-                                          AppLocalizations.of(context)!.buttonContinue,
-                                          style: const TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.w600,
-                                            color: Colors.white,
-                                          ),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ),
-                                      Icon(
-                                        Icons.chevron_right,
-                                        size: 24,
-                                        color: Colors.white.withValues(alpha:0.5),
-                                      ),
-                                      const SizedBox(width: 24),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-
-                          const SizedBox(height: 40),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
+                    Icon(Icons.chevron_right, size: 24, color: Colors.white.withValues(alpha:0.5)),
+                    const SizedBox(width: 24),
+                  ],
+                ),
               ),
             ),
-          ],
-        ),
+          ),
+          const SizedBox(height: 40),
+        ],
+      ),
+    );
+  }
+}
+
+/// Reusable description item for footer sections
+class _DescriptionItem extends StatelessWidget {
+  final String title;
+  final String description;
+
+  const _DescriptionItem({
+    required this.title,
+    required this.description,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            title,
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            description,
+            style: TextStyle(
+              fontSize: 14,
+              color: Colors.white.withValues(alpha:0.8),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -886,7 +554,7 @@ class _SelectionButton extends StatelessWidget {
               const SizedBox(width: 24),
               Icon(
                 icon,
-                size: 36, // Größer: 28 -> 36
+                size: 36,
                 color: iconColor,
               ),
               const SizedBox(width: 16),
@@ -956,7 +624,7 @@ class _SizeButton extends StatelessWidget {
               const SizedBox(width: 24),
               Icon(
                 icon,
-                size: 36, // Größer: 28 -> 36
+                size: 36,
                 color: iconColor,
               ),
               const SizedBox(width: 16),
