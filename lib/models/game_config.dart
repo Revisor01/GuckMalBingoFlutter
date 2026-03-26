@@ -5,7 +5,6 @@ import 'area.dart';
 
 /// GameConfig Class - Portiert von Swift
 class GameConfig {
-  String playerName;
   GameMode gameMode;
   CategoryTheme categoryTheme;
   Season season;
@@ -14,7 +13,6 @@ class GameConfig {
   int targetBingos;
 
   GameConfig({
-    this.playerName = '',
     this.gameMode = GameMode.suche,
     this.categoryTheme = CategoryTheme.reise,
     this.season = Season.fruehling_sommer,
@@ -25,7 +23,6 @@ class GameConfig {
 
   /// Copy with
   GameConfig copyWith({
-    String? playerName,
     GameMode? gameMode,
     CategoryTheme? categoryTheme,
     Season? season,
@@ -34,7 +31,6 @@ class GameConfig {
     int? targetBingos,
   }) {
     return GameConfig(
-      playerName: playerName ?? this.playerName,
       gameMode: gameMode ?? this.gameMode,
       categoryTheme: categoryTheme ?? this.categoryTheme,
       season: season ?? this.season,
@@ -47,7 +43,6 @@ class GameConfig {
   /// JSON Serialization
   Map<String, dynamic> toJson() {
     return {
-      'playerName': playerName,
       'gameMode': gameMode.value,
       'categoryTheme': categoryTheme.value,
       'season': season.value,
@@ -60,7 +55,6 @@ class GameConfig {
   /// JSON Deserialization
   factory GameConfig.fromJson(Map<String, dynamic> json) {
     return GameConfig(
-      playerName: json['playerName'] as String? ?? '',
       gameMode: GameMode.fromString(json['gameMode'] as String? ?? 'suche'),
       categoryTheme: CategoryTheme.fromString(
           json['categoryTheme'] as String? ?? 'reise'),
