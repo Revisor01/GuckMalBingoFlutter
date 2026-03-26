@@ -1,17 +1,12 @@
-import 'package:uuid/uuid.dart';
 import 'area.dart';
 import 'season.dart';
 import '../utilities/debug_utils.dart';
 
 /// BingoItem Class - Portiert von Swift
 class BingoItem {
-  final String id;
   final String emoji;
   final String name;
   final String? imageName;
-  final String? sfSymbolName;
-  final String? sfSymbolWeight;
-  final String? sfSymbolColor;
   final List<Area> areas;
   final List<Season>? seasons;
   final int? availableFromMonth;
@@ -20,20 +15,16 @@ class BingoItem {
   final int? availableToDay;
 
   BingoItem({
-    String? id,
     required this.emoji,
     required this.name,
     this.imageName,
-    this.sfSymbolName,
-    this.sfSymbolWeight,
-    this.sfSymbolColor,
     required this.areas,
     this.seasons,
     this.availableFromMonth,
     this.availableFromDay,
     this.availableToMonth,
     this.availableToDay,
-  }) : id = id ?? const Uuid().v4();
+  });
 
   /// Check if this item is currently available based on date
   bool isAvailableNow() {
@@ -81,13 +72,9 @@ class BingoItem {
 
   /// Copy with
   BingoItem copyWith({
-    String? id,
     String? emoji,
     String? name,
     String? imageName,
-    String? sfSymbolName,
-    String? sfSymbolWeight,
-    String? sfSymbolColor,
     List<Area>? areas,
     List<Season>? seasons,
     int? availableFromMonth,
@@ -96,13 +83,9 @@ class BingoItem {
     int? availableToDay,
   }) {
     return BingoItem(
-      id: id ?? this.id,
       emoji: emoji ?? this.emoji,
       name: name ?? this.name,
       imageName: imageName ?? this.imageName,
-      sfSymbolName: sfSymbolName ?? this.sfSymbolName,
-      sfSymbolWeight: sfSymbolWeight ?? this.sfSymbolWeight,
-      sfSymbolColor: sfSymbolColor ?? this.sfSymbolColor,
       areas: areas ?? this.areas,
       seasons: seasons ?? this.seasons,
       availableFromMonth: availableFromMonth ?? this.availableFromMonth,
@@ -118,9 +101,6 @@ class BingoItem {
       'emoji': emoji,
       'name': name,
       'imageName': imageName,
-      'sfSymbolName': sfSymbolName,
-      'sfSymbolWeight': sfSymbolWeight,
-      'sfSymbolColor': sfSymbolColor,
       'areas': areas.map((a) => a.value).toList(),
       'seasons': seasons?.map((s) => s.value).toList(),
       'availableFromMonth': availableFromMonth,
@@ -136,9 +116,6 @@ class BingoItem {
       emoji: json['emoji'] as String,
       name: json['name'] as String,
       imageName: json['imageName'] as String?,
-      sfSymbolName: json['sfSymbolName'] as String?,
-      sfSymbolWeight: json['sfSymbolWeight'] as String?,
-      sfSymbolColor: json['sfSymbolColor'] as String?,
       areas: (json['areas'] as List<dynamic>)
           .map((a) => Area.fromString(a as String))
           .toList(),
