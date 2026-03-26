@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'models/game_config.dart';
 import 'models/game_mode.dart';
 import 'models/category_theme.dart';
@@ -61,15 +60,15 @@ class GuckMalBingoApp extends StatelessWidget {
             TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
           },
         ),
-        textTheme: GoogleFonts.nunitoTextTheme(
-          ThemeData.light().textTheme.copyWith(
-            displayLarge: const TextStyle(fontWeight: FontWeight.bold),
-            displayMedium: const TextStyle(fontWeight: FontWeight.bold),
-            displaySmall: const TextStyle(fontWeight: FontWeight.bold),
-            headlineLarge: const TextStyle(fontWeight: FontWeight.bold),
-            headlineMedium: const TextStyle(fontWeight: FontWeight.bold),
-            titleLarge: const TextStyle(fontWeight: FontWeight.w600),
-          ),
+        textTheme: ThemeData.light().textTheme.apply(
+          fontFamily: 'Nunito',
+        ).copyWith(
+          displayLarge: const TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.bold),
+          displayMedium: const TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.bold),
+          displaySmall: const TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.bold),
+          headlineLarge: const TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.bold),
+          headlineMedium: const TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.bold),
+          titleLarge: const TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.w600),
         ),
       ),
       darkTheme: ThemeData(
@@ -82,15 +81,15 @@ class GuckMalBingoApp extends StatelessWidget {
             TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
           },
         ),
-        textTheme: GoogleFonts.nunitoTextTheme(
-          ThemeData.dark().textTheme.copyWith(
-            displayLarge: const TextStyle(fontWeight: FontWeight.bold),
-            displayMedium: const TextStyle(fontWeight: FontWeight.bold),
-            displaySmall: const TextStyle(fontWeight: FontWeight.bold),
-            headlineLarge: const TextStyle(fontWeight: FontWeight.bold),
-            headlineMedium: const TextStyle(fontWeight: FontWeight.bold),
-            titleLarge: const TextStyle(fontWeight: FontWeight.w600),
-          ),
+        textTheme: ThemeData.dark().textTheme.apply(
+          fontFamily: 'Nunito',
+        ).copyWith(
+          displayLarge: const TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.bold),
+          displayMedium: const TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.bold),
+          displaySmall: const TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.bold),
+          headlineLarge: const TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.bold),
+          headlineMedium: const TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.bold),
+          titleLarge: const TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.w600),
         ),
       ),
       builder: (context, child) {
