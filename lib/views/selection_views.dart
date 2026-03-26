@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../models/game_config.dart';
 import '../models/category_theme.dart';
 import '../models/season.dart';
 import '../models/area.dart';
-import '../models/background_theme.dart';
 import '../utilities/background_pattern_view.dart';
+import '../utilities/theme_provider.dart';
 import '../l10n/app_localizations.dart';
 import '../utilities/app_localizations_extension.dart';
 
 /// Basis für alle Auswahl-Views
-class _BaseSelectionView extends StatefulWidget {
+class _BaseSelectionView extends StatelessWidget {
   final String title;
   final String question;
   final Widget content;
@@ -21,36 +22,8 @@ class _BaseSelectionView extends StatefulWidget {
   });
 
   @override
-  State<_BaseSelectionView> createState() => _BaseSelectionViewState();
-}
-
-class _BaseSelectionViewState extends State<_BaseSelectionView> {
-  late BackgroundTheme _selectedTheme;
-  bool _themeLoaded = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _loadTheme();
-  }
-
-  Future<void> _loadTheme() async {
-    final theme = await BackgroundTheme.loadSavedTheme();
-    if (!mounted) return;
-    setState(() {
-      _selectedTheme = theme;
-      _themeLoaded = true;
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
-    if (!_themeLoaded) {
-      return const Scaffold(
-        body: Center(child: CircularProgressIndicator()),
-      );
-    }
-
+    final theme = context.watch<ThemeNotifier>().theme;
     final brightness = Theme.of(context).brightness;
     final isLandscape = MediaQuery.of(context).size.width >
         MediaQuery.of(context).size.height;
@@ -58,7 +31,7 @@ class _BaseSelectionViewState extends State<_BaseSelectionView> {
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-          gradient: _selectedTheme.adaptiveGradient(brightness),
+          gradient: theme.adaptiveGradient(brightness),
         ),
         child: Stack(
           children: [
@@ -104,7 +77,7 @@ class _BaseSelectionViewState extends State<_BaseSelectionView> {
                               top: isLandscape ? 10 : 20,
                             ),
                             child: Text(
-                              widget.title,
+                              title,
                               style: const TextStyle(
                                 fontSize: 42,
                                 fontWeight: FontWeight.bold,
@@ -120,7 +93,7 @@ class _BaseSelectionViewState extends State<_BaseSelectionView> {
                               bottom: isLandscape ? 15 : 20,
                             ),
                             child: Text(
-                              widget.question,
+                              question,
                               style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w600,
@@ -133,7 +106,7 @@ class _BaseSelectionViewState extends State<_BaseSelectionView> {
                           // Content - kleiner Abstand zur Frage
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 30),
-                            child: widget.content,
+                            child: content,
                           ),
 
                           const SizedBox(height: 40),
@@ -167,39 +140,16 @@ class ThemeCategorySelectionView extends StatefulWidget {
 }
 
 class _ThemeCategorySelectionViewState extends State<ThemeCategorySelectionView> {
-  late BackgroundTheme _selectedTheme;
-  bool _themeLoaded = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _loadTheme();
-  }
-
-  Future<void> _loadTheme() async {
-    final theme = await BackgroundTheme.loadSavedTheme();
-    if (!mounted) return;
-    setState(() {
-      _selectedTheme = theme;
-      _themeLoaded = true;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    if (!_themeLoaded) {
-      return const Scaffold(
-        body: Center(child: CircularProgressIndicator()),
-      );
-    }
-
+    final theme = context.watch<ThemeNotifier>().theme;
     final brightness = Theme.of(context).brightness;
     final isLandscape = MediaQuery.of(context).size.width > MediaQuery.of(context).size.height;
 
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-          gradient: _selectedTheme.adaptiveGradient(brightness),
+          gradient: theme.adaptiveGradient(brightness),
         ),
         child: Stack(
           children: [
@@ -361,39 +311,16 @@ class SeasonSelectionView extends StatefulWidget {
 }
 
 class _SeasonSelectionViewState extends State<SeasonSelectionView> {
-  late BackgroundTheme _selectedTheme;
-  bool _themeLoaded = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _loadTheme();
-  }
-
-  Future<void> _loadTheme() async {
-    final theme = await BackgroundTheme.loadSavedTheme();
-    if (!mounted) return;
-    setState(() {
-      _selectedTheme = theme;
-      _themeLoaded = true;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    if (!_themeLoaded) {
-      return const Scaffold(
-        body: Center(child: CircularProgressIndicator()),
-      );
-    }
-
+    final theme = context.watch<ThemeNotifier>().theme;
     final brightness = Theme.of(context).brightness;
     final isLandscape = MediaQuery.of(context).size.width > MediaQuery.of(context).size.height;
 
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-          gradient: _selectedTheme.adaptiveGradient(brightness),
+          gradient: theme.adaptiveGradient(brightness),
         ),
         child: Stack(
           children: [
@@ -713,40 +640,18 @@ class TargetBingosView extends StatefulWidget {
 }
 
 class _TargetBingosViewState extends State<TargetBingosView> {
-  late BackgroundTheme _selectedTheme;
-  bool _themeLoaded = false;
   int _targetBingos = 3; // Default: 3 Bingos
 
   @override
-  void initState() {
-    super.initState();
-    _loadTheme();
-  }
-
-  Future<void> _loadTheme() async {
-    final theme = await BackgroundTheme.loadSavedTheme();
-    if (!mounted) return;
-    setState(() {
-      _selectedTheme = theme;
-      _themeLoaded = true;
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
-    if (!_themeLoaded) {
-      return const Scaffold(
-        body: Center(child: CircularProgressIndicator()),
-      );
-    }
-
+    final theme = context.watch<ThemeNotifier>().theme;
     final brightness = Theme.of(context).brightness;
     final isLandscape = MediaQuery.of(context).size.width > MediaQuery.of(context).size.height;
 
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-          gradient: _selectedTheme.adaptiveGradient(brightness),
+          gradient: theme.adaptiveGradient(brightness),
         ),
         child: Stack(
           children: [

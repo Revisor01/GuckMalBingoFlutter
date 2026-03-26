@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
-import '../models/background_theme.dart';
 import '../utilities/background_pattern_view.dart';
+import '../utilities/theme_provider.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import '../l10n/app_localizations.dart';
 import 'parental_gate_view.dart';
@@ -16,24 +17,12 @@ class SettingsView extends StatefulWidget {
 }
 
 class _SettingsViewState extends State<SettingsView> {
-  late BackgroundTheme _selectedTheme;
-  bool _themeLoaded = false;
   String _version = '';
 
   @override
   void initState() {
     super.initState();
-    _loadTheme();
     _loadVersion();
-  }
-
-  Future<void> _loadTheme() async {
-    final theme = await BackgroundTheme.loadSavedTheme();
-    if (!mounted) return;
-    setState(() {
-      _selectedTheme = theme;
-      _themeLoaded = true;
-    });
   }
 
   Future<void> _loadVersion() async {
@@ -71,12 +60,7 @@ class _SettingsViewState extends State<SettingsView> {
 
   @override
   Widget build(BuildContext context) {
-    if (!_themeLoaded) {
-      return const Scaffold(
-        body: Center(child: CircularProgressIndicator()),
-      );
-    }
-
+    final theme = context.watch<ThemeNotifier>().theme;
     final brightness = Theme.of(context).brightness;
 
     return ClipRRect(
@@ -86,7 +70,7 @@ class _SettingsViewState extends State<SettingsView> {
       child: Scaffold(
         body: Container(
           decoration: BoxDecoration(
-            gradient: _selectedTheme.adaptiveGradient(brightness),
+            gradient: theme.adaptiveGradient(brightness),
           ),
           child: Stack(
           children: [

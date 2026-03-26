@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../models/background_theme.dart';
 import '../utilities/background_pattern_view.dart';
+import '../utilities/theme_provider.dart';
 import '../l10n/app_localizations.dart';
 
 /// Prüft ob Onboarding bereits gezeigt wurde
@@ -32,26 +33,9 @@ class OnboardingView extends StatefulWidget {
 }
 
 class _OnboardingViewState extends State<OnboardingView> {
-  late BackgroundTheme _selectedTheme;
-  bool _themeLoaded = false;
   final PageController _pageController = PageController();
   int _currentPage = 0;
   static const int _totalPages = 5;
-
-  @override
-  void initState() {
-    super.initState();
-    _loadTheme();
-  }
-
-  Future<void> _loadTheme() async {
-    final theme = await BackgroundTheme.loadSavedTheme();
-    if (!mounted) return;
-    setState(() {
-      _selectedTheme = theme;
-      _themeLoaded = true;
-    });
-  }
 
   @override
   void dispose() {
@@ -77,12 +61,7 @@ class _OnboardingViewState extends State<OnboardingView> {
 
   @override
   Widget build(BuildContext context) {
-    if (!_themeLoaded) {
-      return const Scaffold(
-        body: Center(child: CircularProgressIndicator()),
-      );
-    }
-
+    final selectedTheme = context.watch<ThemeNotifier>().theme;
     final brightness = Theme.of(context).brightness;
     final l10n = AppLocalizations.of(context)!;
 
@@ -130,7 +109,7 @@ class _OnboardingViewState extends State<OnboardingView> {
       child: Scaffold(
         body: Container(
           decoration: BoxDecoration(
-            gradient: _selectedTheme.adaptiveGradient(brightness),
+            gradient: selectedTheme.adaptiveGradient(brightness),
           ),
           child: Stack(
             children: [
@@ -225,7 +204,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                             onPressed: _nextPage,
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.white,
-                              foregroundColor: _selectedTheme.gradient.colors.first,
+                              foregroundColor: selectedTheme.gradient.colors.first,
                               padding: const EdgeInsets.symmetric(vertical: 18),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(16),

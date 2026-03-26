@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../models/background_theme.dart';
 import '../utilities/background_pattern_view.dart';
 import '../utilities/app_colors.dart';
+import '../utilities/theme_provider.dart';
 import '../l10n/app_localizations.dart';
 import '../utilities/app_localizations_extension.dart';
 import '../utilities/debug_utils.dart';
@@ -36,7 +38,7 @@ class _ThemeSelectionViewState extends State<ThemeSelectionView> {
     setState(() {
       _currentTheme = theme;
     });
-    theme.save();
+    context.read<ThemeNotifier>().setTheme(theme);
     widget.onThemeSelected(theme);
   }
 

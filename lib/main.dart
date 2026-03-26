@@ -16,6 +16,7 @@ import 'views/onboarding_view.dart';
 import 'l10n/app_localizations.dart';
 import 'views/snowfall_widget.dart';
 import 'utilities/debug_utils.dart';
+import 'utilities/theme_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,7 +27,16 @@ void main() async {
   // Lade Schneefall-Einstellung
   await loadSnowfallSetting();
 
-  runApp(const GuckMalBingoApp());
+  // Theme einmalig vor App-Start laden
+  final themeNotifier = ThemeNotifier();
+  await themeNotifier.loadTheme();
+
+  runApp(
+    ChangeNotifierProvider.value(
+      value: themeNotifier,
+      child: const GuckMalBingoApp(),
+    ),
+  );
 }
 
 class GuckMalBingoApp extends StatelessWidget {

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../models/game_config.dart';
 import '../models/game_mode.dart';
-import '../models/background_theme.dart';
 import '../utilities/background_pattern_view.dart';
 import '../utilities/app_colors.dart';
+import '../utilities/theme_provider.dart';
 import '../l10n/app_localizations.dart';
 import '../utilities/app_localizations_extension.dart';
 import 'settings_view.dart';
@@ -26,32 +27,10 @@ class GameModeSelectionView extends StatefulWidget {
 }
 
 class _GameModeSelectionViewState extends State<GameModeSelectionView> {
-  late BackgroundTheme _selectedTheme;
-  bool _themeLoaded = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _loadTheme();
-  }
-
-  Future<void> _loadTheme() async {
-    final theme = await BackgroundTheme.loadSavedTheme();
-    if (!mounted) return;
-    setState(() {
-      _selectedTheme = theme;
-      _themeLoaded = true;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    if (!_themeLoaded) {
-      return const Scaffold(
-        body: Center(child: CircularProgressIndicator()),
-      );
-    }
-
+    final themeNotifier = context.watch<ThemeNotifier>();
+    final selectedTheme = themeNotifier.theme;
     final brightness = Theme.of(context).brightness;
     final isLandscape =
         MediaQuery.of(context).size.width > MediaQuery.of(context).size.height;
@@ -59,7 +38,7 @@ class _GameModeSelectionViewState extends State<GameModeSelectionView> {
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-          gradient: _selectedTheme.adaptiveGradient(brightness),
+          gradient: selectedTheme.adaptiveGradient(brightness),
         ),
         child: Stack(
           children: [
@@ -141,11 +120,9 @@ class _GameModeSelectionViewState extends State<GameModeSelectionView> {
                                                 top: 60,
                                               ),
                                               child: ThemeSelectionView(
-                                                selectedTheme: _selectedTheme,
+                                                selectedTheme: selectedTheme,
                                                 onThemeSelected: (theme) {
-                                                  setState(() {
-                                                    _selectedTheme = theme;
-                                                  });
+                                                  context.read<ThemeNotifier>().setTheme(theme);
                                                   Navigator.of(context).pop();
                                                 },
                                               ),
