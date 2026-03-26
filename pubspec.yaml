@@ -28,7 +28,6 @@ dependencies:
   intl: ^0.20.0
   url_launcher: ^6.2.5
   package_info_plus: ^9.0.0
-  google_fonts: ^6.1.0
 
 dev_dependencies:
   flutter_test:
@@ -53,11 +52,15 @@ flutter:
     # Images (alle 206 Bilder)
     - assets/images/
 
-  # Fonts (falls benötigt)
-  # fonts:
-  #   - family: System
-  #     fonts:
-  #       - asset: fonts/System.ttf
+  fonts:
+    - family: Nunito
+      fonts:
+        - asset: assets/fonts/Nunito-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Nunito-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Nunito-Bold.ttf
+          weight: 700
 
   # Localization
   generate: true
