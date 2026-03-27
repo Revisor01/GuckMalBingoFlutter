@@ -68,6 +68,7 @@ class _ThemeSelectionViewState extends State<ThemeSelectionView> {
           children: [
             const BackgroundPatternView(),
             SafeArea(
+              bottom: false,
               child: SingleChildScrollView(
                 child: Column(
                   children: [
@@ -221,8 +222,7 @@ class _ThemeSelectionViewState extends State<ThemeSelectionView> {
                       ),
                     ),
 
-                    // Extra Padding für iPhone Home Indicator
-                    SizedBox(height: MediaQuery.of(context).padding.bottom + 40),
+                    const SizedBox(height: 40),
                   ],
                 ),
               ),
