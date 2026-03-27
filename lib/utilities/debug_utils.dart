@@ -1,5 +1,4 @@
 import 'package:flutter/foundation.dart';
-import 'app_preferences.dart';
 
 /// Debug Utilities für Testing
 ///
@@ -68,40 +67,3 @@ bool isEasterSeason() {
   return !today.isBefore(start) && !today.isAfter(end);
 }
 
-/// Oster-Effekt-Einstellung als ValueNotifier für reaktives UI
-final easterEffectEnabledNotifier = ValueNotifier<bool>(true);
-
-/// Lade Oster-Effekt-Einstellung aus AppPreferences
-void loadEasterEffectSetting() {
-  easterEffectEnabledNotifier.value = AppPreferences.instance.easterEffectEnabled;
-}
-
-/// Speichere Oster-Effekt-Einstellung
-Future<void> setEasterEffectEnabled(bool enabled) async {
-  easterEffectEnabledNotifier.value = enabled;
-  await AppPreferences.instance.setEasterEffectEnabled(enabled);
-}
-
-/// Prüft ob Oster-Effekt angezeigt werden soll
-bool shouldShowEasterEffect() {
-  return isEasterSeason() && easterEffectEnabledNotifier.value;
-}
-
-/// Schneefall-Einstellung als ValueNotifier für reaktives UI
-final snowfallEnabledNotifier = ValueNotifier<bool>(true);
-
-/// Lade Schneefall-Einstellung aus AppPreferences
-void loadSnowfallSetting() {
-  snowfallEnabledNotifier.value = AppPreferences.instance.snowfallEnabled;
-}
-
-/// Speichere Schneefall-Einstellung
-Future<void> setSnowfallEnabled(bool enabled) async {
-  snowfallEnabledNotifier.value = enabled;
-  await AppPreferences.instance.setSnowfallEnabled(enabled);
-}
-
-/// Prüft ob Schneefall angezeigt werden soll
-bool shouldShowSnowfall() {
-  return isChristmasSeason() && snowfallEnabledNotifier.value;
-}

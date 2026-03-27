@@ -16,12 +16,8 @@ import 'l10n/app_localizations.dart';
 import 'views/snowfall_widget.dart';
 import 'views/easter_effect_widget.dart';
 import 'utilities/app_preferences.dart';
-import 'utilities/debug_utils.dart';
 import 'utilities/theme_provider.dart';
-
-/// Gecachte Saison-Checks (werden einmal beim App-Start gesetzt)
-bool cachedIsChristmas = false;
-bool cachedIsEaster = false;
+import 'utilities/season_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,21 +32,19 @@ void main() async {
   // Zentrale Preferences einmalig laden
   await AppPreferences.init();
 
-  // Saisonale Checks einmalig beim Start cachen
-  cachedIsChristmas = isChristmasSeason();
-  cachedIsEaster = isEasterSeason();
-
-  // Lade saisonale Effekt-Einstellungen aus Preferences
-  loadSnowfallSetting();
-  loadEasterEffectSetting();
-
   // Theme einmalig vor App-Start laden (synchron, da AppPreferences bereits initialisiert)
   final themeNotifier = ThemeNotifier();
   themeNotifier.loadTheme();
 
+  // SeasonService als einzige Quelle fuer saisonalen State
+  final seasonService = SeasonService();
+
   runApp(
-    ChangeNotifierProvider.value(
-      value: themeNotifier,
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider.value(value: themeNotifier),
+        ChangeNotifierProvider.value(value: seasonService),
+      ],
       child: const GuckMalBingoApp(),
     ),
   );
@@ -131,33 +125,24 @@ class GuckMalBingoApp extends StatelessWidget {
         }
 
         // Saisonaler Effekt: nur einer aktiv (Ostern hat Vorrang wenn beide überlappen)
+        final season = context.watch<SeasonService>();
         final innerChild = child!;
 
         return MediaQuery(
           data: MediaQuery.of(context).copyWith(
             textScaler: TextScaler.linear(textScaleFactor),
           ),
-          child: cachedIsEaster
-              ? ValueListenableBuilder<bool>(
-                  valueListenable: easterEffectEnabledNotifier,
-                  builder: (context, enabled, _) {
-                    return EasterEffectWidget(
-                      enabled: enabled,
-                      petalCount: 25,
-                      child: innerChild,
-                    );
-                  },
+          child: season.isEaster
+              ? EasterEffectWidget(
+                  enabled: season.shouldShowEasterEffect,
+                  petalCount: 25,
+                  child: innerChild,
                 )
-              : cachedIsChristmas
-                  ? ValueListenableBuilder<bool>(
-                      valueListenable: snowfallEnabledNotifier,
-                      builder: (context, enabled, _) {
-                        return SnowfallWidget(
-                          enabled: enabled,
-                          snowflakeCount: 40,
-                          child: innerChild,
-                        );
-                      },
+              : season.isChristmas
+                  ? SnowfallWidget(
+                      enabled: season.shouldShowSnowfall,
+                      snowflakeCount: 40,
+                      child: innerChild,
                     )
                   : innerChild,
         );
