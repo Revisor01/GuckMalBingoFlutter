@@ -144,6 +144,7 @@ class BingoGameViewModel extends ChangeNotifier {
   void _reconstructBingos() {
     final result = _findAllBingos();
     _completedBingos = result.bingos;
+    _bingoCount = _completedBingos.length;
 
     // Highlight setzen
     _highlightedIndices = result.allIndices;
