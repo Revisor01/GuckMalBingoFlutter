@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/foundation.dart';
 import '../models/game_config.dart';
 import '../models/game_mode.dart';
@@ -77,6 +78,9 @@ class BingoGameViewModel extends ChangeNotifier {
   Set<BingoTypeWithIndex> _completedBingos = {};
   bool _isDisposed = false;
   int _blinkGeneration = 0;
+  Timer? _victoryDialogTimer;
+  Timer? _winMessageTimer;
+  final List<Timer> _blinkTimers = [];
 
   // Public getters
   List<BingoItem> get board => _board;
@@ -285,6 +289,10 @@ class BingoGameViewModel extends ChangeNotifier {
 
   void resetGame() {
     _blinkGeneration++; // Cancel laufende Blink-Animation
+    _victoryDialogTimer?.cancel();
+    _winMessageTimer?.cancel();
+    for (final t in _blinkTimers) { t.cancel(); }
+    _blinkTimers.clear();
     _clickedIndices.clear();
     _bingoCount = 0;
     _completedBingos.clear();
@@ -348,7 +356,8 @@ class BingoGameViewModel extends ChangeNotifier {
         clearSavedGameState();
         notifyListeners();
 
-        Future.delayed(const Duration(milliseconds: 500), () {
+        _victoryDialogTimer?.cancel();
+        _victoryDialogTimer = Timer(const Duration(milliseconds: 500), () {
           if (_isDisposed) return;
           _showVictoryDialog = true;
           notifyListeners();
@@ -360,36 +369,45 @@ class BingoGameViewModel extends ChangeNotifier {
   }
 
   void _startBlinkAnimation(List<int> indices) {
-    // Cancel vorherige Animation durch Erhoehen der Generation
     _blinkGeneration++;
     final myGeneration = _blinkGeneration;
-
-    // Sofort vorherige Animation-State zuruecksetzen
     _blinkingIndex = null;
     _blinkingAllIndices = {};
 
-    Future(() async {
-      // Sequenziell durch alle Indices blinken (1, 2, 3, 4, 5)
-      for (final index in indices) {
+    // Alle laufenden Blink-Timer canceln
+    for (final t in _blinkTimers) { t.cancel(); }
+    _blinkTimers.clear();
+
+    int elapsed = 0;
+    for (final index in indices) {
+      // An-Phase
+      _blinkTimers.add(Timer(Duration(milliseconds: elapsed), () {
         if (_isDisposed || _blinkGeneration != myGeneration) return;
         _blinkingIndex = index;
         notifyListeners();
-        await Future.delayed(const Duration(milliseconds: 250)); // 0.25s pro Symbol
+      }));
+      elapsed += 250;
+      // Aus-Phase
+      _blinkTimers.add(Timer(Duration(milliseconds: elapsed), () {
         if (_isDisposed || _blinkGeneration != myGeneration) return;
         _blinkingIndex = null;
         notifyListeners();
-        await Future.delayed(const Duration(milliseconds: 20)); // 0.02s Pause
-      }
-
+      }));
+      elapsed += 20;
+    }
+    // Alle zusammen blinken
+    _blinkTimers.add(Timer(Duration(milliseconds: elapsed), () {
       if (_isDisposed || _blinkGeneration != myGeneration) return;
-      // Dann alle neuen Bingo-Indices zusammen blinken
       _blinkingAllIndices = Set.from(indices);
       notifyListeners();
-      await Future.delayed(const Duration(milliseconds: 400)); // 0.4s alle zusammen
+    }));
+    elapsed += 400;
+    // Aus
+    _blinkTimers.add(Timer(Duration(milliseconds: elapsed), () {
       if (_isDisposed || _blinkGeneration != myGeneration) return;
       _blinkingAllIndices.clear();
       notifyListeners();
-    });
+    }));
   }
 
   void _showVictory({required int count, required bool isFinal}) {
@@ -399,7 +417,8 @@ class BingoGameViewModel extends ChangeNotifier {
       notifyListeners();
 
       // Victory Dialog nach kurzer Verzoegerung
-      Future.delayed(const Duration(milliseconds: 500), () {
+      _victoryDialogTimer?.cancel();
+      _victoryDialogTimer = Timer(const Duration(milliseconds: 500), () {
         if (_isDisposed) return;
         _showVictoryDialog = true;
         notifyListeners();
@@ -414,7 +433,8 @@ class BingoGameViewModel extends ChangeNotifier {
       _showWinMessage = true;
       notifyListeners();
 
-      Future.delayed(const Duration(seconds: 2), () {
+      _winMessageTimer?.cancel();
+      _winMessageTimer = Timer(const Duration(seconds: 2), () {
         if (_isDisposed) return;
         _showWinMessage = false;
         notifyListeners();
@@ -430,6 +450,10 @@ class BingoGameViewModel extends ChangeNotifier {
   @override
   void dispose() {
     _isDisposed = true;
+    _victoryDialogTimer?.cancel();
+    _winMessageTimer?.cancel();
+    for (final t in _blinkTimers) { t.cancel(); }
+    _blinkTimers.clear();
     _audioPlayer.reset(); // Reset statt dispose - Singleton bleibt am Leben
     super.dispose();
   }
