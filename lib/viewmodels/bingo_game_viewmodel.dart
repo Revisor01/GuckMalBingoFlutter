@@ -60,6 +60,12 @@ class BingoTypeWithIndex {
 /// BingoGameViewModel - Portiert von Swift
 /// Verwaltet den kompletten Spielzustand und die Logik
 class BingoGameViewModel extends ChangeNotifier {
+  /// O(1) Lookup-Map: BingoItem → Index in BingoItemsData.allItems
+  static final Map<BingoItem, int> _itemIndexMap = {
+    for (var i = 0; i < BingoItemsData.allItems.length; i++)
+      BingoItemsData.allItems[i]: i,
+  };
+
   GameConfig config;
   List<BingoItem> _board = [];
   Set<int> _clickedIndices = {};
@@ -252,7 +258,7 @@ class BingoGameViewModel extends ChangeNotifier {
   void saveGameState() {
     AppPreferences.instance.saveGameState({
       'boardIndices': _board
-          .map((item) => BingoItemsData.allItems.indexOf(item))
+          .map((item) => _itemIndexMap[item] ?? -1)
           .toList(),
       'clickedIndices': _clickedIndices.toList(),
       'bingoCount': _bingoCount,
