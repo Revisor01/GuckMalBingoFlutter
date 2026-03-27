@@ -484,6 +484,12 @@ abstract class AppLocalizations {
   /// **'Buch'**
   String get itemBuch;
 
+  /// No description provided for @itemBuchZuHause.
+  ///
+  /// In de, this message translates to:
+  /// **'Buch'**
+  String get itemBuchZuHause;
+
   /// No description provided for @itemBuntglasfenster.
   ///
   /// In de, this message translates to:

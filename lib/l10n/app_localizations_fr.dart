@@ -205,6 +205,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get itemBuch => 'Livre';
 
   @override
+  String get itemBuchZuHause => 'Livre';
+
+  @override
   String get itemBuntglasfenster => 'Vitrail';
 
   @override
