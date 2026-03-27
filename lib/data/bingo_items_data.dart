@@ -393,14 +393,6 @@ class BingoItemsData {
       seasons: null,
     ),
 
-    BingoItem(
-      emoji: '🐈',
-      name: 'itemKatze',
-      imageName: 'katze',
-      areas: _areas([Area.land, Area.stadt]),
-      seasons: null,
-    ),
-
     // NATUR
     BingoItem(
       emoji: '🌳',
