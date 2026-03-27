@@ -111,12 +111,14 @@ class FallingPetal {
   late Color color;
 
   static final List<Color> _petalColors = [
-    const Color(0xFFFFB7C5), // Rosa
-    const Color(0xFFFFDAB9), // Pfirsich
-    const Color(0xFFFFF0F5), // Weiß-Rosa
-    const Color(0xFFE8D5E0), // Lavendel
-    const Color(0xFFB5EAD7), // Mintgrün
-    const Color(0xFFFFFACD), // Zitronengelb
+    const Color(0xFFFF69B4), // Kräftiges Pink
+    const Color(0xFFFF6347), // Tomatenrot
+    const Color(0xFFFF8C00), // Dunkelorange
+    const Color(0xFFFFD700), // Gold
+    const Color(0xFF9370DB), // Lila
+    const Color(0xFF00CED1), // Türkis
+    const Color(0xFF32CD32), // Limettengrün
+    const Color(0xFFFF1493), // Deep Pink
   ];
 
   FallingPetal() {
@@ -132,7 +134,7 @@ class FallingPetal {
     swingAmplitude = 0.015 + random.nextDouble() * 0.02;
     swingSpeed = 0.3 + random.nextDouble() * 0.4;
     initialPhase = random.nextDouble() * 2 * pi;
-    opacity = 0.25 + random.nextDouble() * 0.3;
+    opacity = 0.5 + random.nextDouble() * 0.4;
     rotation = random.nextDouble() * 2 * pi;
     rotationSpeed = 0.5 + random.nextDouble() * 1.5;
     color = _petalColors[random.nextInt(_petalColors.length)];

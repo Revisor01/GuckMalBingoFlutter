@@ -131,7 +131,7 @@ class GuckMalBingoApp extends StatelessWidget {
                   builder: (context, enabled, _) {
                     return EasterEffectWidget(
                       enabled: enabled,
-                      petalCount: 15,
+                      petalCount: 25,
                       child: innerChild,
                     );
                   },

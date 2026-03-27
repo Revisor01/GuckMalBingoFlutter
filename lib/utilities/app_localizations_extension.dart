@@ -290,6 +290,7 @@ extension AppLocalizationsX on AppLocalizations {
       case 'themePinkred': return themePinkred;
       case 'themePinkyellow': return themePinkyellow;
       case 'themeChristmas': return themeChristmas;
+      case 'themeEaster': return themeEaster;
       case 'themeSelectionTitle': return themeSelectionTitle;
       case 'tippeWasDuSiehst': return tippeWasDuSiehst;
       case 'victoryBackToStart': return victoryBackToStart;

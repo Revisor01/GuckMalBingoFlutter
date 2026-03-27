@@ -221,7 +221,8 @@ class _ThemeSelectionViewState extends State<ThemeSelectionView> {
                       ),
                     ),
 
-                    const SizedBox(height: 40),
+                    // Extra Padding für iPhone Home Indicator
+                    SizedBox(height: MediaQuery.of(context).padding.bottom + 40),
                   ],
                 ),
               ),

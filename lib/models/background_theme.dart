@@ -97,9 +97,9 @@ enum BackgroundTheme {
       case BackgroundTheme.easter:
         return LinearGradient(
           colors: [
-            _hexToColor('#A8E6CF'), // Zartes Mintgrün
-            _hexToColor('#DCEDC1'), // Helles Frühlingsgrün
-            _hexToColor('#FFD3B6'), // Warmes Pastellrosa
+            _hexToColor('#2E8B57'), // Sattes Frühlingsgrün
+            _hexToColor('#3CB371'), // Mittleres Seegrün
+            _hexToColor('#8B5E83'), // Gedämpftes Lila-Rosa
           ],
           stops: const [0.0, 0.5, 1.0],
           begin: Alignment.topCenter,
