@@ -97,9 +97,9 @@ enum BackgroundTheme {
       case BackgroundTheme.easter:
         return LinearGradient(
           colors: [
-            _hexToColor('#2E8B57'), // Sattes Frühlingsgrün
-            _hexToColor('#3CB371'), // Mittleres Seegrün
-            _hexToColor('#8B5E83'), // Gedämpftes Lila-Rosa
+            _hexToColor('#C06080'), // Gedämpftes Rosa oben
+            _hexToColor('#D4917A'), // Warmes Rosé-Mitte
+            _hexToColor('#E8C4A0'), // Helles Sandgelb unten
           ],
           stops: const [0.0, 0.5, 1.0],
           begin: Alignment.topCenter,
@@ -186,9 +186,9 @@ enum BackgroundTheme {
       case BackgroundTheme.easter:
         return const LinearGradient(
           colors: [
-            Color.fromRGBO(80, 130, 100, 1.0), // Gedämpftes Frühlingsgrün
-            Color.fromRGBO(110, 120, 90, 1.0), // Olivgrün
-            Color.fromRGBO(140, 100, 90, 1.0), // Gedämpftes Pastellrosa
+            Color.fromRGBO(120, 60, 80, 1.0), // Gedämpftes Dunkelrosa
+            Color.fromRGBO(130, 80, 70, 1.0), // Warmes Dunkelrosé
+            Color.fromRGBO(140, 110, 90, 1.0), // Dunkles Sand
           ],
           stops: [0.0, 0.5, 1.0],
           begin: Alignment.topCenter,
