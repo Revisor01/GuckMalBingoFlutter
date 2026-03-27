@@ -123,61 +123,105 @@ class BingoGameViewModel extends ChangeNotifier {
   }
 
   void _reconstructBingos() {
-    for (int i = 0; i < config.gridSize; i++) {
-      bool rowComplete = true;
-      for (int j = 0; j < config.gridSize; j++) {
-        if (!_clickedIndices.contains(i * config.gridSize + j)) {
-          rowComplete = false;
-          break;
-        }
-      }
-      if (rowComplete) _completedBingos.add(BingoTypeWithIndex.row(i));
-    }
-    for (int i = 0; i < config.gridSize; i++) {
-      bool colComplete = true;
-      for (int j = 0; j < config.gridSize; j++) {
-        if (!_clickedIndices.contains(j * config.gridSize + i)) {
-          colComplete = false;
-          break;
-        }
-      }
-      if (colComplete) _completedBingos.add(BingoTypeWithIndex.column(i));
-    }
-    bool d1 = true, d2 = true;
-    for (int i = 0; i < config.gridSize; i++) {
-      if (!_clickedIndices.contains(i * config.gridSize + i)) d1 = false;
-      if (!_clickedIndices.contains(i * config.gridSize + (config.gridSize - 1 - i))) d2 = false;
-    }
-    if (d1) _completedBingos.add(BingoTypeWithIndex.diagonal1());
-    if (d2) _completedBingos.add(BingoTypeWithIndex.diagonal2());
+    final result = _findAllBingos();
+    _completedBingos = result.bingos;
 
     // Highlight setzen
-    for (var bingo in _completedBingos) {
-      final indices = _getIndicesForBingo(bingo);
-      _highlightedIndices.addAll(indices);
-    }
+    _highlightedIndices = result.allIndices;
   }
 
-  List<int> _getIndicesForBingo(BingoTypeWithIndex bingo) {
-    List<int> indices = [];
-    if (bingo.type == BingoType.rowType) {
+  /// Shared bingo detection: finds all completed rows, columns, diagonals.
+  /// Returns the set of completed bingos and a map of bingo->indices.
+  _BingoScanResult _findAllBingos() {
+    Set<BingoTypeWithIndex> bingos = {};
+    Set<int> allIndices = {};
+    Map<BingoTypeWithIndex, List<int>> bingoToIndices = {};
+
+    // Zeilen pruefen
+    for (int i = 0; i < config.gridSize; i++) {
+      bool complete = true;
+      List<int> indices = [];
       for (int j = 0; j < config.gridSize; j++) {
-        indices.add(bingo.index * config.gridSize + j);
+        final idx = i * config.gridSize + j;
+        indices.add(idx);
+        if (!_clickedIndices.contains(idx)) {
+          complete = false;
+          break;
+        }
       }
-    } else if (bingo.type == BingoType.columnType) {
-      for (int j = 0; j < config.gridSize; j++) {
-        indices.add(j * config.gridSize + bingo.index);
-      }
-    } else if (bingo.type == BingoType.diagonal1Type) {
-      for (int i = 0; i < config.gridSize; i++) {
-        indices.add(i * config.gridSize + i);
-      }
-    } else if (bingo.type == BingoType.diagonal2Type) {
-      for (int i = 0; i < config.gridSize; i++) {
-        indices.add(i * config.gridSize + (config.gridSize - 1 - i));
+      if (complete) {
+        final bt = BingoTypeWithIndex.row(i);
+        bingos.add(bt);
+        bingoToIndices[bt] = indices;
+        allIndices.addAll(indices);
       }
     }
-    return indices;
+
+    // Spalten pruefen
+    for (int i = 0; i < config.gridSize; i++) {
+      bool complete = true;
+      List<int> indices = [];
+      for (int j = 0; j < config.gridSize; j++) {
+        final idx = j * config.gridSize + i;
+        indices.add(idx);
+        if (!_clickedIndices.contains(idx)) {
+          complete = false;
+          break;
+        }
+      }
+      if (complete) {
+        final bt = BingoTypeWithIndex.column(i);
+        bingos.add(bt);
+        bingoToIndices[bt] = indices;
+        allIndices.addAll(indices);
+      }
+    }
+
+    // Diagonale 1 (\)
+    {
+      bool complete = true;
+      List<int> indices = [];
+      for (int i = 0; i < config.gridSize; i++) {
+        final idx = i * config.gridSize + i;
+        indices.add(idx);
+        if (!_clickedIndices.contains(idx)) {
+          complete = false;
+          break;
+        }
+      }
+      if (complete) {
+        final bt = BingoTypeWithIndex.diagonal1();
+        bingos.add(bt);
+        bingoToIndices[bt] = indices;
+        allIndices.addAll(indices);
+      }
+    }
+
+    // Diagonale 2 (/)
+    {
+      bool complete = true;
+      List<int> indices = [];
+      for (int i = 0; i < config.gridSize; i++) {
+        final idx = i * config.gridSize + (config.gridSize - 1 - i);
+        indices.add(idx);
+        if (!_clickedIndices.contains(idx)) {
+          complete = false;
+          break;
+        }
+      }
+      if (complete) {
+        final bt = BingoTypeWithIndex.diagonal2();
+        bingos.add(bt);
+        bingoToIndices[bt] = indices;
+        allIndices.addAll(indices);
+      }
+    }
+
+    return _BingoScanResult(
+      bingos: bingos,
+      allIndices: allIndices,
+      bingoToIndices: bingoToIndices,
+    );
   }
 
   /// Speichert aktuellen Spielstand
@@ -253,88 +297,12 @@ class BingoGameViewModel extends ChangeNotifier {
   }
 
   void _checkWin() {
-    Set<BingoTypeWithIndex> currentBingos = {};
-    Set<int> allBingoIndices = {};
-    Map<BingoTypeWithIndex, List<int>> bingoTypeToIndices = {};
-
-    // Zeilen pruefen
-    for (int i = 0; i < config.gridSize; i++) {
-      bool rowComplete = true;
-      List<int> rowIndices = [];
-      for (int j = 0; j < config.gridSize; j++) {
-        final index = i * config.gridSize + j;
-        rowIndices.add(index);
-        if (!_clickedIndices.contains(index)) {
-          rowComplete = false;
-          break;
-        }
-      }
-      if (rowComplete) {
-        final bingoType = BingoTypeWithIndex.row(i);
-        currentBingos.add(bingoType);
-        bingoTypeToIndices[bingoType] = rowIndices;
-        allBingoIndices.addAll(rowIndices);
-      }
-    }
-
-    // Spalten pruefen
-    for (int i = 0; i < config.gridSize; i++) {
-      bool colComplete = true;
-      List<int> colIndices = [];
-      for (int j = 0; j < config.gridSize; j++) {
-        final index = j * config.gridSize + i;
-        colIndices.add(index);
-        if (!_clickedIndices.contains(index)) {
-          colComplete = false;
-          break;
-        }
-      }
-      if (colComplete) {
-        final bingoType = BingoTypeWithIndex.column(i);
-        currentBingos.add(bingoType);
-        bingoTypeToIndices[bingoType] = colIndices;
-        allBingoIndices.addAll(colIndices);
-      }
-    }
-
-    // Diagonale 1 pruefen (\)
-    bool diag1Complete = true;
-    List<int> diag1Indices = [];
-    for (int i = 0; i < config.gridSize; i++) {
-      final index = i * config.gridSize + i;
-      diag1Indices.add(index);
-      if (!_clickedIndices.contains(index)) {
-        diag1Complete = false;
-        break;
-      }
-    }
-    if (diag1Complete) {
-      final bingoType = BingoTypeWithIndex.diagonal1();
-      currentBingos.add(bingoType);
-      bingoTypeToIndices[bingoType] = diag1Indices;
-      allBingoIndices.addAll(diag1Indices);
-    }
-
-    // Diagonale 2 pruefen (/)
-    bool diag2Complete = true;
-    List<int> diag2Indices = [];
-    for (int i = 0; i < config.gridSize; i++) {
-      final index = i * config.gridSize + (config.gridSize - 1 - i);
-      diag2Indices.add(index);
-      if (!_clickedIndices.contains(index)) {
-        diag2Complete = false;
-        break;
-      }
-    }
-    if (diag2Complete) {
-      final bingoType = BingoTypeWithIndex.diagonal2();
-      currentBingos.add(bingoType);
-      bingoTypeToIndices[bingoType] = diag2Indices;
-      allBingoIndices.addAll(diag2Indices);
-    }
+    final result = _findAllBingos();
+    final currentBingos = result.bingos;
+    final bingoTypeToIndices = result.bingoToIndices;
 
     // Update highlighted indices
-    _highlightedIndices = allBingoIndices;
+    _highlightedIndices = result.allIndices;
 
     // Finde neue Bingos
     final newBingos = currentBingos.difference(_completedBingos);
@@ -464,4 +432,17 @@ class BingoGameViewModel extends ChangeNotifier {
     _audioPlayer.reset(); // Reset statt dispose - Singleton bleibt am Leben
     super.dispose();
   }
+}
+
+/// Result of scanning for all completed bingos
+class _BingoScanResult {
+  final Set<BingoTypeWithIndex> bingos;
+  final Set<int> allIndices;
+  final Map<BingoTypeWithIndex, List<int>> bingoToIndices;
+
+  const _BingoScanResult({
+    required this.bingos,
+    required this.allIndices,
+    required this.bingoToIndices,
+  });
 }
