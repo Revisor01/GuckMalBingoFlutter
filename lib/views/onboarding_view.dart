@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../utilities/app_preferences.dart';
@@ -335,6 +336,7 @@ class _BingoExplanationPage extends StatefulWidget {
 class _BingoExplanationPageState extends State<_BingoExplanationPage> {
   final PageController _gridController = PageController();
   int _currentGrid = 0;
+  Timer? _autoRotationTimer;
   static const _bingoTypes = [_BingoType.horizontal, _BingoType.vertical, _BingoType.diagonal];
   static const _labels = ['Horizontal', 'Vertikal', 'Diagonal'];
 
@@ -345,7 +347,7 @@ class _BingoExplanationPageState extends State<_BingoExplanationPage> {
   }
 
   void _startAutoRotation() {
-    Future.delayed(const Duration(seconds: 3), () {
+    _autoRotationTimer = Timer.periodic(const Duration(seconds: 3), (_) {
       if (!mounted) return;
       final nextPage = (_currentGrid + 1) % 3;
       _gridController.animateToPage(
@@ -353,12 +355,12 @@ class _BingoExplanationPageState extends State<_BingoExplanationPage> {
         duration: const Duration(milliseconds: 400),
         curve: Curves.easeInOut,
       );
-      _startAutoRotation();
     });
   }
 
   @override
   void dispose() {
+    _autoRotationTimer?.cancel();
     _gridController.dispose();
     super.dispose();
   }
