@@ -205,6 +205,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get itemBuch => 'Libro';
 
   @override
+  String get itemBuchZuHause => 'Libro';
+
+  @override
   String get itemBuntglasfenster => 'Vidriera';
 
   @override
