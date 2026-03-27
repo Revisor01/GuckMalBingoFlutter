@@ -22,7 +22,9 @@ class GameAudioPlayer {
     _loadSoundFiles();
   }
 
-  final AudioPlayer _audioPlayer = AudioPlayer();
+  static const int _poolSize = 3;
+  final List<AudioPlayer> _pool = List.generate(_poolSize, (_) => AudioPlayer());
+  int _poolIndex = 0;
   late List<String> _bingoSounds;
   late List<String> _victorySounds;
   late List<String> _clickSounds;
@@ -101,18 +103,20 @@ class GameAudioPlayer {
 
   Future<void> _playSound(String assetPath) async {
     try {
-      await _audioPlayer.stop(); // Stop previous sound
-      await _audioPlayer.play(AssetSource(assetPath));
+      final player = _pool[_poolIndex];
+      _poolIndex = (_poolIndex + 1) % _poolSize;
+      await player.play(AssetSource(assetPath));
     } catch (e) {
-      // Fehler ignorieren für Release
+      // Fehler ignorieren fuer Release
     }
   }
 
   /// Spielt Sound ab und gibt true zurück bei Erfolg, false bei Fehler
   Future<bool> _playSoundWithFallback(String assetPath) async {
     try {
-      await _audioPlayer.stop();
-      await _audioPlayer.play(AssetSource(assetPath));
+      final player = _pool[_poolIndex];
+      _poolIndex = (_poolIndex + 1) % _poolSize;
+      await player.play(AssetSource(assetPath));
       return true;
     } catch (e) {
       // Sound-Datei nicht gefunden - Fallback verwenden
@@ -122,22 +126,24 @@ class GameAudioPlayer {
 
   /// Stoppt alle laufenden Sounds sofort
   Future<void> stop() async {
-    try {
-      await _audioPlayer.stop();
-    } catch (e) {
-      // Fehler ignorieren
+    for (final player in _pool) {
+      try { await player.stop(); } catch (_) {}
     }
   }
 
   /// Stoppt Audio aber behält Singleton am Leben (für ViewModel dispose)
   void reset() {
-    _audioPlayer.stop();
+    for (final player in _pool) {
+      player.stop();
+    }
   }
 
   /// Komplett dispose - nur bei App-Ende aufrufen
   void dispose() {
-    _audioPlayer.stop();
-    _audioPlayer.dispose();
+    for (final player in _pool) {
+      player.stop();
+      player.dispose();
+    }
     _instance = null;
   }
 }
