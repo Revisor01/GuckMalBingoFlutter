@@ -147,7 +147,7 @@
   "itemOpferstock": "Tronc",
   "itemOrangUtan": "Orang-outan",
   "itemOrgel": "Orgue",
-  "itemOsterkerze": "Cierge Pascal",
+  "itemOsterkerze": "Cierge pascal",
   "itemOtter": "Loutre",
   "itemParkplatz": "Parking",
   "itemPastor": "Pasteur",
@@ -329,9 +329,29 @@
   "onboardingPageLabel": "Page {current} sur {total}",
   "@onboardingPageLabel": {
     "placeholders": {
-      "current": {"type": "int"},
-      "total": {"type": "int"}
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
     }
   },
-  "settingsHelp": "Tutoriel"
+  "settingsHelp": "Tutoriel",
+  "itemOsterhase": "Lapin de Pâques",
+  "itemOstereier": "Œufs de Pâques",
+  "itemOsterlamm": "Agneau pascal",
+  "itemKueken": "Poussin",
+  "itemOsterglocken": "Jonquilles",
+  "itemWeidenkaetzchen": "Chatons de saule",
+  "itemSchmetterling": "Papillon",
+  "itemMarienkaefer": "Coccinelle",
+  "itemOsterstrauch": "Arbre de Pâques",
+  "itemOsterfeuer": "Feu de Pâques",
+  "itemSchokohase": "Lapin en chocolat",
+  "itemOsterkorb": "Panier de Pâques",
+  "itemBiene": "Abeille",
+  "itemKalb": "Veau",
+  "itemLammNatur": "Agneau",
+  "itemNarzissen": "Narcisses"
 }

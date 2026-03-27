@@ -457,7 +457,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get itemOrgel => 'Organo';
 
   @override
-  String get itemOsterkerze => 'Cero Pasquale';
+  String get itemOsterkerze => 'Cero pasquale';
 
   @override
   String get itemOtter => 'Lontra';
@@ -1012,4 +1012,52 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get settingsHelp => 'Tutorial';
+
+  @override
+  String get itemOsterhase => 'Coniglio di Pasqua';
+
+  @override
+  String get itemOstereier => 'Uova di Pasqua';
+
+  @override
+  String get itemOsterlamm => 'Agnello pasquale';
+
+  @override
+  String get itemKueken => 'Pulcino';
+
+  @override
+  String get itemOsterglocken => 'Narcisi';
+
+  @override
+  String get itemWeidenkaetzchen => 'Gattini di salice';
+
+  @override
+  String get itemSchmetterling => 'Farfalla';
+
+  @override
+  String get itemMarienkaefer => 'Coccinella';
+
+  @override
+  String get itemOsterstrauch => 'Albero di Pasqua';
+
+  @override
+  String get itemOsterfeuer => 'Fuoco di Pasqua';
+
+  @override
+  String get itemSchokohase => 'Coniglio di cioccolato';
+
+  @override
+  String get itemOsterkorb => 'Cestino di Pasqua';
+
+  @override
+  String get itemBiene => 'Ape';
+
+  @override
+  String get itemKalb => 'Vitello';
+
+  @override
+  String get itemLammNatur => 'Agnello';
+
+  @override
+  String get itemNarzissen => 'Narcisi';
 }

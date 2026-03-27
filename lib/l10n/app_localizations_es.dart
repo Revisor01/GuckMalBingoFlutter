@@ -1013,4 +1013,52 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get settingsHelp => 'Tutorial';
+
+  @override
+  String get itemOsterhase => 'Conejo de Pascua';
+
+  @override
+  String get itemOstereier => 'Huevos de Pascua';
+
+  @override
+  String get itemOsterlamm => 'Cordero de Pascua';
+
+  @override
+  String get itemKueken => 'Pollito';
+
+  @override
+  String get itemOsterglocken => 'Narcisos';
+
+  @override
+  String get itemWeidenkaetzchen => 'Amentos de sauce';
+
+  @override
+  String get itemSchmetterling => 'Mariposa';
+
+  @override
+  String get itemMarienkaefer => 'Mariquita';
+
+  @override
+  String get itemOsterstrauch => 'Arbusto de Pascua';
+
+  @override
+  String get itemOsterfeuer => 'Fuego de Pascua';
+
+  @override
+  String get itemSchokohase => 'Conejo de chocolate';
+
+  @override
+  String get itemOsterkorb => 'Cesta de Pascua';
+
+  @override
+  String get itemBiene => 'Abeja';
+
+  @override
+  String get itemKalb => 'Ternero';
+
+  @override
+  String get itemLammNatur => 'Cordero';
+
+  @override
+  String get itemNarzissen => 'Narcisos';
 }

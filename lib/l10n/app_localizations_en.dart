@@ -1012,4 +1012,52 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settingsHelp => 'Tutorial';
+
+  @override
+  String get itemOsterhase => 'Easter Bunny';
+
+  @override
+  String get itemOstereier => 'Easter Eggs';
+
+  @override
+  String get itemOsterlamm => 'Easter Lamb';
+
+  @override
+  String get itemKueken => 'Chick';
+
+  @override
+  String get itemOsterglocken => 'Daffodils';
+
+  @override
+  String get itemWeidenkaetzchen => 'Pussy Willows';
+
+  @override
+  String get itemSchmetterling => 'Butterfly';
+
+  @override
+  String get itemMarienkaefer => 'Ladybug';
+
+  @override
+  String get itemOsterstrauch => 'Easter Tree';
+
+  @override
+  String get itemOsterfeuer => 'Easter Fire';
+
+  @override
+  String get itemSchokohase => 'Chocolate Bunny';
+
+  @override
+  String get itemOsterkorb => 'Easter Basket';
+
+  @override
+  String get itemBiene => 'Bee';
+
+  @override
+  String get itemKalb => 'Calf';
+
+  @override
+  String get itemLammNatur => 'Lamb';
+
+  @override
+  String get itemNarzissen => 'Daffodils';
 }

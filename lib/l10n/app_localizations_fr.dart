@@ -457,7 +457,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get itemOrgel => 'Orgue';
 
   @override
-  String get itemOsterkerze => 'Cierge Pascal';
+  String get itemOsterkerze => 'Cierge pascal';
 
   @override
   String get itemOtter => 'Loutre';
@@ -1013,4 +1013,52 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get settingsHelp => 'Tutoriel';
+
+  @override
+  String get itemOsterhase => 'Lapin de Pâques';
+
+  @override
+  String get itemOstereier => 'Œufs de Pâques';
+
+  @override
+  String get itemOsterlamm => 'Agneau pascal';
+
+  @override
+  String get itemKueken => 'Poussin';
+
+  @override
+  String get itemOsterglocken => 'Jonquilles';
+
+  @override
+  String get itemWeidenkaetzchen => 'Chatons de saule';
+
+  @override
+  String get itemSchmetterling => 'Papillon';
+
+  @override
+  String get itemMarienkaefer => 'Coccinelle';
+
+  @override
+  String get itemOsterstrauch => 'Arbre de Pâques';
+
+  @override
+  String get itemOsterfeuer => 'Feu de Pâques';
+
+  @override
+  String get itemSchokohase => 'Lapin en chocolat';
+
+  @override
+  String get itemOsterkorb => 'Panier de Pâques';
+
+  @override
+  String get itemBiene => 'Abeille';
+
+  @override
+  String get itemKalb => 'Veau';
+
+  @override
+  String get itemLammNatur => 'Agneau';
+
+  @override
+  String get itemNarzissen => 'Narcisses';
 }

@@ -13,6 +13,7 @@ class BingoItem {
   final int? availableFromDay;
   final int? availableToMonth;
   final int? availableToDay;
+  final bool easterOnly;
 
   BingoItem({
     required this.emoji,
@@ -24,10 +25,14 @@ class BingoItem {
     this.availableFromDay,
     this.availableToMonth,
     this.availableToDay,
+    this.easterOnly = false,
   });
 
   /// Check if this item is currently available based on date
   bool isAvailableNow() {
+    // Oster-Items nur während Osterzeit verfügbar
+    if (easterOnly) return isEasterSeason();
+
     if (availableFromMonth == null ||
         availableFromDay == null ||
         availableToMonth == null ||
@@ -81,6 +86,7 @@ class BingoItem {
     int? availableFromDay,
     int? availableToMonth,
     int? availableToDay,
+    bool? easterOnly,
   }) {
     return BingoItem(
       emoji: emoji ?? this.emoji,
@@ -92,6 +98,7 @@ class BingoItem {
       availableFromDay: availableFromDay ?? this.availableFromDay,
       availableToMonth: availableToMonth ?? this.availableToMonth,
       availableToDay: availableToDay ?? this.availableToDay,
+      easterOnly: easterOnly ?? this.easterOnly,
     );
   }
 
@@ -107,6 +114,7 @@ class BingoItem {
       'availableFromDay': availableFromDay,
       'availableToMonth': availableToMonth,
       'availableToDay': availableToDay,
+      'easterOnly': easterOnly,
     };
   }
 
@@ -128,6 +136,7 @@ class BingoItem {
       availableFromDay: json['availableFromDay'] as int?,
       availableToMonth: json['availableToMonth'] as int?,
       availableToDay: json['availableToDay'] as int?,
+      easterOnly: json['easterOnly'] as bool? ?? false,
     );
   }
 }

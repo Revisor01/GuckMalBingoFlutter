@@ -147,7 +147,7 @@
   "itemOpferstock": "Cassetta delle Offerte",
   "itemOrangUtan": "Orango",
   "itemOrgel": "Organo",
-  "itemOsterkerze": "Cero Pasquale",
+  "itemOsterkerze": "Cero pasquale",
   "itemOtter": "Lontra",
   "itemParkplatz": "Parcheggio",
   "itemPastor": "Pastore",
@@ -329,9 +329,29 @@
   "onboardingPageLabel": "Pagina {current} di {total}",
   "@onboardingPageLabel": {
     "placeholders": {
-      "current": {"type": "int"},
-      "total": {"type": "int"}
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
     }
   },
-  "settingsHelp": "Tutorial"
+  "settingsHelp": "Tutorial",
+  "itemOsterhase": "Coniglio di Pasqua",
+  "itemOstereier": "Uova di Pasqua",
+  "itemOsterlamm": "Agnello pasquale",
+  "itemKueken": "Pulcino",
+  "itemOsterglocken": "Narcisi",
+  "itemWeidenkaetzchen": "Gattini di salice",
+  "itemSchmetterling": "Farfalla",
+  "itemMarienkaefer": "Coccinella",
+  "itemOsterstrauch": "Albero di Pasqua",
+  "itemOsterfeuer": "Fuoco di Pasqua",
+  "itemSchokohase": "Coniglio di cioccolato",
+  "itemOsterkorb": "Cestino di Pasqua",
+  "itemBiene": "Ape",
+  "itemKalb": "Vitello",
+  "itemLammNatur": "Agnello",
+  "itemNarzissen": "Narcisi"
 }

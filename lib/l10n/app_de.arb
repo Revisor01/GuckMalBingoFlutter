@@ -329,9 +329,29 @@
   "onboardingPageLabel": "Seite {current} von {total}",
   "@onboardingPageLabel": {
     "placeholders": {
-      "current": {"type": "int"},
-      "total": {"type": "int"}
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
     }
   },
-  "settingsHelp": "Anleitung"
+  "settingsHelp": "Anleitung",
+  "itemOsterhase": "Osterhase",
+  "itemOstereier": "Ostereier",
+  "itemOsterlamm": "Osterlamm",
+  "itemKueken": "Küken",
+  "itemOsterglocken": "Osterglocken",
+  "itemWeidenkaetzchen": "Weidenkätzchen",
+  "itemSchmetterling": "Schmetterling",
+  "itemMarienkaefer": "Marienkäfer",
+  "itemOsterstrauch": "Osterstrauch",
+  "itemOsterfeuer": "Osterfeuer",
+  "itemSchokohase": "Schokohase",
+  "itemOsterkorb": "Osterkorb",
+  "itemBiene": "Biene",
+  "itemKalb": "Kalb",
+  "itemLammNatur": "Lamm",
+  "itemNarzissen": "Narzissen"
 }

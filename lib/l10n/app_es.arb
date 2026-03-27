@@ -329,9 +329,29 @@
   "onboardingPageLabel": "Página {current} de {total}",
   "@onboardingPageLabel": {
     "placeholders": {
-      "current": {"type": "int"},
-      "total": {"type": "int"}
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
     }
   },
-  "settingsHelp": "Tutorial"
+  "settingsHelp": "Tutorial",
+  "itemOsterhase": "Conejo de Pascua",
+  "itemOstereier": "Huevos de Pascua",
+  "itemOsterlamm": "Cordero de Pascua",
+  "itemKueken": "Pollito",
+  "itemOsterglocken": "Narcisos",
+  "itemWeidenkaetzchen": "Amentos de sauce",
+  "itemSchmetterling": "Mariposa",
+  "itemMarienkaefer": "Mariquita",
+  "itemOsterstrauch": "Arbusto de Pascua",
+  "itemOsterfeuer": "Fuego de Pascua",
+  "itemSchokohase": "Conejo de chocolate",
+  "itemOsterkorb": "Cesta de Pascua",
+  "itemBiene": "Abeja",
+  "itemKalb": "Ternero",
+  "itemLammNatur": "Cordero",
+  "itemNarzissen": "Narcisos"
 }

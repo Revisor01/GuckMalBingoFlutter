@@ -2073,6 +2073,102 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Anleitung'**
   String get settingsHelp;
+
+  /// No description provided for @itemOsterhase.
+  ///
+  /// In de, this message translates to:
+  /// **'Osterhase'**
+  String get itemOsterhase;
+
+  /// No description provided for @itemOstereier.
+  ///
+  /// In de, this message translates to:
+  /// **'Ostereier'**
+  String get itemOstereier;
+
+  /// No description provided for @itemOsterlamm.
+  ///
+  /// In de, this message translates to:
+  /// **'Osterlamm'**
+  String get itemOsterlamm;
+
+  /// No description provided for @itemKueken.
+  ///
+  /// In de, this message translates to:
+  /// **'Küken'**
+  String get itemKueken;
+
+  /// No description provided for @itemOsterglocken.
+  ///
+  /// In de, this message translates to:
+  /// **'Osterglocken'**
+  String get itemOsterglocken;
+
+  /// No description provided for @itemWeidenkaetzchen.
+  ///
+  /// In de, this message translates to:
+  /// **'Weidenkätzchen'**
+  String get itemWeidenkaetzchen;
+
+  /// No description provided for @itemSchmetterling.
+  ///
+  /// In de, this message translates to:
+  /// **'Schmetterling'**
+  String get itemSchmetterling;
+
+  /// No description provided for @itemMarienkaefer.
+  ///
+  /// In de, this message translates to:
+  /// **'Marienkäfer'**
+  String get itemMarienkaefer;
+
+  /// No description provided for @itemOsterstrauch.
+  ///
+  /// In de, this message translates to:
+  /// **'Osterstrauch'**
+  String get itemOsterstrauch;
+
+  /// No description provided for @itemOsterfeuer.
+  ///
+  /// In de, this message translates to:
+  /// **'Osterfeuer'**
+  String get itemOsterfeuer;
+
+  /// No description provided for @itemSchokohase.
+  ///
+  /// In de, this message translates to:
+  /// **'Schokohase'**
+  String get itemSchokohase;
+
+  /// No description provided for @itemOsterkorb.
+  ///
+  /// In de, this message translates to:
+  /// **'Osterkorb'**
+  String get itemOsterkorb;
+
+  /// No description provided for @itemBiene.
+  ///
+  /// In de, this message translates to:
+  /// **'Biene'**
+  String get itemBiene;
+
+  /// No description provided for @itemKalb.
+  ///
+  /// In de, this message translates to:
+  /// **'Kalb'**
+  String get itemKalb;
+
+  /// No description provided for @itemLammNatur.
+  ///
+  /// In de, this message translates to:
+  /// **'Lamm'**
+  String get itemLammNatur;
+
+  /// No description provided for @itemNarzissen.
+  ///
+  /// In de, this message translates to:
+  /// **'Narzissen'**
+  String get itemNarzissen;
 }
 
 class _AppLocalizationsDelegate

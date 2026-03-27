@@ -329,9 +329,29 @@
   "onboardingPageLabel": "Pagina {current} van {total}",
   "@onboardingPageLabel": {
     "placeholders": {
-      "current": {"type": "int"},
-      "total": {"type": "int"}
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
     }
   },
-  "settingsHelp": "Handleiding"
+  "settingsHelp": "Handleiding",
+  "itemOsterhase": "Paashaas",
+  "itemOstereier": "Paaseieren",
+  "itemOsterlamm": "Paaslam",
+  "itemKueken": "Kuiken",
+  "itemOsterglocken": "Narcissen",
+  "itemWeidenkaetzchen": "Wilgenkatjes",
+  "itemSchmetterling": "Vlinder",
+  "itemMarienkaefer": "Lieveheersbeestje",
+  "itemOsterstrauch": "Paastak",
+  "itemOsterfeuer": "Paasvuur",
+  "itemSchokohase": "Chocoladehaas",
+  "itemOsterkorb": "Paasmand",
+  "itemBiene": "Bij",
+  "itemKalb": "Kalf",
+  "itemLammNatur": "Lam",
+  "itemNarzissen": "Narcissen"
 }

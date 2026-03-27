@@ -299,6 +299,23 @@ extension AppLocalizationsX on AppLocalizations {
       case 'victoryWon': return victoryWon;
       case 'weltweitSpielbar': return weltweitSpielbar;
       case 'zweiSpielmodi': return zweiSpielmodi;
+      case 'itemOsterhase': return itemOsterhase;
+      case 'itemOstereier': return itemOstereier;
+      case 'itemOsterlamm': return itemOsterlamm;
+      case 'itemOsterkerze': return itemOsterkerze;
+      case 'itemKueken': return itemKueken;
+      case 'itemOsterglocken': return itemOsterglocken;
+      case 'itemWeidenkaetzchen': return itemWeidenkaetzchen;
+      case 'itemSchmetterling': return itemSchmetterling;
+      case 'itemMarienkaefer': return itemMarienkaefer;
+      case 'itemOsterstrauch': return itemOsterstrauch;
+      case 'itemOsterfeuer': return itemOsterfeuer;
+      case 'itemSchokohase': return itemSchokohase;
+      case 'itemOsterkorb': return itemOsterkorb;
+      case 'itemBiene': return itemBiene;
+      case 'itemKalb': return itemKalb;
+      case 'itemLammNatur': return itemLammNatur;
+      case 'itemNarzissen': return itemNarzissen;
       default: return null;
     }
   }

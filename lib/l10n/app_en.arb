@@ -329,9 +329,29 @@
   "onboardingPageLabel": "Page {current} of {total}",
   "@onboardingPageLabel": {
     "placeholders": {
-      "current": {"type": "int"},
-      "total": {"type": "int"}
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
     }
   },
-  "settingsHelp": "Tutorial"
+  "settingsHelp": "Tutorial",
+  "itemOsterhase": "Easter Bunny",
+  "itemOstereier": "Easter Eggs",
+  "itemOsterlamm": "Easter Lamb",
+  "itemKueken": "Chick",
+  "itemOsterglocken": "Daffodils",
+  "itemWeidenkaetzchen": "Pussy Willows",
+  "itemSchmetterling": "Butterfly",
+  "itemMarienkaefer": "Ladybug",
+  "itemOsterstrauch": "Easter Tree",
+  "itemOsterfeuer": "Easter Fire",
+  "itemSchokohase": "Chocolate Bunny",
+  "itemOsterkorb": "Easter Basket",
+  "itemBiene": "Bee",
+  "itemKalb": "Calf",
+  "itemLammNatur": "Lamb",
+  "itemNarzissen": "Daffodils"
 }

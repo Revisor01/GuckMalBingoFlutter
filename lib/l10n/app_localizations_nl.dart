@@ -1012,4 +1012,52 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get settingsHelp => 'Handleiding';
+
+  @override
+  String get itemOsterhase => 'Paashaas';
+
+  @override
+  String get itemOstereier => 'Paaseieren';
+
+  @override
+  String get itemOsterlamm => 'Paaslam';
+
+  @override
+  String get itemKueken => 'Kuiken';
+
+  @override
+  String get itemOsterglocken => 'Narcissen';
+
+  @override
+  String get itemWeidenkaetzchen => 'Wilgenkatjes';
+
+  @override
+  String get itemSchmetterling => 'Vlinder';
+
+  @override
+  String get itemMarienkaefer => 'Lieveheersbeestje';
+
+  @override
+  String get itemOsterstrauch => 'Paastak';
+
+  @override
+  String get itemOsterfeuer => 'Paasvuur';
+
+  @override
+  String get itemSchokohase => 'Chocoladehaas';
+
+  @override
+  String get itemOsterkorb => 'Paasmand';
+
+  @override
+  String get itemBiene => 'Bij';
+
+  @override
+  String get itemKalb => 'Kalf';
+
+  @override
+  String get itemLammNatur => 'Lam';
+
+  @override
+  String get itemNarzissen => 'Narcissen';
 }
