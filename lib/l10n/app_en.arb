@@ -354,5 +354,9 @@
   "itemKalb": "Calf",
   "itemLammNatur": "Lamb",
   "itemNarzissen": "Daffodils",
-  "themeEaster": "Easter"
+  "themeEaster": "Easter",
+  "resumeGameTitle": "Resume game?",
+  "resumeGameMessage": "You have a game in progress. Would you like to continue?",
+  "resumeGameContinue": "Continue",
+  "resumeGameNew": "New Game"
 }

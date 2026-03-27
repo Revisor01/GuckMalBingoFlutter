@@ -1063,4 +1063,17 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get themeEaster => 'Easter';
+
+  @override
+  String get resumeGameTitle => 'Resume game?';
+
+  @override
+  String get resumeGameMessage =>
+      'You have a game in progress. Would you like to continue?';
+
+  @override
+  String get resumeGameContinue => 'Continue';
+
+  @override
+  String get resumeGameNew => 'New Game';
 }

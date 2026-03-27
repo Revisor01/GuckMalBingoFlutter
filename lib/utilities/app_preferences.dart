@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// Zentrale Preferences-Klasse — einziger Ort für SharedPreferences.getInstance()
@@ -27,4 +28,28 @@ class AppPreferences {
   // Onboarding
   bool get hasSeenOnboarding => _prefs.getBool('hasSeenOnboarding') ?? false;
   Future<void> setHasSeenOnboarding(bool value) => _prefs.setBool('hasSeenOnboarding', value);
+
+  // Game State Persistence
+  static const _keyGameState = 'savedGameState';
+
+  bool get hasSavedGameState => _prefs.getString(_keyGameState) != null;
+
+  Future<void> saveGameState(Map<String, dynamic> state) async {
+    await _prefs.setString(_keyGameState, jsonEncode(state));
+  }
+
+  Map<String, dynamic>? loadGameState() {
+    final json = _prefs.getString(_keyGameState);
+    if (json == null) return null;
+    try {
+      return jsonDecode(json) as Map<String, dynamic>;
+    } catch (_) {
+      clearGameState();
+      return null;
+    }
+  }
+
+  Future<void> clearGameState() async {
+    await _prefs.remove(_keyGameState);
+  }
 }

@@ -354,5 +354,9 @@
   "itemKalb": "Kalf",
   "itemLammNatur": "Lam",
   "itemNarzissen": "Narcissen",
-  "themeEaster": "Pasen"
+  "themeEaster": "Pasen",
+  "resumeGameTitle": "Spel hervatten?",
+  "resumeGameMessage": "Je hebt een lopend spel. Wil je doorgaan?",
+  "resumeGameContinue": "Doorgaan",
+  "resumeGameNew": "Nieuw spel"
 }

@@ -181,6 +181,7 @@ class _NavigationCoordinatorState extends State<NavigationCoordinator> {
   GameConfig _config = GameConfig();
   bool _showOnboarding = false;
   bool _onboardingChecked = false;
+  bool _resumeDialogShown = false;
 
   @override
   void initState() {
@@ -189,16 +190,65 @@ class _NavigationCoordinatorState extends State<NavigationCoordinator> {
   }
 
   void _checkOnboarding() {
+    final seen = hasSeenOnboarding();
     setState(() {
-      _showOnboarding = !hasSeenOnboarding();
+      _showOnboarding = !seen;
       _onboardingChecked = true;
     });
+    if (seen) {
+      _checkSavedGame();
+    }
+  }
+
+  void _checkSavedGame() {
+    if (AppPreferences.instance.hasSavedGameState && !_resumeDialogShown) {
+      _resumeDialogShown = true;
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+        _showResumeDialog();
+      });
+    }
+  }
+
+  void _showResumeDialog() {
+    final state = AppPreferences.instance.loadGameState();
+    if (state == null) return;
+
+    final l10n = AppLocalizations.of(context)!;
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (ctx) => AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        title: Text(l10n.resumeGameTitle, textAlign: TextAlign.center, style: const TextStyle(fontWeight: FontWeight.bold)),
+        content: Text(l10n.resumeGameMessage, textAlign: TextAlign.center),
+        actionsAlignment: MainAxisAlignment.center,
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(ctx).pop();
+              AppPreferences.instance.clearGameState();
+            },
+            child: Text(l10n.resumeGameNew),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.of(ctx).pop();
+              final viewModel = BingoGameViewModel.fromSavedState(state);
+              _navigateToGame(existingViewModel: viewModel);
+            },
+            child: Text(l10n.resumeGameContinue),
+          ),
+        ],
+      ),
+    );
   }
 
   void _onOnboardingComplete() {
     setState(() {
       _showOnboarding = false;
     });
+    _checkSavedGame();
   }
 
   void _onModeSelected(GameMode mode) {
@@ -310,8 +360,8 @@ class _NavigationCoordinatorState extends State<NavigationCoordinator> {
     _navigateToThemeCategory();
   }
 
-  void _navigateToGame() {
-    final viewModel = BingoGameViewModel(config: _config);
+  void _navigateToGame({BingoGameViewModel? existingViewModel}) {
+    final viewModel = existingViewModel ?? BingoGameViewModel(config: _config);
 
     Navigator.of(context).push(
       MaterialPageRoute(
@@ -319,7 +369,7 @@ class _NavigationCoordinatorState extends State<NavigationCoordinator> {
           value: viewModel,
           child: BingoGameView(
             onBackToStart: () {
-              // Pop all views zurück zum Start
+              viewModel.clearSavedGameState();
               Navigator.of(context).popUntil((route) => route.isFirst);
             },
           ),

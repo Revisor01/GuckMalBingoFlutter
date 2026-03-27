@@ -1063,4 +1063,16 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get themeEaster => 'Pasen';
+
+  @override
+  String get resumeGameTitle => 'Spel hervatten?';
+
+  @override
+  String get resumeGameMessage => 'Je hebt een lopend spel. Wil je doorgaan?';
+
+  @override
+  String get resumeGameContinue => 'Doorgaan';
+
+  @override
+  String get resumeGameNew => 'Nieuw spel';
 }

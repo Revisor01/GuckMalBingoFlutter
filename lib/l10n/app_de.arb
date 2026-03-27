@@ -354,5 +354,9 @@
   "itemKalb": "Kalb",
   "itemLammNatur": "Lamm",
   "itemNarzissen": "Narzissen",
-  "themeEaster": "Ostern"
+  "themeEaster": "Ostern",
+  "resumeGameTitle": "Spiel fortsetzen?",
+  "resumeGameMessage": "Du hast ein laufendes Spiel. Möchtest du weiterspielen?",
+  "resumeGameContinue": "Weiterspielen",
+  "resumeGameNew": "Neues Spiel"
 }

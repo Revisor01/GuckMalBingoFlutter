@@ -354,5 +354,9 @@
   "itemKalb": "Veau",
   "itemLammNatur": "Agneau",
   "itemNarzissen": "Narcisses",
-  "themeEaster": "Pâques"
+  "themeEaster": "Pâques",
+  "resumeGameTitle": "Reprendre la partie?",
+  "resumeGameMessage": "Vous avez une partie en cours. Voulez-vous continuer?",
+  "resumeGameContinue": "Continuer",
+  "resumeGameNew": "Nouvelle partie"
 }

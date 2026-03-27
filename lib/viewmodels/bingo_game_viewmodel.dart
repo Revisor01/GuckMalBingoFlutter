@@ -3,6 +3,7 @@ import '../models/game_config.dart';
 import '../models/bingo_item.dart';
 import '../data/bingo_items_data.dart';
 import '../utilities/audio_player.dart';
+import '../utilities/app_preferences.dart';
 
 /// BingoType für Bingo-Erkennung
 class BingoType {
@@ -78,10 +79,8 @@ class BingoGameViewModel extends ChangeNotifier {
 
   BingoGameViewModel({required this.config}) {
     _audioPlayer = GameAudioPlayer();
-    // Übernehme Sound-State vom Singleton (persistiert über Spiele hinweg)
     soundEnabled = _audioPlayer.soundEnabled;
 
-    // Generate board immediately for faster loading
     final totalCells = config.gridSize * config.gridSize;
     final sourceItems = BingoItemsData.itemsFor(
       area: config.area,
@@ -89,6 +88,97 @@ class BingoGameViewModel extends ChangeNotifier {
     );
     final shuffled = List.of(sourceItems)..shuffle();
     board = shuffled.take(totalCells).toList();
+  }
+
+  /// Erstellt ViewModel aus gespeichertem Spielstand
+  BingoGameViewModel.fromSavedState(Map<String, dynamic> state)
+      : config = GameConfig.fromJson(state['config'] as Map<String, dynamic>) {
+    _audioPlayer = GameAudioPlayer();
+    soundEnabled = _audioPlayer.soundEnabled;
+
+    board = (state['board'] as List<dynamic>)
+        .map((item) => BingoItem.fromJson(item as Map<String, dynamic>))
+        .toList();
+    clickedIndices = (state['clickedIndices'] as List<dynamic>)
+        .map((i) => i as int)
+        .toSet();
+    bingoCount = state['bingoCount'] as int? ?? 0;
+
+    // Bingo-Zustand rekonstruieren
+    _reconstructBingos();
+  }
+
+  void _reconstructBingos() {
+    for (int i = 0; i < config.gridSize; i++) {
+      bool rowComplete = true;
+      for (int j = 0; j < config.gridSize; j++) {
+        if (!clickedIndices.contains(i * config.gridSize + j)) {
+          rowComplete = false;
+          break;
+        }
+      }
+      if (rowComplete) _completedBingos.add(BingoTypeWithIndex.row(i));
+    }
+    for (int i = 0; i < config.gridSize; i++) {
+      bool colComplete = true;
+      for (int j = 0; j < config.gridSize; j++) {
+        if (!clickedIndices.contains(j * config.gridSize + i)) {
+          colComplete = false;
+          break;
+        }
+      }
+      if (colComplete) _completedBingos.add(BingoTypeWithIndex.column(i));
+    }
+    bool d1 = true, d2 = true;
+    for (int i = 0; i < config.gridSize; i++) {
+      if (!clickedIndices.contains(i * config.gridSize + i)) d1 = false;
+      if (!clickedIndices.contains(i * config.gridSize + (config.gridSize - 1 - i))) d2 = false;
+    }
+    if (d1) _completedBingos.add(BingoTypeWithIndex.diagonal1());
+    if (d2) _completedBingos.add(BingoTypeWithIndex.diagonal2());
+
+    // Highlight setzen
+    for (var bingo in _completedBingos) {
+      final indices = _getIndicesForBingo(bingo);
+      highlightedIndices.addAll(indices);
+    }
+  }
+
+  List<int> _getIndicesForBingo(BingoTypeWithIndex bingo) {
+    List<int> indices = [];
+    if (bingo.type == BingoType.rowType) {
+      for (int j = 0; j < config.gridSize; j++) {
+        indices.add(bingo.index * config.gridSize + j);
+      }
+    } else if (bingo.type == BingoType.columnType) {
+      for (int j = 0; j < config.gridSize; j++) {
+        indices.add(j * config.gridSize + bingo.index);
+      }
+    } else if (bingo.type == BingoType.diagonal1Type) {
+      for (int i = 0; i < config.gridSize; i++) {
+        indices.add(i * config.gridSize + i);
+      }
+    } else if (bingo.type == BingoType.diagonal2Type) {
+      for (int i = 0; i < config.gridSize; i++) {
+        indices.add(i * config.gridSize + (config.gridSize - 1 - i));
+      }
+    }
+    return indices;
+  }
+
+  /// Speichert aktuellen Spielstand
+  void saveGameState() {
+    AppPreferences.instance.saveGameState({
+      'board': board.map((item) => item.toJson()).toList(),
+      'clickedIndices': clickedIndices.toList(),
+      'bingoCount': bingoCount,
+      'config': config.toJson(),
+    });
+  }
+
+  /// Löscht gespeicherten Spielstand
+  void clearSavedGameState() {
+    AppPreferences.instance.clearGameState();
   }
 
   void generateBoard() {
@@ -266,6 +356,7 @@ class BingoGameViewModel extends ChangeNotifier {
       if (clickedIndices.length == totalCells) {
         _audioPlayer.playVictorySound();
         isFinalVictory = true;
+        clearSavedGameState();
         notifyListeners();
 
         Future.delayed(const Duration(milliseconds: 500), () {

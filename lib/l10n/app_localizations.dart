@@ -2175,6 +2175,30 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Ostern'**
   String get themeEaster;
+
+  /// No description provided for @resumeGameTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Spiel fortsetzen?'**
+  String get resumeGameTitle;
+
+  /// No description provided for @resumeGameMessage.
+  ///
+  /// In de, this message translates to:
+  /// **'Du hast ein laufendes Spiel. Möchtest du weiterspielen?'**
+  String get resumeGameMessage;
+
+  /// No description provided for @resumeGameContinue.
+  ///
+  /// In de, this message translates to:
+  /// **'Weiterspielen'**
+  String get resumeGameContinue;
+
+  /// No description provided for @resumeGameNew.
+  ///
+  /// In de, this message translates to:
+  /// **'Neues Spiel'**
+  String get resumeGameNew;
 }
 
 class _AppLocalizationsDelegate

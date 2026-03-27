@@ -354,5 +354,9 @@
   "itemKalb": "Ternero",
   "itemLammNatur": "Cordero",
   "itemNarzissen": "Narcisos",
-  "themeEaster": "Pascua"
+  "themeEaster": "Pascua",
+  "resumeGameTitle": "Continuar partida?",
+  "resumeGameMessage": "Tienes una partida en curso. Quieres continuar?",
+  "resumeGameContinue": "Continuar",
+  "resumeGameNew": "Nueva partida"
 }

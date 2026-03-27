@@ -24,7 +24,29 @@ class BingoGameView extends StatefulWidget {
   State<BingoGameView> createState() => _BingoGameViewState();
 }
 
-class _BingoGameViewState extends State<BingoGameView> {
+class _BingoGameViewState extends State<BingoGameView> with WidgetsBindingObserver {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.paused || state == AppLifecycleState.inactive) {
+      final viewModel = Provider.of<BingoGameViewModel>(context, listen: false);
+      if (!viewModel.isFinalVictory) {
+        viewModel.saveGameState();
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final selectedTheme = context.watch<ThemeNotifier>().theme;
@@ -54,6 +76,7 @@ class _BingoGameViewState extends State<BingoGameView> {
                             isLandscape: true,
                             onBack: () {
                               viewModel.stopAllSounds();
+                              if (!viewModel.isFinalVictory) viewModel.saveGameState();
                               Navigator.of(context).pop();
                             },
                           ),
@@ -63,6 +86,7 @@ class _BingoGameViewState extends State<BingoGameView> {
                           isLandscape: false,
                           onBack: () {
                             viewModel.stopAllSounds();
+                            if (!viewModel.isFinalVictory) viewModel.saveGameState();
                             Navigator.of(context).pop();
                           },
                         ),

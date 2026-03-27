@@ -354,5 +354,9 @@
   "itemKalb": "Vitello",
   "itemLammNatur": "Agnello",
   "itemNarzissen": "Narcisi",
-  "themeEaster": "Pasqua"
+  "themeEaster": "Pasqua",
+  "resumeGameTitle": "Riprendere la partita?",
+  "resumeGameMessage": "Hai una partita in corso. Vuoi continuare?",
+  "resumeGameContinue": "Continua",
+  "resumeGameNew": "Nuova partita"
 }
