@@ -7,7 +7,7 @@ import '../models/game_mode.dart';
 import '../utilities/background_pattern_view.dart';
 import '../utilities/app_colors.dart';
 import '../utilities/app_localizations_extension.dart';
-import '../utilities/debug_utils.dart';
+import '../utilities/season_service.dart';
 import '../utilities/theme_provider.dart';
 
 /// BingoGameView - Portiert von Swift
@@ -696,14 +696,15 @@ class VictoryDialogView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Saisonaler Victory-Dialog
+    final season = context.read<SeasonService>();
     final Color bgColor;
     final IconData iconData;
     final Color iconColor;
-    if (isChristmasSeason()) {
+    if (season.isChristmas) {
       bgColor = const Color(0xFFC41E3A); // Weihnachtsrot
       iconData = Icons.park; // Weihnachtsbaum
       iconColor = const Color(0xFF228B22); // Grün
-    } else if (isEasterSeason()) {
+    } else if (season.isEaster) {
       bgColor = const Color(0xFFC06080); // Frühlings-Rosa
       iconData = Icons.local_florist; // Blume
       iconColor = const Color(0xFFFFD700); // Gold
@@ -744,7 +745,7 @@ class VictoryDialogView extends StatelessWidget {
                       color: iconColor,
                     ),
                     // Stern auf dem Weihnachtsbaum
-                    if (isChristmasSeason())
+                    if (season.isChristmas)
                       const Positioned(
                         top: -5,
                         child: Icon(

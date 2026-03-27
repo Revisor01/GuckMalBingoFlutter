@@ -4,9 +4,9 @@ import '../models/background_theme.dart';
 import '../utilities/background_pattern_view.dart';
 import '../utilities/app_colors.dart';
 import '../utilities/theme_provider.dart';
+import '../utilities/season_service.dart';
 import '../l10n/app_localizations.dart';
 import '../utilities/app_localizations_extension.dart';
-import '../utilities/debug_utils.dart';
 import 'widgets/app_button.dart';
 
 /// ThemeSelectionView - Portiert von Swift
@@ -26,15 +26,11 @@ class ThemeSelectionView extends StatefulWidget {
 
 class _ThemeSelectionViewState extends State<ThemeSelectionView> {
   late BackgroundTheme _currentTheme;
-  bool _snowfallEnabled = true;
-  bool _easterEffectEnabled = true;
 
   @override
   void initState() {
     super.initState();
     _currentTheme = widget.selectedTheme;
-    _snowfallEnabled = snowfallEnabledNotifier.value;
-    _easterEffectEnabled = easterEffectEnabledNotifier.value;
   }
 
   void _selectTheme(BackgroundTheme theme) {
@@ -45,16 +41,10 @@ class _ThemeSelectionViewState extends State<ThemeSelectionView> {
     widget.onThemeSelected(theme);
   }
 
-  void _toggleSnowfall(bool enabled) {
-    setState(() {
-      _snowfallEnabled = enabled;
-    });
-    setSnowfallEnabled(enabled);
-  }
-
   @override
   Widget build(BuildContext context) {
     final brightness = Theme.of(context).brightness;
+    final season = context.watch<SeasonService>();
 
     return ClipRRect(
       borderRadius: const BorderRadius.vertical(
@@ -117,7 +107,7 @@ class _ThemeSelectionViewState extends State<ThemeSelectionView> {
                     const SizedBox(height: 40),
 
                     // Schneefall-Toggle (nur in der Weihnachtszeit) - OBEN
-                    if (isChristmasSeason()) ...[
+                    if (season.isChristmas) ...[
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 30),
                         child: Container(
@@ -147,8 +137,8 @@ class _ThemeSelectionViewState extends State<ThemeSelectionView> {
                                 ),
                               ),
                               Switch(
-                                value: _snowfallEnabled,
-                                onChanged: _toggleSnowfall,
+                                value: season.snowfallEnabled,
+                                onChanged: (enabled) => season.setSnowfallEnabled(enabled),
                                 activeTrackColor: Colors.lightBlue,
                               ),
                             ],
@@ -159,7 +149,7 @@ class _ThemeSelectionViewState extends State<ThemeSelectionView> {
                     ],
 
                     // Oster-Effekt-Toggle (nur in der Osterzeit)
-                    if (isEasterSeason()) ...[
+                    if (season.isEaster) ...[
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 30),
                         child: Container(
@@ -189,13 +179,8 @@ class _ThemeSelectionViewState extends State<ThemeSelectionView> {
                                 ),
                               ),
                               Switch(
-                                value: _easterEffectEnabled,
-                                onChanged: (enabled) {
-                                  setState(() {
-                                    _easterEffectEnabled = enabled;
-                                  });
-                                  setEasterEffectEnabled(enabled);
-                                },
+                                value: season.easterEffectEnabled,
+                                onChanged: (enabled) => season.setEasterEffectEnabled(enabled),
                                 activeTrackColor: const Color(0xFFFFB7C5),
                               ),
                             ],
@@ -210,7 +195,7 @@ class _ThemeSelectionViewState extends State<ThemeSelectionView> {
                       padding: const EdgeInsets.symmetric(horizontal: 30),
                       child: Column(
                         children: BackgroundTheme.values
-                            .where((theme) => (theme != BackgroundTheme.christmas || isChristmasSeason()) && (theme != BackgroundTheme.easter || isEasterSeason()))
+                            .where((theme) => (theme != BackgroundTheme.christmas || season.isChristmas) && (theme != BackgroundTheme.easter || season.isEaster))
                             .map((theme) => Padding(
                                   padding: const EdgeInsets.only(bottom: 20),
                                   child: AppButton(
@@ -259,4 +244,3 @@ class _ThemeSelectionViewState extends State<ThemeSelectionView> {
     );
   }
 }
-
