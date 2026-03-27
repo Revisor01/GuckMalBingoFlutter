@@ -1207,7 +1207,7 @@ class BingoItemsData {
 
     BingoItem(
       emoji: '📖',
-      name: 'itemBuch',
+      name: 'itemBuchZuHause',
       imageName: 'buch',
       areas: _areas([Area.zuHause]),
       seasons: [],

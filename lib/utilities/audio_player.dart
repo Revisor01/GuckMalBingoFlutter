@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:flutter/foundation.dart' show visibleForTesting;
 import 'debug_utils.dart';
 
 final _random = Random();
@@ -17,12 +18,19 @@ class GameAudioPlayer {
   // Factory constructor returns singleton
   factory GameAudioPlayer() => instance;
 
+  /// Resets the singleton for testing purposes only.
+  @visibleForTesting
+  static void resetForTest() {
+    _instance = null;
+  }
+
   // Private constructor
   GameAudioPlayer._internal() {
+    _audioPlayer = AudioPlayer();
     _loadSoundFiles();
   }
 
-  final AudioPlayer _audioPlayer = AudioPlayer();
+  late AudioPlayer _audioPlayer;
   late List<String> _bingoSounds;
   late List<String> _victorySounds;
   late List<String> _clickSounds;
