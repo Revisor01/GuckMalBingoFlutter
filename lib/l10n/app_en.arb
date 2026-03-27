@@ -358,5 +358,6 @@
   "resumeGameTitle": "Resume game?",
   "resumeGameMessage": "You have a game in progress. Would you like to continue?",
   "resumeGameContinue": "Continue",
-  "resumeGameNew": "New Game"
+  "resumeGameNew": "New Game",
+  "settingsEasterEffect": "Easter Effect"
 }

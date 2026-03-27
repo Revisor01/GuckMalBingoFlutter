@@ -358,5 +358,6 @@
   "resumeGameTitle": "Spiel fortsetzen?",
   "resumeGameMessage": "Du hast ein laufendes Spiel. Möchtest du weiterspielen?",
   "resumeGameContinue": "Weiterspielen",
-  "resumeGameNew": "Neues Spiel"
+  "resumeGameNew": "Neues Spiel",
+  "settingsEasterEffect": "Oster-Effekt"
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import '../models/game_config.dart';
+import '../models/game_mode.dart';
 import '../models/bingo_item.dart';
 import '../data/bingo_items_data.dart';
 import '../utilities/audio_player.dart';
@@ -337,7 +338,7 @@ class BingoGameViewModel extends ChangeNotifier {
         _startBlinkAnimation(newBingoIndices);
       }
 
-      if (config.gameMode.value == 'jagd' && bingoCount >= config.targetBingos) {
+      if (config.gameMode == GameMode.jagd && bingoCount >= config.targetBingos) {
         _showVictory(count: bingoCount, isFinal: true);
       } else {
         _showVictory(count: bingoCount, isFinal: false);
@@ -351,7 +352,7 @@ class BingoGameViewModel extends ChangeNotifier {
     }
 
     // Bei Suche-Modus: Prüfen ob gesamtes Feld voll ist
-    if (config.gameMode.value == 'suche' && !showVictoryDialog) {
+    if (config.gameMode == GameMode.suche && !showVictoryDialog) {
       final totalCells = config.gridSize * config.gridSize;
       if (clickedIndices.length == totalCells) {
         _audioPlayer.playVictorySound();

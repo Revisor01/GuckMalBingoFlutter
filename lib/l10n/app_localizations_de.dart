@@ -1076,4 +1076,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get resumeGameNew => 'Neues Spiel';
+
+  @override
+  String get settingsEasterEffect => 'Oster-Effekt';
 }

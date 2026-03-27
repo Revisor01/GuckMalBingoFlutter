@@ -177,10 +177,10 @@ class _ThemeSelectionViewState extends State<ThemeSelectionView> {
                                 color: Color(0xFFFFB7C5),
                               ),
                               const SizedBox(width: 16),
-                              const Expanded(
+                              Expanded(
                                 child: Text(
-                                  'Oster-Effekt',
-                                  style: TextStyle(
+                                  AppLocalizations.of(context)!.settingsEasterEffect,
+                                  style: const TextStyle(
                                     fontSize: 20,
                                     fontWeight: FontWeight.w600,
                                     color: Colors.white,

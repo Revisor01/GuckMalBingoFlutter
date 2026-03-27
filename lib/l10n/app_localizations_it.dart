@@ -1075,4 +1075,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get resumeGameNew => 'Nuova partita';
+
+  @override
+  String get settingsEasterEffect => 'Effetto di Pasqua';
 }

@@ -358,5 +358,6 @@
   "resumeGameTitle": "Spel hervatten?",
   "resumeGameMessage": "Je hebt een lopend spel. Wil je doorgaan?",
   "resumeGameContinue": "Doorgaan",
-  "resumeGameNew": "Nieuw spel"
+  "resumeGameNew": "Nieuw spel",
+  "settingsEasterEffect": "Paaseffect"
 }

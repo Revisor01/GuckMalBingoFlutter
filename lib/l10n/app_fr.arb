@@ -358,5 +358,6 @@
   "resumeGameTitle": "Reprendre la partie?",
   "resumeGameMessage": "Vous avez une partie en cours. Voulez-vous continuer?",
   "resumeGameContinue": "Continuer",
-  "resumeGameNew": "Nouvelle partie"
+  "resumeGameNew": "Nouvelle partie",
+  "settingsEasterEffect": "Effet de Pâques"
 }

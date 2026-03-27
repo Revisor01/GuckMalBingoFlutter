@@ -2199,6 +2199,12 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Neues Spiel'**
   String get resumeGameNew;
+
+  /// No description provided for @settingsEasterEffect.
+  ///
+  /// In de, this message translates to:
+  /// **'Oster-Effekt'**
+  String get settingsEasterEffect;
 }
 
 class _AppLocalizationsDelegate

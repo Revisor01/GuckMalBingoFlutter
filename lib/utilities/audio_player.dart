@@ -20,7 +20,6 @@ class GameAudioPlayer {
   // Private constructor
   GameAudioPlayer._internal() {
     _loadSoundFiles();
-    _preloadSounds();
   }
 
   final AudioPlayer _audioPlayer = AudioPlayer();
@@ -61,24 +60,6 @@ class GameAudioPlayer {
       3,
       (i) => 'sounds/victory_xmas${i + 1}.mp3',
     );
-  }
-
-  Future<void> _preloadSounds() async {
-    // Preload erste 5 Sounds jeder Kategorie für schnelleres Abspielen
-    final soundsToPreload = [
-      ..._bingoSounds.take(5),
-      ..._victorySounds.take(5),
-      ..._clickSounds.take(5),
-    ];
-
-    for (final soundPath in soundsToPreload) {
-      try {
-        // Setze Source ohne zu spielen (Preload)
-        await _audioPlayer.setSource(AssetSource(soundPath));
-      } catch (e) {
-        // Fehler ignorieren, Preload ist optional
-      }
-    }
   }
 
   /// Zufälliger Click-Sound (immer normale Clicks)

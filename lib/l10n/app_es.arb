@@ -358,5 +358,6 @@
   "resumeGameTitle": "Continuar partida?",
   "resumeGameMessage": "Tienes una partida en curso. Quieres continuar?",
   "resumeGameContinue": "Continuar",
-  "resumeGameNew": "Nueva partida"
+  "resumeGameNew": "Nueva partida",
+  "settingsEasterEffect": "Efecto de Pascua"
 }
