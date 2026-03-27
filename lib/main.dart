@@ -19,6 +19,10 @@ import 'utilities/app_preferences.dart';
 import 'utilities/debug_utils.dart';
 import 'utilities/theme_provider.dart';
 
+/// Gecachte Saison-Checks (werden einmal beim App-Start gesetzt)
+bool cachedIsChristmas = false;
+bool cachedIsEaster = false;
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -31,6 +35,10 @@ void main() async {
 
   // Zentrale Preferences einmalig laden
   await AppPreferences.init();
+
+  // Saisonale Checks einmalig beim Start cachen
+  cachedIsChristmas = isChristmasSeason();
+  cachedIsEaster = isEasterSeason();
 
   // Lade saisonale Effekt-Einstellungen aus Preferences
   loadSnowfallSetting();
@@ -129,7 +137,7 @@ class GuckMalBingoApp extends StatelessWidget {
           data: MediaQuery.of(context).copyWith(
             textScaler: TextScaler.linear(textScaleFactor),
           ),
-          child: isEasterSeason()
+          child: cachedIsEaster
               ? ValueListenableBuilder<bool>(
                   valueListenable: easterEffectEnabledNotifier,
                   builder: (context, enabled, _) {
@@ -140,7 +148,7 @@ class GuckMalBingoApp extends StatelessWidget {
                     );
                   },
                 )
-              : isChristmasSeason()
+              : cachedIsChristmas
                   ? ValueListenableBuilder<bool>(
                       valueListenable: snowfallEnabledNotifier,
                       builder: (context, enabled, _) {

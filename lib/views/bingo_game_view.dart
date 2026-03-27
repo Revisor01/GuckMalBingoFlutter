@@ -671,11 +671,23 @@ class VictoryDialogView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Weihnachts-Special: Fröhliches Weihnachtsrot im Dezember
-    final isChristmas = isChristmasSeason();
-    final bgColor = isChristmas ? const Color(0xFFC41E3A) : AppColors.successGreen; // Knalliges Weihnachtsrot
-    final iconData = isChristmas ? Icons.park : Icons.emoji_events; // Weihnachtsbaum statt Trophy
-    final iconColor = isChristmas ? const Color(0xFF228B22) : Colors.yellow; // Grüner Weihnachtsbaum
+    // Saisonaler Victory-Dialog
+    final Color bgColor;
+    final IconData iconData;
+    final Color iconColor;
+    if (isChristmasSeason()) {
+      bgColor = const Color(0xFFC41E3A); // Weihnachtsrot
+      iconData = Icons.park; // Weihnachtsbaum
+      iconColor = const Color(0xFF228B22); // Grün
+    } else if (isEasterSeason()) {
+      bgColor = const Color(0xFFC06080); // Frühlings-Rosa
+      iconData = Icons.local_florist; // Blume
+      iconColor = const Color(0xFFFFD700); // Gold
+    } else {
+      bgColor = AppColors.successGreen;
+      iconData = Icons.emoji_events; // Trophy
+      iconColor = Colors.yellow;
+    }
 
     return Container(
       color: Colors.black.withValues(alpha: 0.4),

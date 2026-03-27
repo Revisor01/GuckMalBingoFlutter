@@ -71,8 +71,9 @@ class _SnowfallWidgetState extends State<SnowfallWidget>
       children: [
         widget.child,
         Positioned.fill(
-          child: IgnorePointer(
-            child: AnimatedBuilder(
+          child: RepaintBoundary(
+            child: IgnorePointer(
+              child: AnimatedBuilder(
               animation: _controller,
               builder: (context, child) {
                 // Berechne deltaTime (Zeit seit letztem Frame in Sekunden)
@@ -96,6 +97,7 @@ class _SnowfallWidgetState extends State<SnowfallWidget>
                   ),
                 );
               },
+              ),
             ),
           ),
         ),

@@ -69,8 +69,9 @@ class _EasterEffectWidgetState extends State<EasterEffectWidget>
       children: [
         widget.child,
         Positioned.fill(
-          child: IgnorePointer(
-            child: AnimatedBuilder(
+          child: RepaintBoundary(
+            child: IgnorePointer(
+              child: AnimatedBuilder(
               animation: _controller,
               builder: (context, child) {
                 final currentProgress = _controller.value;
@@ -89,6 +90,7 @@ class _EasterEffectWidgetState extends State<EasterEffectWidget>
                   ),
                 );
               },
+              ),
             ),
           ),
         ),
