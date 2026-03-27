@@ -1060,4 +1060,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get itemNarzissen => 'Daffodils';
+
+  @override
+  String get themeEaster => 'Easter';
 }

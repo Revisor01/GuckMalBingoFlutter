@@ -11,7 +11,8 @@ enum BackgroundTheme {
   deepBlue('deepBlue', 'themeDeepblue'),
   pinkYellow('pinkYellow', 'themePinkyellow'),
   greenMint('greenMint', 'themeGreenmint'),
-  christmas('christmas', 'themeChristmas'); // Weihnachts-Theme
+  christmas('christmas', 'themeChristmas'), // Weihnachts-Theme
+  easter('easter', 'themeEaster'); // Oster-Theme
 
   final String value;
   final String displayNameKey;
@@ -87,6 +88,18 @@ enum BackgroundTheme {
             _hexToColor('#c41e3a'), // Weihnachtsmann-Rot (Cardinal Red)
             _hexToColor('#a31621'), // Klassisches Weihnachtsrot
             _hexToColor('#7b1113'), // Tiefes Weihnachtsrot
+          ],
+          stops: const [0.0, 0.5, 1.0],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+        );
+
+      case BackgroundTheme.easter:
+        return LinearGradient(
+          colors: [
+            _hexToColor('#A8E6CF'), // Zartes Mintgrün
+            _hexToColor('#DCEDC1'), // Helles Frühlingsgrün
+            _hexToColor('#FFD3B6'), // Warmes Pastellrosa
           ],
           stops: const [0.0, 0.5, 1.0],
           begin: Alignment.topCenter,
@@ -169,6 +182,18 @@ enum BackgroundTheme {
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
         );
+
+      case BackgroundTheme.easter:
+        return const LinearGradient(
+          colors: [
+            Color.fromRGBO(80, 130, 100, 1.0), // Gedämpftes Frühlingsgrün
+            Color.fromRGBO(110, 120, 90, 1.0), // Olivgrün
+            Color.fromRGBO(140, 100, 90, 1.0), // Gedämpftes Pastellrosa
+          ],
+          stops: [0.0, 0.5, 1.0],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+        );
     }
   }
 
@@ -199,7 +224,7 @@ enum BackgroundTheme {
       final prefs = await SharedPreferences.getInstance();
 
       // Weihnachts-Special: Christmas-Theme als Default wenn noch kein Theme gespeichert
-      final defaultTheme = isChristmasSeason() ? 'christmas' : 'lightBlue';
+      final defaultTheme = isChristmasSeason() ? 'christmas' : isEasterSeason() ? 'easter' : 'lightBlue';
       final themeName = prefs.getString('backgroundTheme') ?? defaultTheme;
 
       // Migration: alte deutsche Namen auf neue englische Namen mappen
@@ -224,7 +249,7 @@ enum BackgroundTheme {
       return BackgroundTheme.fromString(themeName);
     } catch (e) {
       // Fallback bei SharedPreferences-Fehler
-      return isChristmasSeason() ? BackgroundTheme.christmas : BackgroundTheme.lightBlue;
+      return isChristmasSeason() ? BackgroundTheme.christmas : isEasterSeason() ? BackgroundTheme.easter : BackgroundTheme.lightBlue;
     }
   }
 

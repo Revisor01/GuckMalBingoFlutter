@@ -1060,4 +1060,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get itemNarzissen => 'Narcissen';
+
+  @override
+  String get themeEaster => 'Pasen';
 }

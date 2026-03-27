@@ -26,12 +26,14 @@ class ThemeSelectionView extends StatefulWidget {
 class _ThemeSelectionViewState extends State<ThemeSelectionView> {
   late BackgroundTheme _currentTheme;
   bool _snowfallEnabled = true;
+  bool _easterEffectEnabled = true;
 
   @override
   void initState() {
     super.initState();
     _currentTheme = widget.selectedTheme;
     _snowfallEnabled = snowfallEnabledNotifier.value;
+    _easterEffectEnabled = easterEffectEnabledNotifier.value;
   }
 
   void _selectTheme(BackgroundTheme theme) {
@@ -154,12 +156,59 @@ class _ThemeSelectionViewState extends State<ThemeSelectionView> {
                       const SizedBox(height: 30),
                     ],
 
-                    // Theme Buttons (Christmas nur in Weihnachtszeit)
+                    // Oster-Effekt-Toggle (nur in der Osterzeit)
+                    if (isEasterSeason()) ...[
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 30),
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
+                          decoration: BoxDecoration(
+                            color: brightness == Brightness.dark
+                                ? Colors.white.withValues(alpha:0.15)
+                                : Colors.white.withValues(alpha:0.25),
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: Row(
+                            children: [
+                              const Icon(
+                                Icons.local_florist,
+                                size: 28,
+                                color: Color(0xFFFFB7C5),
+                              ),
+                              const SizedBox(width: 16),
+                              const Expanded(
+                                child: Text(
+                                  'Oster-Effekt',
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                              Switch(
+                                value: _easterEffectEnabled,
+                                onChanged: (enabled) {
+                                  setState(() {
+                                    _easterEffectEnabled = enabled;
+                                  });
+                                  setEasterEffectEnabled(enabled);
+                                },
+                                activeTrackColor: const Color(0xFFFFB7C5),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 30),
+                    ],
+
+                    // Theme Buttons (Saisonale Themes nur in jeweiliger Saison)
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 30),
                       child: Column(
                         children: BackgroundTheme.values
-                            .where((theme) => theme != BackgroundTheme.christmas || isChristmasSeason())
+                            .where((theme) => (theme != BackgroundTheme.christmas || isChristmasSeason()) && (theme != BackgroundTheme.easter || isEasterSeason()))
                             .map((theme) => Padding(
                                   padding: const EdgeInsets.only(bottom: 20),
                                   child: ThemeButton(

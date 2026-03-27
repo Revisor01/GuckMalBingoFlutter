@@ -2169,6 +2169,12 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Narzissen'**
   String get itemNarzissen;
+
+  /// No description provided for @themeEaster.
+  ///
+  /// In de, this message translates to:
+  /// **'Ostern'**
+  String get themeEaster;
 }
 
 class _AppLocalizationsDelegate

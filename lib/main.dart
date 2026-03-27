@@ -14,6 +14,7 @@ import 'views/bingo_game_view.dart';
 import 'views/onboarding_view.dart';
 import 'l10n/app_localizations.dart';
 import 'views/snowfall_widget.dart';
+import 'views/easter_effect_widget.dart';
 import 'utilities/debug_utils.dart';
 import 'utilities/theme_provider.dart';
 
@@ -27,8 +28,9 @@ void main() async {
     systemNavigationBarColor: Colors.transparent,
   ));
 
-  // Lade Schneefall-Einstellung
+  // Lade saisonale Effekt-Einstellungen
   await loadSnowfallSetting();
+  await loadEasterEffectSetting();
 
   // Theme einmalig vor App-Start laden
   final themeNotifier = ThemeNotifier();
@@ -49,7 +51,6 @@ class GuckMalBingoApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Guck mal!',
-      locale: const Locale('de'), // Deutsch
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
@@ -117,14 +118,29 @@ class GuckMalBingoApp extends StatelessWidget {
           textScaleFactor = 0.95;
         }
 
-        // Weihnachts-Special: Schneefalleffekt mit reaktivem Toggle
-        Widget wrappedChild = ValueListenableBuilder<bool>(
+        // Saisonale Effekte mit reaktivem Toggle
+        Widget wrappedChild = child!;
+
+        // Weihnachts-Special: Schneefalleffekt
+        wrappedChild = ValueListenableBuilder<bool>(
           valueListenable: snowfallEnabledNotifier,
           builder: (context, snowfallEnabled, _) {
             return SnowfallWidget(
               enabled: isChristmasSeason() && snowfallEnabled,
               snowflakeCount: 40,
-              child: child!,
+              child: wrappedChild,
+            );
+          },
+        );
+
+        // Oster-Special: Blütenblätter-Effekt
+        wrappedChild = ValueListenableBuilder<bool>(
+          valueListenable: easterEffectEnabledNotifier,
+          builder: (context, easterEffectEnabled, _) {
+            return EasterEffectWidget(
+              enabled: isEasterSeason() && easterEffectEnabled,
+              petalCount: 30,
+              child: wrappedChild,
             );
           },
         );
