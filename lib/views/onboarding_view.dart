@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import '../utilities/app_preferences.dart';
 import '../utilities/background_pattern_view.dart';
 import '../utilities/theme_provider.dart';
 import '../l10n/app_localizations.dart';
 
 /// Prüft ob Onboarding bereits gezeigt wurde
-Future<bool> hasSeenOnboarding() async {
-  final prefs = await SharedPreferences.getInstance();
-  return prefs.getBool('hasSeenOnboarding') ?? false;
+bool hasSeenOnboarding() {
+  return AppPreferences.instance.hasSeenOnboarding;
 }
 
 /// Markiert Onboarding als gesehen
 Future<void> setOnboardingSeen() async {
-  final prefs = await SharedPreferences.getInstance();
-  await prefs.setBool('hasSeenOnboarding', true);
+  await AppPreferences.instance.setHasSeenOnboarding(true);
 }
 
 /// OnboardingView - Erklärt die App beim ersten Start

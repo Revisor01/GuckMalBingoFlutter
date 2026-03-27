@@ -10,9 +10,9 @@ class ThemeNotifier extends ChangeNotifier {
   /// Aktuelles Theme
   BackgroundTheme get theme => _theme;
 
-  /// Laedt das gespeicherte Theme aus SharedPreferences (einmalig beim Start)
-  Future<void> loadTheme() async {
-    _theme = await BackgroundTheme.loadSavedTheme();
+  /// Laedt das gespeicherte Theme aus AppPreferences (einmalig beim Start)
+  void loadTheme() {
+    _theme = BackgroundTheme.loadSavedTheme();
     notifyListeners();
   }
 

@@ -5,12 +5,12 @@ import 'area.dart';
 
 /// GameConfig Class - Portiert von Swift
 class GameConfig {
-  GameMode gameMode;
-  CategoryTheme categoryTheme;
-  Season season;
-  Area area;
-  int gridSize;
-  int targetBingos;
+  final GameMode gameMode;
+  final CategoryTheme categoryTheme;
+  final Season season;
+  final Area area;
+  final int gridSize;
+  final int targetBingos;
 
   GameConfig({
     this.gameMode = GameMode.suche,

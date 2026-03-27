@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import '../utilities/app_preferences.dart';
 import '../utilities/debug_utils.dart';
 
 /// BackgroundTheme Enum - Portiert von Swift
@@ -218,48 +218,36 @@ enum BackgroundTheme {
     );
   }
 
-  /// Lade gespeichertes Theme (Christmas-Theme als Default in der Weihnachtszeit)
-  static Future<BackgroundTheme> loadSavedTheme() async {
-    try {
-      final prefs = await SharedPreferences.getInstance();
+  /// Lade gespeichertes Theme (saisonales Theme als Default)
+  static BackgroundTheme loadSavedTheme() {
+    final prefs = AppPreferences.instance;
+    final defaultTheme = isChristmasSeason() ? 'christmas' : isEasterSeason() ? 'easter' : 'lightBlue';
+    final themeName = prefs.backgroundThemeRaw ?? defaultTheme;
 
-      // Weihnachts-Special: Christmas-Theme als Default wenn noch kein Theme gespeichert
-      final defaultTheme = isChristmasSeason() ? 'christmas' : isEasterSeason() ? 'easter' : 'lightBlue';
-      final themeName = prefs.getString('backgroundTheme') ?? defaultTheme;
+    // Migration: alte deutsche Namen auf neue englische Namen mappen
+    const migrationMap = {
+      'Himmelblau': 'lightBlue',
+      'Meeresgrün': 'lightBlue',
+      'Abendsonne': 'lightBlue',
+      'Dschungel': 'lightBlue',
+      'Nachtmodus': 'lightBlue',
+      'turquoise': 'lightBlue',
+      'sunset': 'lightBlue',
+      'forest': 'lightBlue',
+      'pinkPurple': 'lightBlue',
+    };
 
-      // Migration: alte deutsche Namen auf neue englische Namen mappen
-      const migrationMap = {
-        'Himmelblau': 'lightBlue',
-        'Meeresgrün': 'lightBlue',
-        'Abendsonne': 'lightBlue',
-        'Dschungel': 'lightBlue',
-        'Nachtmodus': 'lightBlue',
-        'turquoise': 'lightBlue',
-        'sunset': 'lightBlue',
-        'forest': 'lightBlue',
-        'pinkPurple': 'lightBlue',
-      };
-
-      if (migrationMap.containsKey(themeName)) {
-        final newName = migrationMap[themeName]!;
-        await prefs.setString('backgroundTheme', newName);
-        return BackgroundTheme.fromString(newName);
-      }
-
-      return BackgroundTheme.fromString(themeName);
-    } catch (e) {
-      // Fallback bei SharedPreferences-Fehler
-      return isChristmasSeason() ? BackgroundTheme.christmas : isEasterSeason() ? BackgroundTheme.easter : BackgroundTheme.lightBlue;
+    if (migrationMap.containsKey(themeName)) {
+      final newName = migrationMap[themeName]!;
+      prefs.setBackgroundTheme(newName);
+      return BackgroundTheme.fromString(newName);
     }
+
+    return BackgroundTheme.fromString(themeName);
   }
 
   /// Speichere Theme
   Future<void> save() async {
-    try {
-      final prefs = await SharedPreferences.getInstance();
-      await prefs.setString('backgroundTheme', value);
-    } catch (e) {
-      // Speicherfehler ignorieren - Theme ist bereits im RAM
-    }
+    await AppPreferences.instance.setBackgroundTheme(value);
   }
 }

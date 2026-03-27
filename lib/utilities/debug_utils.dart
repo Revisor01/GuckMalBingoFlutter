@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'app_preferences.dart';
 
 /// Debug Utilities für Testing
 ///
@@ -71,25 +71,15 @@ bool isEasterSeason() {
 /// Oster-Effekt-Einstellung als ValueNotifier für reaktives UI
 final easterEffectEnabledNotifier = ValueNotifier<bool>(true);
 
-/// Lade Oster-Effekt-Einstellung aus SharedPreferences
-Future<void> loadEasterEffectSetting() async {
-  try {
-    final prefs = await SharedPreferences.getInstance();
-    easterEffectEnabledNotifier.value = prefs.getBool('easterEffectEnabled') ?? true;
-  } catch (e) {
-    easterEffectEnabledNotifier.value = true;
-  }
+/// Lade Oster-Effekt-Einstellung aus AppPreferences
+void loadEasterEffectSetting() {
+  easterEffectEnabledNotifier.value = AppPreferences.instance.easterEffectEnabled;
 }
 
 /// Speichere Oster-Effekt-Einstellung
 Future<void> setEasterEffectEnabled(bool enabled) async {
   easterEffectEnabledNotifier.value = enabled;
-  try {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool('easterEffectEnabled', enabled);
-  } catch (e) {
-    // Speicherfehler ignorieren
-  }
+  await AppPreferences.instance.setEasterEffectEnabled(enabled);
 }
 
 /// Prüft ob Oster-Effekt angezeigt werden soll
@@ -100,26 +90,15 @@ bool shouldShowEasterEffect() {
 /// Schneefall-Einstellung als ValueNotifier für reaktives UI
 final snowfallEnabledNotifier = ValueNotifier<bool>(true);
 
-/// Lade Schneefall-Einstellung aus SharedPreferences
-Future<void> loadSnowfallSetting() async {
-  try {
-    final prefs = await SharedPreferences.getInstance();
-    snowfallEnabledNotifier.value = prefs.getBool('snowfallEnabled') ?? true;
-  } catch (e) {
-    // Fallback zu Standard-Wert bei Fehler
-    snowfallEnabledNotifier.value = true;
-  }
+/// Lade Schneefall-Einstellung aus AppPreferences
+void loadSnowfallSetting() {
+  snowfallEnabledNotifier.value = AppPreferences.instance.snowfallEnabled;
 }
 
 /// Speichere Schneefall-Einstellung
 Future<void> setSnowfallEnabled(bool enabled) async {
   snowfallEnabledNotifier.value = enabled;
-  try {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool('snowfallEnabled', enabled);
-  } catch (e) {
-    // Speicherfehler ignorieren, Wert ist bereits im Notifier gesetzt
-  }
+  await AppPreferences.instance.setSnowfallEnabled(enabled);
 }
 
 /// Prüft ob Schneefall angezeigt werden soll

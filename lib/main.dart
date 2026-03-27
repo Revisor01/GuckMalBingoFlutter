@@ -15,6 +15,7 @@ import 'views/onboarding_view.dart';
 import 'l10n/app_localizations.dart';
 import 'views/snowfall_widget.dart';
 import 'views/easter_effect_widget.dart';
+import 'utilities/app_preferences.dart';
 import 'utilities/debug_utils.dart';
 import 'utilities/theme_provider.dart';
 
@@ -28,13 +29,16 @@ void main() async {
     systemNavigationBarColor: Colors.transparent,
   ));
 
-  // Lade saisonale Effekt-Einstellungen
-  await loadSnowfallSetting();
-  await loadEasterEffectSetting();
+  // Zentrale Preferences einmalig laden
+  await AppPreferences.init();
 
-  // Theme einmalig vor App-Start laden
+  // Lade saisonale Effekt-Einstellungen aus Preferences
+  loadSnowfallSetting();
+  loadEasterEffectSetting();
+
+  // Theme einmalig vor App-Start laden (synchron, da AppPreferences bereits initialisiert)
   final themeNotifier = ThemeNotifier();
-  await themeNotifier.loadTheme();
+  themeNotifier.loadTheme();
 
   runApp(
     ChangeNotifierProvider.value(
@@ -176,11 +180,9 @@ class _NavigationCoordinatorState extends State<NavigationCoordinator> {
     _checkOnboarding();
   }
 
-  Future<void> _checkOnboarding() async {
-    final seen = await hasSeenOnboarding();
-    if (!mounted) return;
+  void _checkOnboarding() {
     setState(() {
-      _showOnboarding = !seen;
+      _showOnboarding = !hasSeenOnboarding();
       _onboardingChecked = true;
     });
   }
