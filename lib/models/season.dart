@@ -3,10 +3,7 @@ import 'package:flutter/material.dart';
 /// Season Enum - Portiert von Swift
 enum Season {
   fruehling_sommer('fruehling_sommer'),
-  herbst_winter('herbst_winter'),
-  // Alte Werte für Kompatibilität
-  sommer('sommer'),
-  winter('winter');
+  herbst_winter('herbst_winter');
 
   final String value;
   const Season(this.value);
@@ -15,10 +12,8 @@ enum Season {
   IconData get icon {
     switch (this) {
       case Season.fruehling_sommer:
-      case Season.sommer:
         return Icons.wb_sunny;
       case Season.herbst_winter:
-      case Season.winter:
         return Icons.ac_unit;
     }
   }
@@ -30,10 +25,6 @@ enum Season {
         return 'seasonFruehlingSommer';
       case Season.herbst_winter:
         return 'seasonHerbstWinter';
-      case Season.sommer:
-        return 'seasonSommer';
-      case Season.winter:
-        return 'seasonWinter';
     }
   }
 
@@ -43,17 +34,13 @@ enum Season {
         Season.herbst_winter,
       ];
 
-  /// Emoji (deprecated, aber für Kompatibilität)
+  /// Emoji
   String get emoji {
     switch (this) {
       case Season.fruehling_sommer:
         return '🌸☀️';
       case Season.herbst_winter:
         return '🍂❄️';
-      case Season.sommer:
-        return '☀️';
-      case Season.winter:
-        return '❄️';
     }
   }
 
