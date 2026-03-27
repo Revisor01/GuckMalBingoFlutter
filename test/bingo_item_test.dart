@@ -89,4 +89,64 @@ void main() {
       expect(item.isAvailableNow(), isTrue);
     });
   });
+
+  group('BingoItem.isAvailableNow - easterOnly path', () {
+    tearDown(() {
+      debugOverrideDate = null;
+    });
+
+    test('easterOnly item available during Easter season 2026', () {
+      // Ostersonntag 2026: 5. April — 3. April ist innerhalb Saison
+      debugOverrideDate = DateTime(2026, 4, 3);
+      final item = BingoItem(
+        emoji: '🐣',
+        name: 'testEaster',
+        areas: [Area.autobahn],
+        easterOnly: true,
+      );
+      expect(item.isAvailableNow(), isTrue);
+    });
+
+    test('easterOnly item not available outside Easter season', () {
+      debugOverrideDate = DateTime(2026, 7, 15);
+      final item = BingoItem(
+        emoji: '🐣',
+        name: 'testEaster',
+        areas: [Area.autobahn],
+        easterOnly: true,
+      );
+      expect(item.isAvailableNow(), isFalse);
+    });
+
+    test('easterOnly ignores availableFromMonth/availableToMonth', () {
+      // Setze ein Datum-Fenster das jetzt gelten wuerde, aber easterOnly hat Vorrang
+      debugOverrideDate = DateTime(2026, 7, 15); // Ausserhalb Ostern
+      final item = BingoItem(
+        emoji: '🐣',
+        name: 'testEasterWithRange',
+        areas: [Area.autobahn],
+        easterOnly: true,
+        availableFromMonth: 6,
+        availableFromDay: 1,
+        availableToMonth: 8,
+        availableToDay: 31,
+      );
+      // Obwohl Juli im availableFrom-To Fenster liegt, gibt easterOnly=true false zurueck
+      expect(item.isAvailableNow(), isFalse);
+    });
+
+    test('non-easterOnly item without date restriction is always available', () {
+      debugOverrideDate = DateTime(2026, 1, 15);
+      final item = BingoItem(
+        emoji: '🚗',
+        name: 'testRegular',
+        areas: [Area.autobahn],
+        easterOnly: false,
+      );
+      expect(item.isAvailableNow(), isTrue);
+
+      debugOverrideDate = DateTime(2026, 8, 20);
+      expect(item.isAvailableNow(), isTrue);
+    });
+  });
 }
