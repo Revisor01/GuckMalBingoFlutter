@@ -8,6 +8,7 @@ import '../utilities/background_pattern_view.dart';
 import '../utilities/theme_provider.dart';
 import '../l10n/app_localizations.dart';
 import '../utilities/app_localizations_extension.dart';
+import 'widgets/app_button.dart';
 
 /// Basis fuer alle Auswahl-Views
 class _BaseSelectionView extends StatelessWidget {
@@ -187,12 +188,13 @@ class ThemeCategorySelectionView extends StatelessWidget {
         children: CategoryTheme.values
             .map((theme) => Padding(
                   padding: const EdgeInsets.only(bottom: 16),
-                  child: _SelectionButton(
-                    title: theme.displayNameKey,
+                  child: AppButton(
+                    title: AppLocalizations.of(context)!.getByKey(theme.displayNameKey) ?? theme.displayNameKey,
                     icon: theme.icon,
                     iconColor: theme == CategoryTheme.reise
                         ? Colors.blue
                         : Colors.red.shade700,
+                    trailing: AppButton.trailingChevron(),
                     onTap: () => onThemeSelected(theme),
                   ),
                 ))
@@ -234,12 +236,13 @@ class SeasonSelectionView extends StatelessWidget {
         children: Season.mainCases
             .map((season) => Padding(
                   padding: const EdgeInsets.only(bottom: 16),
-                  child: _SelectionButton(
-                    title: season.displayNameKey,
+                  child: AppButton(
+                    title: AppLocalizations.of(context)!.getByKey(season.displayNameKey) ?? season.displayNameKey,
                     icon: season.icon,
                     iconColor: season == Season.fruehling_sommer
                         ? Colors.orange
                         : Colors.blue,
+                    trailing: AppButton.trailingChevron(),
                     onTap: () => onSeasonSelected(season),
                   ),
                 ))
@@ -310,10 +313,11 @@ class AreaSelectionView extends StatelessWidget {
         children: availableAreas
             .map((area) => Padding(
                   padding: const EdgeInsets.only(bottom: 16),
-                  child: _SelectionButton(
-                    title: area.displayNameKey,
+                  child: AppButton(
+                    title: AppLocalizations.of(context)!.getByKey(area.displayNameKey) ?? area.displayNameKey,
                     icon: area.icon,
                     iconColor: _getAreaColor(area),
+                    trailing: AppButton.trailingChevron(),
                     onTap: () => onAreaSelected(area),
                   ),
                 ))
@@ -343,34 +347,34 @@ class SizeSelectionView extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.only(bottom: 16),
-            child: _SizeButton(
-              size: 3,
+            child: AppButton(
               icon: Icons.bolt,
               iconColor: Colors.yellow,
-              titleKey: 'sizeQuick',
-              subtitle: '3 × 3',
+              title: AppLocalizations.of(context)!.getByKey('sizeQuick') ?? 'sizeQuick',
+              subtitle: '3 \u00d7 3',
+              trailing: AppButton.trailingChevron(),
               onTap: () => onSizeSelected(3),
             ),
           ),
           Padding(
             padding: const EdgeInsets.only(bottom: 16),
-            child: _SizeButton(
-              size: 4,
+            child: AppButton(
               icon: Icons.directions_car,
               iconColor: Colors.blue,
-              titleKey: 'sizeMedium',
-              subtitle: '4 × 4',
+              title: AppLocalizations.of(context)!.getByKey('sizeMedium') ?? 'sizeMedium',
+              subtitle: '4 \u00d7 4',
+              trailing: AppButton.trailingChevron(),
               onTap: () => onSizeSelected(4),
             ),
           ),
           Padding(
             padding: const EdgeInsets.only(bottom: 16),
-            child: _SizeButton(
-              size: 5,
+            child: AppButton(
               icon: Icons.alt_route,
               iconColor: Colors.grey,
-              titleKey: 'sizeLong',
-              subtitle: '5 × 5',
+              title: AppLocalizations.of(context)!.getByKey('sizeLong') ?? 'sizeLong',
+              subtitle: '5 \u00d7 5',
+              trailing: AppButton.trailingChevron(),
               onTap: () => onSizeSelected(5),
             ),
           ),
@@ -522,151 +526,3 @@ class _DescriptionItem extends StatelessWidget {
   }
 }
 
-/// Reusable Selection Button
-class _SelectionButton extends StatelessWidget {
-  final String title;
-  final IconData icon;
-  final Color iconColor;
-  final VoidCallback onTap;
-
-  const _SelectionButton({
-    required this.title,
-    required this.icon,
-    required this.iconColor,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final brightness = Theme.of(context).brightness;
-
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(16),
-        child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 20),
-          decoration: BoxDecoration(
-            color: brightness == Brightness.dark
-                ? Colors.white.withValues(alpha:0.15)
-                : Colors.white.withValues(alpha:0.25),
-            borderRadius: BorderRadius.circular(16),
-          ),
-          child: Row(
-            children: [
-              const SizedBox(width: 24),
-              Icon(
-                icon,
-                size: 36,
-                color: iconColor,
-              ),
-              const SizedBox(width: 16),
-              Expanded(
-                child: Builder(
-                  builder: (context) => Text(
-                    AppLocalizations.of(context)!.getByKey(title) ?? title,
-                    style: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              ),
-              Icon(
-                Icons.chevron_right,
-                size: 24,
-                color: Colors.white.withValues(alpha:0.5),
-              ),
-              const SizedBox(width: 24),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-/// Size Button with title and subtitle
-class _SizeButton extends StatelessWidget {
-  final int size;
-  final IconData icon;
-  final Color iconColor;
-  final String titleKey;
-  final String subtitle;
-  final VoidCallback onTap;
-
-  const _SizeButton({
-    required this.size,
-    required this.icon,
-    required this.iconColor,
-    required this.titleKey,
-    required this.subtitle,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final brightness = Theme.of(context).brightness;
-
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(16),
-        child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 20),
-          decoration: BoxDecoration(
-            color: brightness == Brightness.dark
-                ? Colors.white.withValues(alpha:0.15)
-                : Colors.white.withValues(alpha:0.25),
-            borderRadius: BorderRadius.circular(16),
-          ),
-          child: Row(
-            children: [
-              const SizedBox(width: 24),
-              Icon(
-                icon,
-                size: 36,
-                color: iconColor,
-              ),
-              const SizedBox(width: 16),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Builder(
-                      builder: (context) => Text(
-                        AppLocalizations.of(context)!.getByKey(titleKey) ?? titleKey,
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      subtitle,
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.white.withValues(alpha:0.7),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Icon(
-                Icons.chevron_right,
-                size: 24,
-                color: Colors.white.withValues(alpha:0.5),
-              ),
-              const SizedBox(width: 24),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}

@@ -6,7 +6,7 @@ import '../data/bingo_items_data.dart';
 import '../utilities/audio_player.dart';
 import '../utilities/app_preferences.dart';
 
-/// BingoType für Bingo-Erkennung
+/// BingoType fuer Bingo-Erkennung
 class BingoType {
   final String _value;
   const BingoType._(this._value);
@@ -34,7 +34,7 @@ class BingoTypeWithIndex {
 
   BingoTypeWithIndex(this.type, this.index);
 
-  /// Factory methods für einfache Erstellung
+  /// Factory methods fuer einfache Erstellung
   static BingoTypeWithIndex row(int index) =>
       BingoTypeWithIndex(BingoType.rowType, index);
   static BingoTypeWithIndex column(int index) =>
@@ -60,27 +60,41 @@ class BingoTypeWithIndex {
 /// Verwaltet den kompletten Spielzustand und die Logik
 class BingoGameViewModel extends ChangeNotifier {
   GameConfig config;
-  List<BingoItem> board = [];
-  Set<int> clickedIndices = {};
-  int bingoCount = 0;
-  bool showText = false;
-  bool soundEnabled = true;
-  bool showWinMessage = false;
-  String winMessage = '';
-  bool isFinalVictory = false;
-  bool showVictoryDialog = false;
-  Set<int> highlightedIndices = {};
-  int? blinkingIndex;
-  Set<int> blinkingAllIndices = {};
+  List<BingoItem> _board = [];
+  Set<int> _clickedIndices = {};
+  int _bingoCount = 0;
+  bool _showText = false;
+  bool _soundEnabled = true;
+  bool _showWinMessage = false;
+  String _winMessage = '';
+  bool _isFinalVictory = false;
+  bool _showVictoryDialog = false;
+  Set<int> _highlightedIndices = {};
+  int? _blinkingIndex;
+  Set<int> _blinkingAllIndices = {};
 
   late GameAudioPlayer _audioPlayer;
   Set<BingoTypeWithIndex> _completedBingos = {};
   bool _isDisposed = false;
   int _blinkGeneration = 0;
 
+  // Public getters
+  List<BingoItem> get board => _board;
+  Set<int> get clickedIndices => _clickedIndices;
+  int get bingoCount => _bingoCount;
+  bool get showText => _showText;
+  bool get soundEnabled => _soundEnabled;
+  bool get showWinMessage => _showWinMessage;
+  String get winMessage => _winMessage;
+  bool get isFinalVictory => _isFinalVictory;
+  bool get showVictoryDialog => _showVictoryDialog;
+  Set<int> get highlightedIndices => _highlightedIndices;
+  int? get blinkingIndex => _blinkingIndex;
+  Set<int> get blinkingAllIndices => _blinkingAllIndices;
+
   BingoGameViewModel({required this.config}) {
     _audioPlayer = GameAudioPlayer();
-    soundEnabled = _audioPlayer.soundEnabled;
+    _soundEnabled = _audioPlayer.soundEnabled;
 
     final totalCells = config.gridSize * config.gridSize;
     final sourceItems = BingoItemsData.itemsFor(
@@ -88,96 +102,140 @@ class BingoGameViewModel extends ChangeNotifier {
       season: config.season,
     );
     final shuffled = List.of(sourceItems)..shuffle();
-    board = shuffled.take(totalCells).toList();
+    _board = shuffled.take(totalCells).toList();
   }
 
   /// Erstellt ViewModel aus gespeichertem Spielstand
   BingoGameViewModel.fromSavedState(Map<String, dynamic> state)
       : config = GameConfig.fromJson(state['config'] as Map<String, dynamic>) {
     _audioPlayer = GameAudioPlayer();
-    soundEnabled = _audioPlayer.soundEnabled;
+    _soundEnabled = _audioPlayer.soundEnabled;
 
-    board = (state['board'] as List<dynamic>)
+    _board = (state['board'] as List<dynamic>)
         .map((item) => BingoItem.fromJson(item as Map<String, dynamic>))
         .toList();
-    clickedIndices = (state['clickedIndices'] as List<dynamic>)
+    _clickedIndices = (state['clickedIndices'] as List<dynamic>)
         .map((i) => i as int)
         .toSet();
-    bingoCount = state['bingoCount'] as int? ?? 0;
+    _bingoCount = state['bingoCount'] as int? ?? 0;
 
     // Bingo-Zustand rekonstruieren
     _reconstructBingos();
   }
 
   void _reconstructBingos() {
-    for (int i = 0; i < config.gridSize; i++) {
-      bool rowComplete = true;
-      for (int j = 0; j < config.gridSize; j++) {
-        if (!clickedIndices.contains(i * config.gridSize + j)) {
-          rowComplete = false;
-          break;
-        }
-      }
-      if (rowComplete) _completedBingos.add(BingoTypeWithIndex.row(i));
-    }
-    for (int i = 0; i < config.gridSize; i++) {
-      bool colComplete = true;
-      for (int j = 0; j < config.gridSize; j++) {
-        if (!clickedIndices.contains(j * config.gridSize + i)) {
-          colComplete = false;
-          break;
-        }
-      }
-      if (colComplete) _completedBingos.add(BingoTypeWithIndex.column(i));
-    }
-    bool d1 = true, d2 = true;
-    for (int i = 0; i < config.gridSize; i++) {
-      if (!clickedIndices.contains(i * config.gridSize + i)) d1 = false;
-      if (!clickedIndices.contains(i * config.gridSize + (config.gridSize - 1 - i))) d2 = false;
-    }
-    if (d1) _completedBingos.add(BingoTypeWithIndex.diagonal1());
-    if (d2) _completedBingos.add(BingoTypeWithIndex.diagonal2());
+    final result = _findAllBingos();
+    _completedBingos = result.bingos;
 
     // Highlight setzen
-    for (var bingo in _completedBingos) {
-      final indices = _getIndicesForBingo(bingo);
-      highlightedIndices.addAll(indices);
-    }
+    _highlightedIndices = result.allIndices;
   }
 
-  List<int> _getIndicesForBingo(BingoTypeWithIndex bingo) {
-    List<int> indices = [];
-    if (bingo.type == BingoType.rowType) {
+  /// Shared bingo detection: finds all completed rows, columns, diagonals.
+  /// Returns the set of completed bingos and a map of bingo->indices.
+  _BingoScanResult _findAllBingos() {
+    Set<BingoTypeWithIndex> bingos = {};
+    Set<int> allIndices = {};
+    Map<BingoTypeWithIndex, List<int>> bingoToIndices = {};
+
+    // Zeilen pruefen
+    for (int i = 0; i < config.gridSize; i++) {
+      bool complete = true;
+      List<int> indices = [];
       for (int j = 0; j < config.gridSize; j++) {
-        indices.add(bingo.index * config.gridSize + j);
+        final idx = i * config.gridSize + j;
+        indices.add(idx);
+        if (!_clickedIndices.contains(idx)) {
+          complete = false;
+          break;
+        }
       }
-    } else if (bingo.type == BingoType.columnType) {
-      for (int j = 0; j < config.gridSize; j++) {
-        indices.add(j * config.gridSize + bingo.index);
-      }
-    } else if (bingo.type == BingoType.diagonal1Type) {
-      for (int i = 0; i < config.gridSize; i++) {
-        indices.add(i * config.gridSize + i);
-      }
-    } else if (bingo.type == BingoType.diagonal2Type) {
-      for (int i = 0; i < config.gridSize; i++) {
-        indices.add(i * config.gridSize + (config.gridSize - 1 - i));
+      if (complete) {
+        final bt = BingoTypeWithIndex.row(i);
+        bingos.add(bt);
+        bingoToIndices[bt] = indices;
+        allIndices.addAll(indices);
       }
     }
-    return indices;
+
+    // Spalten pruefen
+    for (int i = 0; i < config.gridSize; i++) {
+      bool complete = true;
+      List<int> indices = [];
+      for (int j = 0; j < config.gridSize; j++) {
+        final idx = j * config.gridSize + i;
+        indices.add(idx);
+        if (!_clickedIndices.contains(idx)) {
+          complete = false;
+          break;
+        }
+      }
+      if (complete) {
+        final bt = BingoTypeWithIndex.column(i);
+        bingos.add(bt);
+        bingoToIndices[bt] = indices;
+        allIndices.addAll(indices);
+      }
+    }
+
+    // Diagonale 1 (\)
+    {
+      bool complete = true;
+      List<int> indices = [];
+      for (int i = 0; i < config.gridSize; i++) {
+        final idx = i * config.gridSize + i;
+        indices.add(idx);
+        if (!_clickedIndices.contains(idx)) {
+          complete = false;
+          break;
+        }
+      }
+      if (complete) {
+        final bt = BingoTypeWithIndex.diagonal1();
+        bingos.add(bt);
+        bingoToIndices[bt] = indices;
+        allIndices.addAll(indices);
+      }
+    }
+
+    // Diagonale 2 (/)
+    {
+      bool complete = true;
+      List<int> indices = [];
+      for (int i = 0; i < config.gridSize; i++) {
+        final idx = i * config.gridSize + (config.gridSize - 1 - i);
+        indices.add(idx);
+        if (!_clickedIndices.contains(idx)) {
+          complete = false;
+          break;
+        }
+      }
+      if (complete) {
+        final bt = BingoTypeWithIndex.diagonal2();
+        bingos.add(bt);
+        bingoToIndices[bt] = indices;
+        allIndices.addAll(indices);
+      }
+    }
+
+    return _BingoScanResult(
+      bingos: bingos,
+      allIndices: allIndices,
+      bingoToIndices: bingoToIndices,
+    );
   }
 
   /// Speichert aktuellen Spielstand
   void saveGameState() {
     AppPreferences.instance.saveGameState({
-      'board': board.map((item) => item.toJson()).toList(),
-      'clickedIndices': clickedIndices.toList(),
-      'bingoCount': bingoCount,
+      'board': _board.map((item) => item.toJson()).toList(),
+      'clickedIndices': _clickedIndices.toList(),
+      'bingoCount': _bingoCount,
       'config': config.toJson(),
     });
   }
 
-  /// Löscht gespeicherten Spielstand
+  /// Loescht gespeicherten Spielstand
   void clearSavedGameState() {
     AppPreferences.instance.clearGameState();
   }
@@ -189,15 +247,15 @@ class BingoGameViewModel extends ChangeNotifier {
       season: config.season,
     );
     final shuffled = List.of(sourceItems)..shuffle();
-    board = shuffled.take(totalCells).toList();
+    _board = shuffled.take(totalCells).toList();
     notifyListeners();
   }
 
   void toggleCell(int index) {
-    if (clickedIndices.contains(index)) {
-      clickedIndices.remove(index);
+    if (_clickedIndices.contains(index)) {
+      _clickedIndices.remove(index);
     } else {
-      clickedIndices.add(index);
+      _clickedIndices.add(index);
     }
     _audioPlayer.playClickSound();
     notifyListeners();
@@ -205,117 +263,47 @@ class BingoGameViewModel extends ChangeNotifier {
   }
 
   void toggleText() {
-    showText = !showText;
+    _showText = !_showText;
     notifyListeners();
   }
 
   void toggleSound() {
-    soundEnabled = !soundEnabled;
-    _audioPlayer.soundEnabled = soundEnabled;
+    _soundEnabled = !_soundEnabled;
+    _audioPlayer.soundEnabled = _soundEnabled;
     // Stoppe laufenden Sound sofort wenn gemutet
-    if (!soundEnabled) {
+    if (!_soundEnabled) {
       _audioPlayer.stop();
     }
     notifyListeners();
   }
 
+  /// Dismisses the victory dialog (called from View)
+  void dismissVictoryDialog() {
+    _showVictoryDialog = false;
+    notifyListeners();
+  }
+
   void resetGame() {
     _blinkGeneration++; // Cancel laufende Blink-Animation
-    clickedIndices.clear();
-    bingoCount = 0;
+    _clickedIndices.clear();
+    _bingoCount = 0;
     _completedBingos.clear();
-    showWinMessage = false;
-    showVictoryDialog = false;
-    isFinalVictory = false;
-    blinkingIndex = null;
-    blinkingAllIndices.clear();
+    _showWinMessage = false;
+    _showVictoryDialog = false;
+    _isFinalVictory = false;
+    _blinkingIndex = null;
+    _blinkingAllIndices.clear();
     generateBoard();
     notifyListeners();
   }
 
   void _checkWin() {
-    Set<BingoTypeWithIndex> currentBingos = {};
-    Set<int> allBingoIndices = {};
-    Map<BingoTypeWithIndex, List<int>> bingoTypeToIndices = {};
-
-    // Zeilen prüfen
-    for (int i = 0; i < config.gridSize; i++) {
-      bool rowComplete = true;
-      List<int> rowIndices = [];
-      for (int j = 0; j < config.gridSize; j++) {
-        final index = i * config.gridSize + j;
-        rowIndices.add(index);
-        if (!clickedIndices.contains(index)) {
-          rowComplete = false;
-          break;
-        }
-      }
-      if (rowComplete) {
-        final bingoType = BingoTypeWithIndex.row(i);
-        currentBingos.add(bingoType);
-        bingoTypeToIndices[bingoType] = rowIndices;
-        allBingoIndices.addAll(rowIndices);
-      }
-    }
-
-    // Spalten prüfen
-    for (int i = 0; i < config.gridSize; i++) {
-      bool colComplete = true;
-      List<int> colIndices = [];
-      for (int j = 0; j < config.gridSize; j++) {
-        final index = j * config.gridSize + i;
-        colIndices.add(index);
-        if (!clickedIndices.contains(index)) {
-          colComplete = false;
-          break;
-        }
-      }
-      if (colComplete) {
-        final bingoType = BingoTypeWithIndex.column(i);
-        currentBingos.add(bingoType);
-        bingoTypeToIndices[bingoType] = colIndices;
-        allBingoIndices.addAll(colIndices);
-      }
-    }
-
-    // Diagonale 1 prüfen (\)
-    bool diag1Complete = true;
-    List<int> diag1Indices = [];
-    for (int i = 0; i < config.gridSize; i++) {
-      final index = i * config.gridSize + i;
-      diag1Indices.add(index);
-      if (!clickedIndices.contains(index)) {
-        diag1Complete = false;
-        break;
-      }
-    }
-    if (diag1Complete) {
-      final bingoType = BingoTypeWithIndex.diagonal1();
-      currentBingos.add(bingoType);
-      bingoTypeToIndices[bingoType] = diag1Indices;
-      allBingoIndices.addAll(diag1Indices);
-    }
-
-    // Diagonale 2 prüfen (/)
-    bool diag2Complete = true;
-    List<int> diag2Indices = [];
-    for (int i = 0; i < config.gridSize; i++) {
-      final index = i * config.gridSize + (config.gridSize - 1 - i);
-      diag2Indices.add(index);
-      if (!clickedIndices.contains(index)) {
-        diag2Complete = false;
-        break;
-      }
-    }
-    if (diag2Complete) {
-      final bingoType = BingoTypeWithIndex.diagonal2();
-      currentBingos.add(bingoType);
-      bingoTypeToIndices[bingoType] = diag2Indices;
-      allBingoIndices.addAll(diag2Indices);
-    }
+    final result = _findAllBingos();
+    final currentBingos = result.bingos;
+    final bingoTypeToIndices = result.bingoToIndices;
 
     // Update highlighted indices
-    highlightedIndices = allBingoIndices;
+    _highlightedIndices = result.allIndices;
 
     // Finde neue Bingos
     final newBingos = currentBingos.difference(_completedBingos);
@@ -331,38 +319,38 @@ class BingoGameViewModel extends ChangeNotifier {
 
       // Update
       _completedBingos = currentBingos;
-      bingoCount = currentBingos.length;
+      _bingoCount = currentBingos.length;
 
       // Starte Animation mit allen Indices der neuen Bingos
       if (newBingoIndices.isNotEmpty) {
         _startBlinkAnimation(newBingoIndices);
       }
 
-      if (config.gameMode == GameMode.jagd && bingoCount >= config.targetBingos) {
-        _showVictory(count: bingoCount, isFinal: true);
+      if (config.gameMode == GameMode.jagd && _bingoCount >= config.targetBingos) {
+        _showVictory(count: _bingoCount, isFinal: true);
       } else {
-        _showVictory(count: bingoCount, isFinal: false);
+        _showVictory(count: _bingoCount, isFinal: false);
       }
     } else if (currentBingos.length < _completedBingos.length) {
-      // Bingo wurde zurückgenommen
+      // Bingo wurde zurueckgenommen
       _completedBingos = currentBingos;
-      bingoCount = currentBingos.length;
-      blinkingIndex = null;
-      blinkingAllIndices.clear();
+      _bingoCount = currentBingos.length;
+      _blinkingIndex = null;
+      _blinkingAllIndices.clear();
     }
 
     // Bei Suche-Modus: Prüfen ob gesamtes Feld voll ist
-    if (config.gameMode == GameMode.suche && !showVictoryDialog) {
+    if (config.gameMode == GameMode.suche && !_showVictoryDialog) {
       final totalCells = config.gridSize * config.gridSize;
-      if (clickedIndices.length == totalCells) {
+      if (_clickedIndices.length == totalCells) {
         _audioPlayer.playVictorySound();
-        isFinalVictory = true;
+        _isFinalVictory = true;
         clearSavedGameState();
         notifyListeners();
 
         Future.delayed(const Duration(milliseconds: 500), () {
           if (_isDisposed) return;
-          showVictoryDialog = true;
+          _showVictoryDialog = true;
           notifyListeners();
         });
       }
@@ -377,29 +365,29 @@ class BingoGameViewModel extends ChangeNotifier {
     final myGeneration = _blinkGeneration;
 
     // Sofort vorherige Animation-State zuruecksetzen
-    blinkingIndex = null;
-    blinkingAllIndices = {};
+    _blinkingIndex = null;
+    _blinkingAllIndices = {};
 
     Future(() async {
       // Sequenziell durch alle Indices blinken (1, 2, 3, 4, 5)
       for (final index in indices) {
         if (_isDisposed || _blinkGeneration != myGeneration) return;
-        blinkingIndex = index;
+        _blinkingIndex = index;
         notifyListeners();
         await Future.delayed(const Duration(milliseconds: 250)); // 0.25s pro Symbol
         if (_isDisposed || _blinkGeneration != myGeneration) return;
-        blinkingIndex = null;
+        _blinkingIndex = null;
         notifyListeners();
         await Future.delayed(const Duration(milliseconds: 20)); // 0.02s Pause
       }
 
       if (_isDisposed || _blinkGeneration != myGeneration) return;
       // Dann alle neuen Bingo-Indices zusammen blinken
-      blinkingAllIndices = Set.from(indices);
+      _blinkingAllIndices = Set.from(indices);
       notifyListeners();
       await Future.delayed(const Duration(milliseconds: 400)); // 0.4s alle zusammen
       if (_isDisposed || _blinkGeneration != myGeneration) return;
-      blinkingAllIndices.clear();
+      _blinkingAllIndices.clear();
       notifyListeners();
     });
   }
@@ -407,34 +395,34 @@ class BingoGameViewModel extends ChangeNotifier {
   void _showVictory({required int count, required bool isFinal}) {
     if (isFinal) {
       _audioPlayer.playVictorySound();
-      isFinalVictory = true;
+      _isFinalVictory = true;
       notifyListeners();
 
-      // Victory Dialog nach kurzer Verzögerung
+      // Victory Dialog nach kurzer Verzoegerung
       Future.delayed(const Duration(milliseconds: 500), () {
         if (_isDisposed) return;
-        showVictoryDialog = true;
+        _showVictoryDialog = true;
         notifyListeners();
       });
     } else {
       _audioPlayer.playBingoSound(count: count);
-      isFinalVictory = false;
+      _isFinalVictory = false;
       notifyListeners();
 
-      // Zeige visuelle Notification für Bingo - immer nur "BINGO!"
-      winMessage = 'BINGO!';
-      showWinMessage = true;
+      // Zeige visuelle Notification fuer Bingo - immer nur "BINGO!"
+      _winMessage = 'BINGO!';
+      _showWinMessage = true;
       notifyListeners();
 
       Future.delayed(const Duration(seconds: 2), () {
         if (_isDisposed) return;
-        showWinMessage = false;
+        _showWinMessage = false;
         notifyListeners();
       });
     }
   }
 
-  /// Stoppt alle Sounds sofort (für Zurück-Navigation)
+  /// Stoppt alle Sounds sofort (fuer Zurueck-Navigation)
   void stopAllSounds() {
     _audioPlayer.stop();
   }
@@ -445,4 +433,17 @@ class BingoGameViewModel extends ChangeNotifier {
     _audioPlayer.reset(); // Reset statt dispose - Singleton bleibt am Leben
     super.dispose();
   }
+}
+
+/// Result of scanning for all completed bingos
+class _BingoScanResult {
+  final Set<BingoTypeWithIndex> bingos;
+  final Set<int> allIndices;
+  final Map<BingoTypeWithIndex, List<int>> bingoToIndices;
+
+  const _BingoScanResult({
+    required this.bingos,
+    required this.allIndices,
+    required this.bingoToIndices,
+  });
 }

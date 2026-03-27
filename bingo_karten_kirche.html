@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Kirchen-Bingo - 10 Karten zum Ausdrucken</title>
+<style>
+  @page {
+    size: A4 portrait;
+    margin: 10mm;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    background: #fff;
+    color: #333;
+  }
+
+  .page {
+    width: 190mm;
+    height: 277mm;
+    margin: 0 auto;
+    page-break-after: always;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5mm;
+  }
+
+  .page:last-child {
+    page-break-after: auto;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 6mm;
+  }
+
+  .header h1 {
+    font-size: 28pt;
+    color: #5B2C6F;
+    margin-bottom: 2mm;
+    letter-spacing: 2px;
+  }
+
+  .header .subtitle {
+    font-size: 11pt;
+    color: #888;
+  }
+
+  .card-number {
+    font-size: 10pt;
+    color: #aaa;
+    margin-bottom: 3mm;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 2mm;
+    width: 180mm;
+    height: 230mm;
+    border: 2px solid #5B2C6F;
+    border-radius: 4mm;
+    padding: 2mm;
+    background: #faf8fc;
+  }
+
+  .cell {
+    border: 1.5px solid #D5B8E8;
+    border-radius: 3mm;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2mm;
+    background: #fff;
+    transition: background 0.2s;
+  }
+
+  .cell img {
+    width: 80%;
+    height: 65%;
+    object-fit: contain;
+    margin-bottom: 2mm;
+  }
+
+  .cell .label {
+    font-size: 11pt;
+    font-weight: 600;
+    text-align: center;
+    color: #5B2C6F;
+    line-height: 1.2;
+  }
+
+  .footer {
+    margin-top: 4mm;
+    text-align: center;
+    font-size: 8pt;
+    color: #bbb;
+  }
+
+  @media print {
+    body {
+      background: #fff;
+    }
+    .page {
+      margin: 0;
+      padding: 5mm;
+    }
+  }
+</style>
+</head>
+<body>
+
+<script>
+// 32 ganzjährige Kirchen-Items (ohne saisonale)
+const allItems = [
+  { name: "Altar", image: "altar" },
+  { name: "Besucherinnen", image: "besucherinnen" },
+  { name: "Bibel", image: "bibel" },
+  { name: "Blumen", image: "blumen" },
+  { name: "Buntglasfenster", image: "buntglasfenster" },
+  { name: "Empore", image: "empore" },
+  { name: "Engel", image: "engel" },
+  { name: "Fisch", image: "fisch" },
+  { name: "Gesangbuch", image: "gesangbuch" },
+  { name: "Glocke", image: "glocke" },
+  { name: "Kanzel", image: "kanzel" },
+  { name: "Kelch", image: "kelch" },
+  { name: "Kerze", image: "kerze" },
+  { name: "Kirchenbank", image: "kirchenbank" },
+  { name: "Kirchenturm", image: "kirchenturm" },
+  { name: "Klingelbeutel", image: "klingelbeutel" },
+  { name: "Kreuz", image: "kreuz" },
+  { name: "Kronleuchter", image: "kronleuchter" },
+  { name: "Lamm", image: "lamm" },
+  { name: "Lamm mit Fahne", image: "lamm_mit_fahne" },
+  { name: "Lesepult", image: "lesepult" },
+  { name: "Mikrofon", image: "mikrofon" },
+  { name: "Opferstock", image: "opferstock" },
+  { name: "Orgel", image: "orgel" },
+  { name: "Pastor", image: "pastor" },
+  { name: "Pelikan", image: "pelikan" },
+  { name: "Schiff", image: "schiff" },
+  { name: "Schnitzereien", image: "schnitzereien" },
+  { name: "Taube", image: "taube" },
+  { name: "Taufbecken", image: "taufbecken" },
+  { name: "Kirchturmuhr", image: "kirchenuhr" }
+];
+
+// Seeded random für reproduzierbare Ergebnisse
+function seededRandom(seed) {
+  let s = seed;
+  return function() {
+    s = (s * 1103515245 + 12345) & 0x7fffffff;
+    return s / 0x7fffffff;
+  };
+}
+
+// Fisher-Yates Shuffle mit seed
+function shuffle(arr, rng) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(rng() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+// 10 verschiedene Karten generieren
+const cards = [];
+for (let i = 0; i < 10; i++) {
+  const rng = seededRandom(42 + i * 7);
+  const shuffled = shuffle(allItems, rng);
+  cards.push(shuffled.slice(0, 16));
+}
+
+// HTML generieren
+const basePath = "assets/images/";
+
+cards.forEach((card, idx) => {
+  const page = document.createElement('div');
+  page.className = 'page';
+
+  page.innerHTML = `
+    <div class="header">
+      <h1>Kirchen-Bingo</h1>
+      <div class="subtitle">Findest du alle 4 in einer Reihe?</div>
+    </div>
+    <div class="card-number">Karte ${idx + 1} von 10</div>
+    <div class="grid">
+      ${card.map(item => `
+        <div class="cell">
+          <img src="${basePath}${item.image}.webp" alt="${item.name}" loading="lazy">
+          <div class="label">${item.name}</div>
+        </div>
+      `).join('')}
+    </div>
+    <div class="footer">Guck mal! Kirchen-Bingo</div>
+  `;
+
+  document.body.appendChild(page);
+});
+</script>
+
+</body>
+</html>
