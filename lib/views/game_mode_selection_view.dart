@@ -9,6 +9,7 @@ import '../l10n/app_localizations.dart';
 import '../utilities/app_localizations_extension.dart';
 import 'settings_view.dart';
 import 'theme_selection_view.dart';
+import 'widgets/app_button.dart';
 
 /// GameModeSelectionView - Portiert von Swift
 /// Erste Auswahl: Spielmodus (Suche oder Jagd)
@@ -190,8 +191,13 @@ class _GameModeSelectionViewState extends State<GameModeSelectionView> {
                                   .map((mode) => Padding(
                                         padding:
                                             const EdgeInsets.only(bottom: 16),
-                                        child: GameModeButton(
-                                          mode: mode,
+                                        child: AppButton(
+                                          icon: mode.icon,
+                                          iconColor: mode == GameMode.suche
+                                              ? AppColors.successGreen
+                                              : Colors.red,
+                                          title: AppLocalizations.of(context)!.getByKey(mode.displayNameKey) ?? mode.displayNameKey,
+                                          trailing: AppButton.trailingChevron(),
                                           onTap: () =>
                                               widget.onModeSelected(mode),
                                         ),
@@ -276,74 +282,3 @@ class _GameModeSelectionViewState extends State<GameModeSelectionView> {
   }
 }
 
-/// Game Mode Button Widget
-class GameModeButton extends StatelessWidget {
-  final GameMode mode;
-  final VoidCallback onTap;
-
-  const GameModeButton({
-    super.key,
-    required this.mode,
-    required this.onTap,
-  });
-
-  Color get iconColor {
-    switch (mode) {
-      case GameMode.suche:
-        return AppColors.successGreen;
-      case GameMode.jagd:
-        return Colors.red;
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final brightness = Theme.of(context).brightness;
-
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(16),
-        child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 20),
-          decoration: BoxDecoration(
-            color: brightness == Brightness.dark
-                ? Colors.white.withValues(alpha:0.15)
-                : Colors.white.withValues(alpha:0.25),
-            borderRadius: BorderRadius.circular(16),
-          ),
-          child: Row(
-            children: [
-              const SizedBox(width: 24),
-              Icon(
-                mode.icon,
-                size: 36, // Größer: 28 -> 36
-                color: iconColor,
-              ),
-              const SizedBox(width: 16),
-              Expanded(
-                child: Builder(
-                  builder: (context) => Text(
-                    AppLocalizations.of(context)!.getByKey(mode.displayNameKey) ?? mode.displayNameKey,
-                    style: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              ),
-              Icon(
-                Icons.chevron_right,
-                size: 24,
-                color: Colors.white.withValues(alpha:0.5),
-              ),
-              const SizedBox(width: 24),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}

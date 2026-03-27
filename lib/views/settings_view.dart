@@ -7,6 +7,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 import '../l10n/app_localizations.dart';
 import 'parental_gate_view.dart';
 import 'onboarding_view.dart';
+import 'widgets/app_button.dart';
 
 /// SettingsView - Portiert von Swift
 class SettingsView extends StatefulWidget {
@@ -125,9 +126,10 @@ class _SettingsViewState extends State<SettingsView> {
                     padding: const EdgeInsets.symmetric(horizontal: 30),
                     child: Column(
                       children: [
-                        // Anleitung Button (öffnet Onboarding)
-                        SettingsButton(
+                        // Anleitung Button (oeffnet Onboarding)
+                        AppButton(
                           icon: Icons.lightbulb,
+                          iconSize: 28,
                           iconColor: Colors.amber,
                           title: AppLocalizations.of(context)!.settingsHelp,
                           onTap: () {
@@ -146,26 +148,32 @@ class _SettingsViewState extends State<SettingsView> {
                           },
                         ),
                         const SizedBox(height: 16),
-                        SettingsLinkButton(
+                        AppButton(
                           icon: Icons.shield,
+                          iconSize: 28,
                           iconColor: Colors.blue,
                           title: AppLocalizations.of(context)!.settingsPrivacy,
+                          trailing: AppButton.trailingExternalLink(),
                           onTap: () =>
                               _openURL('https://simonluthe.de/guckmal/datenschutz/'),
                         ),
                         const SizedBox(height: 16),
-                        SettingsLinkButton(
+                        AppButton(
                           icon: Icons.info,
+                          iconSize: 28,
                           iconColor: Colors.green,
                           title: AppLocalizations.of(context)!.settingsImprint,
+                          trailing: AppButton.trailingExternalLink(),
                           onTap: () =>
                               _openURL('https://simonluthe.de/impressum/'),
                         ),
                         const SizedBox(height: 16),
-                        SettingsLinkButton(
+                        AppButton(
                           icon: Icons.help,
+                          iconSize: 28,
                           iconColor: Colors.orange,
                           title: AppLocalizations.of(context)!.settingsSupport,
+                          trailing: AppButton.trailingExternalLink(),
                           onTap: () =>
                               _openURL('https://simonluthe.de/guckmal/support/'),
                         ),
@@ -238,127 +246,3 @@ class _SettingsViewState extends State<SettingsView> {
 }
 
 
-/// Settings Button (ohne externen Link-Pfeil)
-class SettingsButton extends StatelessWidget {
-  final IconData icon;
-  final Color iconColor;
-  final String title;
-  final VoidCallback onTap;
-
-  const SettingsButton({
-    super.key,
-    required this.icon,
-    required this.iconColor,
-    required this.title,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final brightness = Theme.of(context).brightness;
-
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(16),
-        child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 20),
-          decoration: BoxDecoration(
-            color: brightness == Brightness.dark
-                ? Colors.white.withValues(alpha: 0.15)
-                : Colors.white.withValues(alpha: 0.25),
-            borderRadius: BorderRadius.circular(16),
-          ),
-          child: Row(
-            children: [
-              const SizedBox(width: 24),
-              Icon(
-                icon,
-                size: 28,
-                color: iconColor,
-              ),
-              const SizedBox(width: 16),
-              Expanded(
-                child: Text(
-                  title,
-                  style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-              const SizedBox(width: 24),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-/// Settings Link Button
-class SettingsLinkButton extends StatelessWidget {
-  final IconData icon;
-  final Color iconColor;
-  final String title;
-  final VoidCallback onTap;
-
-  const SettingsLinkButton({
-    super.key,
-    required this.icon,
-    required this.iconColor,
-    required this.title,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final brightness = Theme.of(context).brightness;
-
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(16),
-        child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 20),
-          decoration: BoxDecoration(
-            color: brightness == Brightness.dark
-                ? Colors.white.withValues(alpha:0.15)
-                : Colors.white.withValues(alpha:0.25),
-            borderRadius: BorderRadius.circular(16),
-          ),
-          child: Row(
-            children: [
-              const SizedBox(width: 24),
-              Icon(
-                icon,
-                size: 28,
-                color: iconColor,
-              ),
-              const SizedBox(width: 16),
-              Expanded(
-                child: Text(
-                  title,
-                  style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-              Icon(
-                Icons.open_in_new,
-                size: 20,
-                color: Colors.white.withValues(alpha:0.5),
-              ),
-              const SizedBox(width: 24),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
