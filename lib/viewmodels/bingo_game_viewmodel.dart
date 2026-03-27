@@ -96,8 +96,8 @@ class BingoGameViewModel extends ChangeNotifier {
   int? get blinkingIndex => _blinkingIndex;
   Set<int> get blinkingAllIndices => _blinkingAllIndices;
 
-  BingoGameViewModel({required this.config}) {
-    _audioPlayer = GameAudioPlayer();
+  BingoGameViewModel({required this.config, GameAudioPlayer? audioPlayer}) {
+    _audioPlayer = audioPlayer ?? GameAudioPlayer();
     _soundEnabled = _audioPlayer.soundEnabled;
 
     final totalCells = config.gridSize * config.gridSize;
@@ -115,9 +115,10 @@ class BingoGameViewModel extends ChangeNotifier {
   }
 
   /// Erstellt ViewModel aus gespeichertem Spielstand
-  BingoGameViewModel.fromSavedState(Map<String, dynamic> state)
+  BingoGameViewModel.fromSavedState(Map<String, dynamic> state,
+      {GameAudioPlayer? audioPlayer})
       : config = GameConfig.fromJson(state['config'] as Map<String, dynamic>) {
-    _audioPlayer = GameAudioPlayer();
+    _audioPlayer = audioPlayer ?? GameAudioPlayer();
     _soundEnabled = _audioPlayer.soundEnabled;
 
     if (state.containsKey('boardIndices')) {
@@ -147,6 +148,7 @@ class BingoGameViewModel extends ChangeNotifier {
   void _reconstructBingos() {
     final result = _findAllBingos();
     _completedBingos = result.bingos;
+    _bingoCount = _completedBingos.length;
 
     // Highlight setzen
     _highlightedIndices = result.allIndices;
