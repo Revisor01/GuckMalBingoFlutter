@@ -46,7 +46,10 @@ class _BaseSelectionView extends StatelessWidget {
                     padding: const EdgeInsets.only(top: 8, left: 16),
                     child: Align(
                       alignment: Alignment.centerLeft,
-                      child: Material(
+                      child: Semantics(
+                        button: true,
+                        label: AppLocalizations.of(context)!.accessibilityBackButton,
+                        child: Material(
                         color: Colors.transparent,
                         child: InkWell(
                           onTap: () => Navigator.of(context).pop(),
@@ -64,6 +67,7 @@ class _BaseSelectionView extends StatelessWidget {
                             ),
                           ),
                         ),
+                      ),
                       ),
                     ),
                   ),
