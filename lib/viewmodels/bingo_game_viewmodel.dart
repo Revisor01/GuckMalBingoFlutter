@@ -380,7 +380,6 @@ class BingoGameViewModel extends ChangeNotifier {
         _audioPlayer.playVictorySound();
         _isFinalVictory = true;
         clearSavedGameState();
-        notifyListeners();
 
         _victoryDialogTimer?.cancel();
         _victoryDialogTimer = Timer(const Duration(milliseconds: 500), () {
@@ -452,8 +451,6 @@ class BingoGameViewModel extends ChangeNotifier {
     } else {
       _audioPlayer.playBingoSound(count: count);
       _isFinalVictory = false;
-      notifyListeners();
-
       // Zeige visuelle Notification fuer Bingo - immer nur "BINGO!"
       _winMessage = 'BINGO!';
       _showWinMessage = true;
