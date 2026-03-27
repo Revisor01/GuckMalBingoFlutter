@@ -101,6 +101,11 @@ class BingoGameViewModel extends ChangeNotifier {
       area: config.area,
       season: config.season,
     );
+    assert(
+      sourceItems.length >= totalCells,
+      'Zu wenige Items fuer ${config.area}/${config.season}: '
+      '${sourceItems.length} verfuegbar, $totalCells benoetigt.',
+    );
     final shuffled = List.of(sourceItems)..shuffle();
     _board = shuffled.take(totalCells).toList();
   }
@@ -111,9 +116,21 @@ class BingoGameViewModel extends ChangeNotifier {
     _audioPlayer = GameAudioPlayer();
     _soundEnabled = _audioPlayer.soundEnabled;
 
-    _board = (state['board'] as List<dynamic>)
-        .map((item) => BingoItem.fromJson(item as Map<String, dynamic>))
-        .toList();
+    if (state.containsKey('boardIndices')) {
+      // Neues Format: Index-basiert
+      final indices = (state['boardIndices'] as List<dynamic>)
+          .map((i) => i as int)
+          .toList();
+      _board = indices
+          .where((i) => i >= 0 && i < BingoItemsData.allItems.length)
+          .map((i) => BingoItemsData.allItems[i])
+          .toList();
+    } else {
+      // Altes Format: Volle BingoItem-Objekte (Fallback/Migration)
+      _board = (state['board'] as List<dynamic>)
+          .map((item) => BingoItem.fromJson(item as Map<String, dynamic>))
+          .toList();
+    }
     _clickedIndices = (state['clickedIndices'] as List<dynamic>)
         .map((i) => i as int)
         .toSet();
@@ -228,7 +245,9 @@ class BingoGameViewModel extends ChangeNotifier {
   /// Speichert aktuellen Spielstand
   void saveGameState() {
     AppPreferences.instance.saveGameState({
-      'board': _board.map((item) => item.toJson()).toList(),
+      'boardIndices': _board
+          .map((item) => BingoItemsData.allItems.indexOf(item))
+          .toList(),
       'clickedIndices': _clickedIndices.toList(),
       'bingoCount': _bingoCount,
       'config': config.toJson(),
@@ -245,6 +264,11 @@ class BingoGameViewModel extends ChangeNotifier {
     final sourceItems = BingoItemsData.itemsFor(
       area: config.area,
       season: config.season,
+    );
+    assert(
+      sourceItems.length >= totalCells,
+      'Zu wenige Items fuer ${config.area}/${config.season}: '
+      '${sourceItems.length} verfuegbar, $totalCells benoetigt.',
     );
     final shuffled = List.of(sourceItems)..shuffle();
     _board = shuffled.take(totalCells).toList();
