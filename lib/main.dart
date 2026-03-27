@@ -1,9 +1,7 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
 import 'models/game_config.dart';
 import 'models/game_mode.dart';
 import 'models/category_theme.dart';
@@ -41,25 +39,13 @@ void main() async {
   // SeasonService als einzige Quelle fuer saisonalen State
   final seasonService = SeasonService();
 
-  const sentryDsn = String.fromEnvironment('SENTRY_DSN');
-
-  await SentryFlutter.init(
-    (options) {
-      options.dsn = kDebugMode ? '' : sentryDsn;
-      options.sendDefaultPii = false;
-      options.environment = kReleaseMode ? 'production' : 'profile';
-      // Kein tracesSampleRate — Performance-Monitoring nicht benoetigt
-      // Kein attachScreenshot — Privacy
-      // Kein attachViewHierarchy — Privacy
-    },
-    appRunner: () => runApp(
-      MultiProvider(
-        providers: [
-          ChangeNotifierProvider.value(value: themeNotifier),
-          ChangeNotifierProvider.value(value: seasonService),
-        ],
-        child: const GuckMalBingoApp(),
-      ),
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider.value(value: themeNotifier),
+        ChangeNotifierProvider.value(value: seasonService),
+      ],
+      child: const GuckMalBingoApp(),
     ),
   );
 }
