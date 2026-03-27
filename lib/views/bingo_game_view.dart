@@ -106,7 +106,7 @@ class _BingoGameViewState extends State<BingoGameView> with WidgetsBindingObserv
                   VictoryDialogView(
                     bingoCount: viewModel.bingoCount,
                     onPlayAgain: () {
-                      viewModel.showVictoryDialog = false;
+                      viewModel.dismissVictoryDialog();
                       viewModel.resetGame();
                     },
                     onBackToStart: widget.onBackToStart,
