@@ -118,38 +118,36 @@ class GuckMalBingoApp extends StatelessWidget {
           textScaleFactor = 0.95;
         }
 
-        // Saisonale Effekte mit reaktivem Toggle
-        Widget wrappedChild = child!;
-
-        // Weihnachts-Special: Schneefalleffekt
-        wrappedChild = ValueListenableBuilder<bool>(
-          valueListenable: snowfallEnabledNotifier,
-          builder: (context, snowfallEnabled, _) {
-            return SnowfallWidget(
-              enabled: isChristmasSeason() && snowfallEnabled,
-              snowflakeCount: 40,
-              child: wrappedChild,
-            );
-          },
-        );
-
-        // Oster-Special: Blütenblätter-Effekt
-        wrappedChild = ValueListenableBuilder<bool>(
-          valueListenable: easterEffectEnabledNotifier,
-          builder: (context, easterEffectEnabled, _) {
-            return EasterEffectWidget(
-              enabled: isEasterSeason() && easterEffectEnabled,
-              petalCount: 30,
-              child: wrappedChild,
-            );
-          },
-        );
+        // Saisonaler Effekt: nur einer aktiv (Ostern hat Vorrang wenn beide überlappen)
+        final innerChild = child!;
 
         return MediaQuery(
           data: MediaQuery.of(context).copyWith(
             textScaler: TextScaler.linear(textScaleFactor),
           ),
-          child: wrappedChild,
+          child: isEasterSeason()
+              ? ValueListenableBuilder<bool>(
+                  valueListenable: easterEffectEnabledNotifier,
+                  builder: (context, enabled, _) {
+                    return EasterEffectWidget(
+                      enabled: enabled,
+                      petalCount: 15,
+                      child: innerChild,
+                    );
+                  },
+                )
+              : isChristmasSeason()
+                  ? ValueListenableBuilder<bool>(
+                      valueListenable: snowfallEnabledNotifier,
+                      builder: (context, enabled, _) {
+                        return SnowfallWidget(
+                          enabled: enabled,
+                          snowflakeCount: 40,
+                          child: innerChild,
+                        );
+                      },
+                    )
+                  : innerChild,
         );
       },
       home: const NavigationCoordinator(),

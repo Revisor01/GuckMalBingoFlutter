@@ -127,12 +127,12 @@ class FallingPetal {
     final random = Random();
     baseX = random.nextDouble();
     y = random.nextDouble();
-    size = 3 + random.nextDouble() * 5;
-    speed = 0.01 + random.nextDouble() * 0.008;
-    swingAmplitude = 0.02 + random.nextDouble() * 0.03;
-    swingSpeed = 0.3 + random.nextDouble() * 0.5;
+    size = 3 + random.nextDouble() * 4;
+    speed = 0.008 + random.nextDouble() * 0.006;
+    swingAmplitude = 0.015 + random.nextDouble() * 0.02;
+    swingSpeed = 0.3 + random.nextDouble() * 0.4;
     initialPhase = random.nextDouble() * 2 * pi;
-    opacity = 0.4 + random.nextDouble() * 0.4;
+    opacity = 0.25 + random.nextDouble() * 0.3;
     rotation = random.nextDouble() * 2 * pi;
     rotationSpeed = 0.5 + random.nextDouble() * 1.5;
     color = _petalColors[random.nextInt(_petalColors.length)];
