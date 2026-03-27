@@ -744,7 +744,7 @@ class VictoryDialogView extends StatelessWidget {
                       color: iconColor,
                     ),
                     // Stern auf dem Weihnachtsbaum
-                    if (isChristmas)
+                    if (isChristmasSeason())
                       const Positioned(
                         top: -5,
                         child: Icon(
