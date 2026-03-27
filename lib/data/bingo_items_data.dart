@@ -1736,6 +1736,9 @@ class BingoItemsData {
     ),
 
     // OSTERN & FRÜHLING (nur während Osterzeit verfügbar)
+    // easterOnly: true → isAvailableNow() prüft isEasterSeason() statt fixer Monate
+    // seasons: null bedeutet hier "alle Seasons-Filter passieren", die eigentliche
+    // Verfügbarkeit wird allein durch easterOnly gesteuert (dynamisches Osterdatum)
     BingoItem(
       emoji: '🐰',
       name: 'itemOsterhase',

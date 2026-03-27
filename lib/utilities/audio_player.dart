@@ -1,5 +1,8 @@
+import 'dart:math';
 import 'package:audioplayers/audioplayers.dart';
 import 'debug_utils.dart';
+
+final _random = Random();
 
 /// AudioPlayer - Singleton Pattern
 /// Verwaltet alle Sound-Effekte der App mit einer einzigen Instanz
@@ -81,7 +84,7 @@ class GameAudioPlayer {
   /// Zufälliger Click-Sound (immer normale Clicks)
   Future<void> playClickSound() async {
     if (!soundEnabled) return;
-    final randomSound = (_clickSounds..shuffle()).first;
+    final randomSound = _clickSounds[_random.nextInt(_clickSounds.length)];
     await _playSound(randomSound);
   }
 
@@ -95,7 +98,7 @@ class GameAudioPlayer {
       availableSounds.addAll(_christmasBellSounds);
     }
 
-    final randomSound = (availableSounds..shuffle()).first;
+    final randomSound = availableSounds[_random.nextInt(availableSounds.length)];
     await _playSound(randomSound);
   }
 
@@ -105,13 +108,13 @@ class GameAudioPlayer {
 
     // Weihnachts-Special: Weihnachts-Victory-Sound im Dezember/Anfang Januar
     if (isChristmasSeason()) {
-      final randomXmas = (_christmasVictorySounds..shuffle()).first;
+      final randomXmas = _christmasVictorySounds[_random.nextInt(_christmasVictorySounds.length)];
       final success = await _playSoundWithFallback(randomXmas);
       if (success) return;
     }
 
     // Standard Victory-Sound
-    final randomSound = (_victorySounds..shuffle()).first;
+    final randomSound = _victorySounds[_random.nextInt(_victorySounds.length)];
     await _playSound(randomSound);
   }
 

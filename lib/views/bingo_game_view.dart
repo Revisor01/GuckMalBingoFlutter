@@ -728,7 +728,7 @@ class VictoryDialogView extends StatelessWidget {
                   style: const TextStyle(
                     fontSize: 42,
                     fontWeight: FontWeight.bold,
-                    fontFamily: 'SF Rounded',
+                    fontFamily: 'Nunito',
                     color: Colors.white,
                   ),
                 ),
