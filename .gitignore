@@ -45,3 +45,4 @@ ios/ServiceDefinitions.json
 # Signing
 android/key.properties
 android/app/upload-keystore.jks
+*.aab
