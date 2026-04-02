@@ -3,15 +3,24 @@ import 'dart:math' as math;
 import '../models/area.dart';
 
 /// BackgroundPatternView - Portiert von Swift
-/// Zeigt dekorative Icons im Hintergrund
-class BackgroundPatternView extends StatelessWidget {
+/// Zeigt dekorative Icons im Hintergrund mit Positions-Caching
+class BackgroundPatternView extends StatefulWidget {
   final Area? area;
 
   const BackgroundPatternView({super.key, this.area});
 
+  @override
+  State<BackgroundPatternView> createState() => _BackgroundPatternViewState();
+}
+
+class _BackgroundPatternViewState extends State<BackgroundPatternView> {
+  Size? _lastSize;
+  Area? _lastArea;
+  List<_IconPosition> _cachedPositions = [];
+
   List<IconData> get icons {
-    if (area != null) {
-      switch (area!) {
+    if (widget.area != null) {
+      switch (widget.area!) {
         case Area.autobahn:
           return [
             Icons.directions_car,
@@ -107,6 +116,17 @@ class BackgroundPatternView extends StatelessWidget {
     }
   }
 
+  /// Gibt gecachte Positionen zurück oder berechnet neu bei Größen-/Area-Änderung
+  List<_IconPosition> _getPositions(double width, double height) {
+    final newSize = Size(width, height);
+    if (newSize != _lastSize || widget.area != _lastArea || _cachedPositions.isEmpty) {
+      _cachedPositions = _generatePositions(width, height);
+      _lastSize = newSize;
+      _lastArea = widget.area;
+    }
+    return _cachedPositions;
+  }
+
   /// Generiere random verteilte Icons
   List<_IconPosition> _generatePositions(double width, double height) {
     final positions = <_IconPosition>[];
@@ -166,7 +186,7 @@ class BackgroundPatternView extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        final positions = _generatePositions(
+        final positions = _getPositions(
           constraints.maxWidth,
           constraints.maxHeight,
         );

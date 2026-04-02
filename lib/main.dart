@@ -124,27 +124,11 @@ class GuckMalBingoApp extends StatelessWidget {
           textScaleFactor = 0.95;
         }
 
-        // Saisonaler Effekt: nur einer aktiv (Ostern hat Vorrang wenn beide überlappen)
-        final season = context.watch<SeasonService>();
-        final innerChild = child!;
-
         return MediaQuery(
           data: MediaQuery.of(context).copyWith(
             textScaler: TextScaler.linear(textScaleFactor),
           ),
-          child: season.isEaster
-              ? EasterEffectWidget(
-                  enabled: season.shouldShowEasterEffect,
-                  petalCount: 25,
-                  child: innerChild,
-                )
-              : season.isChristmas
-                  ? SnowfallWidget(
-                      enabled: season.shouldShowSnowfall,
-                      snowflakeCount: 40,
-                      child: innerChild,
-                    )
-                  : innerChild,
+          child: _AppLifecycleWrapper(child: child!),
         );
       },
       home: const NavigationCoordinator(),
@@ -381,5 +365,58 @@ class _NavigationCoordinatorState extends State<NavigationCoordinator> {
       config: _config,
       onModeSelected: _onModeSelected,
     );
+  }
+}
+
+/// App-Level Lifecycle Observer für saisonale Animationen
+/// Pausiert Schnefall/Osterblüten wenn die App im Hintergrund ist
+class _AppLifecycleWrapper extends StatefulWidget {
+  final Widget child;
+  const _AppLifecycleWrapper({required this.child});
+
+  @override
+  State<_AppLifecycleWrapper> createState() => _AppLifecycleWrapperState();
+}
+
+class _AppLifecycleWrapperState extends State<_AppLifecycleWrapper>
+    with WidgetsBindingObserver {
+  bool _isActive = true;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    setState(() {
+      _isActive = state == AppLifecycleState.resumed;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // SeasonService aus dem Context lesen (bereits von Provider bereitgestellt)
+    final season = context.watch<SeasonService>();
+    return season.isEaster
+        ? EasterEffectWidget(
+            enabled: season.shouldShowEasterEffect && _isActive,
+            petalCount: 25,
+            child: widget.child,
+          )
+        : season.isChristmas
+            ? SnowfallWidget(
+                enabled: season.shouldShowSnowfall && _isActive,
+                snowflakeCount: 40,
+                child: widget.child,
+              )
+            : widget.child;
   }
 }
