@@ -1085,4 +1085,22 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get onboardingBingoDiagonal => 'Diagonal';
+
+  @override
+  String get gamemodeDuellName => 'Duel';
+
+  @override
+  String get gamemodeDuellDescription =>
+      'Who finds more? Everyone searches on their own device.';
+
+  @override
+  String get duellTargetQuestion => 'How many finds are needed to win?';
+
+  @override
+  String get duellSkip => 'Skip';
+
+  @override
+  String duellVictoryScore(int score) {
+    return '$score finds made!';
+  }
 }

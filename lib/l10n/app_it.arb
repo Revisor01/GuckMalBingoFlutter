@@ -361,5 +361,17 @@
   "settingsEasterEffect": "Effetto di Pasqua",
   "onboardingBingoHorizontal": "Orizzontale",
   "onboardingBingoVertical": "Verticale",
-  "onboardingBingoDiagonal": "Diagonale"
+  "onboardingBingoDiagonal": "Diagonale",
+  "gamemodeDuellName": "Duello",
+  "gamemodeDuellDescription": "Chi trova di più? Ognuno cerca sul proprio dispositivo.",
+  "duellTargetQuestion": "Quanti ritrovamenti servono per vincere?",
+  "duellSkip": "Salta",
+  "duellVictoryScore": "{score} ritrovamenti fatti!",
+  "@duellVictoryScore": {
+    "placeholders": {
+      "score": {
+        "type": "int"
+      }
+    }
+  }
 }

@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 /// GameMode Enum - Portiert von Swift
 enum GameMode {
   suche('suche'),
-  jagd('jagd');
+  jagd('jagd'),
+  duell('duell');
 
   final String value;
   const GameMode(this.value);
@@ -15,6 +16,8 @@ enum GameMode {
         return Icons.search;
       case GameMode.jagd:
         return Icons.flag;
+      case GameMode.duell:
+        return Icons.sports_esports;
     }
   }
 
@@ -25,6 +28,8 @@ enum GameMode {
         return 'gamemodeSucheName';
       case GameMode.jagd:
         return 'gamemodeJagdName';
+      case GameMode.duell:
+        return 'gamemodeDuellName';
     }
   }
 
@@ -35,6 +40,8 @@ enum GameMode {
         return 'gamemodeSucheDescription';
       case GameMode.jagd:
         return 'gamemodeJagdDescription';
+      case GameMode.duell:
+        return 'gamemodeDuellDescription';
     }
   }
 

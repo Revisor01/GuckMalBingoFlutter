@@ -361,5 +361,17 @@
   "settingsEasterEffect": "Easter Effect",
   "onboardingBingoHorizontal": "Horizontal",
   "onboardingBingoVertical": "Vertical",
-  "onboardingBingoDiagonal": "Diagonal"
+  "onboardingBingoDiagonal": "Diagonal",
+  "gamemodeDuellName": "Duel",
+  "gamemodeDuellDescription": "Who finds more? Everyone searches on their own device.",
+  "duellTargetQuestion": "How many finds are needed to win?",
+  "duellSkip": "Skip",
+  "duellVictoryScore": "{score} finds made!",
+  "@duellVictoryScore": {
+    "placeholders": {
+      "score": {
+        "type": "int"
+      }
+    }
+  }
 }

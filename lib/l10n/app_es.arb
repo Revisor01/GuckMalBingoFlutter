@@ -361,5 +361,17 @@
   "settingsEasterEffect": "Efecto de Pascua",
   "onboardingBingoHorizontal": "Horizontal",
   "onboardingBingoVertical": "Vertical",
-  "onboardingBingoDiagonal": "Diagonal"
+  "onboardingBingoDiagonal": "Diagonal",
+  "gamemodeDuellName": "Duelo",
+  "gamemodeDuellDescription": "¿Quién encuentra más? Cada uno busca en su dispositivo.",
+  "duellTargetQuestion": "¿Cuántos hallazgos se necesitan para ganar?",
+  "duellSkip": "Saltar",
+  "duellVictoryScore": "¡{score} hallazgos logrados!",
+  "@duellVictoryScore": {
+    "placeholders": {
+      "score": {
+        "type": "int"
+      }
+    }
+  }
 }

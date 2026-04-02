@@ -2217,6 +2217,36 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Diagonal'**
   String get onboardingBingoDiagonal;
+
+  /// No description provided for @gamemodeDuellName.
+  ///
+  /// In de, this message translates to:
+  /// **'Duell'**
+  String get gamemodeDuellName;
+
+  /// No description provided for @gamemodeDuellDescription.
+  ///
+  /// In de, this message translates to:
+  /// **'Wer findet mehr? Jeder sucht auf seinem Gerät.'**
+  String get gamemodeDuellDescription;
+
+  /// No description provided for @duellTargetQuestion.
+  ///
+  /// In de, this message translates to:
+  /// **'Wie viele Funde braucht man zum Gewinnen?'**
+  String get duellTargetQuestion;
+
+  /// No description provided for @duellSkip.
+  ///
+  /// In de, this message translates to:
+  /// **'Überspringen'**
+  String get duellSkip;
+
+  /// No description provided for @duellVictoryScore.
+  ///
+  /// In de, this message translates to:
+  /// **'{score} Funde geschafft!'**
+  String duellVictoryScore(int score);
 }
 
 class _AppLocalizationsDelegate

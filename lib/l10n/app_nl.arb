@@ -361,5 +361,17 @@
   "settingsEasterEffect": "Paaseffect",
   "onboardingBingoHorizontal": "Horizontaal",
   "onboardingBingoVertical": "Verticaal",
-  "onboardingBingoDiagonal": "Diagonaal"
+  "onboardingBingoDiagonal": "Diagonaal",
+  "gamemodeDuellName": "Duel",
+  "gamemodeDuellDescription": "Wie vindt er meer? Iedereen zoekt op zijn eigen apparaat.",
+  "duellTargetQuestion": "Hoeveel vondsten zijn nodig om te winnen?",
+  "duellSkip": "Overslaan",
+  "duellVictoryScore": "{score} vondsten gedaan!",
+  "@duellVictoryScore": {
+    "placeholders": {
+      "score": {
+        "type": "int"
+      }
+    }
+  }
 }

@@ -361,5 +361,17 @@
   "settingsEasterEffect": "Effet de Pâques",
   "onboardingBingoHorizontal": "Horizontal",
   "onboardingBingoVertical": "Vertical",
-  "onboardingBingoDiagonal": "Diagonal"
+  "onboardingBingoDiagonal": "Diagonal",
+  "gamemodeDuellName": "Duel",
+  "gamemodeDuellDescription": "Qui trouve le plus ? Chacun cherche sur son appareil.",
+  "duellTargetQuestion": "Combien de trouvailles pour gagner ?",
+  "duellSkip": "Passer",
+  "duellVictoryScore": "{score} trouvailles réussies !",
+  "@duellVictoryScore": {
+    "placeholders": {
+      "score": {
+        "type": "int"
+      }
+    }
+  }
 }
