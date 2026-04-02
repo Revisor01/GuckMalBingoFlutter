@@ -338,7 +338,6 @@ class _BingoExplanationPageState extends State<_BingoExplanationPage> {
   int _currentGrid = 0;
   Timer? _autoRotationTimer;
   static const _bingoTypes = [_BingoType.horizontal, _BingoType.vertical, _BingoType.diagonal];
-  static const _labels = ['Horizontal', 'Vertikal', 'Diagonal'];
 
   @override
   void initState() {
@@ -368,6 +367,11 @@ class _BingoExplanationPageState extends State<_BingoExplanationPage> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
+    final labels = [
+      l10n.onboardingBingoHorizontal,
+      l10n.onboardingBingoVertical,
+      l10n.onboardingBingoDiagonal,
+    ];
 
     return Semantics(
       label: '${widget.title}. ${widget.description}. ${l10n.onboardingBingoAccessibility}',
@@ -381,13 +385,14 @@ class _BingoExplanationPageState extends State<_BingoExplanationPage> {
               height: 180,
               child: PageView.builder(
                 controller: _gridController,
+                itemCount: 3,
                 onPageChanged: (index) {
-                  setState(() => _currentGrid = index % 3);
+                  setState(() => _currentGrid = index);
                 },
                 itemBuilder: (context, index) {
                   return Center(
                     child: _MiniBingoGrid(
-                      bingoType: _bingoTypes[index % 3],
+                      bingoType: _bingoTypes[index],
                       size: 160,
                     ),
                   );
@@ -399,7 +404,7 @@ class _BingoExplanationPageState extends State<_BingoExplanationPage> {
 
             // Label für aktuellen Bingo-Typ
             Text(
-              _labels[_currentGrid],
+              labels[_currentGrid],
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
