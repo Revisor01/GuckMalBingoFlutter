@@ -4,7 +4,6 @@ import '../models/bingo_item.dart';
 import '../data/bingo_items_data.dart';
 import '../utilities/audio_player.dart';
 import '../utilities/app_preferences.dart';
-import 'dart:convert';
 
 /// DuellGameViewModel — Verwaltet den Spielzustand des Duell-Modus.
 ///
@@ -16,7 +15,6 @@ class DuellGameViewModel extends ChangeNotifier {
   int _queueIndex = 0;
   int _score = 0;
   bool _showVictoryDialog = false;
-  bool _isDisposed = false;
 
   late final GameAudioPlayer _audioPlayer;
 
@@ -152,7 +150,6 @@ class DuellGameViewModel extends ChangeNotifier {
 
   @override
   void dispose() {
-    _isDisposed = true;
     _audioPlayer.reset(); // Singleton — reset() nicht dispose()!
     super.dispose();
   }
