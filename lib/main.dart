@@ -8,9 +8,11 @@ import 'models/category_theme.dart';
 import 'models/season.dart';
 import 'models/area.dart';
 import 'viewmodels/bingo_game_viewmodel.dart';
+import 'viewmodels/duell_game_viewmodel.dart';
 import 'views/game_mode_selection_view.dart';
 import 'views/selection_views.dart';
 import 'views/bingo_game_view.dart';
+import 'views/duell_game_view.dart';
 import 'views/onboarding_view.dart';
 import 'l10n/app_localizations.dart';
 import 'views/snowfall_widget.dart';
@@ -170,12 +172,20 @@ class _NavigationCoordinatorState extends State<NavigationCoordinator> {
   }
 
   void _checkSavedGame() {
-    if (AppPreferences.instance.hasSavedGameState && !_resumeDialogShown) {
-      _resumeDialogShown = true;
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        if (!mounted) return;
-        _showResumeDialog();
-      });
+    if (!_resumeDialogShown) {
+      if (AppPreferences.instance.hasSavedGameState) {
+        _resumeDialogShown = true;
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (!mounted) return;
+          _showResumeDialog();
+        });
+      } else if (AppPreferences.instance.hasSavedDuellState) {
+        _resumeDialogShown = true;
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (!mounted) return;
+          _showDuellResumeDialog();
+        });
+      }
     }
   }
 
@@ -213,6 +223,40 @@ class _NavigationCoordinatorState extends State<NavigationCoordinator> {
     );
   }
 
+  void _showDuellResumeDialog() {
+    final state = AppPreferences.instance.loadDuellState();
+    if (state == null) return;
+
+    final l10n = AppLocalizations.of(context)!;
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (ctx) => AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        title: Text(l10n.resumeGameTitle, textAlign: TextAlign.center, style: const TextStyle(fontWeight: FontWeight.bold)),
+        content: Text(l10n.resumeGameMessage, textAlign: TextAlign.center),
+        actionsAlignment: MainAxisAlignment.center,
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(ctx).pop();
+              AppPreferences.instance.clearDuellState();
+            },
+            child: Text(l10n.resumeGameNew),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.of(ctx).pop();
+              final viewModel = DuellGameViewModel.fromSavedState(state);
+              _navigateToDuellGame(existingViewModel: viewModel);
+            },
+            child: Text(l10n.resumeGameContinue),
+          ),
+        ],
+      ),
+    );
+  }
+
   void _onOnboardingComplete() {
     setState(() {
       _showOnboarding = false;
@@ -226,8 +270,11 @@ class _NavigationCoordinatorState extends State<NavigationCoordinator> {
     });
 
     // TargetBingos DIREKT nach Jagd-Auswahl
+    // Duell: Kategorie zuerst (D-07: Kategorie → Saison → Area → Ziel-Anzahl)
     if (mode == GameMode.jagd) {
       _navigateToTargetBingos();
+    } else if (mode == GameMode.duell) {
+      _navigateToThemeCategory();
     } else {
       _navigateToThemeCategory();
     }
@@ -290,7 +337,11 @@ class _NavigationCoordinatorState extends State<NavigationCoordinator> {
     setState(() {
       _config = _config.copyWith(area: area);
     });
-    _navigateToSizeSelection();
+    if (_config.gameMode == GameMode.duell) {
+      _navigateToDuellTarget();
+    } else {
+      _navigateToSizeSelection();
+    }
   }
 
   void _navigateToSizeSelection() {
@@ -327,6 +378,44 @@ class _NavigationCoordinatorState extends State<NavigationCoordinator> {
       _config = _config.copyWith(targetBingos: target);
     });
     _navigateToThemeCategory();
+  }
+
+  void _navigateToDuellTarget() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => TargetBingosView(
+          config: _config,
+          onTargetSelected: _onDuellTargetSelected,
+          maxTarget: 20,
+          initialTarget: 5,
+        ),
+      ),
+    );
+  }
+
+  void _onDuellTargetSelected(int target) {
+    setState(() {
+      _config = _config.copyWith(targetBingos: target);
+    });
+    _navigateToDuellGame();
+  }
+
+  void _navigateToDuellGame({DuellGameViewModel? existingViewModel}) {
+    final viewModel = existingViewModel ?? DuellGameViewModel(config: _config);
+
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => ChangeNotifierProvider.value(
+          value: viewModel,
+          child: DuellGameView(
+            onBackToStart: () {
+              viewModel.clearSavedGameState();
+              Navigator.of(context).popUntil((route) => route.isFirst);
+            },
+          ),
+        ),
+      ),
+    );
   }
 
   void _navigateToGame({BingoGameViewModel? existingViewModel}) {

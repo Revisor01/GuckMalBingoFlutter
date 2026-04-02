@@ -384,15 +384,19 @@ class SizeSelectionView extends StatelessWidget {
   }
 }
 
-/// Target Bingos Selection (nur fuer Jagd-Modus)
+/// Target Bingos Selection (fuer Jagd- und Duell-Modus)
 class TargetBingosView extends StatefulWidget {
   final GameConfig config;
   final Function(int) onTargetSelected;
+  final int maxTarget;      // Default 10 (Jagd-Modus), 20 fuer Duell-Modus
+  final int initialTarget;  // Default 3 (Jagd-Modus), 5 fuer Duell-Modus
 
   const TargetBingosView({
     super.key,
     required this.config,
     required this.onTargetSelected,
+    this.maxTarget = 10,
+    this.initialTarget = 3,
   });
 
   @override
@@ -400,7 +404,7 @@ class TargetBingosView extends StatefulWidget {
 }
 
 class _TargetBingosViewState extends State<TargetBingosView> {
-  int _targetBingos = 3; // Default: 3 Bingos
+  late int _targetBingos = widget.initialTarget;
 
   @override
   Widget build(BuildContext context) {
@@ -438,12 +442,12 @@ class _TargetBingosViewState extends State<TargetBingosView> {
               Material(
                 color: Colors.transparent,
                 child: InkWell(
-                  onTap: _targetBingos < 10
+                  onTap: _targetBingos < widget.maxTarget
                       ? () { setState(() { _targetBingos++; }); }
                       : null,
                   customBorder: const CircleBorder(),
                   child: Icon(Icons.add_circle, size: 50,
-                    color: Colors.white.withValues(alpha:_targetBingos < 10 ? 1.0 : 0.3)),
+                    color: Colors.white.withValues(alpha:_targetBingos < widget.maxTarget ? 1.0 : 0.3)),
                 ),
               ),
             ],
