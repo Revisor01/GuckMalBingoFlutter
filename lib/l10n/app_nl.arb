@@ -184,7 +184,6 @@
   "itemSchiff": "Schip",
   "itemSchildkroete": "Schildpad",
   "itemSchlange": "Slang",
-  "itemSchneeEule": "Sneeuwuil",
   "itemSchneeeule": "Sneeuwuil",
   "itemSchneeflocke": "Sneeuwvlok",
   "itemSchneemann": "Sneeuwpop",
@@ -197,7 +196,6 @@
   "itemSeehund": "Zeehond",
   "itemSessel": "Fauteuil",
   "itemSikahHirsch": "Sikahert",
-  "itemSikahirsch": "Sikahert",
   "itemSofa": "Bank",
   "itemSolarzellen": "Zonnepanelen",
   "itemSpielplatz": "Speeltuin",
@@ -360,5 +358,8 @@
   "resumeGameMessage": "Je hebt een lopend spel. Wil je doorgaan?",
   "resumeGameContinue": "Doorgaan",
   "resumeGameNew": "Nieuw spel",
-  "settingsEasterEffect": "Paaseffect"
+  "settingsEasterEffect": "Paaseffect",
+  "onboardingBingoHorizontal": "Horizontaal",
+  "onboardingBingoVertical": "Verticaal",
+  "onboardingBingoDiagonal": "Diagonaal"
 }

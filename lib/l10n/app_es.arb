@@ -184,7 +184,6 @@
   "itemSchiff": "Nave",
   "itemSchildkroete": "Tortuga",
   "itemSchlange": "Serpiente",
-  "itemSchneeEule": "Búho Nival",
   "itemSchneeeule": "Búho Nival",
   "itemSchneeflocke": "Copo de Nieve",
   "itemSchneemann": "Muñeco de Nieve",
@@ -197,7 +196,6 @@
   "itemSeehund": "Foca",
   "itemSessel": "Sillón",
   "itemSikahHirsch": "Ciervo Sika",
-  "itemSikahirsch": "Ciervo Sika",
   "itemSofa": "Sofá",
   "itemSolarzellen": "Paneles Solares",
   "itemSpielplatz": "Parque Infantil",
@@ -360,5 +358,8 @@
   "resumeGameMessage": "Tienes una partida en curso. Quieres continuar?",
   "resumeGameContinue": "Continuar",
   "resumeGameNew": "Nueva partida",
-  "settingsEasterEffect": "Efecto de Pascua"
+  "settingsEasterEffect": "Efecto de Pascua",
+  "onboardingBingoHorizontal": "Horizontal",
+  "onboardingBingoVertical": "Vertical",
+  "onboardingBingoDiagonal": "Diagonal"
 }

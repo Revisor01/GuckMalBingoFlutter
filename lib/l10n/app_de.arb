@@ -184,7 +184,6 @@
   "itemSchiff": "Schiff",
   "itemSchildkroete": "Schildkröte",
   "itemSchlange": "Schlange",
-  "itemSchneeEule": "Schnee-Eule",
   "itemSchneeeule": "Schnee-Eule",
   "itemSchneeflocke": "Schneeflocke",
   "itemSchneemann": "Schneemann",
@@ -197,7 +196,6 @@
   "itemSeehund": "Seehund",
   "itemSessel": "Sessel",
   "itemSikahHirsch": "Sikah-Hirsch",
-  "itemSikahirsch": "Sikahirsch",
   "itemSofa": "Sofa",
   "itemSolarzellen": "Solarzellen",
   "itemSpielplatz": "Spielplatz",
@@ -360,5 +358,8 @@
   "resumeGameMessage": "Du hast ein laufendes Spiel. Möchtest du weiterspielen?",
   "resumeGameContinue": "Weiterspielen",
   "resumeGameNew": "Neues Spiel",
-  "settingsEasterEffect": "Oster-Effekt"
+  "settingsEasterEffect": "Oster-Effekt",
+  "onboardingBingoHorizontal": "Horizontal",
+  "onboardingBingoVertical": "Vertikal",
+  "onboardingBingoDiagonal": "Diagonal"
 }

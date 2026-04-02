@@ -1210,12 +1210,6 @@ abstract class AppLocalizations {
   /// **'Schlange'**
   String get itemSchlange;
 
-  /// No description provided for @itemSchneeEule.
-  ///
-  /// In de, this message translates to:
-  /// **'Schnee-Eule'**
-  String get itemSchneeEule;
-
   /// No description provided for @itemSchneeeule.
   ///
   /// In de, this message translates to:
@@ -1287,12 +1281,6 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Sikah-Hirsch'**
   String get itemSikahHirsch;
-
-  /// No description provided for @itemSikahirsch.
-  ///
-  /// In de, this message translates to:
-  /// **'Sikahirsch'**
-  String get itemSikahirsch;
 
   /// No description provided for @itemSofa.
   ///
@@ -2211,6 +2199,24 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Oster-Effekt'**
   String get settingsEasterEffect;
+
+  /// No description provided for @onboardingBingoHorizontal.
+  ///
+  /// In de, this message translates to:
+  /// **'Horizontal'**
+  String get onboardingBingoHorizontal;
+
+  /// No description provided for @onboardingBingoVertical.
+  ///
+  /// In de, this message translates to:
+  /// **'Vertikal'**
+  String get onboardingBingoVertical;
+
+  /// No description provided for @onboardingBingoDiagonal.
+  ///
+  /// In de, this message translates to:
+  /// **'Diagonal'**
+  String get onboardingBingoDiagonal;
 }
 
 class _AppLocalizationsDelegate

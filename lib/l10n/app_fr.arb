@@ -184,7 +184,6 @@
   "itemSchiff": "Nef",
   "itemSchildkroete": "Tortue",
   "itemSchlange": "Serpent",
-  "itemSchneeEule": "Harfang des Neiges",
   "itemSchneeeule": "Harfang des Neiges",
   "itemSchneeflocke": "Flocon de Neige",
   "itemSchneemann": "Bonhomme de Neige",
@@ -197,7 +196,6 @@
   "itemSeehund": "Phoque",
   "itemSessel": "Fauteuil",
   "itemSikahHirsch": "Cerf Sika",
-  "itemSikahirsch": "Cerf Sika",
   "itemSofa": "Canapé",
   "itemSolarzellen": "Panneaux Solaires",
   "itemSpielplatz": "Aire de Jeux",
@@ -360,5 +358,8 @@
   "resumeGameMessage": "Vous avez une partie en cours. Voulez-vous continuer?",
   "resumeGameContinue": "Continuer",
   "resumeGameNew": "Nouvelle partie",
-  "settingsEasterEffect": "Effet de Pâques"
+  "settingsEasterEffect": "Effet de Pâques",
+  "onboardingBingoHorizontal": "Horizontal",
+  "onboardingBingoVertical": "Vertical",
+  "onboardingBingoDiagonal": "Diagonal"
 }

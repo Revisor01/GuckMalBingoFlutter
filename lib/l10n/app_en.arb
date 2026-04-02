@@ -184,7 +184,6 @@
   "itemSchiff": "Nave",
   "itemSchildkroete": "Turtle",
   "itemSchlange": "Snake",
-  "itemSchneeEule": "Snowy Owl",
   "itemSchneeeule": "Snowy Owl",
   "itemSchneeflocke": "Snowflake",
   "itemSchneemann": "Snowman",
@@ -197,7 +196,6 @@
   "itemSeehund": "Seal",
   "itemSessel": "Armchair",
   "itemSikahHirsch": "Sika Deer",
-  "itemSikahirsch": "Sika Deer",
   "itemSofa": "Sofa",
   "itemSolarzellen": "Solar Panels",
   "itemSpielplatz": "Playground",
@@ -360,5 +358,8 @@
   "resumeGameMessage": "You have a game in progress. Would you like to continue?",
   "resumeGameContinue": "Continue",
   "resumeGameNew": "New Game",
-  "settingsEasterEffect": "Easter Effect"
+  "settingsEasterEffect": "Easter Effect",
+  "onboardingBingoHorizontal": "Horizontal",
+  "onboardingBingoVertical": "Vertical",
+  "onboardingBingoDiagonal": "Diagonal"
 }

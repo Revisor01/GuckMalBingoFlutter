@@ -184,7 +184,6 @@
   "itemSchiff": "Nave",
   "itemSchildkroete": "Tartaruga",
   "itemSchlange": "Serpente",
-  "itemSchneeEule": "Gufo delle Nevi",
   "itemSchneeeule": "Gufo delle Nevi",
   "itemSchneeflocke": "Fiocco di Neve",
   "itemSchneemann": "Pupazzo di Neve",
@@ -197,7 +196,6 @@
   "itemSeehund": "Foca",
   "itemSessel": "Poltrona",
   "itemSikahHirsch": "Cervo Sika",
-  "itemSikahirsch": "Cervo Sika",
   "itemSofa": "Divano",
   "itemSolarzellen": "Pannelli Solari",
   "itemSpielplatz": "Parco Giochi",
@@ -360,5 +358,8 @@
   "resumeGameMessage": "Hai una partita in corso. Vuoi continuare?",
   "resumeGameContinue": "Continua",
   "resumeGameNew": "Nuova partita",
-  "settingsEasterEffect": "Effetto di Pasqua"
+  "settingsEasterEffect": "Effetto di Pasqua",
+  "onboardingBingoHorizontal": "Orizzontale",
+  "onboardingBingoVertical": "Verticale",
+  "onboardingBingoDiagonal": "Diagonale"
 }

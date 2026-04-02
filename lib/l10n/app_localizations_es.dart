@@ -568,9 +568,6 @@ class AppLocalizationsEs extends AppLocalizations {
   String get itemSchlange => 'Serpiente';
 
   @override
-  String get itemSchneeEule => 'Búho Nival';
-
-  @override
   String get itemSchneeeule => 'Búho Nival';
 
   @override
@@ -605,9 +602,6 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get itemSikahHirsch => 'Ciervo Sika';
-
-  @override
-  String get itemSikahirsch => 'Ciervo Sika';
 
   @override
   String get itemSofa => 'Sofá';
@@ -1083,4 +1077,13 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get settingsEasterEffect => 'Efecto de Pascua';
+
+  @override
+  String get onboardingBingoHorizontal => 'Horizontal';
+
+  @override
+  String get onboardingBingoVertical => 'Vertical';
+
+  @override
+  String get onboardingBingoDiagonal => 'Diagonal';
 }
