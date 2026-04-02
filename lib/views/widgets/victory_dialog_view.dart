@@ -9,12 +9,14 @@ class VictoryDialogView extends StatelessWidget {
   final int bingoCount;
   final VoidCallback onPlayAgain;
   final VoidCallback onBackToStart;
+  final String? scoreText;
 
   const VictoryDialogView({
     super.key,
     required this.bingoCount,
     required this.onPlayAgain,
     required this.onBackToStart,
+    this.scoreText,
   });
 
   @override
@@ -98,7 +100,7 @@ class VictoryDialogView extends StatelessWidget {
 
                 // Bingo Count
                 Text(
-                  '$bingoCount ${bingoCount != 1 ? AppLocalizations.of(context)!.victoryBingoPlural : AppLocalizations.of(context)!.victoryBingoSingular}',
+                  scoreText ?? '$bingoCount ${bingoCount != 1 ? AppLocalizations.of(context)!.victoryBingoPlural : AppLocalizations.of(context)!.victoryBingoSingular}',
                   style: TextStyle(
                     fontSize: 20,
                     color: Colors.white.withValues(alpha: 0.9),

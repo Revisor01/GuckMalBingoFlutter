@@ -52,4 +52,28 @@ class AppPreferences {
   Future<void> clearGameState() async {
     await _prefs.remove(_keyGameState);
   }
+
+  // Duell Game State Persistence
+  static const _keyDuellState = 'savedDuellState';
+
+  bool get hasSavedDuellState => _prefs.getString(_keyDuellState) != null;
+
+  Future<void> saveDuellState(Map<String, dynamic> state) async {
+    await _prefs.setString(_keyDuellState, jsonEncode(state));
+  }
+
+  Map<String, dynamic>? loadDuellState() {
+    final json = _prefs.getString(_keyDuellState);
+    if (json == null) return null;
+    try {
+      return jsonDecode(json) as Map<String, dynamic>;
+    } catch (_) {
+      clearDuellState();
+      return null;
+    }
+  }
+
+  Future<void> clearDuellState() async {
+    await _prefs.remove(_keyDuellState);
+  }
 }

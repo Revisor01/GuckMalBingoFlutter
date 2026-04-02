@@ -195,7 +195,9 @@ class _GameModeSelectionViewState extends State<GameModeSelectionView> {
                                           icon: mode.icon,
                                           iconColor: mode == GameMode.suche
                                               ? AppColors.successGreen
-                                              : Colors.red,
+                                              : mode == GameMode.duell
+                                                  ? AppColors.primary
+                                                  : Colors.red,
                                           title: AppLocalizations.of(context)!.getByKey(mode.displayNameKey) ?? mode.displayNameKey,
                                           trailing: AppButton.trailingChevron(),
                                           onTap: () =>
@@ -260,6 +262,31 @@ class _GameModeSelectionViewState extends State<GameModeSelectionView> {
                                         style: TextStyle(
                                           fontSize: 14,
                                           color: Colors.white.withValues(alpha:0.8),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                // Duell
+                                Padding(
+                                  padding: const EdgeInsets.only(bottom: 16),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        AppLocalizations.of(context)!.gamemodeDuellName,
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                      const SizedBox(height: 4),
+                                      Text(
+                                        AppLocalizations.of(context)!.gamemodeDuellDescription,
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          color: Colors.white.withValues(alpha: 0.8),
                                         ),
                                       ),
                                     ],
