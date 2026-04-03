@@ -372,7 +372,7 @@ class _NavigationCoordinatorState extends State<NavigationCoordinator> {
           subtitle: _getModeSubtitle(context),
           questionOverride: AppLocalizations.of(context)!.duellTargetQuestion,
           onTargetSelected: _onDuellTargetSelected,
-          maxTarget: 20,
+          maxTarget: 10,
           initialTarget: 5,
         ),
       ),
