@@ -358,6 +358,7 @@
   "resumeGameMessage": "Tienes una partida en curso. Quieres continuar?",
   "resumeGameContinue": "Continuar",
   "resumeGameNew": "Nueva partida",
+  "resumeGameBackToStart": "Volver al inicio",
   "settingsEasterEffect": "Efecto de Pascua",
   "onboardingBingoHorizontal": "Horizontal",
   "onboardingBingoVertical": "Vertical",

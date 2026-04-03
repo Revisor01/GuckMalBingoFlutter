@@ -1074,6 +1074,9 @@ class AppLocalizationsNl extends AppLocalizations {
   String get resumeGameNew => 'Nieuw spel';
 
   @override
+  String get resumeGameBackToStart => 'Terug naar start';
+
+  @override
   String get settingsEasterEffect => 'Paaseffect';
 
   @override

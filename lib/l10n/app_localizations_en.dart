@@ -1075,6 +1075,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get resumeGameNew => 'New Game';
 
   @override
+  String get resumeGameBackToStart => 'Back to Start';
+
+  @override
   String get settingsEasterEffect => 'Easter Effect';
 
   @override

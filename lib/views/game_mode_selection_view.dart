@@ -208,18 +208,18 @@ class _GameModeSelectionViewState extends State<GameModeSelectionView> {
                             ),
                           ),
 
-                          // Flexibler Abstand - drückt Erklärungen nach unten
-                          const Spacer(),
+                          // Kleiner Abstand zu den Erklärungen
+                          const SizedBox(height: 16),
 
-                          // Erklärungen ganz unten - fester Abstand von unten
+                          // Erklärungen ganz unten
                           Padding(
-                            padding: const EdgeInsets.fromLTRB(40, 0, 40, 40),
+                            padding: const EdgeInsets.fromLTRB(40, 0, 40, 20),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 // Bingo Suche
                                 Padding(
-                                  padding: const EdgeInsets.only(bottom: 16),
+                                  padding: const EdgeInsets.only(bottom: 8),
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [

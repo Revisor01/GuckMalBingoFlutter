@@ -358,6 +358,7 @@
   "resumeGameMessage": "You have a game in progress. Would you like to continue?",
   "resumeGameContinue": "Continue",
   "resumeGameNew": "New Game",
+  "resumeGameBackToStart": "Back to Start",
   "settingsEasterEffect": "Easter Effect",
   "onboardingBingoHorizontal": "Horizontal",
   "onboardingBingoVertical": "Vertical",

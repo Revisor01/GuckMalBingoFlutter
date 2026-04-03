@@ -15,11 +15,13 @@ import 'views/bingo_game_view.dart';
 import 'views/duell_game_view.dart';
 import 'views/onboarding_view.dart';
 import 'l10n/app_localizations.dart';
+import 'utilities/app_localizations_extension.dart';
 import 'views/snowfall_widget.dart';
 import 'views/easter_effect_widget.dart';
 import 'utilities/app_preferences.dart';
 import 'utilities/theme_provider.dart';
 import 'utilities/season_service.dart';
+import 'views/widgets/resume_dialog_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -193,32 +195,20 @@ class _NavigationCoordinatorState extends State<NavigationCoordinator> {
     final state = AppPreferences.instance.loadGameState();
     if (state == null) return;
 
-    final l10n = AppLocalizations.of(context)!;
     showDialog(
       context: context,
       barrierDismissible: false,
-      builder: (ctx) => AlertDialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        title: Text(l10n.resumeGameTitle, textAlign: TextAlign.center, style: const TextStyle(fontWeight: FontWeight.bold)),
-        content: Text(l10n.resumeGameMessage, textAlign: TextAlign.center),
-        actionsAlignment: MainAxisAlignment.center,
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.of(ctx).pop();
-              AppPreferences.instance.clearGameState();
-            },
-            child: Text(l10n.resumeGameNew),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.of(ctx).pop();
-              final viewModel = BingoGameViewModel.fromSavedState(state);
-              _navigateToGame(existingViewModel: viewModel);
-            },
-            child: Text(l10n.resumeGameContinue),
-          ),
-        ],
+      barrierColor: Colors.transparent, // ResumeDialogView hat eigenen Overlay
+      builder: (ctx) => ResumeDialogView(
+        onContinue: () {
+          Navigator.of(ctx).pop();
+          final viewModel = BingoGameViewModel.fromSavedState(state);
+          _navigateToGame(existingViewModel: viewModel);
+        },
+        onBackToStart: () {
+          Navigator.of(ctx).pop();
+          AppPreferences.instance.clearGameState();
+        },
       ),
     );
   }
@@ -227,32 +217,20 @@ class _NavigationCoordinatorState extends State<NavigationCoordinator> {
     final state = AppPreferences.instance.loadDuellState();
     if (state == null) return;
 
-    final l10n = AppLocalizations.of(context)!;
     showDialog(
       context: context,
       barrierDismissible: false,
-      builder: (ctx) => AlertDialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        title: Text(l10n.resumeGameTitle, textAlign: TextAlign.center, style: const TextStyle(fontWeight: FontWeight.bold)),
-        content: Text(l10n.resumeGameMessage, textAlign: TextAlign.center),
-        actionsAlignment: MainAxisAlignment.center,
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.of(ctx).pop();
-              AppPreferences.instance.clearDuellState();
-            },
-            child: Text(l10n.resumeGameNew),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.of(ctx).pop();
-              final viewModel = DuellGameViewModel.fromSavedState(state);
-              _navigateToDuellGame(existingViewModel: viewModel);
-            },
-            child: Text(l10n.resumeGameContinue),
-          ),
-        ],
+      barrierColor: Colors.transparent, // ResumeDialogView hat eigenen Overlay
+      builder: (ctx) => ResumeDialogView(
+        onContinue: () {
+          Navigator.of(ctx).pop();
+          final viewModel = DuellGameViewModel.fromSavedState(state);
+          _navigateToDuellGame(existingViewModel: viewModel);
+        },
+        onBackToStart: () {
+          Navigator.of(ctx).pop();
+          AppPreferences.instance.clearDuellState();
+        },
       ),
     );
   }
@@ -280,11 +258,19 @@ class _NavigationCoordinatorState extends State<NavigationCoordinator> {
     }
   }
 
+  /// Gibt den Spielmodus-Namen als Untertitel zurueck (null fuer Suche-Modus)
+  String? _getModeSubtitle(BuildContext context) {
+    if (_config.gameMode == GameMode.suche) return null;
+    final l10n = AppLocalizations.of(context)!;
+    return l10n.getByKey(_config.gameMode.displayNameKey);
+  }
+
   void _navigateToThemeCategory() {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => ThemeCategorySelectionView(
           config: _config,
+          subtitle: _getModeSubtitle(context),
           onThemeSelected: _onThemeCategorySelected,
         ),
       ),
@@ -309,6 +295,7 @@ class _NavigationCoordinatorState extends State<NavigationCoordinator> {
       MaterialPageRoute(
         builder: (context) => SeasonSelectionView(
           config: _config,
+          subtitle: _getModeSubtitle(context),
           onSeasonSelected: _onSeasonSelected,
         ),
       ),
@@ -327,6 +314,7 @@ class _NavigationCoordinatorState extends State<NavigationCoordinator> {
       MaterialPageRoute(
         builder: (context) => AreaSelectionView(
           config: _config,
+          subtitle: _getModeSubtitle(context),
           onAreaSelected: _onAreaSelected,
         ),
       ),
@@ -367,6 +355,7 @@ class _NavigationCoordinatorState extends State<NavigationCoordinator> {
       MaterialPageRoute(
         builder: (context) => TargetBingosView(
           config: _config,
+          subtitle: _getModeSubtitle(context),
           onTargetSelected: _onTargetSelected,
         ),
       ),
@@ -385,6 +374,8 @@ class _NavigationCoordinatorState extends State<NavigationCoordinator> {
       MaterialPageRoute(
         builder: (context) => TargetBingosView(
           config: _config,
+          subtitle: _getModeSubtitle(context),
+          questionOverride: AppLocalizations.of(context)!.duellTargetQuestion,
           onTargetSelected: _onDuellTargetSelected,
           maxTarget: 20,
           initialTarget: 5,
