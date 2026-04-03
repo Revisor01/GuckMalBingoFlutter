@@ -217,15 +217,6 @@ class _ContentView extends StatelessWidget {
             padding: const EdgeInsets.only(top: 20),
             child: Column(
               children: [
-                Text(
-                  AppLocalizations.of(context)!.gameYourBingos,
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white.withValues(alpha:0.9),
-                  ),
-                ),
-                const SizedBox(height: 8),
                 Container(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
