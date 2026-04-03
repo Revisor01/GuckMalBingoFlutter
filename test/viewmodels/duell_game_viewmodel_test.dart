@@ -1,9 +1,11 @@
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:guck_mal_bingo/models/game_config.dart';
 import 'package:guck_mal_bingo/models/game_mode.dart';
 import 'package:guck_mal_bingo/models/area.dart';
 import 'package:guck_mal_bingo/models/season.dart';
 import 'package:guck_mal_bingo/viewmodels/duell_game_viewmodel.dart';
+import 'package:guck_mal_bingo/utilities/audio_player.dart';
 
 /// Helper: Creates a standard test config for Duell-Modus
 GameConfig _testConfig({int targetBingos = 3}) {
@@ -17,6 +19,14 @@ GameConfig _testConfig({int targetBingos = 3}) {
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
+
+  // Register mock method channel for audioplayers to prevent MissingPluginException
+  setUpAll(() {
+    const MethodChannel('xyz.luan/audioplayers.global')
+        .setMockMethodCallHandler((MethodCall methodCall) async => null);
+    const MethodChannel('xyz.luan/audioplayers')
+        .setMockMethodCallHandler((MethodCall methodCall) async => null);
+  });
 
   group('DuellGameViewModel', () {
     late DuellGameViewModel vm;

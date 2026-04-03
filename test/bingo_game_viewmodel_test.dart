@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:guck_mal_bingo/models/game_config.dart';
 import 'package:guck_mal_bingo/models/area.dart';
@@ -10,6 +11,14 @@ import 'package:guck_mal_bingo/utilities/debug_utils.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
+
+  // Register mock method channel for audioplayers to prevent MissingPluginException
+  setUpAll(() {
+    const MethodChannel('xyz.luan/audioplayers.global')
+        .setMockMethodCallHandler((MethodCall methodCall) async => null);
+    const MethodChannel('xyz.luan/audioplayers')
+        .setMockMethodCallHandler((MethodCall methodCall) async => null);
+  });
 
   group('BingoGameViewModel._checkWin (via toggleCell)', () {
     late BingoGameViewModel vm;
