@@ -110,9 +110,8 @@ class DuellGameViewModel extends ChangeNotifier {
   void _triggerVictory() {
     _showVictoryDialog = true;
     notifyListeners();
-    // Kurze Verzoegerung damit click-Sound abklingt, dann Victory-Sound
-    Future.delayed(const Duration(milliseconds: 300), () {
-      _audioPlayer.stop();
+    // Kurze Verzögerung damit Click-Sound abklingt, dann Victory-Sound
+    Future.delayed(const Duration(milliseconds: 500), () {
       _audioPlayer.playVictorySound();
     });
   }

@@ -351,9 +351,7 @@ class _DuellGameViewState extends State<DuellGameView>
                   if (viewModel.showVictoryDialog)
                     VictoryDialogView(
                       bingoCount: viewModel.score,
-                      scoreText: viewModel.skipCount > 0
-                          ? '${l10n.duellVictoryScore(viewModel.score)}\n${l10n.duellSkipCount(viewModel.skipCount)}'
-                          : l10n.duellVictoryScore(viewModel.score),
+                      scoreText: l10n.duellVictoryScore(viewModel.score),
                       onPlayAgain: () => _viewModel.resetGame(),
                       onBackToStart: widget.onBackToStart,
                     ),
