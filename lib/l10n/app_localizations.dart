@@ -2194,6 +2194,12 @@ abstract class AppLocalizations {
   /// **'Neues Spiel'**
   String get resumeGameNew;
 
+  /// No description provided for @resumeGameBackToStart.
+  ///
+  /// In de, this message translates to:
+  /// **'Zurück zum Start'**
+  String get resumeGameBackToStart;
+
   /// No description provided for @settingsEasterEffect.
   ///
   /// In de, this message translates to:

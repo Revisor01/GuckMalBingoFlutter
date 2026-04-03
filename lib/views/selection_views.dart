@@ -13,12 +13,14 @@ import 'widgets/app_button.dart';
 /// Basis fuer alle Auswahl-Views
 class _BaseSelectionView extends StatelessWidget {
   final String title;
+  final String? subtitle;
   final String question;
   final Widget content;
   final Widget? footer;
 
   const _BaseSelectionView({
     required this.title,
+    this.subtitle,
     required this.question,
     required this.content,
     this.footer,
@@ -147,6 +149,19 @@ class _BaseSelectionView extends StatelessWidget {
           ),
         ),
 
+        // Subtitle (optionaler Spielmodus-Name)
+        if (subtitle != null) ...[
+          const SizedBox(height: 4),
+          Text(
+            subtitle!,
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+              color: Colors.white.withValues(alpha: 0.7),
+            ),
+          ),
+        ],
+
         // Question
         Padding(
           padding: EdgeInsets.only(
@@ -171,11 +186,13 @@ class _BaseSelectionView extends StatelessWidget {
 /// Category Theme Selection
 class ThemeCategorySelectionView extends StatelessWidget {
   final GameConfig config;
+  final String? subtitle;
   final Function(CategoryTheme) onThemeSelected;
 
   const ThemeCategorySelectionView({
     super.key,
     required this.config,
+    this.subtitle,
     required this.onThemeSelected,
   });
 
@@ -183,6 +200,7 @@ class ThemeCategorySelectionView extends StatelessWidget {
   Widget build(BuildContext context) {
     return _BaseSelectionView(
       title: AppLocalizations.of(context)!.appTitle,
+      subtitle: subtitle,
       question: AppLocalizations.of(context)!.categorySelectionQuestion,
       content: Column(
         children: CategoryTheme.values
@@ -219,11 +237,13 @@ class ThemeCategorySelectionView extends StatelessWidget {
 /// Season Selection
 class SeasonSelectionView extends StatelessWidget {
   final GameConfig config;
+  final String? subtitle;
   final Function(Season) onSeasonSelected;
 
   const SeasonSelectionView({
     super.key,
     required this.config,
+    this.subtitle,
     required this.onSeasonSelected,
   });
 
@@ -231,6 +251,7 @@ class SeasonSelectionView extends StatelessWidget {
   Widget build(BuildContext context) {
     return _BaseSelectionView(
       title: AppLocalizations.of(context)!.appTitle,
+      subtitle: subtitle,
       question: AppLocalizations.of(context)!.seasonSelectionQuestion,
       content: Column(
         children: Season.mainCases
@@ -275,11 +296,13 @@ class SeasonSelectionView extends StatelessWidget {
 /// Area Selection
 class AreaSelectionView extends StatelessWidget {
   final GameConfig config;
+  final String? subtitle;
   final Function(Area) onAreaSelected;
 
   const AreaSelectionView({
     super.key,
     required this.config,
+    this.subtitle,
     required this.onAreaSelected,
   });
 
@@ -308,6 +331,7 @@ class AreaSelectionView extends StatelessWidget {
 
     return _BaseSelectionView(
       title: AppLocalizations.of(context)!.appTitle,
+      subtitle: subtitle,
       question: AppLocalizations.of(context)!.areaSelectionQuestion,
       content: Column(
         children: availableAreas
@@ -387,6 +411,8 @@ class SizeSelectionView extends StatelessWidget {
 /// Target Bingos Selection (fuer Jagd- und Duell-Modus)
 class TargetBingosView extends StatefulWidget {
   final GameConfig config;
+  final String? subtitle;
+  final String? questionOverride;
   final Function(int) onTargetSelected;
   final int maxTarget;      // Default 10 (Jagd-Modus), 20 fuer Duell-Modus
   final int initialTarget;  // Default 3 (Jagd-Modus), 5 fuer Duell-Modus
@@ -394,6 +420,8 @@ class TargetBingosView extends StatefulWidget {
   const TargetBingosView({
     super.key,
     required this.config,
+    this.subtitle,
+    this.questionOverride,
     required this.onTargetSelected,
     this.maxTarget = 10,
     this.initialTarget = 3,
@@ -412,7 +440,8 @@ class _TargetBingosViewState extends State<TargetBingosView> {
 
     return _BaseSelectionView(
       title: AppLocalizations.of(context)!.appTitle,
-      question: AppLocalizations.of(context)!.targetbingosQuestion,
+      subtitle: widget.subtitle,
+      question: widget.questionOverride ?? AppLocalizations.of(context)!.targetbingosQuestion,
       content: Column(
         children: [
           const SizedBox(height: 20),

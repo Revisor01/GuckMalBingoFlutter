@@ -1076,6 +1076,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get resumeGameNew => 'Nueva partida';
 
   @override
+  String get resumeGameBackToStart => 'Volver al inicio';
+
+  @override
   String get settingsEasterEffect => 'Efecto de Pascua';
 
   @override
