@@ -42,7 +42,7 @@ class AppPreferences {
     }
 
     // String-Werte migrieren
-    for (final key in ['backgroundTheme', 'savedGameState']) {
+    for (final key in ['backgroundTheme', 'savedGameState', 'savedDuellState']) {
       final val = oldPrefs.getString(key);
       if (val != null) {
         await _storage.write(key: key, value: val);
@@ -54,7 +54,7 @@ class AppPreferences {
 
   /// Lädt alle bekannten Keys in den Cache für synchronen Zugriff
   Future<void> _loadCache() async {
-    for (final key in ['snowfallEnabled', 'easterEffectEnabled', 'hasSeenOnboarding', 'backgroundTheme', 'savedGameState']) {
+    for (final key in ['snowfallEnabled', 'easterEffectEnabled', 'hasSeenOnboarding', 'backgroundTheme', 'savedGameState', 'savedDuellState']) {
       _cache[key] = await _storage.read(key: key);
     }
   }
@@ -119,14 +119,16 @@ class AppPreferences {
   // Duell Game State Persistence
   static const _keyDuellState = 'savedDuellState';
 
-  bool get hasSavedDuellState => _prefs.getString(_keyDuellState) != null;
+  bool get hasSavedDuellState => _cache[_keyDuellState] != null;
 
   Future<void> saveDuellState(Map<String, dynamic> state) async {
-    await _prefs.setString(_keyDuellState, jsonEncode(state));
+    final json = jsonEncode(state);
+    _cache[_keyDuellState] = json;
+    await _storage.write(key: _keyDuellState, value: json);
   }
 
   Map<String, dynamic>? loadDuellState() {
-    final json = _prefs.getString(_keyDuellState);
+    final json = _cache[_keyDuellState];
     if (json == null) return null;
     try {
       return jsonDecode(json) as Map<String, dynamic>;
@@ -137,6 +139,7 @@ class AppPreferences {
   }
 
   Future<void> clearDuellState() async {
-    await _prefs.remove(_keyDuellState);
+    _cache.remove(_keyDuellState);
+    await _storage.delete(key: _keyDuellState);
   }
 }
