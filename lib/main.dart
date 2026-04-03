@@ -242,15 +242,8 @@ class _NavigationCoordinatorState extends State<NavigationCoordinator> {
       _config = _config.copyWith(gameMode: mode);
     });
 
-    // TargetBingos DIREKT nach Jagd-Auswahl
-    // Duell: Kategorie zuerst (D-07: Kategorie → Saison → Area → Ziel-Anzahl)
-    if (mode == GameMode.jagd) {
-      _navigateToTargetBingos();
-    } else if (mode == GameMode.duell) {
-      _navigateToThemeCategory();
-    } else {
-      _navigateToThemeCategory();
-    }
+    // Alle Modi: Kategorie → Saison → Area → [Size/Ziel] → Spiel
+    _navigateToThemeCategory();
   }
 
   void _navigateToThemeCategory() {
@@ -334,7 +327,12 @@ class _NavigationCoordinatorState extends State<NavigationCoordinator> {
     setState(() {
       _config = _config.copyWith(gridSize: size);
     });
-    _navigateToGame();
+    // Jagd: nach Size kommt Zielanzahl
+    if (_config.gameMode == GameMode.jagd) {
+      _navigateToTargetBingos();
+    } else {
+      _navigateToGame();
+    }
   }
 
   void _navigateToTargetBingos() {
@@ -353,7 +351,7 @@ class _NavigationCoordinatorState extends State<NavigationCoordinator> {
     setState(() {
       _config = _config.copyWith(targetBingos: target);
     });
-    _navigateToThemeCategory();
+    _navigateToGame();
   }
 
   void _navigateToDuellTarget() {
