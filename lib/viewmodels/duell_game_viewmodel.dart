@@ -14,6 +14,7 @@ class DuellGameViewModel extends ChangeNotifier {
   late List<BingoItem> _queue;
   int _queueIndex = 0;
   int _score = 0;
+  int _skipCount = 0;
   bool _showVictoryDialog = false;
 
   late final GameAudioPlayer _audioPlayer;
@@ -29,6 +30,12 @@ class DuellGameViewModel extends ChangeNotifier {
 
   /// Ob der Victory-Dialog angezeigt werden soll
   bool get showVictoryDialog => _showVictoryDialog;
+
+  /// Anzahl der uebersprungenen Items
+  int get skipCount => _skipCount;
+
+  /// Aktueller Queue-Index (fuer AnimatedSwitcher-Key)
+  int get queueIndex => _queueIndex;
 
   DuellGameViewModel({required this.config}) {
     _audioPlayer = GameAudioPlayer();
@@ -55,7 +62,8 @@ class DuellGameViewModel extends ChangeNotifier {
   /// Item als gefunden markieren — Score erhoehen, naechstes Item anzeigen
   void markFound() {
     _score++;
-    _audioPlayer.playBingoSound(count: _score);
+    _audioPlayer.stop();
+    _audioPlayer.playClickSound();
     if (_score >= config.targetBingos) {
       _triggerVictory();
       return;
@@ -66,6 +74,7 @@ class DuellGameViewModel extends ChangeNotifier {
 
   /// Aktuelles Item ueberspringen — kein Score, naechstes Item anzeigen
   void skip() {
+    _skipCount++;
     _advanceQueue();
     notifyListeners();
   }
@@ -82,8 +91,12 @@ class DuellGameViewModel extends ChangeNotifier {
   /// Victory ausloesen — Dialog anzeigen und Sound spielen
   void _triggerVictory() {
     _showVictoryDialog = true;
-    _audioPlayer.playVictorySound();
     notifyListeners();
+    // Kurze Verzoegerung damit click-Sound abklingt, dann Victory-Sound
+    Future.delayed(const Duration(milliseconds: 300), () {
+      _audioPlayer.stop();
+      _audioPlayer.playVictorySound();
+    });
   }
 
   /// Victory-Dialog verbergen (ohne Spiel zu beenden)
@@ -95,6 +108,7 @@ class DuellGameViewModel extends ChangeNotifier {
   /// Spiel zuruecksetzen — Score 0, neue Queue, kein Victory-Dialog
   void resetGame() {
     _score = 0;
+    _skipCount = 0;
     _queueIndex = 0;
     _showVictoryDialog = false;
     _buildQueue();
@@ -110,6 +124,7 @@ class DuellGameViewModel extends ChangeNotifier {
       'queueItemNames': queueItemNames,
       'queueIndex': _queueIndex,
       'score': _score,
+      'skipCount': _skipCount,
       'config': config.toJson(),
     });
   }
@@ -124,6 +139,7 @@ class DuellGameViewModel extends ChangeNotifier {
     final config = GameConfig.fromJson(state['config'] as Map<String, dynamic>);
     final vm = DuellGameViewModel(config: config);
     vm._score = state['score'] as int? ?? 0;
+    vm._skipCount = state['skipCount'] as int? ?? 0;
     vm._queueIndex = state['queueIndex'] as int? ?? 0;
 
     // Queue aus gespeicherten Keys wiederherstellen
