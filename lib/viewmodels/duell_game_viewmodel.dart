@@ -56,8 +56,8 @@ class DuellGameViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  DuellGameViewModel({required this.config}) {
-    _audioPlayer = GameAudioPlayer();
+  DuellGameViewModel({required this.config, GameAudioPlayer? audioPlayer}) {
+    _audioPlayer = audioPlayer ?? GameAudioPlayer();
     _buildQueue();
   }
 
@@ -68,13 +68,9 @@ class DuellGameViewModel extends ChangeNotifier {
       season: config.season,
     );
     _queue = List.of(sourceItems)..shuffle();
-    // Sicherstellen dass Queue nie leer ist
+    // Fallback: allItems wenn Filter leer
     if (_queue.isEmpty) {
-      // Fallback: fruehling_sommer als Standardsaison
-      _queue = List.of(BingoItemsData.itemsFor(
-        area: config.area,
-        season: config.season,
-      ))..shuffle();
+      _queue = List.of(BingoItemsData.allItems)..shuffle();
     }
   }
 
@@ -152,9 +148,9 @@ class DuellGameViewModel extends ChangeNotifier {
   }
 
   /// Stellt ViewModel aus gespeichertem Zustand wieder her
-  factory DuellGameViewModel.fromSavedState(Map<String, dynamic> state) {
+  factory DuellGameViewModel.fromSavedState(Map<String, dynamic> state, {GameAudioPlayer? audioPlayer}) {
     final config = GameConfig.fromJson(state['config'] as Map<String, dynamic>);
-    final vm = DuellGameViewModel(config: config);
+    final vm = DuellGameViewModel(config: config, audioPlayer: audioPlayer);
     vm._score = state['score'] as int? ?? 0;
     vm._skipCount = state['skipCount'] as int? ?? 0;
     vm._queueIndex = state['queueIndex'] as int? ?? 0;
