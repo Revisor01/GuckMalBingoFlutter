@@ -155,9 +155,10 @@ class _BaseSelectionView extends StatelessWidget {
           Text(
             subtitle!,
             style: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
-              color: Colors.white.withValues(alpha: 0.7),
+              fontSize: 22,
+              fontWeight: FontWeight.w600,
+              color: Colors.white.withValues(alpha: 0.85),
+              fontFamily: 'Nunito',
             ),
           ),
         ],

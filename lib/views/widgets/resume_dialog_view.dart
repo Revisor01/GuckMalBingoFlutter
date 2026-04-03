@@ -3,8 +3,9 @@ import '../../l10n/app_localizations.dart';
 import '../../utilities/app_colors.dart';
 
 /// Resume Dialog im VictoryDialog-Stil.
-/// Zeigt bei App-Start "Weiterspielen" und "Zurueck zum Start".
-/// Gilt fuer ALLE Spielmodi (Suche, Jagd, Duell).
+/// Wird als fullscreen Overlay in einem Stack gerendert (wie VictoryDialogView).
+/// Zeigt bei App-Start "Weiterspielen" und "Zurück zum Start".
+/// Gilt für ALLE Spielmodi (Suche, Jagd, Duell).
 class ResumeDialogView extends StatelessWidget {
   final VoidCallback onContinue;
   final VoidCallback onBackToStart;
@@ -18,7 +19,7 @@ class ResumeDialogView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    const bgColor = AppColors.primary; // Tuerkis fuer neutrales Info-Gefuehl
+    const bgColor = AppColors.primary;
 
     return Container(
       color: Colors.black.withValues(alpha: 0.4),
@@ -48,10 +49,11 @@ class ResumeDialogView extends StatelessWidget {
                 Text(
                   l10n.resumeGameTitle,
                   style: const TextStyle(
-                    fontSize: 32,
+                    fontSize: 42,
                     fontWeight: FontWeight.bold,
                     fontFamily: 'Nunito',
                     color: Colors.white,
+                    decoration: TextDecoration.none,
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -60,14 +62,15 @@ class ResumeDialogView extends StatelessWidget {
                 Text(
                   l10n.resumeGameMessage,
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: 20,
                     color: Colors.white.withValues(alpha: 0.9),
                     fontFamily: 'Nunito',
+                    decoration: TextDecoration.none,
                   ),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 24),
-                // Buttons (identisch mit VictoryDialogView)
+                // Buttons
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 5),
                   child: Column(
@@ -104,7 +107,7 @@ class ResumeDialogView extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 16),
-                      // Zurueck zum Start (Secondary)
+                      // Zurück zum Start (Secondary)
                       SizedBox(
                         width: double.infinity,
                         child: TextButton(

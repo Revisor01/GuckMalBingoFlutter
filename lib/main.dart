@@ -155,6 +155,9 @@ class _NavigationCoordinatorState extends State<NavigationCoordinator> {
   bool _showOnboarding = false;
   bool _onboardingChecked = false;
   bool _resumeDialogShown = false;
+  bool _showResumeOverlay = false;
+  VoidCallback? _resumeOnContinue;
+  VoidCallback? _resumeOnBackToStart;
 
   @override
   void initState() {
@@ -195,44 +198,36 @@ class _NavigationCoordinatorState extends State<NavigationCoordinator> {
     final state = AppPreferences.instance.loadGameState();
     if (state == null) return;
 
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      barrierColor: Colors.transparent, // ResumeDialogView hat eigenen Overlay
-      builder: (ctx) => ResumeDialogView(
-        onContinue: () {
-          Navigator.of(ctx).pop();
-          final viewModel = BingoGameViewModel.fromSavedState(state);
-          _navigateToGame(existingViewModel: viewModel);
-        },
-        onBackToStart: () {
-          Navigator.of(ctx).pop();
-          AppPreferences.instance.clearGameState();
-        },
-      ),
-    );
+    setState(() {
+      _showResumeOverlay = true;
+      _resumeOnContinue = () {
+        setState(() => _showResumeOverlay = false);
+        final viewModel = BingoGameViewModel.fromSavedState(state);
+        _navigateToGame(existingViewModel: viewModel);
+      };
+      _resumeOnBackToStart = () {
+        setState(() => _showResumeOverlay = false);
+        AppPreferences.instance.clearGameState();
+      };
+    });
   }
 
   void _showDuellResumeDialog() {
     final state = AppPreferences.instance.loadDuellState();
     if (state == null) return;
 
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      barrierColor: Colors.transparent, // ResumeDialogView hat eigenen Overlay
-      builder: (ctx) => ResumeDialogView(
-        onContinue: () {
-          Navigator.of(ctx).pop();
-          final viewModel = DuellGameViewModel.fromSavedState(state);
-          _navigateToDuellGame(existingViewModel: viewModel);
-        },
-        onBackToStart: () {
-          Navigator.of(ctx).pop();
-          AppPreferences.instance.clearDuellState();
-        },
-      ),
-    );
+    setState(() {
+      _showResumeOverlay = true;
+      _resumeOnContinue = () {
+        setState(() => _showResumeOverlay = false);
+        final viewModel = DuellGameViewModel.fromSavedState(state);
+        _navigateToDuellGame(existingViewModel: viewModel);
+      };
+      _resumeOnBackToStart = () {
+        setState(() => _showResumeOverlay = false);
+        AppPreferences.instance.clearDuellState();
+      };
+    });
   }
 
   void _onOnboardingComplete() {
@@ -441,9 +436,18 @@ class _NavigationCoordinatorState extends State<NavigationCoordinator> {
       );
     }
 
-    return GameModeSelectionView(
-      config: _config,
-      onModeSelected: _onModeSelected,
+    return Stack(
+      children: [
+        GameModeSelectionView(
+          config: _config,
+          onModeSelected: _onModeSelected,
+        ),
+        if (_showResumeOverlay)
+          ResumeDialogView(
+            onContinue: _resumeOnContinue!,
+            onBackToStart: _resumeOnBackToStart!,
+          ),
+      ],
     );
   }
 }
