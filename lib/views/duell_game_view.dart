@@ -9,12 +9,11 @@ import '../utilities/app_localizations_extension.dart';
 import '../l10n/app_localizations.dart';
 import 'widgets/victory_dialog_view.dart';
 
-/// DuellGameView — Einzelitem-Ansicht fuer den Duell-Modus.
+/// DuellGameView — Einzelitem-Ansicht für den Duell-Modus.
 ///
-/// Zeigt ein Item gross mit Bild und lokalisiertem Namen im BingoCellView-Layout.
-/// Tap auf das Item = gefunden (gruenes Feedback + Slide-Animation).
-/// Long-Press auf Skip = Item ueberspringen (Fuell-Animation).
-/// Victory-Dialog bei Erreichen des Ziels.
+/// Layout identisch zum BingoGameView: Header mit "Guck mal!", Grid-Hintergrund
+/// mit 1x1-Zelle (BingoCellView-Stil), Ton/Text-Toggle Buttons unten.
+/// Tap auf das Item = gefunden. Long-Press Skip mit Füll-Animation.
 class DuellGameView extends StatefulWidget {
   final VoidCallback onBackToStart;
 
@@ -29,14 +28,11 @@ class DuellGameView extends StatefulWidget {
 
 class _DuellGameViewState extends State<DuellGameView>
     with WidgetsBindingObserver, TickerProviderStateMixin {
-  // ViewModel als State-Field gespeichert — sicher in dispose() verwendbar
   late final DuellGameViewModel _viewModel;
 
-  // Transientes State fuer gruenes Gefunden-Feedback (NICHT im ViewModel)
   bool _isFound = false;
   Timer? _foundTimer;
 
-  // AnimationController fuer Long-Press Skip Fuell-Animation (800ms)
   late final AnimationController _skipProgressController;
 
   @override
@@ -57,7 +53,6 @@ class _DuellGameViewState extends State<DuellGameView>
     });
   }
 
-  /// WidgetsBindingObserver — speichert Spielstand bei App-Hintergrund (DUELL-07).
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.paused) {
@@ -75,9 +70,8 @@ class _DuellGameViewState extends State<DuellGameView>
   }
 
   void _onItemTap() {
-    if (_isFound) return; // Kein Doppel-Tap waehrend Feedback-Animation
+    if (_isFound) return;
     setState(() => _isFound = true);
-    // 400ms gruenes Feedback, dann Score erhoehen und naechstes Item anzeigen
     _foundTimer = Timer(const Duration(milliseconds: 400), () {
       if (!mounted) return;
       _viewModel.markFound();
@@ -88,41 +82,110 @@ class _DuellGameViewState extends State<DuellGameView>
   @override
   Widget build(BuildContext context) {
     final selectedTheme = context.watch<ThemeNotifier>().theme;
-    final brightness = Theme.of(context).brightness;
-    final l10n = AppLocalizations.of(context)!;
 
-    return PopScope(
-      canPop: false,
-      onPopInvokedWithResult: (didPop, result) {
-        if (didPop) return;
-        // Victory-Dialog offen → Dialog schliessen statt navigieren
-        if (_viewModel.showVictoryDialog) {
-          _viewModel.dismissVictoryDialog();
-        } else {
-          _viewModel.saveGameState();
-          Navigator.of(context).pop();
-        }
-      },
-      child: Scaffold(
-        body: Container(
-          decoration: BoxDecoration(
-            gradient: selectedTheme.adaptiveGradient(brightness),
-          ),
-          child: Stack(
-            children: [
-              // Hintergrundmuster konsistent mit allen Screens
-              BackgroundPatternView(area: _viewModel.config.area),
+    return Consumer<DuellGameViewModel>(
+      builder: (context, viewModel, child) {
+        final brightness = Theme.of(context).brightness;
+        final l10n = AppLocalizations.of(context)!;
 
-              // Spielinhalt
-              SafeArea(
-                child: Consumer<DuellGameViewModel>(
-                  builder: (context, viewModel, child) {
-                    return Column(
+        return PopScope(
+          canPop: false,
+          onPopInvokedWithResult: (didPop, result) {
+            if (didPop) return;
+            if (_viewModel.showVictoryDialog) {
+              _viewModel.dismissVictoryDialog();
+            } else {
+              _viewModel.saveGameState();
+              Navigator.of(context).pop();
+            }
+          },
+          child: Scaffold(
+            body: Container(
+              decoration: BoxDecoration(
+                gradient: selectedTheme.adaptiveGradient(brightness),
+              ),
+              child: Stack(
+                children: [
+                  BackgroundPatternView(area: _viewModel.config.area),
+
+                  // Content — identisches Layout wie BingoGameView._ContentView
+                  SafeArea(
+                    child: Column(
                       children: [
-                        // --- TopBar ---
-                        _buildTopBar(context, viewModel, l10n),
+                        // Header mit fixer Höhe (wie BingoGameView)
+                        SizedBox(
+                          height: 140,
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(top: 8, left: 16, right: 16),
+                                child: Row(
+                                  children: [
+                                    // Back Button (identisch zu BingoGameView)
+                                    Semantics(
+                                      button: true,
+                                      label: l10n.accessibilityBackButton,
+                                      child: Material(
+                                        color: Colors.transparent,
+                                        child: InkWell(
+                                          onTap: () {
+                                            _viewModel.saveGameState();
+                                            Navigator.of(context).pop();
+                                          },
+                                          customBorder: const CircleBorder(),
+                                          child: Container(
+                                            padding: const EdgeInsets.all(12),
+                                            decoration: BoxDecoration(
+                                              color: Colors.white.withValues(alpha: 0.2),
+                                              shape: BoxShape.circle,
+                                            ),
+                                            child: const Icon(
+                                              Icons.chevron_left,
+                                              color: Colors.white,
+                                              size: 24,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
 
-                        // --- Fortschrittsbalken ---
+                                    const Spacer(),
+
+                                    // Score-Badge (statt Reset-Button)
+                                    Container(
+                                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                                      decoration: BoxDecoration(
+                                        color: Colors.white.withValues(alpha: 0.2),
+                                        borderRadius: BorderRadius.circular(12),
+                                      ),
+                                      child: Text(
+                                        '${viewModel.score} / ${viewModel.targetScore}',
+                                        style: const TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w600,
+                                          color: Colors.white,
+                                          fontFamily: 'Nunito',
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(height: 8),
+                              // Titel "Guck mal!" (identisch zu BingoGameView)
+                              Text(
+                                l10n.appTitle,
+                                style: const TextStyle(
+                                  fontSize: 42,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+
+                        // Fortschrittsbalken
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 32),
                           child: ClipRRect(
@@ -131,210 +194,191 @@ class _DuellGameViewState extends State<DuellGameView>
                               value: viewModel.targetScore > 0
                                   ? viewModel.score / viewModel.targetScore
                                   : 0,
-                              backgroundColor:
-                                  Colors.white.withValues(alpha: 0.2),
-                              valueColor: const AlwaysStoppedAnimation<Color>(
-                                  AppColors.successGreen),
+                              backgroundColor: Colors.white.withValues(alpha: 0.2),
+                              valueColor: const AlwaysStoppedAnimation<Color>(AppColors.successGreen),
                               minHeight: 6,
                             ),
                           ),
                         ),
+
+                        const Spacer(),
+
+                        // Grid-Hintergrund mit 1x1 Item-Karte (wie BingoGrid Container)
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: Container(
+                            padding: const EdgeInsets.all(16),
+                            decoration: BoxDecoration(
+                              color: brightness == Brightness.dark
+                                  ? Colors.white.withValues(alpha: 0.15)
+                                  : Colors.white.withValues(alpha: 0.25),
+                              borderRadius: BorderRadius.circular(28),
+                              border: Border.all(
+                                color: Colors.white.withValues(alpha: 0.3),
+                                width: 1.5,
+                              ),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: brightness == Brightness.dark
+                                      ? Colors.white.withValues(alpha: 0.1)
+                                      : Colors.black.withValues(alpha: 0.15),
+                                  blurRadius: 20,
+                                  offset: const Offset(0, 10),
+                                ),
+                              ],
+                            ),
+                            child: AspectRatio(
+                              aspectRatio: 1.0,
+                              child: AnimatedSwitcher(
+                                duration: const Duration(milliseconds: 300),
+                                transitionBuilder: (child, animation) {
+                                  return SlideTransition(
+                                    position: Tween<Offset>(
+                                      begin: const Offset(1.0, 0.0),
+                                      end: Offset.zero,
+                                    ).animate(CurvedAnimation(
+                                      parent: animation,
+                                      curve: Curves.easeOutCubic,
+                                    )),
+                                    child: FadeTransition(opacity: animation, child: child),
+                                  );
+                                },
+                                child: GestureDetector(
+                                  key: ValueKey('${viewModel.currentItem.name}_${viewModel.queueIndex}'),
+                                  onTap: _onItemTap,
+                                  child: _buildCellContent(viewModel, l10n, brightness),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+
                         const SizedBox(height: 16),
 
-                        // --- Item-Karte (Expanded, zentriert) ---
-                        Expanded(
-                            child: _buildItemCard(context, viewModel, l10n)),
+                        // Skip-Button mit Long-Press
+                        _buildSkipButton(viewModel, l10n),
 
-                        const SizedBox(height: 16),
+                        const Spacer(),
 
-                        // --- Skip-Button ---
-                        _buildSkipButton(context, viewModel, l10n),
+                        // Controls unten (Ton + Text Toggle — identisch zu BingoGameView)
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
+                          child: Row(
+                            children: [
+                              // Text Toggle
+                              Semantics(
+                                button: true,
+                                label: l10n.accessibilityTextToggle,
+                                child: Material(
+                                  color: Colors.transparent,
+                                  child: InkWell(
+                                    onTap: () => viewModel.toggleText(),
+                                    borderRadius: BorderRadius.circular(20),
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                                      decoration: BoxDecoration(
+                                        color: Colors.white.withValues(alpha: 0.2),
+                                        borderRadius: BorderRadius.circular(20),
+                                      ),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Icon(
+                                            viewModel.showText ? Icons.visibility : Icons.visibility_off,
+                                            color: Colors.white,
+                                            size: 20,
+                                          ),
+                                          const SizedBox(width: 8),
+                                          Text(
+                                            viewModel.showText ? l10n.gameTextOff : l10n.gameTextOn,
+                                            style: const TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
 
-                        const SizedBox(height: 40),
+                              const Spacer(),
+
+                              // Sound Toggle
+                              Semantics(
+                                button: true,
+                                label: l10n.accessibilitySoundToggle,
+                                child: Material(
+                                  color: Colors.transparent,
+                                  child: InkWell(
+                                    onTap: () => viewModel.toggleSound(),
+                                    borderRadius: BorderRadius.circular(20),
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                                      decoration: BoxDecoration(
+                                        color: Colors.white.withValues(alpha: 0.2),
+                                        borderRadius: BorderRadius.circular(20),
+                                      ),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Icon(
+                                            viewModel.soundEnabled ? Icons.volume_up : Icons.volume_off,
+                                            color: Colors.white,
+                                            size: 20,
+                                          ),
+                                          const SizedBox(width: 8),
+                                          Text(
+                                            viewModel.soundEnabled ? l10n.gameSoundOff : l10n.gameSoundOn,
+                                            style: const TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       ],
-                    );
-                  },
-                ),
-              ),
-
-              // --- Victory-Overlay ---
-              Consumer<DuellGameViewModel>(
-                builder: (context, viewModel, child) {
-                  if (!viewModel.showVictoryDialog) {
-                    return const SizedBox.shrink();
-                  }
-                  return VictoryDialogView(
-                    bingoCount: viewModel.score,
-                    scoreText: viewModel.skipCount > 0
-                        ? '${l10n.duellVictoryScore(viewModel.score)}\n${l10n.duellSkipCount(viewModel.skipCount)}'
-                        : l10n.duellVictoryScore(viewModel.score),
-                    onPlayAgain: () => _viewModel.resetGame(),
-                    onBackToStart: widget.onBackToStart,
-                  );
-                },
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  /// TopBar: Zurueck-Button (chevron_left), "Guck mal!" Titel + "Duell" Untertitel,
-  /// Score-Badge + Skip-Zaehler (per D-11, D-12, D-06, DUELL-09)
-  Widget _buildTopBar(
-    BuildContext context,
-    DuellGameViewModel viewModel,
-    AppLocalizations l10n,
-  ) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-      child: Row(
-        children: [
-          // Zurueck-Button: Material+InkWell+CircleBorder (wie BingoGameView)
-          Semantics(
-            button: true,
-            label: l10n.accessibilityBackButton,
-            child: Material(
-              color: Colors.transparent,
-              child: InkWell(
-                onTap: () {
-                  _viewModel.saveGameState();
-                  Navigator.of(context).pop();
-                },
-                customBorder: const CircleBorder(),
-                child: Container(
-                  padding: const EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                    color: Colors.white.withValues(alpha: 0.2),
-                    shape: BoxShape.circle,
+                    ),
                   ),
-                  child: const Icon(
-                    Icons.chevron_left,
-                    color: Colors.white,
-                    size: 24,
-                  ),
-                ),
+
+                  // Victory-Overlay
+                  if (viewModel.showVictoryDialog)
+                    VictoryDialogView(
+                      bingoCount: viewModel.score,
+                      scoreText: viewModel.skipCount > 0
+                          ? '${l10n.duellVictoryScore(viewModel.score)}\n${l10n.duellSkipCount(viewModel.skipCount)}'
+                          : l10n.duellVictoryScore(viewModel.score),
+                      onPlayAgain: () => _viewModel.resetGame(),
+                      onBackToStart: widget.onBackToStart,
+                    ),
+                ],
               ),
             ),
           ),
-
-          // Titel-Block zentriert: "Guck mal!" oben, "Duell" als Untertitel
-          Expanded(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  l10n.appTitle,
-                  style: const TextStyle(
-                    fontSize: 42,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                    fontFamily: 'Nunito',
-                  ),
-                ),
-                Text(
-                  l10n.gamemodeDuellName,
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.white.withValues(alpha: 0.7),
-                    fontFamily: 'Nunito',
-                  ),
-                ),
-              ],
-            ),
-          ),
-
-          // Rechte Seite: Score-Badge + Skip-Zaehler
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              // Score-Badge
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                decoration: BoxDecoration(
-                  color: Colors.white.withValues(alpha: 0.2),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Text(
-                  '${viewModel.score} / ${viewModel.targetScore}',
-                  style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white,
-                    fontFamily: 'Nunito',
-                  ),
-                ),
-              ),
-              // Skip-Zaehler (nur anzeigen wenn > 0)
-              if (viewModel.skipCount > 0) ...[
-                const SizedBox(height: 4),
-                Text(
-                  l10n.duellSkipCount(viewModel.skipCount),
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: Colors.white.withValues(alpha: 0.6),
-                    fontFamily: 'Nunito',
-                  ),
-                ),
-              ],
-            ],
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 
-  /// Item-Karte mit AnimatedSwitcher (Slide+Fade bei Item-Wechsel)
-  /// und quadratischem BingoCellView-Layout (borderRadius 14)
-  Widget _buildItemCard(
-    BuildContext context,
+  /// Item-Karte Inhalt — BingoCellView-Stil (borderRadius 14, Bild+Text-Stack)
+  Widget _buildCellContent(
     DuellGameViewModel viewModel,
     AppLocalizations l10n,
-  ) {
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 32),
-        child: AspectRatio(
-          aspectRatio: 1.0, // D-02: quadratisch
-          child: AnimatedSwitcher(
-            duration: const Duration(milliseconds: 300),
-            transitionBuilder: (child, animation) {
-              return SlideTransition(
-                position: Tween<Offset>(
-                  begin: const Offset(1.0, 0.0),
-                  end: Offset.zero,
-                ).animate(
-                  CurvedAnimation(
-                    parent: animation,
-                    curve: Curves.easeOutCubic,
-                  ),
-                ),
-                child: FadeTransition(opacity: animation, child: child),
-              );
-            },
-            child: GestureDetector(
-              key: ValueKey(
-                  '${viewModel.currentItem.name}_${viewModel.queueIndex}'),
-              onTap: _onItemTap,
-              child: _buildItemCardContent(viewModel, l10n),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  /// Item-Karte Inhalt — BingoCellView-Layout (borderRadius 14, Bild+Text-Stack)
-  Widget _buildItemCardContent(
-    DuellGameViewModel viewModel,
-    AppLocalizations l10n,
+    Brightness brightness,
   ) {
     final item = viewModel.currentItem;
     final itemName = l10n.getByKey(item.name) ?? item.name;
+
     return AnimatedContainer(
       duration: const Duration(milliseconds: 200),
       decoration: BoxDecoration(
@@ -346,13 +390,13 @@ class _DuellGameViewState extends State<DuellGameView>
               )
             : LinearGradient(
                 colors: [
-                  Colors.white.withValues(alpha: 0.25),
-                  Colors.white.withValues(alpha: 0.20),
+                  Colors.white.withValues(alpha: brightness == Brightness.dark ? 0.25 : 0.45),
+                  Colors.white.withValues(alpha: brightness == Brightness.dark ? 0.2 : 0.4),
                 ],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
               ),
-        borderRadius: BorderRadius.circular(14), // D-01: wie BingoCellView
+        borderRadius: BorderRadius.circular(14),
         border: Border.all(
           color: _isFound
               ? AppColors.successGreenDark
@@ -361,7 +405,11 @@ class _DuellGameViewState extends State<DuellGameView>
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.1),
+            color: _isFound
+                ? AppColors.successGreen.withValues(alpha: 0.3)
+                : (brightness == Brightness.dark
+                    ? Colors.white.withValues(alpha: 0.05)
+                    : Colors.black.withValues(alpha: 0.1)),
             blurRadius: 3,
             offset: const Offset(0, 2),
           ),
@@ -369,7 +417,6 @@ class _DuellGameViewState extends State<DuellGameView>
       ),
       child: Stack(
         children: [
-          // Bild mit Padding (wie BingoCellView)
           if (item.imageName != null)
             Padding(
               padding: const EdgeInsets.all(8),
@@ -394,40 +441,39 @@ class _DuellGameViewState extends State<DuellGameView>
                 textAlign: TextAlign.center,
               ),
             ),
-          // Name-Label unten (wie BingoCellView _buildImageContent)
-          Positioned(
-            bottom: 8,
-            left: 8,
-            right: 8,
-            child: Container(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 6, horizontal: 8),
-              decoration: BoxDecoration(
-                color: Colors.black.withValues(alpha: 0.6),
-                borderRadius: BorderRadius.circular(4),
-              ),
-              child: Text(
-                itemName,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                  fontFamily: 'Nunito',
+          // Name-Label unten (wie BingoCellView, nur wenn showText)
+          if (viewModel.showText)
+            Positioned(
+              bottom: 8,
+              left: 8,
+              right: 8,
+              child: Container(
+                padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 8),
+                decoration: BoxDecoration(
+                  color: Colors.black.withValues(alpha: 0.6),
+                  borderRadius: BorderRadius.circular(4),
                 ),
-                textAlign: TextAlign.center,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
+                child: Text(
+                  itemName,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    fontFamily: 'Nunito',
+                  ),
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
             ),
-          ),
         ],
       ),
     );
   }
 
-  /// Skip-Button mit Long-Press und visueller Fuell-Animation (D-04, D-05, UAT-04)
+  /// Skip-Button mit Long-Press und visueller Füll-Animation
   Widget _buildSkipButton(
-    BuildContext context,
     DuellGameViewModel viewModel,
     AppLocalizations l10n,
   ) {
@@ -445,31 +491,28 @@ class _DuellGameViewState extends State<DuellGameView>
           animation: _skipProgressController,
           builder: (context, _) => Stack(
             children: [
-              // Basis-Container (helles Rot)
               Container(
                 width: double.infinity,
-                height: 60,
+                height: 56,
                 decoration: BoxDecoration(
                   color: Colors.red.withValues(alpha: 0.3),
                   borderRadius: BorderRadius.circular(16),
                 ),
               ),
-              // Animierter Fill von links
               FractionallySizedBox(
                 widthFactor: _skipProgressController.value,
                 alignment: Alignment.centerLeft,
                 child: Container(
-                  height: 60,
+                  height: 56,
                   decoration: BoxDecoration(
                     color: Colors.red.withValues(alpha: 0.85),
                     borderRadius: BorderRadius.circular(16),
                   ),
                 ),
               ),
-              // Text + Icon (immer sichtbar, zentriert)
               SizedBox(
                 width: double.infinity,
-                height: 60,
+                height: 56,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -478,7 +521,7 @@ class _DuellGameViewState extends State<DuellGameView>
                     Text(
                       l10n.duellSkip,
                       style: const TextStyle(
-                        fontSize: 20,
+                        fontSize: 18,
                         fontWeight: FontWeight.w600,
                         color: Colors.white,
                         fontFamily: 'Nunito',

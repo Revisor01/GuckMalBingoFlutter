@@ -16,6 +16,8 @@ class DuellGameViewModel extends ChangeNotifier {
   int _score = 0;
   int _skipCount = 0;
   bool _showVictoryDialog = false;
+  bool _showText = true;
+  bool _soundEnabled = true;
 
   late final GameAudioPlayer _audioPlayer;
 
@@ -36,6 +38,23 @@ class DuellGameViewModel extends ChangeNotifier {
 
   /// Aktueller Queue-Index (fuer AnimatedSwitcher-Key)
   int get queueIndex => _queueIndex;
+
+  /// Ob der Item-Name angezeigt wird
+  bool get showText => _showText;
+
+  /// Ob Sound aktiviert ist
+  bool get soundEnabled => _soundEnabled;
+
+  void toggleText() {
+    _showText = !_showText;
+    notifyListeners();
+  }
+
+  void toggleSound() {
+    _soundEnabled = !_soundEnabled;
+    _audioPlayer.soundEnabled = _soundEnabled;
+    notifyListeners();
+  }
 
   DuellGameViewModel({required this.config}) {
     _audioPlayer = GameAudioPlayer();
