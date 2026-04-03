@@ -319,8 +319,8 @@
   "onboardingBingoTitle": "Zo werkt Bingo",
   "onboardingBingoDesc": "Zie je iets buiten? Tik het aan op het bord! Een complete rij – horizontaal, verticaal of diagonaal – is een bingo!",
   "onboardingBingoAccessibility": "Drie voorbeelden tonen horizontale, verticale en diagonale bingo-lijnen",
-  "onboardingModesTitle": "Twee spelmodi",
-  "onboardingModesDesc": "Kijk! Zoeken: Speel ontspannen en verzamel zoveel bingo's als je wilt.\n\nBingo Jacht: Stel een doel – wie de bingo's het eerst heeft, wint!",
+  "onboardingModesTitle": "Drie spelmodi",
+  "onboardingModesDesc": "Kijk! Zoeken: Speel ontspannen en verzamel zoveel bingo's als je wilt.\n\nBingo Jacht: Stel een doel – wie de bingo's het eerst haalt, wint!\n\nDuel: Zoek om het snelst naar losse dingen – wie vindt er meer?",
   "onboardingReadyTitle": "Klaar?",
   "onboardingReadyDesc": "Kies thema, locatie en bordgrootte. Kijk dan samen uit het raam – het avontuur begint!",
   "onboardingNext": "Volgende",
@@ -373,5 +373,14 @@
         "type": "int"
       }
     }
-  }
+  },
+  "duellSkipCount": "{count} overgeslagen",
+  "@duellSkipCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "resumeGameBackToStart": "Terug naar start"
 }

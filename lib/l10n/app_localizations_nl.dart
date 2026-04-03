@@ -983,11 +983,11 @@ class AppLocalizationsNl extends AppLocalizations {
       'Drie voorbeelden tonen horizontale, verticale en diagonale bingo-lijnen';
 
   @override
-  String get onboardingModesTitle => 'Twee spelmodi';
+  String get onboardingModesTitle => 'Drie spelmodi';
 
   @override
   String get onboardingModesDesc =>
-      'Kijk! Zoeken: Speel ontspannen en verzamel zoveel bingo\'s als je wilt.\n\nBingo Jacht: Stel een doel – wie de bingo\'s het eerst heeft, wint!';
+      'Kijk! Zoeken: Speel ontspannen en verzamel zoveel bingo\'s als je wilt.\n\nBingo Jacht: Stel een doel – wie de bingo\'s het eerst haalt, wint!\n\nDuel: Zoek om het snelst naar losse dingen – wie vindt er meer?';
 
   @override
   String get onboardingReadyTitle => 'Klaar?';
@@ -1102,4 +1102,12 @@ class AppLocalizationsNl extends AppLocalizations {
   String duellVictoryScore(int score) {
     return '$score vondsten gedaan!';
   }
+
+  @override
+  String duellSkipCount(int count) {
+    return '$count overgeslagen';
+  }
+
+  @override
+  String get resumeGameBackToStart => 'Terug naar start';
 }

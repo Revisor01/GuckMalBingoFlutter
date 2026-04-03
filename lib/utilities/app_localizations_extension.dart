@@ -312,6 +312,7 @@ extension AppLocalizationsX on AppLocalizations {
     'parentalGateSubmit': (l) => l.parentalGateSubmit,
     'parentalGateTitle': (l) => l.parentalGateTitle,
     'perfektFuer': (l) => l.perfektFuer,
+    'resumeGameBackToStart': (l) => l.resumeGameBackToStart,
     'resumeGameContinue': (l) => l.resumeGameContinue,
     'resumeGameMessage': (l) => l.resumeGameMessage,
     'resumeGameNew': (l) => l.resumeGameNew,

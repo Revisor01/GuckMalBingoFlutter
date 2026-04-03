@@ -319,8 +319,8 @@
   "onboardingBingoTitle": "How Bingo Works",
   "onboardingBingoDesc": "See something outside? Tap it on the board! A complete row – horizontal, vertical or diagonal – makes a bingo!",
   "onboardingBingoAccessibility": "Three examples show horizontal, vertical and diagonal bingo lines",
-  "onboardingModesTitle": "Two Game Modes",
-  "onboardingModesDesc": "Look! Search: Play relaxed and collect as many bingos as you want.\n\nBingo Hunt: Set a goal – whoever gets the bingos first wins!",
+  "onboardingModesTitle": "Three Game Modes",
+  "onboardingModesDesc": "Look! Search: Play relaxed and collect as many bingos as you want.\n\nBingo Hunt: Set a goal – whoever gets the bingos first wins!\n\nDuel: Race to find individual things – who finds more?",
   "onboardingReadyTitle": "Ready?",
   "onboardingReadyDesc": "Choose your theme, location and board size. Then look out the window together – the discovery journey begins!",
   "onboardingNext": "Next",
@@ -373,5 +373,14 @@
         "type": "int"
       }
     }
-  }
+  },
+  "duellSkipCount": "{count} skipped",
+  "@duellSkipCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "resumeGameBackToStart": "Back to start"
 }

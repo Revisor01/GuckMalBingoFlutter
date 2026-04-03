@@ -983,11 +983,11 @@ class AppLocalizationsEn extends AppLocalizations {
       'Three examples show horizontal, vertical and diagonal bingo lines';
 
   @override
-  String get onboardingModesTitle => 'Two Game Modes';
+  String get onboardingModesTitle => 'Three Game Modes';
 
   @override
   String get onboardingModesDesc =>
-      'Look! Search: Play relaxed and collect as many bingos as you want.\n\nBingo Hunt: Set a goal – whoever gets the bingos first wins!';
+      'Look! Search: Play relaxed and collect as many bingos as you want.\n\nBingo Hunt: Set a goal – whoever gets the bingos first wins!\n\nDuel: Race to find individual things – who finds more?';
 
   @override
   String get onboardingReadyTitle => 'Ready?';
@@ -1103,4 +1103,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String duellVictoryScore(int score) {
     return '$score finds made!';
   }
+
+  @override
+  String duellSkipCount(int count) {
+    return '$count skipped';
+  }
+
+  @override
+  String get resumeGameBackToStart => 'Back to start';
 }

@@ -2023,13 +2023,13 @@ abstract class AppLocalizations {
   /// No description provided for @onboardingModesTitle.
   ///
   /// In de, this message translates to:
-  /// **'Zwei Spielmodi'**
+  /// **'Drei Spielmodi'**
   String get onboardingModesTitle;
 
   /// No description provided for @onboardingModesDesc.
   ///
   /// In de, this message translates to:
-  /// **'Guck mal! Suche: Spielt entspannt und sammelt so viele Bingos wie ihr wollt.\n\nBingo Jagd: Legt ein Ziel fest – wer die Bingos zuerst schafft, gewinnt!'**
+  /// **'Guck mal! Suche: Spielt entspannt und sammelt so viele Bingos wie ihr wollt.\n\nBingo Jagd: Legt ein Ziel fest – wer die Bingos zuerst schafft, gewinnt!\n\nDuell: Sucht einzelne Dinge um die Wette – wer findet mehr?'**
   String get onboardingModesDesc;
 
   /// No description provided for @onboardingReadyTitle.
@@ -2247,6 +2247,18 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'{score} Funde geschafft!'**
   String duellVictoryScore(int score);
+
+  /// No description provided for @duellSkipCount.
+  ///
+  /// In de, this message translates to:
+  /// **'{count} übersprungen'**
+  String duellSkipCount(int count);
+
+  /// No description provided for @resumeGameBackToStart.
+  ///
+  /// In de, this message translates to:
+  /// **'Zurück zum Start'**
+  String get resumeGameBackToStart;
 }
 
 class _AppLocalizationsDelegate

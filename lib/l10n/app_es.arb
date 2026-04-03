@@ -319,8 +319,8 @@
   "onboardingBingoTitle": "Cómo funciona el Bingo",
   "onboardingBingoDesc": "¿Ves algo afuera? ¡Tócalo en el tablero! Una fila completa – horizontal, vertical o diagonal – ¡es un bingo!",
   "onboardingBingoAccessibility": "Tres ejemplos muestran líneas de bingo horizontales, verticales y diagonales",
-  "onboardingModesTitle": "Dos modos de juego",
-  "onboardingModesDesc": "¡Mira! Búsqueda: Juega relajado y colecciona todos los bingos que quieras.\n\nCaza de Bingo: ¡Establece una meta – quien consiga los bingos primero gana!",
+  "onboardingModesTitle": "Tres modos de juego",
+  "onboardingModesDesc": "¡Mira! Búsqueda: Juega relajado y colecciona todos los bingos que quieras.\n\nCaza de Bingo: Fija una meta – ¡quien consiga los bingos primero gana!\n\nDuelo: Compite buscando cosas individuales – ¿quién encuentra más?",
   "onboardingReadyTitle": "¿Listos?",
   "onboardingReadyDesc": "Elige tema, lugar y tamaño del tablero. ¡Entonces miren juntos por la ventana – comienza la aventura!",
   "onboardingNext": "Siguiente",
@@ -373,5 +373,14 @@
         "type": "int"
       }
     }
-  }
+  },
+  "duellSkipCount": "{count} omitidos",
+  "@duellSkipCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "resumeGameBackToStart": "Volver al inicio"
 }

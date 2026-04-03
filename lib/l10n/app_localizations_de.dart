@@ -983,11 +983,11 @@ class AppLocalizationsDe extends AppLocalizations {
       'Drei Beispiele zeigen horizontale, vertikale und diagonale Bingo-Linien';
 
   @override
-  String get onboardingModesTitle => 'Zwei Spielmodi';
+  String get onboardingModesTitle => 'Drei Spielmodi';
 
   @override
   String get onboardingModesDesc =>
-      'Guck mal! Suche: Spielt entspannt und sammelt so viele Bingos wie ihr wollt.\n\nBingo Jagd: Legt ein Ziel fest – wer die Bingos zuerst schafft, gewinnt!';
+      'Guck mal! Suche: Spielt entspannt und sammelt so viele Bingos wie ihr wollt.\n\nBingo Jagd: Legt ein Ziel fest – wer die Bingos zuerst schafft, gewinnt!\n\nDuell: Sucht einzelne Dinge um die Wette – wer findet mehr?';
 
   @override
   String get onboardingReadyTitle => 'Bereit?';
@@ -1103,4 +1103,12 @@ class AppLocalizationsDe extends AppLocalizations {
   String duellVictoryScore(int score) {
     return '$score Funde geschafft!';
   }
+
+  @override
+  String duellSkipCount(int count) {
+    return '$count übersprungen';
+  }
+
+  @override
+  String get resumeGameBackToStart => 'Zurück zum Start';
 }
