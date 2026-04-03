@@ -46,3 +46,4 @@ ios/ServiceDefinitions.json
 android/key.properties
 android/app/upload-keystore.jks
 *.aab
+.claude/worktrees/
