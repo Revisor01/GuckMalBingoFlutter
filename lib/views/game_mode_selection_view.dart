@@ -10,6 +10,7 @@ import '../utilities/app_localizations_extension.dart';
 import 'settings_view.dart';
 import 'theme_selection_view.dart';
 import 'widgets/app_button.dart';
+import 'widgets/description_item.dart';
 
 /// GameModeSelectionView - Portiert von Swift
 /// Erste Auswahl: Spielmodus (Suche oder Jagd)
@@ -215,55 +216,13 @@ class _GameModeSelectionViewState extends State<GameModeSelectionView> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                // Bingo Suche
-                                Padding(
-                                  padding: const EdgeInsets.only(bottom: 16),
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        AppLocalizations.of(context)!.gamemodeSucheName,
-                                        style: const TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                      const SizedBox(height: 4),
-                                      Text(
-                                        AppLocalizations.of(context)!.gamemodeSucheDescription,
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          color: Colors.white.withValues(alpha:0.8),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
+                                DescriptionItem(
+                                  title: AppLocalizations.of(context)!.gamemodeSucheName,
+                                  description: AppLocalizations.of(context)!.gamemodeSucheDescription,
                                 ),
-                                // Bingo Jagd
-                                Padding(
-                                  padding: const EdgeInsets.only(bottom: 16),
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        AppLocalizations.of(context)!.gamemodeJagdName,
-                                        style: const TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                      const SizedBox(height: 4),
-                                      Text(
-                                        AppLocalizations.of(context)!.gamemodeJagdDescription,
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          color: Colors.white.withValues(alpha:0.8),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
+                                DescriptionItem(
+                                  title: AppLocalizations.of(context)!.gamemodeJagdName,
+                                  description: AppLocalizations.of(context)!.gamemodeJagdDescription,
                                 ),
                               ],
                             ),
