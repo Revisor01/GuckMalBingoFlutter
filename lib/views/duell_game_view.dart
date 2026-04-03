@@ -7,6 +7,8 @@ import '../utilities/app_colors.dart';
 import '../utilities/theme_provider.dart';
 import '../utilities/app_localizations_extension.dart';
 import '../l10n/app_localizations.dart';
+import 'widgets/shared_game_header.dart';
+import 'widgets/shared_toggle_buttons.dart';
 import 'widgets/victory_dialog_view.dart';
 
 /// DuellGameView — Einzelitem-Ansicht für den Duell-Modus.
@@ -112,59 +114,12 @@ class _DuellGameViewState extends State<DuellGameView>
                   SafeArea(
                     child: Column(
                       children: [
-                        // Header mit fixer Höhe (wie BingoGameView)
-                        SizedBox(
-                          height: 140,
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(top: 8, left: 16, right: 16),
-                                child: Row(
-                                  children: [
-                                    // Back Button (identisch zu BingoGameView)
-                                    Semantics(
-                                      button: true,
-                                      label: l10n.accessibilityBackButton,
-                                      child: Material(
-                                        color: Colors.transparent,
-                                        child: InkWell(
-                                          onTap: () {
-                                            _viewModel.saveGameState();
-                                            Navigator.of(context).pop();
-                                          },
-                                          customBorder: const CircleBorder(),
-                                          child: Container(
-                                            padding: const EdgeInsets.all(12),
-                                            decoration: BoxDecoration(
-                                              color: Colors.white.withValues(alpha: 0.2),
-                                              shape: BoxShape.circle,
-                                            ),
-                                            child: const Icon(
-                                              Icons.chevron_left,
-                                              color: Colors.white,
-                                              size: 24,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-
-                                    const Spacer(),
-                                  ],
-                                ),
-                              ),
-                              const SizedBox(height: 8),
-                              // Titel "Guck mal!" (identisch zu BingoGameView)
-                              Text(
-                                l10n.appTitle,
-                                style: const TextStyle(
-                                  fontSize: 42,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ],
-                          ),
+                        // Header
+                        SharedGameHeader(
+                          onBack: () {
+                            _viewModel.saveGameState();
+                            Navigator.of(context).pop();
+                          },
                         ),
 
                         // Punkte-Anzeige (wie Bingo-Jagd Zähler)
@@ -256,92 +211,12 @@ class _DuellGameViewState extends State<DuellGameView>
 
                         const Spacer(),
 
-                        // Controls unten (Ton + Text Toggle — identisch zu BingoGameView)
-                        Padding(
-                          padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
-                          child: Row(
-                            children: [
-                              // Text Toggle
-                              Semantics(
-                                button: true,
-                                label: l10n.accessibilityTextToggle,
-                                child: Material(
-                                  color: Colors.transparent,
-                                  child: InkWell(
-                                    onTap: () => viewModel.toggleText(),
-                                    borderRadius: BorderRadius.circular(20),
-                                    child: Container(
-                                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                                      decoration: BoxDecoration(
-                                        color: Colors.white.withValues(alpha: 0.2),
-                                        borderRadius: BorderRadius.circular(20),
-                                      ),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Icon(
-                                            viewModel.showText ? Icons.visibility : Icons.visibility_off,
-                                            color: Colors.white,
-                                            size: 20,
-                                          ),
-                                          const SizedBox(width: 8),
-                                          Text(
-                                            viewModel.showText ? l10n.gameTextOff : l10n.gameTextOn,
-                                            style: const TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w500,
-                                              color: Colors.white,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-
-                              const Spacer(),
-
-                              // Sound Toggle
-                              Semantics(
-                                button: true,
-                                label: l10n.accessibilitySoundToggle,
-                                child: Material(
-                                  color: Colors.transparent,
-                                  child: InkWell(
-                                    onTap: () => viewModel.toggleSound(),
-                                    borderRadius: BorderRadius.circular(20),
-                                    child: Container(
-                                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                                      decoration: BoxDecoration(
-                                        color: Colors.white.withValues(alpha: 0.2),
-                                        borderRadius: BorderRadius.circular(20),
-                                      ),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Icon(
-                                            viewModel.soundEnabled ? Icons.volume_up : Icons.volume_off,
-                                            color: Colors.white,
-                                            size: 20,
-                                          ),
-                                          const SizedBox(width: 8),
-                                          Text(
-                                            viewModel.soundEnabled ? l10n.gameSoundOff : l10n.gameSoundOn,
-                                            style: const TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w500,
-                                              color: Colors.white,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
+                        // Controls
+                        SharedToggleButtons(
+                          showText: viewModel.showText,
+                          soundEnabled: viewModel.soundEnabled,
+                          onToggleText: () => viewModel.toggleText(),
+                          onToggleSound: () => viewModel.toggleSound(),
                         ),
                       ],
                     ),

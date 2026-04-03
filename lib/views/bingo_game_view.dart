@@ -5,6 +5,8 @@ import '../viewmodels/bingo_game_viewmodel.dart';
 import '../models/game_mode.dart';
 import '../utilities/background_pattern_view.dart';
 import '../utilities/theme_provider.dart';
+import 'widgets/shared_game_header.dart';
+import 'widgets/shared_toggle_buttons.dart';
 import 'widgets/victory_dialog_view.dart';
 import 'widgets/win_message_view.dart';
 import 'widgets/bingo_cell_view.dart';
@@ -134,80 +136,27 @@ class _ContentView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        // Header mit fixer Höhe
-        SizedBox(
-          height: 140,
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 8, left: 16, right: 16),
-                child: Row(
-                  children: [
-                    // Back Button
-                    Semantics(
-                      button: true,
-                      label: AppLocalizations.of(context)!.accessibilityBackButton,
-                      child: Material(
-                        color: Colors.transparent,
-                        child: InkWell(
-                          onTap: onBack,
-                          customBorder: const CircleBorder(),
-                          child: Container(
-                            padding: const EdgeInsets.all(12),
-                            decoration: BoxDecoration(
-                              color: Colors.white.withValues(alpha:0.2),
-                              shape: BoxShape.circle,
-                            ),
-                            child: const Icon(
-                              Icons.chevron_left,
-                              color: Colors.white,
-                              size: 24,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-
-                    const Spacer(),
-
-                    // Reset Button
-                    Semantics(
-                      button: true,
-                      label: AppLocalizations.of(context)!.accessibilityResetButton,
-                      child: Material(
-                        color: Colors.transparent,
-                        child: InkWell(
-                          onTap: () => viewModel.resetGame(),
-                          customBorder: const CircleBorder(),
-                          child: Container(
-                            padding: const EdgeInsets.all(12),
-                            decoration: BoxDecoration(
-                              color: Colors.white.withValues(alpha:0.2),
-                              shape: BoxShape.circle,
-                            ),
-                            child: const Icon(
-                              Icons.refresh,
-                              color: Colors.white,
-                              size: 24,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
+        // Header
+        SharedGameHeader(
+          onBack: onBack,
+          trailing: Semantics(
+            button: true,
+            label: AppLocalizations.of(context)!.accessibilityResetButton,
+            child: Material(
+              color: Colors.transparent,
+              child: InkWell(
+                onTap: () => viewModel.resetGame(),
+                customBorder: const CircleBorder(),
+                child: Container(
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    color: Colors.white.withValues(alpha: 0.2),
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Icon(Icons.refresh, color: Colors.white, size: 24),
                 ),
               ),
-              const SizedBox(height: 8),
-              // Title
-              Text(
-                AppLocalizations.of(context)!.appTitle,
-                style: const TextStyle(
-                  fontSize: 42,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
-            ],
+            ),
           ),
         ),
 
@@ -267,105 +216,11 @@ class _ContentView extends StatelessWidget {
           const Spacer(),
 
         // Controls
-        Padding(
-          padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
-          child: Row(
-            children: [
-              // Text Toggle
-              Semantics(
-                button: true,
-                label: AppLocalizations.of(context)!.accessibilityTextToggle,
-                child: Material(
-                  color: Colors.transparent,
-                  child: InkWell(
-                    onTap: () => viewModel.toggleText(),
-                    borderRadius: BorderRadius.circular(20),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 10,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.white.withValues(alpha:0.2),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Icon(
-                            viewModel.showText
-                                ? Icons.visibility
-                                : Icons.visibility_off,
-                            color: Colors.white,
-                            size: 20,
-                          ),
-                          const SizedBox(width: 8),
-                          Text(
-                            viewModel.showText
-                                ? AppLocalizations.of(context)!.gameTextOff
-                                : AppLocalizations.of(context)!.gameTextOn,
-                            style: const TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-
-              const Spacer(),
-
-              // Sound Toggle
-              Semantics(
-                button: true,
-                label: AppLocalizations.of(context)!.accessibilitySoundToggle,
-                child: Material(
-                  color: Colors.transparent,
-                  child: InkWell(
-                    onTap: () => viewModel.toggleSound(),
-                    borderRadius: BorderRadius.circular(20),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 10,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.white.withValues(alpha:0.2),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Icon(
-                            viewModel.soundEnabled
-                                ? Icons.volume_up
-                                : Icons.volume_off,
-                            color: Colors.white,
-                            size: 20,
-                          ),
-                          const SizedBox(width: 8),
-                          Text(
-                            viewModel.soundEnabled
-                                ? AppLocalizations.of(context)!.gameSoundOff
-                                : AppLocalizations.of(context)!.gameSoundOn,
-                            style: const TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
+        SharedToggleButtons(
+          showText: viewModel.showText,
+          soundEnabled: viewModel.soundEnabled,
+          onToggleText: () => viewModel.toggleText(),
+          onToggleSound: () => viewModel.toggleSound(),
         ),
       ],
     );
