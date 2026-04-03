@@ -184,7 +184,6 @@
   "itemSchiff": "Schip",
   "itemSchildkroete": "Schildpad",
   "itemSchlange": "Slang",
-  "itemSchneeEule": "Sneeuwuil",
   "itemSchneeeule": "Sneeuwuil",
   "itemSchneeflocke": "Sneeuwvlok",
   "itemSchneemann": "Sneeuwpop",
@@ -197,7 +196,6 @@
   "itemSeehund": "Zeehond",
   "itemSessel": "Fauteuil",
   "itemSikahHirsch": "Sikahert",
-  "itemSikahirsch": "Sikahert",
   "itemSofa": "Bank",
   "itemSolarzellen": "Zonnepanelen",
   "itemSpielplatz": "Speeltuin",
@@ -321,8 +319,8 @@
   "onboardingBingoTitle": "Zo werkt Bingo",
   "onboardingBingoDesc": "Zie je iets buiten? Tik het aan op het bord! Een complete rij – horizontaal, verticaal of diagonaal – is een bingo!",
   "onboardingBingoAccessibility": "Drie voorbeelden tonen horizontale, verticale en diagonale bingo-lijnen",
-  "onboardingModesTitle": "Twee spelmodi",
-  "onboardingModesDesc": "Kijk! Zoeken: Speel ontspannen en verzamel zoveel bingo's als je wilt.\n\nBingo Jacht: Stel een doel – wie de bingo's het eerst heeft, wint!",
+  "onboardingModesTitle": "Drie spelmodi",
+  "onboardingModesDesc": "Kijk! Zoeken: Speel ontspannen en verzamel zoveel bingo's als je wilt.\n\nBingo Jacht: Stel een doel – wie de bingo's het eerst haalt, wint!\n\nDuel: Zoek om het snelst naar losse dingen – wie vindt er meer?",
   "onboardingReadyTitle": "Klaar?",
   "onboardingReadyDesc": "Kies thema, locatie en bordgrootte. Kijk dan samen uit het raam – het avontuur begint!",
   "onboardingNext": "Volgende",
@@ -360,5 +358,30 @@
   "resumeGameMessage": "Je hebt een lopend spel. Wil je doorgaan?",
   "resumeGameContinue": "Doorgaan",
   "resumeGameNew": "Nieuw spel",
-  "settingsEasterEffect": "Paaseffect"
+  "resumeGameBackToStart": "Terug naar start",
+  "settingsEasterEffect": "Paaseffect",
+  "onboardingBingoHorizontal": "Horizontaal",
+  "onboardingBingoVertical": "Verticaal",
+  "onboardingBingoDiagonal": "Diagonaal",
+  "gamemodeDuellName": "Duel",
+  "gamemodeDuellDescription": "Wie vindt er meer? Iedereen zoekt op zijn eigen apparaat.",
+  "duellTargetQuestion": "Hoeveel vondsten zijn nodig om te winnen?",
+  "duellSkip": "Overslaan",
+  "duellVictoryScore": "{score} vondsten gedaan!",
+  "@duellVictoryScore": {
+    "placeholders": {
+      "score": {
+        "type": "int"
+      }
+    }
+  },
+  "duellSkipCount": "{count} overgeslagen",
+  "@duellSkipCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "resumeGameBackToStart": "Terug naar start"
 }

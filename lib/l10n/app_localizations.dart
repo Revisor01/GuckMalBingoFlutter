@@ -1210,12 +1210,6 @@ abstract class AppLocalizations {
   /// **'Schlange'**
   String get itemSchlange;
 
-  /// No description provided for @itemSchneeEule.
-  ///
-  /// In de, this message translates to:
-  /// **'Schnee-Eule'**
-  String get itemSchneeEule;
-
   /// No description provided for @itemSchneeeule.
   ///
   /// In de, this message translates to:
@@ -1287,12 +1281,6 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Sikah-Hirsch'**
   String get itemSikahHirsch;
-
-  /// No description provided for @itemSikahirsch.
-  ///
-  /// In de, this message translates to:
-  /// **'Sikahirsch'**
-  String get itemSikahirsch;
 
   /// No description provided for @itemSofa.
   ///
@@ -2035,13 +2023,13 @@ abstract class AppLocalizations {
   /// No description provided for @onboardingModesTitle.
   ///
   /// In de, this message translates to:
-  /// **'Zwei Spielmodi'**
+  /// **'Drei Spielmodi'**
   String get onboardingModesTitle;
 
   /// No description provided for @onboardingModesDesc.
   ///
   /// In de, this message translates to:
-  /// **'Guck mal! Suche: Spielt entspannt und sammelt so viele Bingos wie ihr wollt.\n\nBingo Jagd: Legt ein Ziel fest – wer die Bingos zuerst schafft, gewinnt!'**
+  /// **'Guck mal! Suche: Spielt entspannt und sammelt so viele Bingos wie ihr wollt.\n\nBingo Jagd: Legt ein Ziel fest – wer die Bingos zuerst schafft, gewinnt!\n\nDuell: Sucht einzelne Dinge um die Wette – wer findet mehr?'**
   String get onboardingModesDesc;
 
   /// No description provided for @onboardingReadyTitle.
@@ -2206,11 +2194,77 @@ abstract class AppLocalizations {
   /// **'Neues Spiel'**
   String get resumeGameNew;
 
+  /// No description provided for @resumeGameBackToStart.
+  ///
+  /// In de, this message translates to:
+  /// **'Zurück zum Start'**
+  String get resumeGameBackToStart;
+
   /// No description provided for @settingsEasterEffect.
   ///
   /// In de, this message translates to:
   /// **'Oster-Effekt'**
   String get settingsEasterEffect;
+
+  /// No description provided for @onboardingBingoHorizontal.
+  ///
+  /// In de, this message translates to:
+  /// **'Horizontal'**
+  String get onboardingBingoHorizontal;
+
+  /// No description provided for @onboardingBingoVertical.
+  ///
+  /// In de, this message translates to:
+  /// **'Vertikal'**
+  String get onboardingBingoVertical;
+
+  /// No description provided for @onboardingBingoDiagonal.
+  ///
+  /// In de, this message translates to:
+  /// **'Diagonal'**
+  String get onboardingBingoDiagonal;
+
+  /// No description provided for @gamemodeDuellName.
+  ///
+  /// In de, this message translates to:
+  /// **'Duell'**
+  String get gamemodeDuellName;
+
+  /// No description provided for @gamemodeDuellDescription.
+  ///
+  /// In de, this message translates to:
+  /// **'Wer findet mehr? Jeder sucht auf seinem Gerät.'**
+  String get gamemodeDuellDescription;
+
+  /// No description provided for @duellTargetQuestion.
+  ///
+  /// In de, this message translates to:
+  /// **'Wie viele Funde braucht man zum Gewinnen?'**
+  String get duellTargetQuestion;
+
+  /// No description provided for @duellSkip.
+  ///
+  /// In de, this message translates to:
+  /// **'Überspringen'**
+  String get duellSkip;
+
+  /// No description provided for @duellVictoryScore.
+  ///
+  /// In de, this message translates to:
+  /// **'{score} Funde geschafft!'**
+  String duellVictoryScore(int score);
+
+  /// No description provided for @duellSkipCount.
+  ///
+  /// In de, this message translates to:
+  /// **'{count} übersprungen'**
+  String duellSkipCount(int count);
+
+  /// No description provided for @resumeGameBackToStart.
+  ///
+  /// In de, this message translates to:
+  /// **'Zurück zum Start'**
+  String get resumeGameBackToStart;
 }
 
 class _AppLocalizationsDelegate

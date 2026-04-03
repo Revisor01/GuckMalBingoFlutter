@@ -184,7 +184,6 @@
   "itemSchiff": "Nave",
   "itemSchildkroete": "Turtle",
   "itemSchlange": "Snake",
-  "itemSchneeEule": "Snowy Owl",
   "itemSchneeeule": "Snowy Owl",
   "itemSchneeflocke": "Snowflake",
   "itemSchneemann": "Snowman",
@@ -197,7 +196,6 @@
   "itemSeehund": "Seal",
   "itemSessel": "Armchair",
   "itemSikahHirsch": "Sika Deer",
-  "itemSikahirsch": "Sika Deer",
   "itemSofa": "Sofa",
   "itemSolarzellen": "Solar Panels",
   "itemSpielplatz": "Playground",
@@ -321,8 +319,8 @@
   "onboardingBingoTitle": "How Bingo Works",
   "onboardingBingoDesc": "See something outside? Tap it on the board! A complete row – horizontal, vertical or diagonal – makes a bingo!",
   "onboardingBingoAccessibility": "Three examples show horizontal, vertical and diagonal bingo lines",
-  "onboardingModesTitle": "Two Game Modes",
-  "onboardingModesDesc": "Look! Search: Play relaxed and collect as many bingos as you want.\n\nBingo Hunt: Set a goal – whoever gets the bingos first wins!",
+  "onboardingModesTitle": "Three Game Modes",
+  "onboardingModesDesc": "Look! Search: Play relaxed and collect as many bingos as you want.\n\nBingo Hunt: Set a goal – whoever gets the bingos first wins!\n\nDuel: Race to find individual things – who finds more?",
   "onboardingReadyTitle": "Ready?",
   "onboardingReadyDesc": "Choose your theme, location and board size. Then look out the window together – the discovery journey begins!",
   "onboardingNext": "Next",
@@ -360,5 +358,30 @@
   "resumeGameMessage": "You have a game in progress. Would you like to continue?",
   "resumeGameContinue": "Continue",
   "resumeGameNew": "New Game",
-  "settingsEasterEffect": "Easter Effect"
+  "resumeGameBackToStart": "Back to Start",
+  "settingsEasterEffect": "Easter Effect",
+  "onboardingBingoHorizontal": "Horizontal",
+  "onboardingBingoVertical": "Vertical",
+  "onboardingBingoDiagonal": "Diagonal",
+  "gamemodeDuellName": "Duel",
+  "gamemodeDuellDescription": "Who finds more? Everyone searches on their own device.",
+  "duellTargetQuestion": "How many finds are needed to win?",
+  "duellSkip": "Skip",
+  "duellVictoryScore": "{score} finds made!",
+  "@duellVictoryScore": {
+    "placeholders": {
+      "score": {
+        "type": "int"
+      }
+    }
+  },
+  "duellSkipCount": "{count} skipped",
+  "@duellSkipCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "resumeGameBackToStart": "Back to start"
 }

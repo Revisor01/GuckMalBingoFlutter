@@ -568,9 +568,6 @@ class AppLocalizationsDe extends AppLocalizations {
   String get itemSchlange => 'Schlange';
 
   @override
-  String get itemSchneeEule => 'Schnee-Eule';
-
-  @override
   String get itemSchneeeule => 'Schnee-Eule';
 
   @override
@@ -605,9 +602,6 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get itemSikahHirsch => 'Sikah-Hirsch';
-
-  @override
-  String get itemSikahirsch => 'Sikahirsch';
 
   @override
   String get itemSofa => 'Sofa';
@@ -989,11 +983,11 @@ class AppLocalizationsDe extends AppLocalizations {
       'Drei Beispiele zeigen horizontale, vertikale und diagonale Bingo-Linien';
 
   @override
-  String get onboardingModesTitle => 'Zwei Spielmodi';
+  String get onboardingModesTitle => 'Drei Spielmodi';
 
   @override
   String get onboardingModesDesc =>
-      'Guck mal! Suche: Spielt entspannt und sammelt so viele Bingos wie ihr wollt.\n\nBingo Jagd: Legt ein Ziel fest – wer die Bingos zuerst schafft, gewinnt!';
+      'Guck mal! Suche: Spielt entspannt und sammelt so viele Bingos wie ihr wollt.\n\nBingo Jagd: Legt ein Ziel fest – wer die Bingos zuerst schafft, gewinnt!\n\nDuell: Sucht einzelne Dinge um die Wette – wer findet mehr?';
 
   @override
   String get onboardingReadyTitle => 'Bereit?';
@@ -1081,5 +1075,43 @@ class AppLocalizationsDe extends AppLocalizations {
   String get resumeGameNew => 'Neues Spiel';
 
   @override
+  String get resumeGameBackToStart => 'Zurück zum Start';
+
+  @override
   String get settingsEasterEffect => 'Oster-Effekt';
+
+  @override
+  String get onboardingBingoHorizontal => 'Horizontal';
+
+  @override
+  String get onboardingBingoVertical => 'Vertikal';
+
+  @override
+  String get onboardingBingoDiagonal => 'Diagonal';
+
+  @override
+  String get gamemodeDuellName => 'Duell';
+
+  @override
+  String get gamemodeDuellDescription =>
+      'Wer findet mehr? Jeder sucht auf seinem Gerät.';
+
+  @override
+  String get duellTargetQuestion => 'Wie viele Funde braucht man zum Gewinnen?';
+
+  @override
+  String get duellSkip => 'Überspringen';
+
+  @override
+  String duellVictoryScore(int score) {
+    return '$score Funde geschafft!';
+  }
+
+  @override
+  String duellSkipCount(int count) {
+    return '$count übersprungen';
+  }
+
+  @override
+  String get resumeGameBackToStart => 'Zurück zum Start';
 }

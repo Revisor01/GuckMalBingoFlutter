@@ -568,9 +568,6 @@ class AppLocalizationsEs extends AppLocalizations {
   String get itemSchlange => 'Serpiente';
 
   @override
-  String get itemSchneeEule => 'Búho Nival';
-
-  @override
   String get itemSchneeeule => 'Búho Nival';
 
   @override
@@ -605,9 +602,6 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get itemSikahHirsch => 'Ciervo Sika';
-
-  @override
-  String get itemSikahirsch => 'Ciervo Sika';
 
   @override
   String get itemSofa => 'Sofá';
@@ -990,11 +984,11 @@ class AppLocalizationsEs extends AppLocalizations {
       'Tres ejemplos muestran líneas de bingo horizontales, verticales y diagonales';
 
   @override
-  String get onboardingModesTitle => 'Dos modos de juego';
+  String get onboardingModesTitle => 'Tres modos de juego';
 
   @override
   String get onboardingModesDesc =>
-      '¡Mira! Búsqueda: Juega relajado y colecciona todos los bingos que quieras.\n\nCaza de Bingo: ¡Establece una meta – quien consiga los bingos primero gana!';
+      '¡Mira! Búsqueda: Juega relajado y colecciona todos los bingos que quieras.\n\nCaza de Bingo: Fija una meta – ¡quien consiga los bingos primero gana!\n\nDuelo: Compite buscando cosas individuales – ¿quién encuentra más?';
 
   @override
   String get onboardingReadyTitle => '¿Listos?';
@@ -1082,5 +1076,44 @@ class AppLocalizationsEs extends AppLocalizations {
   String get resumeGameNew => 'Nueva partida';
 
   @override
+  String get resumeGameBackToStart => 'Volver al inicio';
+
+  @override
   String get settingsEasterEffect => 'Efecto de Pascua';
+
+  @override
+  String get onboardingBingoHorizontal => 'Horizontal';
+
+  @override
+  String get onboardingBingoVertical => 'Vertical';
+
+  @override
+  String get onboardingBingoDiagonal => 'Diagonal';
+
+  @override
+  String get gamemodeDuellName => 'Duelo';
+
+  @override
+  String get gamemodeDuellDescription =>
+      '¿Quién encuentra más? Cada uno busca en su dispositivo.';
+
+  @override
+  String get duellTargetQuestion =>
+      '¿Cuántos hallazgos se necesitan para ganar?';
+
+  @override
+  String get duellSkip => 'Saltar';
+
+  @override
+  String duellVictoryScore(int score) {
+    return '¡$score hallazgos logrados!';
+  }
+
+  @override
+  String duellSkipCount(int count) {
+    return '$count omitidos';
+  }
+
+  @override
+  String get resumeGameBackToStart => 'Volver al inicio';
 }

@@ -184,7 +184,6 @@
   "itemSchiff": "Nef",
   "itemSchildkroete": "Tortue",
   "itemSchlange": "Serpent",
-  "itemSchneeEule": "Harfang des Neiges",
   "itemSchneeeule": "Harfang des Neiges",
   "itemSchneeflocke": "Flocon de Neige",
   "itemSchneemann": "Bonhomme de Neige",
@@ -197,7 +196,6 @@
   "itemSeehund": "Phoque",
   "itemSessel": "Fauteuil",
   "itemSikahHirsch": "Cerf Sika",
-  "itemSikahirsch": "Cerf Sika",
   "itemSofa": "Canapé",
   "itemSolarzellen": "Panneaux Solaires",
   "itemSpielplatz": "Aire de Jeux",
@@ -321,8 +319,8 @@
   "onboardingBingoTitle": "Comment fonctionne le Bingo",
   "onboardingBingoDesc": "Vous voyez quelque chose dehors ? Touchez-le sur le plateau ! Une ligne complète – horizontale, verticale ou diagonale – fait un bingo !",
   "onboardingBingoAccessibility": "Trois exemples montrent des lignes de bingo horizontales, verticales et diagonales",
-  "onboardingModesTitle": "Deux modes de jeu",
-  "onboardingModesDesc": "Regarde ! Recherche : Jouez tranquillement et collectionnez autant de bingos que vous voulez.\n\nChasse au Bingo : Fixez un objectif – le premier à avoir les bingos gagne !",
+  "onboardingModesTitle": "Trois modes de jeu",
+  "onboardingModesDesc": "Regarde ! Recherche : Jouez tranquillement et collectionnez autant de bingos que vous voulez.\n\nChasse au Bingo : Fixez un objectif – celui qui obtient les bingos en premier gagne !\n\nDuel : Cherchez des choses individuelles en compétition – qui en trouve le plus ?",
   "onboardingReadyTitle": "Prêts ?",
   "onboardingReadyDesc": "Choisissez thème, lieu et taille du plateau. Puis regardez ensemble par la fenêtre – l'aventure commence !",
   "onboardingNext": "Suivant",
@@ -360,5 +358,30 @@
   "resumeGameMessage": "Vous avez une partie en cours. Voulez-vous continuer?",
   "resumeGameContinue": "Continuer",
   "resumeGameNew": "Nouvelle partie",
-  "settingsEasterEffect": "Effet de Pâques"
+  "resumeGameBackToStart": "Retour au début",
+  "settingsEasterEffect": "Effet de Pâques",
+  "onboardingBingoHorizontal": "Horizontal",
+  "onboardingBingoVertical": "Vertical",
+  "onboardingBingoDiagonal": "Diagonal",
+  "gamemodeDuellName": "Duel",
+  "gamemodeDuellDescription": "Qui trouve le plus ? Chacun cherche sur son appareil.",
+  "duellTargetQuestion": "Combien de trouvailles pour gagner ?",
+  "duellSkip": "Passer",
+  "duellVictoryScore": "{score} trouvailles réussies !",
+  "@duellVictoryScore": {
+    "placeholders": {
+      "score": {
+        "type": "int"
+      }
+    }
+  },
+  "duellSkipCount": "{count} passés",
+  "@duellSkipCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "resumeGameBackToStart": "Retour au début"
 }

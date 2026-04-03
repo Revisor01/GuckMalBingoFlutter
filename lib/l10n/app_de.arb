@@ -184,7 +184,6 @@
   "itemSchiff": "Schiff",
   "itemSchildkroete": "Schildkröte",
   "itemSchlange": "Schlange",
-  "itemSchneeEule": "Schnee-Eule",
   "itemSchneeeule": "Schnee-Eule",
   "itemSchneeflocke": "Schneeflocke",
   "itemSchneemann": "Schneemann",
@@ -197,7 +196,6 @@
   "itemSeehund": "Seehund",
   "itemSessel": "Sessel",
   "itemSikahHirsch": "Sikah-Hirsch",
-  "itemSikahirsch": "Sikahirsch",
   "itemSofa": "Sofa",
   "itemSolarzellen": "Solarzellen",
   "itemSpielplatz": "Spielplatz",
@@ -321,8 +319,8 @@
   "onboardingBingoTitle": "So funktioniert Bingo",
   "onboardingBingoDesc": "Seht ihr etwas draußen? Tippt es auf dem Spielfeld an! Eine komplette Reihe – horizontal, vertikal oder diagonal – ergibt ein Bingo!",
   "onboardingBingoAccessibility": "Drei Beispiele zeigen horizontale, vertikale und diagonale Bingo-Linien",
-  "onboardingModesTitle": "Zwei Spielmodi",
-  "onboardingModesDesc": "Guck mal! Suche: Spielt entspannt und sammelt so viele Bingos wie ihr wollt.\n\nBingo Jagd: Legt ein Ziel fest – wer die Bingos zuerst schafft, gewinnt!",
+  "onboardingModesTitle": "Drei Spielmodi",
+  "onboardingModesDesc": "Guck mal! Suche: Spielt entspannt und sammelt so viele Bingos wie ihr wollt.\n\nBingo Jagd: Legt ein Ziel fest – wer die Bingos zuerst schafft, gewinnt!\n\nDuell: Sucht einzelne Dinge um die Wette – wer findet mehr?",
   "onboardingReadyTitle": "Bereit?",
   "onboardingReadyDesc": "Wählt Thema, Ort und Spielfeldgröße. Dann schaut gemeinsam aus dem Fenster – die Entdeckungsreise beginnt!",
   "onboardingNext": "Weiter",
@@ -360,5 +358,30 @@
   "resumeGameMessage": "Du hast ein laufendes Spiel. Möchtest du weiterspielen?",
   "resumeGameContinue": "Weiterspielen",
   "resumeGameNew": "Neues Spiel",
-  "settingsEasterEffect": "Oster-Effekt"
+  "resumeGameBackToStart": "Zurück zum Start",
+  "settingsEasterEffect": "Oster-Effekt",
+  "onboardingBingoHorizontal": "Horizontal",
+  "onboardingBingoVertical": "Vertikal",
+  "onboardingBingoDiagonal": "Diagonal",
+  "gamemodeDuellName": "Duell",
+  "gamemodeDuellDescription": "Wer findet mehr? Jeder sucht auf seinem Gerät.",
+  "duellTargetQuestion": "Wie viele Funde braucht man zum Gewinnen?",
+  "duellSkip": "Überspringen",
+  "duellVictoryScore": "{score} Funde geschafft!",
+  "@duellVictoryScore": {
+    "placeholders": {
+      "score": {
+        "type": "int"
+      }
+    }
+  },
+  "duellSkipCount": "{count} übersprungen",
+  "@duellSkipCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "resumeGameBackToStart": "Zurück zum Start"
 }

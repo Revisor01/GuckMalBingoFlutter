@@ -13,12 +13,14 @@ import 'widgets/app_button.dart';
 /// Basis fuer alle Auswahl-Views
 class _BaseSelectionView extends StatelessWidget {
   final String title;
+  final String? subtitle;
   final String question;
   final Widget content;
   final Widget? footer;
 
   const _BaseSelectionView({
     required this.title,
+    this.subtitle,
     required this.question,
     required this.content,
     this.footer,
@@ -147,6 +149,21 @@ class _BaseSelectionView extends StatelessWidget {
           ),
         ),
 
+        // Subtitle (optionaler Spielmodus-Name)
+        if (subtitle != null) ...[
+          const SizedBox(height: 4),
+          Text(
+            subtitle!,
+            style: TextStyle(
+              fontSize: 22,
+              fontWeight: FontWeight.w600,
+              fontStyle: FontStyle.italic,
+              color: Colors.white.withValues(alpha: 0.75),
+              fontFamily: 'Nunito',
+            ),
+          ),
+        ],
+
         // Question
         Padding(
           padding: EdgeInsets.only(
@@ -171,11 +188,13 @@ class _BaseSelectionView extends StatelessWidget {
 /// Category Theme Selection
 class ThemeCategorySelectionView extends StatelessWidget {
   final GameConfig config;
+  final String? subtitle;
   final Function(CategoryTheme) onThemeSelected;
 
   const ThemeCategorySelectionView({
     super.key,
     required this.config,
+    this.subtitle,
     required this.onThemeSelected,
   });
 
@@ -183,6 +202,7 @@ class ThemeCategorySelectionView extends StatelessWidget {
   Widget build(BuildContext context) {
     return _BaseSelectionView(
       title: AppLocalizations.of(context)!.appTitle,
+      subtitle: subtitle,
       question: AppLocalizations.of(context)!.categorySelectionQuestion,
       content: Column(
         children: CategoryTheme.values
@@ -219,11 +239,13 @@ class ThemeCategorySelectionView extends StatelessWidget {
 /// Season Selection
 class SeasonSelectionView extends StatelessWidget {
   final GameConfig config;
+  final String? subtitle;
   final Function(Season) onSeasonSelected;
 
   const SeasonSelectionView({
     super.key,
     required this.config,
+    this.subtitle,
     required this.onSeasonSelected,
   });
 
@@ -231,6 +253,7 @@ class SeasonSelectionView extends StatelessWidget {
   Widget build(BuildContext context) {
     return _BaseSelectionView(
       title: AppLocalizations.of(context)!.appTitle,
+      subtitle: subtitle,
       question: AppLocalizations.of(context)!.seasonSelectionQuestion,
       content: Column(
         children: Season.mainCases
@@ -275,11 +298,13 @@ class SeasonSelectionView extends StatelessWidget {
 /// Area Selection
 class AreaSelectionView extends StatelessWidget {
   final GameConfig config;
+  final String? subtitle;
   final Function(Area) onAreaSelected;
 
   const AreaSelectionView({
     super.key,
     required this.config,
+    this.subtitle,
     required this.onAreaSelected,
   });
 
@@ -308,6 +333,7 @@ class AreaSelectionView extends StatelessWidget {
 
     return _BaseSelectionView(
       title: AppLocalizations.of(context)!.appTitle,
+      subtitle: subtitle,
       question: AppLocalizations.of(context)!.areaSelectionQuestion,
       content: Column(
         children: availableAreas
@@ -384,15 +410,23 @@ class SizeSelectionView extends StatelessWidget {
   }
 }
 
-/// Target Bingos Selection (nur fuer Jagd-Modus)
+/// Target Bingos Selection (fuer Jagd- und Duell-Modus)
 class TargetBingosView extends StatefulWidget {
   final GameConfig config;
+  final String? subtitle;
+  final String? questionOverride;
   final Function(int) onTargetSelected;
+  final int maxTarget;      // Default 10 (Jagd-Modus), 20 fuer Duell-Modus
+  final int initialTarget;  // Default 3 (Jagd-Modus), 5 fuer Duell-Modus
 
   const TargetBingosView({
     super.key,
     required this.config,
+    this.subtitle,
+    this.questionOverride,
     required this.onTargetSelected,
+    this.maxTarget = 10,
+    this.initialTarget = 3,
   });
 
   @override
@@ -400,7 +434,7 @@ class TargetBingosView extends StatefulWidget {
 }
 
 class _TargetBingosViewState extends State<TargetBingosView> {
-  int _targetBingos = 3; // Default: 3 Bingos
+  late int _targetBingos = widget.initialTarget;
 
   @override
   Widget build(BuildContext context) {
@@ -408,7 +442,8 @@ class _TargetBingosViewState extends State<TargetBingosView> {
 
     return _BaseSelectionView(
       title: AppLocalizations.of(context)!.appTitle,
-      question: AppLocalizations.of(context)!.targetbingosQuestion,
+      subtitle: widget.subtitle,
+      question: widget.questionOverride ?? AppLocalizations.of(context)!.targetbingosQuestion,
       content: Column(
         children: [
           const SizedBox(height: 20),
@@ -438,12 +473,12 @@ class _TargetBingosViewState extends State<TargetBingosView> {
               Material(
                 color: Colors.transparent,
                 child: InkWell(
-                  onTap: _targetBingos < 10
+                  onTap: _targetBingos < widget.maxTarget
                       ? () { setState(() { _targetBingos++; }); }
                       : null,
                   customBorder: const CircleBorder(),
                   child: Icon(Icons.add_circle, size: 50,
-                    color: Colors.white.withValues(alpha:_targetBingos < 10 ? 1.0 : 0.3)),
+                    color: Colors.white.withValues(alpha:_targetBingos < widget.maxTarget ? 1.0 : 0.3)),
                 ),
               ),
             ],

@@ -568,9 +568,6 @@ class AppLocalizationsFr extends AppLocalizations {
   String get itemSchlange => 'Serpent';
 
   @override
-  String get itemSchneeEule => 'Harfang des Neiges';
-
-  @override
   String get itemSchneeeule => 'Harfang des Neiges';
 
   @override
@@ -605,9 +602,6 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get itemSikahHirsch => 'Cerf Sika';
-
-  @override
-  String get itemSikahirsch => 'Cerf Sika';
 
   @override
   String get itemSofa => 'Canapé';
@@ -990,11 +984,11 @@ class AppLocalizationsFr extends AppLocalizations {
       'Trois exemples montrent des lignes de bingo horizontales, verticales et diagonales';
 
   @override
-  String get onboardingModesTitle => 'Deux modes de jeu';
+  String get onboardingModesTitle => 'Trois modes de jeu';
 
   @override
   String get onboardingModesDesc =>
-      'Regarde ! Recherche : Jouez tranquillement et collectionnez autant de bingos que vous voulez.\n\nChasse au Bingo : Fixez un objectif – le premier à avoir les bingos gagne !';
+      'Regarde ! Recherche : Jouez tranquillement et collectionnez autant de bingos que vous voulez.\n\nChasse au Bingo : Fixez un objectif – celui qui obtient les bingos en premier gagne !\n\nDuel : Cherchez des choses individuelles en compétition – qui en trouve le plus ?';
 
   @override
   String get onboardingReadyTitle => 'Prêts ?';
@@ -1082,5 +1076,43 @@ class AppLocalizationsFr extends AppLocalizations {
   String get resumeGameNew => 'Nouvelle partie';
 
   @override
+  String get resumeGameBackToStart => 'Retour au début';
+
+  @override
   String get settingsEasterEffect => 'Effet de Pâques';
+
+  @override
+  String get onboardingBingoHorizontal => 'Horizontal';
+
+  @override
+  String get onboardingBingoVertical => 'Vertical';
+
+  @override
+  String get onboardingBingoDiagonal => 'Diagonal';
+
+  @override
+  String get gamemodeDuellName => 'Duel';
+
+  @override
+  String get gamemodeDuellDescription =>
+      'Qui trouve le plus ? Chacun cherche sur son appareil.';
+
+  @override
+  String get duellTargetQuestion => 'Combien de trouvailles pour gagner ?';
+
+  @override
+  String get duellSkip => 'Passer';
+
+  @override
+  String duellVictoryScore(int score) {
+    return '$score trouvailles réussies !';
+  }
+
+  @override
+  String duellSkipCount(int count) {
+    return '$count passés';
+  }
+
+  @override
+  String get resumeGameBackToStart => 'Retour au début';
 }

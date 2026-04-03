@@ -184,7 +184,6 @@
   "itemSchiff": "Nave",
   "itemSchildkroete": "Tartaruga",
   "itemSchlange": "Serpente",
-  "itemSchneeEule": "Gufo delle Nevi",
   "itemSchneeeule": "Gufo delle Nevi",
   "itemSchneeflocke": "Fiocco di Neve",
   "itemSchneemann": "Pupazzo di Neve",
@@ -197,7 +196,6 @@
   "itemSeehund": "Foca",
   "itemSessel": "Poltrona",
   "itemSikahHirsch": "Cervo Sika",
-  "itemSikahirsch": "Cervo Sika",
   "itemSofa": "Divano",
   "itemSolarzellen": "Pannelli Solari",
   "itemSpielplatz": "Parco Giochi",
@@ -321,8 +319,8 @@
   "onboardingBingoTitle": "Come funziona il Bingo",
   "onboardingBingoDesc": "Vedi qualcosa fuori? Toccalo sul tabellone! Una riga completa – orizzontale, verticale o diagonale – fa un bingo!",
   "onboardingBingoAccessibility": "Tre esempi mostrano linee di bingo orizzontali, verticali e diagonali",
-  "onboardingModesTitle": "Due modalità di gioco",
-  "onboardingModesDesc": "Guarda! Ricerca: Gioca rilassato e colleziona tutti i bingo che vuoi.\n\nCaccia al Bingo: Stabilisci un obiettivo – chi ottiene i bingo per primo vince!",
+  "onboardingModesTitle": "Tre modalità di gioco",
+  "onboardingModesDesc": "Guarda! Ricerca: Gioca rilassato e colleziona tutti i bingo che vuoi.\n\nCaccia al Bingo: Fissa un obiettivo – chi ottiene i bingo per primo vince!\n\nDuello: Cerca singole cose in gara – chi ne trova di più?",
   "onboardingReadyTitle": "Pronti?",
   "onboardingReadyDesc": "Scegli tema, luogo e dimensione del tabellone. Poi guardate insieme fuori dalla finestra – inizia l'avventura!",
   "onboardingNext": "Avanti",
@@ -360,5 +358,30 @@
   "resumeGameMessage": "Hai una partita in corso. Vuoi continuare?",
   "resumeGameContinue": "Continua",
   "resumeGameNew": "Nuova partita",
-  "settingsEasterEffect": "Effetto di Pasqua"
+  "resumeGameBackToStart": "Torna all'inizio",
+  "settingsEasterEffect": "Effetto di Pasqua",
+  "onboardingBingoHorizontal": "Orizzontale",
+  "onboardingBingoVertical": "Verticale",
+  "onboardingBingoDiagonal": "Diagonale",
+  "gamemodeDuellName": "Duello",
+  "gamemodeDuellDescription": "Chi trova di più? Ognuno cerca sul proprio dispositivo.",
+  "duellTargetQuestion": "Quanti ritrovamenti servono per vincere?",
+  "duellSkip": "Salta",
+  "duellVictoryScore": "{score} ritrovamenti fatti!",
+  "@duellVictoryScore": {
+    "placeholders": {
+      "score": {
+        "type": "int"
+      }
+    }
+  },
+  "duellSkipCount": "{count} saltati",
+  "@duellSkipCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "resumeGameBackToStart": "Torna all'inizio"
 }

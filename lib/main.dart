@@ -8,16 +8,20 @@ import 'models/category_theme.dart';
 import 'models/season.dart';
 import 'models/area.dart';
 import 'viewmodels/bingo_game_viewmodel.dart';
+import 'viewmodels/duell_game_viewmodel.dart';
 import 'views/game_mode_selection_view.dart';
 import 'views/selection_views.dart';
 import 'views/bingo_game_view.dart';
+import 'views/duell_game_view.dart';
 import 'views/onboarding_view.dart';
 import 'l10n/app_localizations.dart';
+import 'utilities/app_localizations_extension.dart';
 import 'views/snowfall_widget.dart';
 import 'views/easter_effect_widget.dart';
 import 'utilities/app_preferences.dart';
 import 'utilities/theme_provider.dart';
 import 'utilities/season_service.dart';
+import 'views/widgets/resume_dialog_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -124,27 +128,11 @@ class GuckMalBingoApp extends StatelessWidget {
           textScaleFactor = 0.95;
         }
 
-        // Saisonaler Effekt: nur einer aktiv (Ostern hat Vorrang wenn beide überlappen)
-        final season = context.watch<SeasonService>();
-        final innerChild = child!;
-
         return MediaQuery(
           data: MediaQuery.of(context).copyWith(
             textScaler: TextScaler.linear(textScaleFactor),
           ),
-          child: season.isEaster
-              ? EasterEffectWidget(
-                  enabled: season.shouldShowEasterEffect,
-                  petalCount: 25,
-                  child: innerChild,
-                )
-              : season.isChristmas
-                  ? SnowfallWidget(
-                      enabled: season.shouldShowSnowfall,
-                      snowflakeCount: 40,
-                      child: innerChild,
-                    )
-                  : innerChild,
+          child: _AppLifecycleWrapper(child: child!),
         );
       },
       home: const NavigationCoordinator(),
@@ -167,6 +155,9 @@ class _NavigationCoordinatorState extends State<NavigationCoordinator> {
   bool _showOnboarding = false;
   bool _onboardingChecked = false;
   bool _resumeDialogShown = false;
+  bool _showResumeOverlay = false;
+  VoidCallback? _resumeOnContinue;
+  VoidCallback? _resumeOnBackToStart;
 
   @override
   void initState() {
@@ -186,12 +177,20 @@ class _NavigationCoordinatorState extends State<NavigationCoordinator> {
   }
 
   void _checkSavedGame() {
-    if (AppPreferences.instance.hasSavedGameState && !_resumeDialogShown) {
-      _resumeDialogShown = true;
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        if (!mounted) return;
-        _showResumeDialog();
-      });
+    if (!_resumeDialogShown) {
+      if (AppPreferences.instance.hasSavedGameState) {
+        _resumeDialogShown = true;
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (!mounted) return;
+          _showResumeDialog();
+        });
+      } else if (AppPreferences.instance.hasSavedDuellState) {
+        _resumeDialogShown = true;
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (!mounted) return;
+          _showDuellResumeDialog();
+        });
+      }
     }
   }
 
@@ -199,34 +198,36 @@ class _NavigationCoordinatorState extends State<NavigationCoordinator> {
     final state = AppPreferences.instance.loadGameState();
     if (state == null) return;
 
-    final l10n = AppLocalizations.of(context)!;
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (ctx) => AlertDialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        title: Text(l10n.resumeGameTitle, textAlign: TextAlign.center, style: const TextStyle(fontWeight: FontWeight.bold)),
-        content: Text(l10n.resumeGameMessage, textAlign: TextAlign.center),
-        actionsAlignment: MainAxisAlignment.center,
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.of(ctx).pop();
-              AppPreferences.instance.clearGameState();
-            },
-            child: Text(l10n.resumeGameNew),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.of(ctx).pop();
-              final viewModel = BingoGameViewModel.fromSavedState(state);
-              _navigateToGame(existingViewModel: viewModel);
-            },
-            child: Text(l10n.resumeGameContinue),
-          ),
-        ],
-      ),
-    );
+    setState(() {
+      _showResumeOverlay = true;
+      _resumeOnContinue = () {
+        setState(() => _showResumeOverlay = false);
+        final viewModel = BingoGameViewModel.fromSavedState(state);
+        _navigateToGame(existingViewModel: viewModel);
+      };
+      _resumeOnBackToStart = () {
+        setState(() => _showResumeOverlay = false);
+        AppPreferences.instance.clearGameState();
+      };
+    });
+  }
+
+  void _showDuellResumeDialog() {
+    final state = AppPreferences.instance.loadDuellState();
+    if (state == null) return;
+
+    setState(() {
+      _showResumeOverlay = true;
+      _resumeOnContinue = () {
+        setState(() => _showResumeOverlay = false);
+        final viewModel = DuellGameViewModel.fromSavedState(state);
+        _navigateToDuellGame(existingViewModel: viewModel);
+      };
+      _resumeOnBackToStart = () {
+        setState(() => _showResumeOverlay = false);
+        AppPreferences.instance.clearDuellState();
+      };
+    });
   }
 
   void _onOnboardingComplete() {
@@ -242,11 +243,21 @@ class _NavigationCoordinatorState extends State<NavigationCoordinator> {
     });
 
     // TargetBingos DIREKT nach Jagd-Auswahl
+    // Duell: Kategorie zuerst (D-07: Kategorie → Saison → Area → Ziel-Anzahl)
     if (mode == GameMode.jagd) {
       _navigateToTargetBingos();
+    } else if (mode == GameMode.duell) {
+      _navigateToThemeCategory();
     } else {
       _navigateToThemeCategory();
     }
+  }
+
+  /// Gibt den Spielmodus-Namen als Untertitel zurueck (null fuer Suche-Modus)
+  String? _getModeSubtitle(BuildContext context) {
+    if (_config.gameMode == GameMode.suche) return null;
+    final l10n = AppLocalizations.of(context)!;
+    return l10n.getByKey(_config.gameMode.displayNameKey);
   }
 
   void _navigateToThemeCategory() {
@@ -254,6 +265,7 @@ class _NavigationCoordinatorState extends State<NavigationCoordinator> {
       MaterialPageRoute(
         builder: (context) => ThemeCategorySelectionView(
           config: _config,
+          subtitle: _getModeSubtitle(context),
           onThemeSelected: _onThemeCategorySelected,
         ),
       ),
@@ -278,6 +290,7 @@ class _NavigationCoordinatorState extends State<NavigationCoordinator> {
       MaterialPageRoute(
         builder: (context) => SeasonSelectionView(
           config: _config,
+          subtitle: _getModeSubtitle(context),
           onSeasonSelected: _onSeasonSelected,
         ),
       ),
@@ -296,6 +309,7 @@ class _NavigationCoordinatorState extends State<NavigationCoordinator> {
       MaterialPageRoute(
         builder: (context) => AreaSelectionView(
           config: _config,
+          subtitle: _getModeSubtitle(context),
           onAreaSelected: _onAreaSelected,
         ),
       ),
@@ -306,7 +320,11 @@ class _NavigationCoordinatorState extends State<NavigationCoordinator> {
     setState(() {
       _config = _config.copyWith(area: area);
     });
-    _navigateToSizeSelection();
+    if (_config.gameMode == GameMode.duell) {
+      _navigateToDuellTarget();
+    } else {
+      _navigateToSizeSelection();
+    }
   }
 
   void _navigateToSizeSelection() {
@@ -332,6 +350,7 @@ class _NavigationCoordinatorState extends State<NavigationCoordinator> {
       MaterialPageRoute(
         builder: (context) => TargetBingosView(
           config: _config,
+          subtitle: _getModeSubtitle(context),
           onTargetSelected: _onTargetSelected,
         ),
       ),
@@ -343,6 +362,46 @@ class _NavigationCoordinatorState extends State<NavigationCoordinator> {
       _config = _config.copyWith(targetBingos: target);
     });
     _navigateToThemeCategory();
+  }
+
+  void _navigateToDuellTarget() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => TargetBingosView(
+          config: _config,
+          subtitle: _getModeSubtitle(context),
+          questionOverride: AppLocalizations.of(context)!.duellTargetQuestion,
+          onTargetSelected: _onDuellTargetSelected,
+          maxTarget: 20,
+          initialTarget: 5,
+        ),
+      ),
+    );
+  }
+
+  void _onDuellTargetSelected(int target) {
+    setState(() {
+      _config = _config.copyWith(targetBingos: target);
+    });
+    _navigateToDuellGame();
+  }
+
+  void _navigateToDuellGame({DuellGameViewModel? existingViewModel}) {
+    final viewModel = existingViewModel ?? DuellGameViewModel(config: _config);
+
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => ChangeNotifierProvider.value(
+          value: viewModel,
+          child: DuellGameView(
+            onBackToStart: () {
+              viewModel.clearSavedGameState();
+              Navigator.of(context).popUntil((route) => route.isFirst);
+            },
+          ),
+        ),
+      ),
+    );
   }
 
   void _navigateToGame({BingoGameViewModel? existingViewModel}) {
@@ -377,9 +436,71 @@ class _NavigationCoordinatorState extends State<NavigationCoordinator> {
       );
     }
 
-    return GameModeSelectionView(
-      config: _config,
-      onModeSelected: _onModeSelected,
+    return Stack(
+      children: [
+        GameModeSelectionView(
+          config: _config,
+          onModeSelected: _onModeSelected,
+        ),
+        if (_showResumeOverlay)
+          ResumeDialogView(
+            onContinue: _resumeOnContinue!,
+            onBackToStart: _resumeOnBackToStart!,
+          ),
+      ],
     );
+  }
+}
+
+/// App-Level Lifecycle Observer für saisonale Animationen
+/// Pausiert Schnefall/Osterblüten wenn die App im Hintergrund ist
+class _AppLifecycleWrapper extends StatefulWidget {
+  final Widget child;
+  const _AppLifecycleWrapper({required this.child});
+
+  @override
+  State<_AppLifecycleWrapper> createState() => _AppLifecycleWrapperState();
+}
+
+class _AppLifecycleWrapperState extends State<_AppLifecycleWrapper>
+    with WidgetsBindingObserver {
+  bool _isActive = true;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    setState(() {
+      _isActive = state == AppLifecycleState.resumed;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // SeasonService aus dem Context lesen (bereits von Provider bereitgestellt)
+    final season = context.watch<SeasonService>();
+    return season.isEaster
+        ? EasterEffectWidget(
+            enabled: season.shouldShowEasterEffect && _isActive,
+            petalCount: 25,
+            child: widget.child,
+          )
+        : season.isChristmas
+            ? SnowfallWidget(
+                enabled: season.shouldShowSnowfall && _isActive,
+                snowflakeCount: 40,
+                child: widget.child,
+              )
+            : widget.child;
   }
 }
