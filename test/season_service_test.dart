@@ -1,11 +1,13 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:guck_mal_bingo/utilities/season_service.dart';
 import 'package:guck_mal_bingo/utilities/debug_utils.dart';
 import 'package:guck_mal_bingo/utilities/app_preferences.dart';
 
 void main() {
   setUpAll(() async {
+    FlutterSecureStorage.setMockInitialValues({});
     SharedPreferences.setMockInitialValues({});
     await AppPreferences.init();
   });
@@ -13,7 +15,8 @@ void main() {
   group('SeasonService', () {
     setUp(() {
       debugOverrideDate = null;
-      // Reset SharedPreferences mock to default (snowfall + easter enabled = true by default)
+      // Reset mock values (snowfall + easter enabled = true by default)
+      FlutterSecureStorage.setMockInitialValues({});
       SharedPreferences.setMockInitialValues({});
     });
 
@@ -60,7 +63,8 @@ void main() {
 
     test('shouldShowSnowfall true when isChristmas and snowfallEnabled', () {
       debugOverrideDate = DateTime(2025, 12, 25);
-      SharedPreferences.setMockInitialValues({'snowfallEnabled': true});
+      FlutterSecureStorage.setMockInitialValues({'snowfallEnabled': 'true'});
+      SharedPreferences.setMockInitialValues({});
       final service = SeasonService();
       expect(service.isChristmas, isTrue);
       expect(service.snowfallEnabled, isTrue);
@@ -75,7 +79,8 @@ void main() {
 
     test('shouldShowEasterEffect true when isEaster and easterEffectEnabled', () {
       debugOverrideDate = DateTime(2025, 4, 18);
-      SharedPreferences.setMockInitialValues({'easterEffectEnabled': true});
+      FlutterSecureStorage.setMockInitialValues({'easterEffectEnabled': 'true'});
+      SharedPreferences.setMockInitialValues({});
       final service = SeasonService();
       expect(service.isEaster, isTrue);
       expect(service.easterEffectEnabled, isTrue);

@@ -5,6 +5,7 @@ import 'package:guck_mal_bingo/models/area.dart';
 import 'package:guck_mal_bingo/models/season.dart';
 import 'package:guck_mal_bingo/viewmodels/bingo_game_viewmodel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:guck_mal_bingo/utilities/app_preferences.dart';
 import 'package:guck_mal_bingo/data/bingo_items_data.dart';
 import 'package:guck_mal_bingo/utilities/debug_utils.dart';
@@ -105,12 +106,14 @@ void main() {
 
   group('BingoGameViewModel persistence (fromSavedState / saveGameState)', () {
     setUpAll(() async {
+      FlutterSecureStorage.setMockInitialValues({});
       SharedPreferences.setMockInitialValues({});
       await AppPreferences.init();
     });
 
     setUp(() {
       debugOverrideDate = DateTime(2026, 6, 15); // Neutrales Datum
+      FlutterSecureStorage.setMockInitialValues({});
       SharedPreferences.setMockInitialValues({});
     });
 

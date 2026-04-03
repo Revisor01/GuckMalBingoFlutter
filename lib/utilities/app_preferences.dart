@@ -1,45 +1,107 @@
 import 'dart:convert';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-/// Zentrale Preferences-Klasse — einziger Ort für SharedPreferences.getInstance()
+/// Zentrale Preferences-Klasse — verschlüsselter Storage mit In-Memory-Cache.
+/// Migration von SharedPreferences erfolgt automatisch beim ersten Start.
 class AppPreferences {
   static late final AppPreferences instance;
-  final SharedPreferences _prefs;
+  final FlutterSecureStorage _storage;
 
-  AppPreferences._(this._prefs);
+  // In-Memory-Cache für synchrone Getter (SecureStorage ist async)
+  final Map<String, String?> _cache = {};
+
+  static const _migratedKey = '_migrated_to_secure';
+
+  AppPreferences._(this._storage);
 
   static Future<void> init() async {
-    final prefs = await SharedPreferences.getInstance();
-    instance = AppPreferences._(prefs);
+    const storage = FlutterSecureStorage(
+      aOptions: AndroidOptions(encryptedSharedPreferences: true),
+      iOptions: IOSOptions(accessibility: KeychainAccessibility.first_unlock),
+    );
+    final prefs = AppPreferences._(storage);
+    await prefs._migrateFromSharedPreferences();
+    await prefs._loadCache();
+    instance = prefs;
   }
 
+  /// Migration: Liest alte SharedPreferences, schreibt in SecureStorage, markiert als migriert
+  Future<void> _migrateFromSharedPreferences() async {
+    final alreadyMigrated = await _storage.read(key: _migratedKey);
+    if (alreadyMigrated == 'true') return;
+
+    final oldPrefs = await SharedPreferences.getInstance();
+
+    // Bool-Werte migrieren
+    for (final key in ['snowfallEnabled', 'easterEffectEnabled', 'hasSeenOnboarding']) {
+      final val = oldPrefs.getBool(key);
+      if (val != null) {
+        await _storage.write(key: key, value: val.toString());
+      }
+    }
+
+    // String-Werte migrieren
+    for (final key in ['backgroundTheme', 'savedGameState']) {
+      final val = oldPrefs.getString(key);
+      if (val != null) {
+        await _storage.write(key: key, value: val);
+      }
+    }
+
+    await _storage.write(key: _migratedKey, value: 'true');
+  }
+
+  /// Lädt alle bekannten Keys in den Cache für synchronen Zugriff
+  Future<void> _loadCache() async {
+    for (final key in ['snowfallEnabled', 'easterEffectEnabled', 'hasSeenOnboarding', 'backgroundTheme', 'savedGameState']) {
+      _cache[key] = await _storage.read(key: key);
+    }
+  }
+
+  // --- Synchrone Getter lesen aus Cache, Setter aktualisieren Cache + Storage ---
+
   // Snowfall
-  bool get snowfallEnabled => _prefs.getBool('snowfallEnabled') ?? true;
-  Future<void> setSnowfallEnabled(bool value) => _prefs.setBool('snowfallEnabled', value);
+  bool get snowfallEnabled => _cache['snowfallEnabled'] != 'false'; // Default true
+  Future<void> setSnowfallEnabled(bool value) async {
+    _cache['snowfallEnabled'] = value.toString();
+    await _storage.write(key: 'snowfallEnabled', value: value.toString());
+  }
 
   // Easter Effect
-  bool get easterEffectEnabled => _prefs.getBool('easterEffectEnabled') ?? true;
-  Future<void> setEasterEffectEnabled(bool value) => _prefs.setBool('easterEffectEnabled', value);
+  bool get easterEffectEnabled => _cache['easterEffectEnabled'] != 'false'; // Default true
+  Future<void> setEasterEffectEnabled(bool value) async {
+    _cache['easterEffectEnabled'] = value.toString();
+    await _storage.write(key: 'easterEffectEnabled', value: value.toString());
+  }
 
   // Background Theme
-  String? get backgroundThemeRaw => _prefs.getString('backgroundTheme');
-  Future<void> setBackgroundTheme(String value) => _prefs.setString('backgroundTheme', value);
+  String? get backgroundThemeRaw => _cache['backgroundTheme'];
+  Future<void> setBackgroundTheme(String value) async {
+    _cache['backgroundTheme'] = value;
+    await _storage.write(key: 'backgroundTheme', value: value);
+  }
 
   // Onboarding
-  bool get hasSeenOnboarding => _prefs.getBool('hasSeenOnboarding') ?? false;
-  Future<void> setHasSeenOnboarding(bool value) => _prefs.setBool('hasSeenOnboarding', value);
+  bool get hasSeenOnboarding => _cache['hasSeenOnboarding'] == 'true';
+  Future<void> setHasSeenOnboarding(bool value) async {
+    _cache['hasSeenOnboarding'] = value.toString();
+    await _storage.write(key: 'hasSeenOnboarding', value: value.toString());
+  }
 
   // Game State Persistence
   static const _keyGameState = 'savedGameState';
 
-  bool get hasSavedGameState => _prefs.getString(_keyGameState) != null;
+  bool get hasSavedGameState => _cache[_keyGameState] != null;
 
   Future<void> saveGameState(Map<String, dynamic> state) async {
-    await _prefs.setString(_keyGameState, jsonEncode(state));
+    final json = jsonEncode(state);
+    _cache[_keyGameState] = json;
+    await _storage.write(key: _keyGameState, value: json);
   }
 
   Map<String, dynamic>? loadGameState() {
-    final json = _prefs.getString(_keyGameState);
+    final json = _cache[_keyGameState];
     if (json == null) return null;
     try {
       return jsonDecode(json) as Map<String, dynamic>;
@@ -50,7 +112,8 @@ class AppPreferences {
   }
 
   Future<void> clearGameState() async {
-    await _prefs.remove(_keyGameState);
+    _cache.remove(_keyGameState);
+    await _storage.delete(key: _keyGameState);
   }
 
   // Duell Game State Persistence
