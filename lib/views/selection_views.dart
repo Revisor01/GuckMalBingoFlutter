@@ -9,6 +9,7 @@ import '../utilities/theme_provider.dart';
 import '../l10n/app_localizations.dart';
 import '../utilities/app_localizations_extension.dart';
 import 'widgets/app_button.dart';
+import 'widgets/description_item.dart';
 
 /// Basis fuer alle Auswahl-Views
 class _BaseSelectionView extends StatelessWidget {
@@ -225,7 +226,7 @@ class ThemeCategorySelectionView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: CategoryTheme.values.map((theme) {
-            return _DescriptionItem(
+            return DescriptionItem(
               title: AppLocalizations.of(context)!.getByKey(theme.displayNameKey) ?? theme.displayNameKey,
               description: AppLocalizations.of(context)!.getByKey(theme.descriptionKey) ?? theme.descriptionKey,
             );
@@ -276,15 +277,15 @@ class SeasonSelectionView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _DescriptionItem(
+            DescriptionItem(
               title: AppLocalizations.of(context)!.seasonFruehling_sommerName,
               description: AppLocalizations.of(context)!.seasonFruehling_sommerDescription,
             ),
-            _DescriptionItem(
+            DescriptionItem(
               title: AppLocalizations.of(context)!.seasonHerbst_winterName,
               description: AppLocalizations.of(context)!.seasonHerbst_winterDescription,
             ),
-            _DescriptionItem(
+            DescriptionItem(
               title: AppLocalizations.of(context)!.seasonSpecialTimesName,
               description: AppLocalizations.of(context)!.seasonSpecialTimesDescription,
             ),
@@ -522,42 +523,4 @@ class _TargetBingosViewState extends State<TargetBingosView> {
   }
 }
 
-/// Reusable description item for footer sections
-class _DescriptionItem extends StatelessWidget {
-  final String title;
-  final String description;
-
-  const _DescriptionItem({
-    required this.title,
-    required this.description,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            title,
-            style: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
-          ),
-          const SizedBox(height: 4),
-          Text(
-            description,
-            style: TextStyle(
-              fontSize: 14,
-              color: Colors.white.withValues(alpha:0.8),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
 
