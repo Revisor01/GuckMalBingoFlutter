@@ -16,7 +16,7 @@ class DuellGameViewModel extends ChangeNotifier {
   int _score = 0;
   int _skipCount = 0;
   bool _showVictoryDialog = false;
-  bool _showText = true;
+  bool _showText = false;
   bool _soundEnabled = true;
 
   late final GameAudioPlayer _audioPlayer;
