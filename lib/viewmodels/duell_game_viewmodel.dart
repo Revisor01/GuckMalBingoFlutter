@@ -81,7 +81,6 @@ class DuellGameViewModel extends ChangeNotifier {
   /// Item als gefunden markieren — Score erhoehen, naechstes Item anzeigen
   void markFound() {
     _score++;
-    _audioPlayer.stop();
     _audioPlayer.playClickSound();
     if (_score >= config.targetBingos) {
       _triggerVictory();

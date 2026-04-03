@@ -367,6 +367,7 @@
   "gamemodeDuellDescription": "Chi trova di più? Ognuno cerca sul proprio dispositivo.",
   "duellTargetQuestion": "Quanti ritrovamenti servono per vincere?",
   "duellSkip": "Salta",
+  "duellSkipHint": "Tieni premuto",
   "duellVictoryScore": "{score} ritrovamenti fatti!",
   "@duellVictoryScore": {
     "placeholders": {

@@ -367,6 +367,7 @@
   "gamemodeDuellDescription": "Wie vindt er meer? Iedereen zoekt op zijn eigen apparaat.",
   "duellTargetQuestion": "Hoeveel vondsten zijn nodig om te winnen?",
   "duellSkip": "Overslaan",
+  "duellSkipHint": "Ingedrukt houden",
   "duellVictoryScore": "{score} vondsten gedaan!",
   "@duellVictoryScore": {
     "placeholders": {

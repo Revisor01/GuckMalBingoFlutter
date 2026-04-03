@@ -367,6 +367,7 @@
   "gamemodeDuellDescription": "¿Quién encuentra más? Cada uno busca en su dispositivo.",
   "duellTargetQuestion": "¿Cuántos hallazgos se necesitan para ganar?",
   "duellSkip": "Saltar",
+  "duellSkipHint": "Mantén pulsado",
   "duellVictoryScore": "¡{score} hallazgos logrados!",
   "@duellVictoryScore": {
     "placeholders": {

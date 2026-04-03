@@ -2248,6 +2248,12 @@ abstract class AppLocalizations {
   /// **'Überspringen'**
   String get duellSkip;
 
+  /// No description provided for @duellSkipHint.
+  ///
+  /// In de, this message translates to:
+  /// **'Gedrückt halten'**
+  String get duellSkipHint;
+
   /// No description provided for @duellVictoryScore.
   ///
   /// In de, this message translates to:
@@ -2259,12 +2265,6 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'{count} übersprungen'**
   String duellSkipCount(int count);
-
-  /// No description provided for @resumeGameBackToStart.
-  ///
-  /// In de, this message translates to:
-  /// **'Zurück zum Start'**
-  String get resumeGameBackToStart;
 }
 
 class _AppLocalizationsDelegate

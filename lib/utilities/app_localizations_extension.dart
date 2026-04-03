@@ -35,6 +35,7 @@ extension AppLocalizationsX on AppLocalizations {
     'categoryReiseDescription': (l) => l.categoryReiseDescription,
     'categorySelectionQuestion': (l) => l.categorySelectionQuestion,
     'duellSkip': (l) => l.duellSkip,
+    'duellSkipHint': (l) => l.duellSkipHint,
     'duellTargetQuestion': (l) => l.duellTargetQuestion,
     'einfachIntuitiv': (l) => l.einfachIntuitiv,
     'emptyKey': (l) => l.emptyKey,

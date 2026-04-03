@@ -367,6 +367,7 @@
   "gamemodeDuellDescription": "Wer findet mehr? Jeder sucht auf seinem Gerät.",
   "duellTargetQuestion": "Wie viele Funde braucht man zum Gewinnen?",
   "duellSkip": "Überspringen",
+  "duellSkipHint": "Gedrückt halten",
   "duellVictoryScore": "{score} Funde geschafft!",
   "@duellVictoryScore": {
     "placeholders": {

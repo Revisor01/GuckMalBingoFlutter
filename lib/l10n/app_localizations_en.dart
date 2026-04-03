@@ -1075,7 +1075,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get resumeGameNew => 'New Game';
 
   @override
-  String get resumeGameBackToStart => 'Back to Start';
+  String get resumeGameBackToStart => 'Back to start';
 
   @override
   String get settingsEasterEffect => 'Easter Effect';
@@ -1103,6 +1103,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get duellSkip => 'Skip';
 
   @override
+  String get duellSkipHint => 'Hold to skip';
+
+  @override
   String duellVictoryScore(int score) {
     return '$score finds made!';
   }
@@ -1111,7 +1114,4 @@ class AppLocalizationsEn extends AppLocalizations {
   String duellSkipCount(int count) {
     return '$count skipped';
   }
-
-  @override
-  String get resumeGameBackToStart => 'Back to start';
 }

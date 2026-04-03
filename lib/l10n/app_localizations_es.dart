@@ -1105,6 +1105,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get duellSkip => 'Saltar';
 
   @override
+  String get duellSkipHint => 'Mantén pulsado';
+
+  @override
   String duellVictoryScore(int score) {
     return '¡$score hallazgos logrados!';
   }
@@ -1113,7 +1116,4 @@ class AppLocalizationsEs extends AppLocalizations {
   String duellSkipCount(int count) {
     return '$count omitidos';
   }
-
-  @override
-  String get resumeGameBackToStart => 'Volver al inicio';
 }

@@ -367,6 +367,7 @@
   "gamemodeDuellDescription": "Who finds more? Everyone searches on their own device.",
   "duellTargetQuestion": "How many finds are needed to win?",
   "duellSkip": "Skip",
+  "duellSkipHint": "Hold to skip",
   "duellVictoryScore": "{score} finds made!",
   "@duellVictoryScore": {
     "placeholders": {

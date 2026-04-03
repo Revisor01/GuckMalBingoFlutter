@@ -367,6 +367,7 @@
   "gamemodeDuellDescription": "Qui trouve le plus ? Chacun cherche sur son appareil.",
   "duellTargetQuestion": "Combien de trouvailles pour gagner ?",
   "duellSkip": "Passer",
+  "duellSkipHint": "Maintenir appuyé",
   "duellVictoryScore": "{score} trouvailles réussies !",
   "@duellVictoryScore": {
     "placeholders": {

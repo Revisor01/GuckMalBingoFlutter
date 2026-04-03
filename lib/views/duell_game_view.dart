@@ -150,24 +150,6 @@ class _DuellGameViewState extends State<DuellGameView>
                                     ),
 
                                     const Spacer(),
-
-                                    // Score-Badge (statt Reset-Button)
-                                    Container(
-                                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                                      decoration: BoxDecoration(
-                                        color: Colors.white.withValues(alpha: 0.2),
-                                        borderRadius: BorderRadius.circular(12),
-                                      ),
-                                      child: Text(
-                                        '${viewModel.score} / ${viewModel.targetScore}',
-                                        style: const TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w600,
-                                          color: Colors.white,
-                                          fontFamily: 'Nunito',
-                                        ),
-                                      ),
-                                    ),
                                   ],
                                 ),
                               ),
@@ -185,18 +167,32 @@ class _DuellGameViewState extends State<DuellGameView>
                           ),
                         ),
 
-                        // Fortschrittsbalken
+                        // Punkte-Anzeige (wie Bingo-Jagd Zähler)
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 32),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(4),
-                            child: LinearProgressIndicator(
-                              value: viewModel.targetScore > 0
-                                  ? viewModel.score / viewModel.targetScore
-                                  : 0,
-                              backgroundColor: Colors.white.withValues(alpha: 0.2),
-                              valueColor: const AlwaysStoppedAnimation<Color>(AppColors.successGreen),
-                              minHeight: 6,
+                          padding: const EdgeInsets.only(top: 8),
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                            decoration: BoxDecoration(
+                              color: Colors.white.withValues(alpha: 0.2),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Wrap(
+                              alignment: WrapAlignment.center,
+                              spacing: 8,
+                              runSpacing: 6,
+                              children: List.generate(
+                                viewModel.targetScore,
+                                (index) => Container(
+                                  width: 14,
+                                  height: 14,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: index < viewModel.score
+                                        ? Colors.yellow
+                                        : Colors.white.withValues(alpha: 0.3),
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
                         ),
@@ -513,17 +509,31 @@ class _DuellGameViewState extends State<DuellGameView>
               SizedBox(
                 width: double.infinity,
                 height: 56,
-                child: Row(
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Icon(Icons.skip_next, size: 24, color: Colors.white),
-                    const SizedBox(width: 8),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const Icon(Icons.skip_next, size: 22, color: Colors.white),
+                        const SizedBox(width: 6),
+                        Text(
+                          l10n.duellSkip,
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white,
+                            fontFamily: 'Nunito',
+                          ),
+                        ),
+                      ],
+                    ),
                     Text(
-                      l10n.duellSkip,
-                      style: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.white,
+                      l10n.duellSkipHint,
+                      style: TextStyle(
+                        fontSize: 11,
+                        color: Colors.white.withValues(alpha: 0.7),
                         fontFamily: 'Nunito',
                       ),
                     ),
