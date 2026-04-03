@@ -253,19 +253,11 @@ class _NavigationCoordinatorState extends State<NavigationCoordinator> {
     }
   }
 
-  /// Gibt den Spielmodus-Namen als Untertitel zurueck (null fuer Suche-Modus)
-  String? _getModeSubtitle(BuildContext context) {
-    if (_config.gameMode == GameMode.suche) return null;
-    final l10n = AppLocalizations.of(context)!;
-    return l10n.getByKey(_config.gameMode.displayNameKey);
-  }
-
   void _navigateToThemeCategory() {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => ThemeCategorySelectionView(
           config: _config,
-          subtitle: _getModeSubtitle(context),
           onThemeSelected: _onThemeCategorySelected,
         ),
       ),
@@ -290,7 +282,7 @@ class _NavigationCoordinatorState extends State<NavigationCoordinator> {
       MaterialPageRoute(
         builder: (context) => SeasonSelectionView(
           config: _config,
-          subtitle: _getModeSubtitle(context),
+
           onSeasonSelected: _onSeasonSelected,
         ),
       ),
@@ -309,7 +301,7 @@ class _NavigationCoordinatorState extends State<NavigationCoordinator> {
       MaterialPageRoute(
         builder: (context) => AreaSelectionView(
           config: _config,
-          subtitle: _getModeSubtitle(context),
+
           onAreaSelected: _onAreaSelected,
         ),
       ),
@@ -350,7 +342,7 @@ class _NavigationCoordinatorState extends State<NavigationCoordinator> {
       MaterialPageRoute(
         builder: (context) => TargetBingosView(
           config: _config,
-          subtitle: _getModeSubtitle(context),
+
           onTargetSelected: _onTargetSelected,
         ),
       ),
@@ -369,7 +361,7 @@ class _NavigationCoordinatorState extends State<NavigationCoordinator> {
       MaterialPageRoute(
         builder: (context) => TargetBingosView(
           config: _config,
-          subtitle: _getModeSubtitle(context),
+
           questionOverride: AppLocalizations.of(context)!.duellTargetQuestion,
           onTargetSelected: _onDuellTargetSelected,
           maxTarget: 10,
