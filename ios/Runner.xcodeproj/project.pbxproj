@@ -475,8 +475,6 @@
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = J459G9CJT5;
 				ENABLE_BITCODE = NO;
-				FLUTTER_BUILD_NAME = 1.6.0;
-				FLUTTER_BUILD_NUMBER = 23;
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Guck mal!";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.family-games";
@@ -670,8 +668,6 @@
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = J459G9CJT5;
 				ENABLE_BITCODE = NO;
-				FLUTTER_BUILD_NAME = 1.6.0;
-				FLUTTER_BUILD_NUMBER = 23;
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Guck mal!";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.family-games";
@@ -698,8 +694,6 @@
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = J459G9CJT5;
 				ENABLE_BITCODE = NO;
-				FLUTTER_BUILD_NAME = 1.6.0;
-				FLUTTER_BUILD_NUMBER = 23;
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Guck mal!";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.family-games";
