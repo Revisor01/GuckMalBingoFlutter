@@ -6,8 +6,6 @@ void main() {
   group('ARB Localization Key Completeness', () {
     late Map<String, dynamic> templateArb;
     late Set<String> templateKeys;
-    final locales = ['de', 'en', 'es', 'fr', 'it', 'nl'];
-
     setUp(() {
       final templateFile = File('lib/l10n/app_de.arb');
       templateArb = jsonDecode(templateFile.readAsStringSync());

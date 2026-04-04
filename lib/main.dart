@@ -15,7 +15,6 @@ import 'views/bingo_game_view.dart';
 import 'views/duell_game_view.dart';
 import 'views/onboarding_view.dart';
 import 'l10n/app_localizations.dart';
-import 'utilities/app_localizations_extension.dart';
 import 'views/snowfall_widget.dart';
 import 'views/easter_effect_widget.dart';
 import 'utilities/app_preferences.dart';

@@ -1,7 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:guck_mal_bingo/models/bingo_item.dart';
 import 'package:guck_mal_bingo/models/area.dart';
-import 'package:guck_mal_bingo/models/season.dart';
 import 'package:guck_mal_bingo/utilities/debug_utils.dart';
 
 void main() {

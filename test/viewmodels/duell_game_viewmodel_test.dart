@@ -21,10 +21,14 @@ void main() {
 
   // Register mock method channel for audioplayers to prevent MissingPluginException
   setUpAll(() {
-    const MethodChannel('xyz.luan/audioplayers.global')
-        .setMockMethodCallHandler((MethodCall methodCall) async => null);
-    const MethodChannel('xyz.luan/audioplayers')
-        .setMockMethodCallHandler((MethodCall methodCall) async => null);
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(
+            const MethodChannel('xyz.luan/audioplayers.global'),
+            (MethodCall methodCall) async => null);
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(
+            const MethodChannel('xyz.luan/audioplayers'),
+            (MethodCall methodCall) async => null);
   });
 
   group('DuellGameViewModel', () {
