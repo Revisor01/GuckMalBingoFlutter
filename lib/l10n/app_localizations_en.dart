@@ -104,7 +104,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get gamemodeJagdDescription =>
-      'Who gets enough bingos first? Play together on one board and see who\'s faster!';
+      'Who gets enough bingos first? Everyone plays on their own device and sees who\'s faster!';
 
   @override
   String get gamemodeJagdName => 'Bingo Hunt';

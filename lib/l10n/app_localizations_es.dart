@@ -104,7 +104,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get gamemodeJagdDescription =>
-      '¿Quién consigue suficientes bingos primero? Jugad juntos en un tablero y ved quién es más rápido.';
+      '¿Quién consigue suficientes bingos primero? Cada uno juega en su dispositivo y ve quién es más rápido.';
 
   @override
   String get gamemodeJagdName => 'Caza de Bingo';

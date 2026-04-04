@@ -289,7 +289,7 @@ abstract class AppLocalizations {
   /// No description provided for @gamemodeJagdDescription.
   ///
   /// In de, this message translates to:
-  /// **'Wer hat zuerst genug Bingos? Spielt zusammen auf einem Feld und schaut, wer schneller ist!'**
+  /// **'Wer hat zuerst genug Bingos? Jeder spielt auf seinem Gerät und schaut, wer schneller ist!'**
   String get gamemodeJagdDescription;
 
   /// No description provided for @gamemodeJagdName.
