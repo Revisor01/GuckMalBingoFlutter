@@ -289,7 +289,7 @@ abstract class AppLocalizations {
   /// No description provided for @gamemodeJagdDescription.
   ///
   /// In de, this message translates to:
-  /// **'Spielt gemeinsam oder gegeneinander. Ihr stellt ein wie viele Bingos man erreichen muss um zu gewinnen.'**
+  /// **'Wer hat zuerst genug Bingos? Spielt zusammen auf einem Feld und schaut, wer schneller ist!'**
   String get gamemodeJagdDescription;
 
   /// No description provided for @gamemodeJagdName.
@@ -307,7 +307,7 @@ abstract class AppLocalizations {
   /// No description provided for @gamemodeSucheDescription.
   ///
   /// In de, this message translates to:
-  /// **'Sammle so viele Bingos wie du willst. Suche gemeinsam oder alleine.'**
+  /// **'Schau aus dem Fenster und finde all die tollen Sachen auf deinem Bingo-Feld! Spiele alleine oder zusammen, ganz ohne Zeitdruck.'**
   String get gamemodeSucheDescription;
 
   /// No description provided for @gamemodeSucheName.
@@ -2233,7 +2233,7 @@ abstract class AppLocalizations {
   /// No description provided for @gamemodeDuellDescription.
   ///
   /// In de, this message translates to:
-  /// **'Wer findet mehr? Jeder sucht auf seinem Gerät.'**
+  /// **'Spielt auf zwei Geräten und schaut, wer als Erstes alle gesuchten Dinge gefunden hat!'**
   String get gamemodeDuellDescription;
 
   /// No description provided for @duellTargetQuestion.

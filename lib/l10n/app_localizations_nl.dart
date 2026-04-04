@@ -104,7 +104,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get gamemodeJagdDescription =>
-      'Speel samen of concurreer. Stel in hoeveel bingo\'s nodig zijn om te winnen.';
+      'Wie heeft als eerste genoeg bingo\'s? Speel samen op één bord en kijk wie sneller is!';
 
   @override
   String get gamemodeJagdName => 'Bingo Jacht';
@@ -114,7 +114,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get gamemodeSucheDescription =>
-      'Verzamel zoveel bingo\'s als je wilt. Zoek samen of alleen.';
+      'Kijk uit het raam en vind alle leuke dingen op je bingobord! Speel alleen of samen, zonder tijdsdruk.';
 
   @override
   String get gamemodeSucheName => 'Kijk!';
@@ -1093,7 +1093,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get gamemodeDuellDescription =>
-      'Wie vindt er meer? Iedereen zoekt op zijn eigen apparaat.';
+      'Speel op twee apparaten en kijk wie als eerste alles vindt!';
 
   @override
   String get duellTargetQuestion => 'Hoeveel vondsten zijn nodig om te winnen?';
