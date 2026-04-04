@@ -57,7 +57,7 @@ class _DuellGameViewState extends State<DuellGameView>
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    if (state == AppLifecycleState.paused) {
+    if (state == AppLifecycleState.paused && !_viewModel.showVictoryDialog) {
       _viewModel.saveGameState();
     }
   }
@@ -67,7 +67,11 @@ class _DuellGameViewState extends State<DuellGameView>
     _skipProgressController.dispose();
     WidgetsBinding.instance.removeObserver(this);
     _foundTimer?.cancel();
-    _viewModel.saveGameState();
+    if (_viewModel.showVictoryDialog) {
+      _viewModel.clearSavedGameState();
+    } else {
+      _viewModel.saveGameState();
+    }
     super.dispose();
   }
 

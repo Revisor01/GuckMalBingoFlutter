@@ -445,6 +445,7 @@ class BingoGameViewModel extends ChangeNotifier {
     if (isFinal) {
       _audioPlayer.playVictorySound();
       _isFinalVictory = true;
+      clearSavedGameState();
       notifyListeners();
 
       // Victory Dialog nach kurzer Verzoegerung
