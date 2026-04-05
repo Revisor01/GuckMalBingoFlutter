@@ -67,11 +67,7 @@ class _DuellGameViewState extends State<DuellGameView>
     _skipProgressController.dispose();
     WidgetsBinding.instance.removeObserver(this);
     _foundTimer?.cancel();
-    if (_viewModel.showVictoryDialog) {
-      _viewModel.clearSavedGameState();
-    } else {
-      _viewModel.saveGameState();
-    }
+    _viewModel.clearSavedGameState();
     super.dispose();
   }
 
@@ -101,7 +97,7 @@ class _DuellGameViewState extends State<DuellGameView>
             if (_viewModel.showVictoryDialog) {
               _viewModel.dismissVictoryDialog();
             } else {
-              _viewModel.saveGameState();
+              _viewModel.clearSavedGameState();
               Navigator.of(context).pop();
             }
           },
@@ -121,7 +117,7 @@ class _DuellGameViewState extends State<DuellGameView>
                         // Header
                         SharedGameHeader(
                           onBack: () {
-                            _viewModel.saveGameState();
+                            _viewModel.clearSavedGameState();
                             Navigator.of(context).pop();
                           },
                         ),

@@ -77,7 +77,7 @@ class _BingoGameViewState extends State<BingoGameView> with WidgetsBindingObserv
                             isLandscape: true,
                             onBack: () {
                               viewModel.stopAllSounds();
-                              if (!viewModel.isFinalVictory) viewModel.saveGameState();
+                              if (!viewModel.isFinalVictory) viewModel.clearSavedGameState();
                               Navigator.of(context).pop();
                             },
                           ),
@@ -87,7 +87,7 @@ class _BingoGameViewState extends State<BingoGameView> with WidgetsBindingObserv
                           isLandscape: false,
                           onBack: () {
                             viewModel.stopAllSounds();
-                            if (!viewModel.isFinalVictory) viewModel.saveGameState();
+                            if (!viewModel.isFinalVictory) viewModel.clearSavedGameState();
                             Navigator.of(context).pop();
                           },
                         ),
