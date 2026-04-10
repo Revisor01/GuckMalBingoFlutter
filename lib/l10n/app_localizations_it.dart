@@ -829,6 +829,9 @@ class AppLocalizationsIt extends AppLocalizations {
   String get settingsPrivacy => 'Informativa sulla Privacy';
 
   @override
+  String get settingsRate => 'Valuta l\'app';
+
+  @override
   String get settingsSupport => 'Supporto';
 
   @override

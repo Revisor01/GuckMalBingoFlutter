@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:in_app_review/in_app_review.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../utilities/background_pattern_view.dart';
@@ -56,6 +57,29 @@ class _SettingsViewState extends State<SettingsView> {
       if (await canLaunchUrl(url)) {
         await launchUrl(url, mode: LaunchMode.externalApplication);
       }
+    }
+  }
+
+  /// Öffnet die Store-Seite (App Store / Play Store) für eine Bewertung.
+  /// Erst nach erfolgreichem Parental Gate — kein aufdringliches Native-Popup.
+  Future<void> _openStoreListing() async {
+    final result = await showModalBottomSheet<bool>(
+      context: context,
+      isScrollControlled: true,
+      isDismissible: true,
+      enableDrag: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => DraggableScrollableSheet(
+        initialChildSize: 0.85,
+        minChildSize: 0.5,
+        maxChildSize: 0.95,
+        builder: (context, scrollController) => const ParentalGateView(),
+      ),
+    );
+
+    if (result == true) {
+      final inAppReview = InAppReview.instance;
+      await inAppReview.openStoreListing(appStoreId: '6755447380');
     }
   }
 
@@ -179,6 +203,15 @@ class _SettingsViewState extends State<SettingsView> {
                           trailing: AppButton.trailingExternalLink(),
                           onTap: () => _openURL(
                               'https://simonluthe.de/apps/guckmal/support/'),
+                        ),
+                        const SizedBox(height: 16),
+                        AppButton(
+                          icon: Icons.star,
+                          iconSize: 28,
+                          iconColor: Colors.pinkAccent,
+                          title: AppLocalizations.of(context)!.settingsRate,
+                          trailing: AppButton.trailingExternalLink(),
+                          onTap: _openStoreListing,
                         ),
                       ],
                     ),

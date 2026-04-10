@@ -829,6 +829,9 @@ class AppLocalizationsDe extends AppLocalizations {
   String get settingsPrivacy => 'Datenschutz';
 
   @override
+  String get settingsRate => 'App bewerten';
+
+  @override
   String get settingsSupport => 'Support';
 
   @override

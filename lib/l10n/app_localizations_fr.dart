@@ -830,6 +830,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settingsPrivacy => 'Politique de Confidentialité';
 
   @override
+  String get settingsRate => 'Évaluer l\'application';
+
+  @override
   String get settingsSupport => 'Support';
 
   @override

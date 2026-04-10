@@ -829,6 +829,9 @@ class AppLocalizationsNl extends AppLocalizations {
   String get settingsPrivacy => 'Privacybeleid';
 
   @override
+  String get settingsRate => 'App beoordelen';
+
+  @override
   String get settingsSupport => 'Ondersteuning';
 
   @override

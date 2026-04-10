@@ -1726,6 +1726,12 @@ abstract class AppLocalizations {
   /// **'Datenschutz'**
   String get settingsPrivacy;
 
+  /// No description provided for @settingsRate.
+  ///
+  /// In de, this message translates to:
+  /// **'App bewerten'**
+  String get settingsRate;
+
   /// No description provided for @settingsSupport.
   ///
   /// In de, this message translates to:
