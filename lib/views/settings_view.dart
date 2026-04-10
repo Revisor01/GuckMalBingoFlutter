@@ -154,8 +154,11 @@ class _SettingsViewState extends State<SettingsView> {
                           iconColor: Colors.blue,
                           title: AppLocalizations.of(context)!.settingsPrivacy,
                           trailing: AppButton.trailingExternalLink(),
-                          onTap: () =>
-                              _openURL('https://simonluthe.de/guckmal/datenschutz/'),
+                          onTap: () => _openURL(
+                            Localizations.localeOf(context).languageCode == 'de'
+                                ? 'https://simonluthe.de/apps/guckmal/datenschutz/'
+                                : 'https://simonluthe.de/apps/guckmal/privacy/',
+                          ),
                         ),
                         const SizedBox(height: 16),
                         AppButton(
@@ -174,8 +177,8 @@ class _SettingsViewState extends State<SettingsView> {
                           iconColor: Colors.orange,
                           title: AppLocalizations.of(context)!.settingsSupport,
                           trailing: AppButton.trailingExternalLink(),
-                          onTap: () =>
-                              _openURL('https://simonluthe.de/guckmal/support/'),
+                          onTap: () => _openURL(
+                              'https://simonluthe.de/apps/guckmal/support/'),
                         ),
                       ],
                     ),
