@@ -2230,6 +2230,36 @@ abstract class AppLocalizations {
   /// **'Diagonal'**
   String get onboardingBingoDiagonal;
 
+  /// No description provided for @onboardingDuellTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Duell: Wer findet mehr?'**
+  String get onboardingDuellTitle;
+
+  /// No description provided for @onboardingDuellDesc.
+  ///
+  /// In de, this message translates to:
+  /// **'Zwei Spieler, zwei Geräte: Wer zuerst die gesuchten Dinge entdeckt, gewinnt die Runde!'**
+  String get onboardingDuellDesc;
+
+  /// No description provided for @onboardingDuellPlayer1.
+  ///
+  /// In de, this message translates to:
+  /// **'Spieler 1'**
+  String get onboardingDuellPlayer1;
+
+  /// No description provided for @onboardingDuellPlayer2.
+  ///
+  /// In de, this message translates to:
+  /// **'Spieler 2'**
+  String get onboardingDuellPlayer2;
+
+  /// No description provided for @onboardingDuellAccessibility.
+  ///
+  /// In de, this message translates to:
+  /// **'Zwei Geräte nebeneinander zeigen, wie zwei Spieler gleichzeitig suchen'**
+  String get onboardingDuellAccessibility;
+
   /// No description provided for @gamemodeDuellName.
   ///
   /// In de, this message translates to:

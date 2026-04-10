@@ -34,7 +34,7 @@ class OnboardingView extends StatefulWidget {
 class _OnboardingViewState extends State<OnboardingView> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
-  static const int _totalPages = 5;
+  static const int _totalPages = 6;
 
   @override
   void dispose() {
@@ -92,7 +92,15 @@ class _OnboardingViewState extends State<OnboardingView> {
         title: l10n.onboardingModesTitle,
         description: l10n.onboardingModesDesc,
       ),
-      // Seite 5: Los geht's
+      // Seite 5: Duell - Zwei Geräte nebeneinander
+      _DuellExplanationPage(
+        title: l10n.onboardingDuellTitle,
+        description: l10n.onboardingDuellDesc,
+        player1Label: l10n.onboardingDuellPlayer1,
+        player2Label: l10n.onboardingDuellPlayer2,
+        accessibilityLabel: l10n.onboardingDuellAccessibility,
+      ),
+      // Seite 6: Los geht's
       _OnboardingPage(
         icon: Icons.rocket_launch,
         iconColor: Colors.purple,
@@ -539,6 +547,133 @@ class _MiniBingoGrid extends StatelessWidget {
           );
         },
       ),
+    );
+  }
+}
+
+/// Duell-Erklärungsseite mit zwei nebeneinander stehenden Geräte-Mockups.
+/// Visualisiert das Duell-Konzept: zwei Spieler, zwei Geräte.
+class _DuellExplanationPage extends StatelessWidget {
+  final String title;
+  final String description;
+  final String player1Label;
+  final String player2Label;
+  final String accessibilityLabel;
+
+  const _DuellExplanationPage({
+    required this.title,
+    required this.description,
+    required this.player1Label,
+    required this.player2Label,
+    required this.accessibilityLabel,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Semantics(
+      label: '$title. $description. $accessibilityLabel',
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 30),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // Zwei Geräte-Mockups nebeneinander
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                _MiniDevice(label: player1Label, score: 5),
+                const SizedBox(width: 20),
+                _MiniDevice(label: player2Label, score: 3),
+              ],
+            ),
+
+            const SizedBox(height: 32),
+
+            // Title
+            Text(
+              title,
+              style: const TextStyle(
+                fontSize: 28,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+              textAlign: TextAlign.center,
+            ),
+
+            const SizedBox(height: 16),
+
+            // Description
+            Text(
+              description,
+              style: TextStyle(
+                fontSize: 17,
+                color: Colors.white.withValues(alpha: 0.9),
+                height: 1.5,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// Mini-Geräte-Mockup: Smartphone-Outline mit Label und Score-Counter.
+class _MiniDevice extends StatelessWidget {
+  final String label;
+  final int score;
+
+  const _MiniDevice({required this.label, required this.score});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        // Smartphone-Outline mit Score
+        Container(
+          width: 90,
+          height: 150,
+          decoration: BoxDecoration(
+            color: Colors.white.withValues(alpha: 0.15),
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(
+              color: Colors.white.withValues(alpha: 0.6),
+              width: 2.5,
+            ),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.search,
+                size: 28,
+                color: Colors.white.withValues(alpha: 0.7),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                '$score',
+                style: const TextStyle(
+                  fontSize: 36,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 10),
+        // Spieler-Label
+        Text(
+          label,
+          style: TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.w600,
+            color: Colors.white.withValues(alpha: 0.9),
+          ),
+        ),
+      ],
     );
   }
 }

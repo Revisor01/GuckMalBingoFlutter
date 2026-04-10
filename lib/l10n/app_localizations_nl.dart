@@ -1092,6 +1092,23 @@ class AppLocalizationsNl extends AppLocalizations {
   String get onboardingBingoDiagonal => 'Diagonaal';
 
   @override
+  String get onboardingDuellTitle => 'Duel: wie vindt er meer?';
+
+  @override
+  String get onboardingDuellDesc =>
+      'Twee spelers, twee apparaten: wie de dingen als eerste vindt, wint de ronde!';
+
+  @override
+  String get onboardingDuellPlayer1 => 'Speler 1';
+
+  @override
+  String get onboardingDuellPlayer2 => 'Speler 2';
+
+  @override
+  String get onboardingDuellAccessibility =>
+      'Twee apparaten naast elkaar laten zien hoe twee spelers tegelijk zoeken';
+
+  @override
   String get gamemodeDuellName => 'Duel';
 
   @override
