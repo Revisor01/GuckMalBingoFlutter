@@ -389,6 +389,5 @@
         "type": "int"
       }
     }
-  },
-  "resumeGameBackToStart": "Torna all'inizio"
+  }
 }
