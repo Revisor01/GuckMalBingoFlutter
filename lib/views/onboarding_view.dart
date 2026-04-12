@@ -581,6 +581,7 @@ class _DuellExplanationPage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                // Illustrative Scores fuer Onboarding-Visualisierung (keine echten Spielwerte)
                 _MiniDevice(label: player1Label, score: 5),
                 const SizedBox(width: 20),
                 _MiniDevice(label: player2Label, score: 3),
