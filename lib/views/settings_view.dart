@@ -179,6 +179,7 @@ class _SettingsViewState extends State<SettingsView> {
                           title: AppLocalizations.of(context)!.settingsPrivacy,
                           trailing: AppButton.trailingExternalLink(),
                           onTap: () => _openURL(
+                            // EN-URL ist der universelle Fallback fuer alle Nicht-DE Locales
                             Localizations.localeOf(context).languageCode == 'de'
                                 ? 'https://simonluthe.de/apps/guckmal/datenschutz/'
                                 : 'https://simonluthe.de/apps/guckmal/privacy/',
