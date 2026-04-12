@@ -67,7 +67,9 @@ class _DuellGameViewState extends State<DuellGameView>
     _skipProgressController.dispose();
     WidgetsBinding.instance.removeObserver(this);
     _foundTimer?.cancel();
-    _viewModel.clearSavedGameState();
+    // clearSavedGameState() wird NICHT hier aufgerufen — das passiert explizit in
+    // PopScope.onPopInvokedWithResult und im Header-Back-Button.
+    // dispose() ist kein geeigneter Ort fuer State-Cleanup mit Seiteneffekten.
     super.dispose();
   }
 
