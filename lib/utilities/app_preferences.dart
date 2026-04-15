@@ -12,6 +12,7 @@ class AppPreferences {
   final Map<String, String?> _cache = {};
 
   static const _migratedKey = '_migrated_to_secure';
+  static const _sprintMigrationKey = 'sprint_migration_done';
 
   AppPreferences._(this._storage);
 
@@ -22,6 +23,7 @@ class AppPreferences {
     );
     final prefs = AppPreferences._(storage);
     await prefs._migrateFromSharedPreferences();
+    await prefs._migrateDuellToSprint();
     await prefs._loadCache();
     instance = prefs;
   }
@@ -50,6 +52,28 @@ class AppPreferences {
     }
 
     await _storage.write(key: _migratedKey, value: 'true');
+  }
+
+  /// Migriert savedDuellState → savedSprintState (einmalig, idempotent)
+  Future<void> _migrateDuellToSprint() async {
+    try {
+      final alreadyMigrated = await _storage.read(key: _sprintMigrationKey);
+      if (alreadyMigrated == 'true') return;
+
+      final duellJson = await _storage.read(key: _keyDuellState);
+      if (duellJson != null) {
+        // Alten Duell-Stand unter Sprint-Key retten
+        await _storage.write(key: _keySprintState, value: duellJson);
+        // Alten Key löschen
+        await _storage.delete(key: _keyDuellState);
+      }
+
+      // Migration einmalig markieren
+      await _storage.write(key: _sprintMigrationKey, value: 'true');
+    } catch (_) {
+      // Bei Fehler: Migration als erledigt markieren, App startet korrekt
+      await _storage.write(key: _sprintMigrationKey, value: 'true');
+    }
   }
 
   /// Lädt alle bekannten Keys in den Cache für synchronen Zugriff
