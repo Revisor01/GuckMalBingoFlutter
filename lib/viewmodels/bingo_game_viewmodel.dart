@@ -366,6 +366,9 @@ class BingoGameViewModel extends ChangeNotifier {
         _startBlinkAnimation(newBingoIndices);
       }
 
+      // D-03: Jagd-Endbingo → nur Victory-Sound (isFinal: true).
+      // Normales Bingo → nur Bingo-Sound (isFinal: false).
+      // Beide Pfade sind strikt getrennt — kein Sound-Overlap.
       if (config.gameMode == GameMode.jagd && _bingoCount >= config.targetBingos) {
         _showVictory(count: _bingoCount, isFinal: true);
       } else {
