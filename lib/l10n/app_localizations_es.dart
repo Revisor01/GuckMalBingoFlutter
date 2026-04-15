@@ -991,7 +991,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get onboardingModesDesc =>
-      '¡Mira! Búsqueda: Juega relajado y colecciona todos los bingos que quieras.\n\nCaza de Bingo: Fija una meta – ¡quien consiga los bingos primero gana!\n\nSprint: Encuentra símbolos individuales lo más rápido posible — de 1 a 10 símbolos a la vez.';
+      '¡Mira! Búsqueda: Juega relajado y colecciona todos los bingos que quieras.\n\nCaza de Bingo: Fija una meta – ¡quien consiga los bingos primero gana!\n\nSprint: Decide cuántos símbolos quieres encontrar (de 1 a 10). Encuéntralos uno tras otro lo más rápido posible — en solitario o compitiendo con otro dispositivo.';
 
   @override
   String get onboardingReadyTitle => '¿Listos?';
@@ -1098,7 +1098,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get onboardingSprintDesc =>
-      '¡Elige de 1 a 10 símbolos y encuéntralos lo más rápido posible — en solitario o compitiendo con otro dispositivo!';
+      'Decide cuántos símbolos quieres encontrar (entre 1 y 10) y encuéntralos lo más rápido posible. En solitario o compitiendo con otro dispositivo.';
 
   @override
   String get onboardingSprintPlayer1 => 'Jugador 1';
@@ -1115,7 +1115,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get gamemodeSprintDescription =>
-      'Elige de 1 a 10 símbolos y encuéntralos lo antes posible. ¡Solo o compitiendo con otro dispositivo!';
+      'Decide cuántos símbolos encontrar en total (1 a 10). Aparecen uno tras otro — encuéntralos lo más rápido posible. También para dos: cada uno en su dispositivo, ¿quién es más rápido?';
 
   @override
   String get sprintTargetQuestion =>

@@ -2035,7 +2035,7 @@ abstract class AppLocalizations {
   /// No description provided for @onboardingModesDesc.
   ///
   /// In de, this message translates to:
-  /// **'Guck mal! Suche: Spielt entspannt und sammelt so viele Bingos wie ihr wollt.\n\nBingo Jagd: Legt ein Ziel fest – wer die Bingos zuerst schafft, gewinnt!\n\nSprint: Findet einzelne Symbole so schnell wie möglich — 1 bis 10 Symbole einstellbar.'**
+  /// **'Guck mal! Suche: Spielt entspannt und sammelt so viele Bingos wie ihr wollt.\n\nBingo Jagd: Legt ein Ziel fest – wer die Bingos zuerst schafft, gewinnt!\n\nSprint: Legt fest, wie viele Symbole ihr sucht (1 bis 10). Findet sie nacheinander so schnell wie möglich — alleine oder mit einem zweiten Gerät um die Wette.'**
   String get onboardingModesDesc;
 
   /// No description provided for @onboardingReadyTitle.
@@ -2239,7 +2239,7 @@ abstract class AppLocalizations {
   /// No description provided for @onboardingSprintDesc.
   ///
   /// In de, this message translates to:
-  /// **'Such dir 1 bis 10 Symbole aus und finde sie so schnell wie möglich — alleine oder mit einem zweiten Gerät um die Wette!'**
+  /// **'Lege fest, wie viele Symbole du suchst (zwischen 1 und 10) und finde sie so schnell wie möglich. Alleine oder mit einem zweiten Gerät um die Wette.'**
   String get onboardingSprintDesc;
 
   /// No description provided for @onboardingSprintPlayer1.
@@ -2269,7 +2269,7 @@ abstract class AppLocalizations {
   /// No description provided for @gamemodeSprintDescription.
   ///
   /// In de, this message translates to:
-  /// **'Such dir 1 bis 10 Symbole aus und finde sie so schnell wie möglich. Auch zu zweit spielbar — wer ist schneller?'**
+  /// **'Lege fest, wie viele Symbole du insgesamt suchst (1 bis 10). Sie erscheinen nacheinander — finde sie so schnell wie möglich. Auch zu zweit spielbar: jeder auf seinem Gerät, wer ist schneller?'**
   String get gamemodeSprintDescription;
 
   /// No description provided for @sprintTargetQuestion.

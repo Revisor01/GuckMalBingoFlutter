@@ -991,7 +991,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get onboardingModesDesc =>
-      'Regarde ! Recherche : Jouez tranquillement et collectionnez autant de bingos que vous voulez.\n\nChasse au Bingo : Fixez un objectif – celui qui obtient les bingos en premier gagne !\n\nSprint : Trouve des symboles individuels le plus vite possible — de 1 à 10 symboles à la fois.';
+      'Regarde ! Recherche : Jouez tranquillement et collectionnez autant de bingos que vous voulez.\n\nChasse au Bingo : Fixez un objectif – celui qui obtient les bingos en premier gagne !\n\nSprint : Choisissez combien de symboles vous cherchez (1 à 10). Trouvez-les l\'un après l\'autre le plus vite possible — seul·e ou en course avec un autre appareil.';
 
   @override
   String get onboardingReadyTitle => 'Prêts ?';
@@ -1098,7 +1098,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get onboardingSprintDesc =>
-      'Choisis de 1 à 10 symboles et trouve-les le plus vite possible — seul·e ou en course avec un autre appareil !';
+      'Choisis combien de symboles tu cherches (entre 1 et 10) et trouve-les le plus vite possible. Seul·e ou en course avec un autre appareil.';
 
   @override
   String get onboardingSprintPlayer1 => 'Joueur 1';
@@ -1115,7 +1115,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get gamemodeSprintDescription =>
-      'Choisis de 1 à 10 symboles et trouve-les le plus vite possible. Joue seul·e ou en compétition avec un autre appareil !';
+      'Choisis combien de symboles trouver au total (1 à 10). Ils apparaissent l\'un après l\'autre — trouve-les le plus vite possible. Aussi à deux : chacun sur son appareil, qui est le plus rapide ?';
 
   @override
   String get sprintTargetQuestion => 'Combien de trouvailles pour gagner ?';

@@ -990,7 +990,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get onboardingModesDesc =>
-      'Kijk! Zoeken: Speel ontspannen en verzamel zoveel bingo\'s als je wilt.\n\nBingo Jacht: Stel een doel – wie de bingo\'s het eerst haalt, wint!\n\nSprint: Vind individuele symbolen zo snel mogelijk — 1 tot 10 symbolen tegelijk.';
+      'Kijk! Zoeken: Speel ontspannen en verzamel zoveel bingo\'s als je wilt.\n\nBingo Jacht: Stel een doel – wie de bingo\'s het eerst haalt, wint!\n\nSprint: Bepaal hoeveel symbolen je zoekt (1 tot 10). Vind ze één voor één zo snel mogelijk — alleen of in een wedstrijd met een ander apparaat.';
 
   @override
   String get onboardingReadyTitle => 'Klaar?';
@@ -1096,7 +1096,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get onboardingSprintDesc =>
-      'Kies 1 tot 10 symbolen en vind ze zo snel mogelijk — alleen of in een wedstrijd met een ander apparaat!';
+      'Bepaal hoeveel symbolen je zoekt (tussen 1 en 10) en vind ze zo snel mogelijk. Alleen of in een wedstrijd met een ander apparaat.';
 
   @override
   String get onboardingSprintPlayer1 => 'Speler 1';
@@ -1113,7 +1113,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get gamemodeSprintDescription =>
-      'Kies 1 tot 10 symbolen en vind ze zo snel mogelijk. Alleen of wedstrijdspelen met een ander apparaat!';
+      'Bepaal hoeveel symbolen je in totaal zoekt (1 tot 10). Ze verschijnen één voor één — vind ze zo snel mogelijk. Ook met z\'n tweeën: ieder op zijn apparaat, wie is sneller?';
 
   @override
   String get sprintTargetQuestion => 'Hoeveel vondsten om te winnen?';

@@ -990,7 +990,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get onboardingModesDesc =>
-      'Look! Search: Play relaxed and collect as many bingos as you want.\n\nBingo Hunt: Set a goal – whoever gets the bingos first wins!\n\nSprint: Find individual symbols as fast as you can — 1 to 10 symbols at a time.';
+      'Look! Search: Play relaxed and collect as many bingos as you want.\n\nBingo Hunt: Set a goal – whoever gets the bingos first wins!\n\nSprint: Set how many symbols you want to find (1 to 10). Find them one after another as fast as you can — solo or racing another device.';
 
   @override
   String get onboardingReadyTitle => 'Ready?';
@@ -1097,7 +1097,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get onboardingSprintDesc =>
-      'Pick 1 to 10 symbols and find them as fast as you can — solo or racing another device!';
+      'Set how many symbols you want to find (between 1 and 10) and find them as fast as you can. Solo or racing another device.';
 
   @override
   String get onboardingSprintPlayer1 => 'Player 1';
@@ -1114,7 +1114,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get gamemodeSprintDescription =>
-      'Pick 1 to 10 symbols and find them as fast as you can. Play solo or race another device!';
+      'Set how many symbols to find in total (1 to 10). They appear one after another — find them as fast as you can. Two-player too: each on their own device, who\'s faster?';
 
   @override
   String get sprintTargetQuestion => 'How many finds to win?';
