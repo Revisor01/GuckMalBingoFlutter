@@ -31,7 +31,7 @@ class _SettingsViewState extends State<SettingsView> {
     final packageInfo = await PackageInfo.fromPlatform();
     if (!mounted) return;
     setState(() {
-      _version = '${packageInfo.version} (${packageInfo.buildNumber})';
+      _version = packageInfo.version;
     });
   }
 
@@ -253,10 +253,12 @@ class _SettingsViewState extends State<SettingsView> {
                               ),
                             ),
                             const SizedBox(width: 4),
-                            const Icon(
-                              Icons.favorite,
-                              size: 10,
-                              color: Colors.red,
+                            Text(
+                              '🕊️',
+                              style: TextStyle(
+                                fontSize: 11,
+                                color: Colors.white.withValues(alpha:0.8),
+                              ),
                             ),
                             const SizedBox(width: 4),
                             Text(
@@ -267,6 +269,15 @@ class _SettingsViewState extends State<SettingsView> {
                               ),
                             ),
                           ],
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          AppLocalizations.of(context)!.settingsPeaceBlessing,
+                          style: TextStyle(
+                            fontSize: 9,
+                            fontStyle: FontStyle.italic,
+                            color: Colors.white.withValues(alpha:0.5),
+                          ),
                         ),
                       ],
                     ),

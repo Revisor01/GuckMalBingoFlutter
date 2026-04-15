@@ -336,6 +336,7 @@ extension AppLocalizationsX on AppLocalizations {
     'settingsImprint': (l) => l.settingsImprint,
     'settingsInOrt': (l) => l.settingsInOrt,
     'settingsMadeWith': (l) => l.settingsMadeWith,
+    'settingsPeaceBlessing': (l) => l.settingsPeaceBlessing,
     'settingsPrivacy': (l) => l.settingsPrivacy,
     'settingsRate': (l) => l.settingsRate,
     'settingsSnowfall': (l) => l.settingsSnowfall,

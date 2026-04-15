@@ -80,19 +80,19 @@ class _OnboardingViewState extends State<OnboardingView> {
         title: l10n.onboardingCategoriesTitle,
         description: l10n.onboardingCategoriesDesc,
       ),
-      // Seite 3: Wie Bingo funktioniert
-      _BingoExplanationPage(
-        title: l10n.onboardingBingoTitle,
-        description: l10n.onboardingBingoDesc,
-      ),
-      // Seite 4: Spielmodi
+      // Seite 3: Spielmodi (vor den Erklärungen — gibt Überblick)
       _OnboardingPage(
         icon: Icons.gamepad,
         iconColor: Colors.green,
         title: l10n.onboardingModesTitle,
         description: l10n.onboardingModesDesc,
       ),
-      // Seite 5: Sprint - Solo-first Framing mit Motion-Demo
+      // Seite 4: So funktioniert Bingo
+      _BingoExplanationPage(
+        title: l10n.onboardingBingoTitle,
+        description: l10n.onboardingBingoDesc,
+      ),
+      // Seite 5: So funktioniert Sprint — Solo-first Framing mit Motion-Demo
       _SprintExplanationPage(
         title: l10n.onboardingSprintTitle,
         description: l10n.onboardingSprintDesc,

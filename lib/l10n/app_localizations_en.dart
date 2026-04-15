@@ -826,6 +826,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsMadeWith => 'Made with';
 
   @override
+  String get settingsPeaceBlessing => 'Friede. Schalom. Salam.';
+
+  @override
   String get settingsPrivacy => 'Privacy Policy';
 
   @override
@@ -990,7 +993,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get onboardingModesDesc =>
-      'Look! Search: Play relaxed and collect as many bingos as you want.\n\nBingo Hunt: Set a goal – whoever gets the bingos first wins!\n\nSprint: Set how many symbols you want to find (1 to 10). Find them one after another as fast as you can — solo or racing another device.';
+      'Look: Play relaxed and collect as many bingos as you want.\n\nBingo Hunt: Set a goal – how quickly can you get the bingos? Or play on multiple devices: who reaches the required number of bingos first?\n\nSprint: Find individual symbols as fast as you can — 1 to 10 symbols adjustable.';
 
   @override
   String get onboardingReadyTitle => 'Ready?';
@@ -1093,7 +1096,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get onboardingBingoDiagonal => 'Diagonal';
 
   @override
-  String get onboardingSprintTitle => 'Sprint';
+  String get onboardingSprintTitle => 'How Sprint Works';
 
   @override
   String get onboardingSprintDesc =>

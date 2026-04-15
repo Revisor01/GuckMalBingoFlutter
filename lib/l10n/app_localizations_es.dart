@@ -827,6 +827,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get settingsMadeWith => 'Hecho con';
 
   @override
+  String get settingsPeaceBlessing => 'Friede. Schalom. Salam.';
+
+  @override
   String get settingsPrivacy => 'Política de Privacidad';
 
   @override
@@ -991,7 +994,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get onboardingModesDesc =>
-      '¡Mira! Búsqueda: Juega relajado y colecciona todos los bingos que quieras.\n\nCaza de Bingo: Fija una meta – ¡quien consiga los bingos primero gana!\n\nSprint: Decide cuántos símbolos quieres encontrar (de 1 a 10). Encuéntralos uno tras otro lo más rápido posible — en solitario o compitiendo con otro dispositivo.';
+      '¡Mira!: Juega relajado y colecciona todos los bingos que quieras.\n\nCaza de Bingo: Fija una meta – ¿cuán rápido conseguís los bingos? O jugad en varios dispositivos: ¿quién alcanza primero la cantidad requerida de bingos?\n\nSprint: Encuentra símbolos individuales lo más rápido posible — de 1 a 10 símbolos ajustables.';
 
   @override
   String get onboardingReadyTitle => '¿Listos?';
@@ -1094,7 +1097,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get onboardingBingoDiagonal => 'Diagonal';
 
   @override
-  String get onboardingSprintTitle => 'Sprint';
+  String get onboardingSprintTitle => 'Cómo funciona Sprint';
 
   @override
   String get onboardingSprintDesc =>
