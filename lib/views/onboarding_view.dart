@@ -92,12 +92,10 @@ class _OnboardingViewState extends State<OnboardingView> {
         title: l10n.onboardingModesTitle,
         description: l10n.onboardingModesDesc,
       ),
-      // Seite 5: Sprint - Zwei Geräte nebeneinander
-      _DuellExplanationPage(
+      // Seite 5: Sprint - Solo-first Framing mit Motion-Demo
+      _SprintExplanationPage(
         title: l10n.onboardingSprintTitle,
         description: l10n.onboardingSprintDesc,
-        player1Label: l10n.onboardingSprintPlayer1,
-        player2Label: l10n.onboardingSprintPlayer2,
         accessibilityLabel: l10n.onboardingSprintAccessibility,
       ),
       // Seite 6: Los geht's
@@ -551,50 +549,134 @@ class _MiniBingoGrid extends StatelessWidget {
   }
 }
 
-/// Duell-Erklärungsseite mit zwei nebeneinander stehenden Geräte-Mockups.
-/// Visualisiert das Duell-Konzept: zwei Spieler, zwei Geräte.
-class _DuellExplanationPage extends StatelessWidget {
+/// Sprint-Erklärungsseite mit animierter Icon-Motion-Demo.
+/// Zeigt Solo-first Framing: Icon erscheint → wird grün → fadet aus → nächstes Icon → Loop.
+class _SprintExplanationPage extends StatefulWidget {
   final String title;
   final String description;
-  final String player1Label;
-  final String player2Label;
   final String accessibilityLabel;
 
-  const _DuellExplanationPage({
+  const _SprintExplanationPage({
     required this.title,
     required this.description,
-    required this.player1Label,
-    required this.player2Label,
     required this.accessibilityLabel,
   });
 
   @override
+  State<_SprintExplanationPage> createState() => _SprintExplanationPageState();
+}
+
+class _SprintExplanationPageState extends State<_SprintExplanationPage> {
+  static const _items = ['rotesauto', 'baum', 'hund', 'fahrrad', 'bus'];
+  int _currentIndex = 0;
+  double _opacity = 0.0;
+  Color _borderColor = Colors.white24;
+  Color _bgColor = const Color(0x40FFFFFF);
+
+  final List<Timer> _timers = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _runAnimation();
+  }
+
+  void _runAnimation() {
+    // Alle laufenden Timer canceln
+    for (final t in _timers) {
+      t.cancel();
+    }
+    _timers.clear();
+
+    // Schritt 1: Icon zurücksetzen (unsichtbar, weiß)
+    setState(() {
+      _opacity = 0.0;
+      _borderColor = Colors.white24;
+      _bgColor = const Color(0x40FFFFFF);
+    });
+
+    // Nach 50ms: fade-in (AnimatedOpacity übernimmt den 300ms-Übergang)
+    _timers.add(Timer(const Duration(milliseconds: 50), () {
+      if (!mounted) return;
+      setState(() {
+        _opacity = 1.0;
+      });
+    }));
+
+    // Nach 800ms: Farbe wechselt zu grün (AnimatedContainer 300ms)
+    _timers.add(Timer(const Duration(milliseconds: 800), () {
+      if (!mounted) return;
+      setState(() {
+        _borderColor = const Color(0xFF388E3C);
+        _bgColor = const Color(0xFF4CAF50);
+      });
+    }));
+
+    // Nach 1600ms: fade-out
+    _timers.add(Timer(const Duration(milliseconds: 1600), () {
+      if (!mounted) return;
+      setState(() {
+        _opacity = 0.0;
+      });
+    }));
+
+    // Nach 1900ms: nächstes Item, Neustart
+    _timers.add(Timer(const Duration(milliseconds: 1900), () {
+      if (!mounted) return;
+      setState(() {
+        _currentIndex = (_currentIndex + 1) % _items.length;
+      });
+      _runAnimation();
+    }));
+  }
+
+  @override
+  void dispose() {
+    for (final t in _timers) {
+      t.cancel();
+    }
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Semantics(
-      label: '$title. $description. $accessibilityLabel',
+      label: '${widget.title}. ${widget.description}. ${widget.accessibilityLabel}',
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 30),
+        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Zwei Geräte-Mockups nebeneinander
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                // Illustrative Scores fuer Onboarding-Visualisierung (keine echten Spielwerte)
-                _MiniDevice(label: player1Label, score: 5),
-                const SizedBox(width: 20),
-                _MiniDevice(label: player2Label, score: 3),
-              ],
+            // Sprint-Motion-Demo
+            ExcludeSemantics(
+              child: AnimatedOpacity(
+                duration: const Duration(milliseconds: 300),
+                opacity: _opacity,
+                child: AnimatedContainer(
+                  duration: const Duration(milliseconds: 300),
+                  width: 120,
+                  height: 120,
+                  decoration: BoxDecoration(
+                    color: _bgColor,
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(color: _borderColor, width: 3),
+                  ),
+                  padding: const EdgeInsets.all(16),
+                  child: Image.asset(
+                    'assets/images/${_items[_currentIndex]}.webp',
+                    fit: BoxFit.contain,
+                  ),
+                ),
+              ),
             ),
 
             const SizedBox(height: 32),
 
-            // Title
+            // Titel
             Text(
-              title,
+              widget.title,
               style: const TextStyle(
-                fontSize: 28,
+                fontSize: 32,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
@@ -603,11 +685,11 @@ class _DuellExplanationPage extends StatelessWidget {
 
             const SizedBox(height: 16),
 
-            // Description
+            // Beschreibung
             Text(
-              description,
+              widget.description,
               style: TextStyle(
-                fontSize: 17,
+                fontSize: 18,
                 color: Colors.white.withValues(alpha: 0.9),
                 height: 1.5,
               ),
@@ -616,65 +698,6 @@ class _DuellExplanationPage extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-/// Mini-Geräte-Mockup: Smartphone-Outline mit Label und Score-Counter.
-class _MiniDevice extends StatelessWidget {
-  final String label;
-  final int score;
-
-  const _MiniDevice({required this.label, required this.score});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        // Smartphone-Outline mit Score
-        Container(
-          width: 90,
-          height: 150,
-          decoration: BoxDecoration(
-            color: Colors.white.withValues(alpha: 0.15),
-            borderRadius: BorderRadius.circular(16),
-            border: Border.all(
-              color: Colors.white.withValues(alpha: 0.6),
-              width: 2.5,
-            ),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                Icons.search,
-                size: 28,
-                color: Colors.white.withValues(alpha: 0.7),
-              ),
-              const SizedBox(height: 8),
-              Text(
-                '$score',
-                style: const TextStyle(
-                  fontSize: 36,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(height: 10),
-        // Spieler-Label
-        Text(
-          label,
-          style: TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.w600,
-            color: Colors.white.withValues(alpha: 0.9),
-          ),
-        ),
-      ],
     );
   }
 }
