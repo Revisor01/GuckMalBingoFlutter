@@ -22,9 +22,20 @@ class GameAudioPlayer {
     _loadSoundFiles();
   }
 
+  /// Setzt Singleton zurueck — nur fuer Tests
+  static void resetForTesting() {
+    _instance?.dispose();
+    _instance = null;
+  }
+
   static const int _poolSize = 3;
   final List<AudioPlayer> _pool = List.generate(_poolSize, (_) => AudioPlayer());
   int _poolIndex = 0;
+
+  /// Dedizierter Player fuer Bingo/Victory-Sounds (D-02: Hard-Stop bei Folge-Aufrufen)
+  /// NICHT Teil von _pool — unabhaengig von Click-Sounds
+  final AudioPlayer _bingoVictoryPlayer = AudioPlayer();
+
   late List<String> _bingoSounds;
   late List<String> _victorySounds;
   late List<String> _clickSounds;
@@ -72,6 +83,7 @@ class GameAudioPlayer {
   }
 
   /// Zufälliger Bingo-Sound (normale + Weihnachts-Sounds in der Weihnachtszeit)
+  /// Nutzt _bingoVictoryPlayer: stoppt vorherigen Bingo/Victory-Sound sofort (D-02)
   Future<void> playBingoSound({required int count}) async {
     if (!soundEnabled) return;
 
@@ -82,23 +94,40 @@ class GameAudioPlayer {
     }
 
     final randomSound = availableSounds[_random.nextInt(availableSounds.length)];
-    await _playSound(randomSound);
+    await _playBingoVictorySound(randomSound);
   }
 
   /// Zufälliger Victory-Sound (Weihnachts-Sound in der Weihnachtszeit)
+  /// Nutzt _bingoVictoryPlayer: stoppt vorherigen Bingo/Victory-Sound sofort (D-02)
   Future<void> playVictorySound() async {
     if (!soundEnabled) return;
 
     // Weihnachts-Special: Weihnachts-Victory-Sound im Dezember/Anfang Januar
     if (isChristmasSeason()) {
       final randomXmas = _christmasVictorySounds[_random.nextInt(_christmasVictorySounds.length)];
-      final success = await _playSoundWithFallback(randomXmas);
-      if (success) return;
+      // Direkt ueber _bingoVictoryPlayer mit Fallback auf Standard-Sound
+      try {
+        await _bingoVictoryPlayer.stop();
+        await _bingoVictoryPlayer.play(AssetSource(randomXmas));
+        return;
+      } catch (_) {
+        // Fallback auf Standard-Victory-Sound
+      }
     }
 
     // Standard Victory-Sound
     final randomSound = _victorySounds[_random.nextInt(_victorySounds.length)];
-    await _playSound(randomSound);
+    await _playBingoVictorySound(randomSound);
+  }
+
+  /// Dedizierter Slot fuer Bingo/Victory-Sounds.
+  /// stop() vor play() = Hard-Stop des vorherigen Sounds (D-02).
+  /// Click-Sounds bleiben unabhaengig im Pool.
+  Future<void> _playBingoVictorySound(String assetPath) async {
+    try {
+      await _bingoVictoryPlayer.stop();
+      await _bingoVictoryPlayer.play(AssetSource(assetPath));
+    } catch (_) {}
   }
 
   Future<void> _playSound(String assetPath) async {
@@ -111,24 +140,12 @@ class GameAudioPlayer {
     }
   }
 
-  /// Spielt Sound ab und gibt true zurück bei Erfolg, false bei Fehler
-  Future<bool> _playSoundWithFallback(String assetPath) async {
-    try {
-      final player = _pool[_poolIndex];
-      _poolIndex = (_poolIndex + 1) % _poolSize;
-      await player.play(AssetSource(assetPath));
-      return true;
-    } catch (e) {
-      // Sound-Datei nicht gefunden - Fallback verwenden
-      return false;
-    }
-  }
-
-  /// Stoppt alle laufenden Sounds sofort
+  /// Stoppt alle laufenden Sounds sofort (Pool + dedizierter Bingo/Victory-Slot)
   Future<void> stop() async {
     for (final player in _pool) {
       try { await player.stop(); } catch (_) {}
     }
+    try { await _bingoVictoryPlayer.stop(); } catch (_) {}
   }
 
   /// Stoppt Audio aber behält Singleton am Leben (für ViewModel dispose)
@@ -136,6 +153,7 @@ class GameAudioPlayer {
     for (final player in _pool) {
       player.stop();
     }
+    _bingoVictoryPlayer.stop();
   }
 
   /// Komplett dispose - nur bei App-Ende aufrufen
@@ -144,6 +162,8 @@ class GameAudioPlayer {
       player.stop();
       player.dispose();
     }
+    _bingoVictoryPlayer.stop();
+    _bingoVictoryPlayer.dispose();
     _instance = null;
   }
 }
