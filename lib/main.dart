@@ -8,11 +8,11 @@ import 'models/category_theme.dart';
 import 'models/season.dart';
 import 'models/area.dart';
 import 'viewmodels/bingo_game_viewmodel.dart';
-import 'viewmodels/duell_game_viewmodel.dart';
+import 'viewmodels/sprint_game_viewmodel.dart';
 import 'views/game_mode_selection_view.dart';
 import 'views/selection_views.dart';
 import 'views/bingo_game_view.dart';
-import 'views/duell_game_view.dart';
+import 'views/sprint_game_view.dart';
 import 'views/onboarding_view.dart';
 import 'l10n/app_localizations.dart';
 import 'views/snowfall_widget.dart';
@@ -183,11 +183,11 @@ class _NavigationCoordinatorState extends State<NavigationCoordinator> {
           if (!mounted) return;
           _showResumeDialog();
         });
-      } else if (AppPreferences.instance.hasSavedDuellState) {
+      } else if (AppPreferences.instance.hasSavedSprintState) {
         _resumeDialogShown = true;
         WidgetsBinding.instance.addPostFrameCallback((_) {
           if (!mounted) return;
-          _showDuellResumeDialog();
+          _showSprintResumeDialog();
         });
       }
     }
@@ -211,20 +211,20 @@ class _NavigationCoordinatorState extends State<NavigationCoordinator> {
     });
   }
 
-  void _showDuellResumeDialog() {
-    final state = AppPreferences.instance.loadDuellState();
+  void _showSprintResumeDialog() {
+    final state = AppPreferences.instance.loadSprintState();
     if (state == null) return;
 
     setState(() {
       _showResumeOverlay = true;
       _resumeOnContinue = () {
         setState(() => _showResumeOverlay = false);
-        final viewModel = DuellGameViewModel.fromSavedState(state);
-        _navigateToDuellGame(existingViewModel: viewModel);
+        final viewModel = SprintGameViewModel.fromSavedState(state);
+        _navigateToSprintGame(existingViewModel: viewModel);
       };
       _resumeOnBackToStart = () {
         setState(() => _showResumeOverlay = false);
-        AppPreferences.instance.clearDuellState();
+        AppPreferences.instance.clearSprintState();
       };
     });
   }
@@ -304,8 +304,8 @@ class _NavigationCoordinatorState extends State<NavigationCoordinator> {
     setState(() {
       _config = _config.copyWith(area: area);
     });
-    if (_config.gameMode == GameMode.duell) {
-      _navigateToDuellTarget();
+    if (_config.gameMode == GameMode.sprint) {
+      _navigateToSprintTarget();
     } else {
       _navigateToSizeSelection();
     }
@@ -353,14 +353,14 @@ class _NavigationCoordinatorState extends State<NavigationCoordinator> {
     _navigateToGame();
   }
 
-  void _navigateToDuellTarget() {
+  void _navigateToSprintTarget() {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => TargetBingosView(
           config: _config,
 
-          questionOverride: AppLocalizations.of(context)!.duellTargetQuestion,
-          onTargetSelected: _onDuellTargetSelected,
+          questionOverride: AppLocalizations.of(context)!.sprintTargetQuestion,
+          onTargetSelected: _onSprintTargetSelected,
           maxTarget: 10,
           initialTarget: 5,
         ),
@@ -368,21 +368,21 @@ class _NavigationCoordinatorState extends State<NavigationCoordinator> {
     );
   }
 
-  void _onDuellTargetSelected(int target) {
+  void _onSprintTargetSelected(int target) {
     setState(() {
       _config = _config.copyWith(targetBingos: target);
     });
-    _navigateToDuellGame();
+    _navigateToSprintGame();
   }
 
-  void _navigateToDuellGame({DuellGameViewModel? existingViewModel}) {
-    final viewModel = existingViewModel ?? DuellGameViewModel(config: _config);
+  void _navigateToSprintGame({SprintGameViewModel? existingViewModel}) {
+    final viewModel = existingViewModel ?? SprintGameViewModel(config: _config);
 
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => ChangeNotifierProvider.value(
           value: viewModel,
-          child: DuellGameView(
+          child: SprintGameView(
             onBackToStart: () {
               viewModel.clearSavedGameState();
               Navigator.of(context).popUntil((route) => route.isFirst);

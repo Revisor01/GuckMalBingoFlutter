@@ -54,7 +54,7 @@ class AppPreferences {
 
   /// Lädt alle bekannten Keys in den Cache für synchronen Zugriff
   Future<void> _loadCache() async {
-    for (final key in ['snowfallEnabled', 'easterEffectEnabled', 'hasSeenOnboarding', 'backgroundTheme', 'savedGameState', 'savedDuellState']) {
+    for (final key in ['snowfallEnabled', 'easterEffectEnabled', 'hasSeenOnboarding', 'backgroundTheme', 'savedGameState', 'savedDuellState', 'savedSprintState']) {
       _cache[key] = await _storage.read(key: key);
     }
   }
@@ -116,7 +116,7 @@ class AppPreferences {
     await _storage.delete(key: _keyGameState);
   }
 
-  // Duell Game State Persistence
+  // Duell Game State Persistence (Legacy — wird in Plan 05 migriert)
   static const _keyDuellState = 'savedDuellState';
 
   bool get hasSavedDuellState => _cache[_keyDuellState] != null;
@@ -141,5 +141,32 @@ class AppPreferences {
   Future<void> clearDuellState() async {
     _cache.remove(_keyDuellState);
     await _storage.delete(key: _keyDuellState);
+  }
+
+  // Sprint Game State Persistence
+  static const _keySprintState = 'savedSprintState';
+
+  bool get hasSavedSprintState => _cache[_keySprintState] != null;
+
+  Future<void> saveSprintState(Map<String, dynamic> state) async {
+    final json = jsonEncode(state);
+    _cache[_keySprintState] = json;
+    await _storage.write(key: _keySprintState, value: json);
+  }
+
+  Map<String, dynamic>? loadSprintState() {
+    final json = _cache[_keySprintState];
+    if (json == null) return null;
+    try {
+      return jsonDecode(json) as Map<String, dynamic>;
+    } catch (_) {
+      clearSprintState();
+      return null;
+    }
+  }
+
+  Future<void> clearSprintState() async {
+    _cache.remove(_keySprintState);
+    await _storage.delete(key: _keySprintState);
   }
 }

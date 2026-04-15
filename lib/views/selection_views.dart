@@ -411,14 +411,14 @@ class SizeSelectionView extends StatelessWidget {
   }
 }
 
-/// Target Bingos Selection (fuer Jagd- und Duell-Modus)
+/// Target Bingos Selection (fuer Jagd- und Sprint-Modus)
 class TargetBingosView extends StatefulWidget {
   final GameConfig config;
   final String? subtitle;
   final String? questionOverride;
   final Function(int) onTargetSelected;
-  final int maxTarget;      // Default 10 (Jagd-Modus), 20 fuer Duell-Modus
-  final int initialTarget;  // Default 3 (Jagd-Modus), 5 fuer Duell-Modus
+  final int maxTarget;      // Default 10 (Jagd-Modus), 10 fuer Sprint-Modus
+  final int initialTarget;  // Default 3 (Jagd-Modus), 5 fuer Sprint-Modus
 
   const TargetBingosView({
     super.key,

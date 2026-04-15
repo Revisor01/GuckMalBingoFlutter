@@ -92,13 +92,13 @@ class _OnboardingViewState extends State<OnboardingView> {
         title: l10n.onboardingModesTitle,
         description: l10n.onboardingModesDesc,
       ),
-      // Seite 5: Duell - Zwei Geräte nebeneinander
+      // Seite 5: Sprint - Zwei Geräte nebeneinander
       _DuellExplanationPage(
-        title: l10n.onboardingDuellTitle,
-        description: l10n.onboardingDuellDesc,
-        player1Label: l10n.onboardingDuellPlayer1,
-        player2Label: l10n.onboardingDuellPlayer2,
-        accessibilityLabel: l10n.onboardingDuellAccessibility,
+        title: l10n.onboardingSprintTitle,
+        description: l10n.onboardingSprintDesc,
+        player1Label: l10n.onboardingSprintPlayer1,
+        player2Label: l10n.onboardingSprintPlayer2,
+        accessibilityLabel: l10n.onboardingSprintAccessibility,
       ),
       // Seite 6: Los geht's
       _OnboardingPage(

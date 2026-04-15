@@ -4,12 +4,12 @@ import 'package:guck_mal_bingo/models/game_config.dart';
 import 'package:guck_mal_bingo/models/game_mode.dart';
 import 'package:guck_mal_bingo/models/area.dart';
 import 'package:guck_mal_bingo/models/season.dart';
-import 'package:guck_mal_bingo/viewmodels/duell_game_viewmodel.dart';
+import 'package:guck_mal_bingo/viewmodels/sprint_game_viewmodel.dart';
 
-/// Helper: Creates a standard test config for Duell-Modus
+/// Helper: Creates a standard test config for Sprint-Modus
 GameConfig _testConfig({int targetBingos = 3}) {
   return GameConfig(
-    gameMode: GameMode.duell,
+    gameMode: GameMode.sprint,
     targetBingos: targetBingos,
     area: Area.autobahn,
     season: Season.fruehling_sommer,
@@ -31,11 +31,11 @@ void main() {
             (MethodCall methodCall) async => null);
   });
 
-  group('DuellGameViewModel', () {
-    late DuellGameViewModel vm;
+  group('SprintGameViewModel', () {
+    late SprintGameViewModel vm;
 
     setUp(() {
-      vm = DuellGameViewModel(config: _testConfig());
+      vm = SprintGameViewModel(config: _testConfig());
     });
 
     // Test 1: markFound() erhoeht score um 1
@@ -75,7 +75,7 @@ void main() {
     // Test 4: Nach targetBingos markFound()-Aufrufen ist showVictoryDialog true
     test('showVictoryDialog is true after targetBingos markFound() calls', () {
       final config = _testConfig(targetBingos: 3);
-      final localVm = DuellGameViewModel(config: config);
+      final localVm = SprintGameViewModel(config: config);
 
       expect(localVm.showVictoryDialog, isFalse);
       for (int i = 0; i < config.targetBingos; i++) {
@@ -87,7 +87,7 @@ void main() {
     // Test 5: resetGame() setzt score auf 0, showVictoryDialog auf false
     test('resetGame() resets score to 0 and showVictoryDialog to false', () {
       final config = _testConfig(targetBingos: 2);
-      final localVm = DuellGameViewModel(config: config);
+      final localVm = SprintGameViewModel(config: config);
 
       localVm.markFound();
       localVm.markFound();
@@ -113,7 +113,7 @@ void main() {
     // Test 7: dismissVictoryDialog() setzt showVictoryDialog auf false
     test('dismissVictoryDialog() sets showVictoryDialog to false', () {
       final config = _testConfig(targetBingos: 1);
-      final localVm = DuellGameViewModel(config: config);
+      final localVm = SprintGameViewModel(config: config);
 
       localVm.markFound();
       expect(localVm.showVictoryDialog, isTrue);

@@ -5,11 +5,11 @@ import '../data/bingo_items_data.dart';
 import '../utilities/audio_player.dart';
 import '../utilities/app_preferences.dart';
 
-/// DuellGameViewModel — Verwaltet den Spielzustand des Duell-Modus.
+/// SprintGameViewModel — Verwaltet den Spielzustand des Sprint-Modus.
 ///
 /// Haelt eine gemischte Item-Queue, trackt den Score und triggert
 /// den Victory-Dialog bei Erreichen des Ziels.
-class DuellGameViewModel extends ChangeNotifier {
+class SprintGameViewModel extends ChangeNotifier {
   final GameConfig config;
   late List<BingoItem> _queue;
   int _queueIndex = 0;
@@ -56,7 +56,7 @@ class DuellGameViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  DuellGameViewModel({required this.config, GameAudioPlayer? audioPlayer}) {
+  SprintGameViewModel({required this.config, GameAudioPlayer? audioPlayer}) {
     _audioPlayer = audioPlayer ?? GameAudioPlayer();
     _buildQueue();
   }
@@ -133,7 +133,7 @@ class DuellGameViewModel extends ChangeNotifier {
   /// Speichert den aktuellen Spielstand in SharedPreferences
   void saveGameState() {
     final queueItemNames = _queue.map((item) => item.name).toList();
-    AppPreferences.instance.saveDuellState({
+    AppPreferences.instance.saveSprintState({
       'queueItemNames': queueItemNames,
       'queueIndex': _queueIndex,
       'score': _score,
@@ -144,13 +144,13 @@ class DuellGameViewModel extends ChangeNotifier {
 
   /// Loescht den gespeicherten Spielstand
   void clearSavedGameState() {
-    AppPreferences.instance.clearDuellState();
+    AppPreferences.instance.clearSprintState();
   }
 
   /// Stellt ViewModel aus gespeichertem Zustand wieder her
-  factory DuellGameViewModel.fromSavedState(Map<String, dynamic> state, {GameAudioPlayer? audioPlayer}) {
+  factory SprintGameViewModel.fromSavedState(Map<String, dynamic> state, {GameAudioPlayer? audioPlayer}) {
     final config = GameConfig.fromJson(state['config'] as Map<String, dynamic>);
-    final vm = DuellGameViewModel(config: config, audioPlayer: audioPlayer);
+    final vm = SprintGameViewModel(config: config, audioPlayer: audioPlayer);
     vm._score = state['score'] as int? ?? 0;
     vm._skipCount = state['skipCount'] as int? ?? 0;
     vm._queueIndex = state['queueIndex'] as int? ?? 0;

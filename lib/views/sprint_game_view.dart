@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../viewmodels/duell_game_viewmodel.dart';
+import '../viewmodels/sprint_game_viewmodel.dart';
 import '../utilities/background_pattern_view.dart';
 import '../utilities/app_colors.dart';
 import '../utilities/theme_provider.dart';
@@ -11,26 +11,26 @@ import 'widgets/shared_game_header.dart';
 import 'widgets/shared_toggle_buttons.dart';
 import 'widgets/victory_dialog_view.dart';
 
-/// DuellGameView — Einzelitem-Ansicht für den Duell-Modus.
+/// SprintGameView — Einzelitem-Ansicht für den Sprint-Modus.
 ///
 /// Layout identisch zum BingoGameView: Header mit "Guck mal!", Grid-Hintergrund
 /// mit 1x1-Zelle (BingoCellView-Stil), Ton/Text-Toggle Buttons unten.
 /// Tap auf das Item = gefunden. Long-Press Skip mit Füll-Animation.
-class DuellGameView extends StatefulWidget {
+class SprintGameView extends StatefulWidget {
   final VoidCallback onBackToStart;
 
-  const DuellGameView({
+  const SprintGameView({
     super.key,
     required this.onBackToStart,
   });
 
   @override
-  State<DuellGameView> createState() => _DuellGameViewState();
+  State<SprintGameView> createState() => _SprintGameViewState();
 }
 
-class _DuellGameViewState extends State<DuellGameView>
+class _SprintGameViewState extends State<SprintGameView>
     with WidgetsBindingObserver, TickerProviderStateMixin {
-  late final DuellGameViewModel _viewModel;
+  late final SprintGameViewModel _viewModel;
 
   bool _isFound = false;
   Timer? _foundTimer;
@@ -40,7 +40,7 @@ class _DuellGameViewState extends State<DuellGameView>
   @override
   void initState() {
     super.initState();
-    _viewModel = context.read<DuellGameViewModel>();
+    _viewModel = context.read<SprintGameViewModel>();
     WidgetsBinding.instance.addObserver(this);
 
     _skipProgressController = AnimationController(
@@ -87,7 +87,7 @@ class _DuellGameViewState extends State<DuellGameView>
   Widget build(BuildContext context) {
     final selectedTheme = context.watch<ThemeNotifier>().theme;
 
-    return Consumer<DuellGameViewModel>(
+    return Consumer<SprintGameViewModel>(
       builder: (context, viewModel, child) {
         final brightness = Theme.of(context).brightness;
         final l10n = AppLocalizations.of(context)!;
@@ -228,7 +228,7 @@ class _DuellGameViewState extends State<DuellGameView>
                   if (viewModel.showVictoryDialog)
                     VictoryDialogView(
                       bingoCount: viewModel.score,
-                      scoreText: l10n.duellVictoryScore(viewModel.score),
+                      scoreText: l10n.sprintVictoryScore(viewModel.score),
                       onPlayAgain: () => _viewModel.resetGame(),
                       onBackToStart: widget.onBackToStart,
                     ),
@@ -243,7 +243,7 @@ class _DuellGameViewState extends State<DuellGameView>
 
   /// Item-Karte Inhalt — BingoCellView-Stil (borderRadius 14, Bild+Text-Stack)
   Widget _buildCellContent(
-    DuellGameViewModel viewModel,
+    SprintGameViewModel viewModel,
     AppLocalizations l10n,
     Brightness brightness,
   ) {
@@ -345,7 +345,7 @@ class _DuellGameViewState extends State<DuellGameView>
 
   /// Skip-Button mit Long-Press und visueller Füll-Animation
   Widget _buildSkipButton(
-    DuellGameViewModel viewModel,
+    SprintGameViewModel viewModel,
     AppLocalizations l10n,
   ) {
     return Padding(
@@ -394,7 +394,7 @@ class _DuellGameViewState extends State<DuellGameView>
                         const Icon(Icons.skip_next, size: 22, color: Colors.white),
                         const SizedBox(width: 6),
                         Text(
-                          l10n.duellSkip,
+                          l10n.sprintSkip,
                           style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
@@ -405,7 +405,7 @@ class _DuellGameViewState extends State<DuellGameView>
                       ],
                     ),
                     Text(
-                      l10n.duellSkipHint,
+                      l10n.sprintSkipHint,
                       style: TextStyle(
                         fontSize: 11,
                         color: Colors.white.withValues(alpha: 0.7),

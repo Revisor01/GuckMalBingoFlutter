@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../../l10n/app_localizations.dart';
 
 /// Wiederverwendbare Text/Sound Toggle-Buttons.
-/// Wird von BingoGameView und DuellGameView genutzt.
+/// Wird von BingoGameView und SprintGameView genutzt.
 class SharedToggleButtons extends StatelessWidget {
   final bool showText;
   final bool soundEnabled;

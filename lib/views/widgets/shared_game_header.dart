@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../../l10n/app_localizations.dart';
 
 /// Wiederverwendbarer Header mit Back-Button und Titel "Guck mal!"
-/// Wird von BingoGameView und DuellGameView genutzt.
+/// Wird von BingoGameView und SprintGameView genutzt.
 class SharedGameHeader extends StatelessWidget {
   final VoidCallback onBack;
   final Widget? trailing;
