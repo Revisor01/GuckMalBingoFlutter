@@ -321,7 +321,7 @@
   "onboardingBingoDesc": "Vous voyez quelque chose dehors ? Touchez-le sur le plateau ! Une ligne complète – horizontale, verticale ou diagonale – fait un bingo !",
   "onboardingBingoAccessibility": "Trois exemples montrent des lignes de bingo horizontales, verticales et diagonales",
   "onboardingModesTitle": "Trois modes de jeu",
-  "onboardingModesDesc": "Regarde ! Recherche : Jouez tranquillement et collectionnez autant de bingos que vous voulez.\n\nChasse au Bingo : Fixez un objectif – celui qui obtient les bingos en premier gagne !\n\nDuel : Cherchez des choses individuelles en compétition – qui en trouve le plus ?",
+  "onboardingModesDesc": "Regarde ! Recherche : Jouez tranquillement et collectionnez autant de bingos que vous voulez.\n\nChasse au Bingo : Fixez un objectif – celui qui obtient les bingos en premier gagne !\n\nSprint : Trouve des symboles individuels le plus vite possible — de 1 à 10 symboles à la fois.",
   "onboardingReadyTitle": "Prêts ?",
   "onboardingReadyDesc": "Choisissez thème, lieu et taille du plateau. Puis regardez ensemble par la fenêtre – l'aventure commence !",
   "onboardingNext": "Suivant",
@@ -364,26 +364,26 @@
   "onboardingBingoHorizontal": "Horizontal",
   "onboardingBingoVertical": "Vertical",
   "onboardingBingoDiagonal": "Diagonal",
-  "onboardingDuellTitle": "Duel : qui en trouve plus ?",
-  "onboardingDuellDesc": "Deux joueurs, deux appareils : le premier qui repère les objets gagne la manche !",
-  "onboardingDuellPlayer1": "Joueur 1",
-  "onboardingDuellPlayer2": "Joueur 2",
-  "onboardingDuellAccessibility": "Deux appareils côte à côte montrent deux joueurs cherchant en même temps",
-  "gamemodeDuellName": "Duel",
-  "gamemodeDuellDescription": "Jouez sur deux appareils et voyez qui trouve toutes les choses en premier !",
-  "duellTargetQuestion": "Combien de trouvailles pour gagner ?",
-  "duellSkip": "Passer",
-  "duellSkipHint": "Maintenir appuyé",
-  "duellVictoryScore": "{score} trouvailles réussies !",
-  "@duellVictoryScore": {
+  "onboardingSprintTitle": "Sprint",
+  "onboardingSprintDesc": "Choisis de 1 à 10 symboles et trouve-les le plus vite possible — seul·e ou en course avec un autre appareil !",
+  "onboardingSprintPlayer1": "Joueur 1",
+  "onboardingSprintPlayer2": "Joueur 2",
+  "onboardingSprintAccessibility": "Animation montrant comment un symbole est trouvé et remplacé par le suivant",
+  "gamemodeSprintName": "Sprint",
+  "gamemodeSprintDescription": "Choisis de 1 à 10 symboles et trouve-les le plus vite possible. Joue seul·e ou en compétition avec un autre appareil !",
+  "sprintTargetQuestion": "Combien de trouvailles pour gagner ?",
+  "sprintSkip": "Passer",
+  "sprintSkipHint": "Appuyer longuement",
+  "sprintVictoryScore": "{score} trouvés !",
+  "@sprintVictoryScore": {
     "placeholders": {
       "score": {
         "type": "int"
       }
     }
   },
-  "duellSkipCount": "{count} passés",
-  "@duellSkipCount": {
+  "sprintSkipCount": "{count} passés",
+  "@sprintSkipCount": {
     "placeholders": {
       "count": {
         "type": "int"

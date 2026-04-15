@@ -990,7 +990,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get onboardingModesDesc =>
-      'Kijk! Zoeken: Speel ontspannen en verzamel zoveel bingo\'s als je wilt.\n\nBingo Jacht: Stel een doel – wie de bingo\'s het eerst haalt, wint!\n\nDuel: Zoek om het snelst naar losse dingen – wie vindt er meer?';
+      'Kijk! Zoeken: Speel ontspannen en verzamel zoveel bingo\'s als je wilt.\n\nBingo Jacht: Stel een doel – wie de bingo\'s het eerst haalt, wint!\n\nSprint: Vind individuele symbolen zo snel mogelijk — 1 tot 10 symbolen tegelijk.';
 
   @override
   String get onboardingReadyTitle => 'Klaar?';
@@ -1092,45 +1092,45 @@ class AppLocalizationsNl extends AppLocalizations {
   String get onboardingBingoDiagonal => 'Diagonaal';
 
   @override
-  String get onboardingDuellTitle => 'Duel: wie vindt er meer?';
+  String get onboardingSprintTitle => 'Sprint';
 
   @override
-  String get onboardingDuellDesc =>
-      'Twee spelers, twee apparaten: wie de dingen als eerste vindt, wint de ronde!';
+  String get onboardingSprintDesc =>
+      'Kies 1 tot 10 symbolen en vind ze zo snel mogelijk — alleen of in een wedstrijd met een ander apparaat!';
 
   @override
-  String get onboardingDuellPlayer1 => 'Speler 1';
+  String get onboardingSprintPlayer1 => 'Speler 1';
 
   @override
-  String get onboardingDuellPlayer2 => 'Speler 2';
+  String get onboardingSprintPlayer2 => 'Speler 2';
 
   @override
-  String get onboardingDuellAccessibility =>
-      'Twee apparaten naast elkaar laten zien hoe twee spelers tegelijk zoeken';
+  String get onboardingSprintAccessibility =>
+      'Animatie toont hoe een symbool wordt gevonden en vervangen door het volgende';
 
   @override
-  String get gamemodeDuellName => 'Duel';
+  String get gamemodeSprintName => 'Sprint';
 
   @override
-  String get gamemodeDuellDescription =>
-      'Speel op twee apparaten en kijk wie als eerste alles vindt!';
+  String get gamemodeSprintDescription =>
+      'Kies 1 tot 10 symbolen en vind ze zo snel mogelijk. Alleen of wedstrijdspelen met een ander apparaat!';
 
   @override
-  String get duellTargetQuestion => 'Hoeveel vondsten zijn nodig om te winnen?';
+  String get sprintTargetQuestion => 'Hoeveel vondsten om te winnen?';
 
   @override
-  String get duellSkip => 'Overslaan';
+  String get sprintSkip => 'Overslaan';
 
   @override
-  String get duellSkipHint => 'Ingedrukt houden';
+  String get sprintSkipHint => 'Ingedrukt houden';
 
   @override
-  String duellVictoryScore(int score) {
-    return '$score vondsten gedaan!';
+  String sprintVictoryScore(int score) {
+    return '$score gevonden!';
   }
 
   @override
-  String duellSkipCount(int count) {
+  String sprintSkipCount(int count) {
     return '$count overgeslagen';
   }
 }

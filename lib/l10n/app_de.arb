@@ -321,7 +321,7 @@
   "onboardingBingoDesc": "Seht ihr etwas draußen? Tippt es auf dem Spielfeld an! Eine komplette Reihe – horizontal, vertikal oder diagonal – ergibt ein Bingo!",
   "onboardingBingoAccessibility": "Drei Beispiele zeigen horizontale, vertikale und diagonale Bingo-Linien",
   "onboardingModesTitle": "Drei Spielmodi",
-  "onboardingModesDesc": "Guck mal! Suche: Spielt entspannt und sammelt so viele Bingos wie ihr wollt.\n\nBingo Jagd: Legt ein Ziel fest – wer die Bingos zuerst schafft, gewinnt!\n\nDuell: Sucht einzelne Dinge um die Wette – wer findet mehr?",
+  "onboardingModesDesc": "Guck mal! Suche: Spielt entspannt und sammelt so viele Bingos wie ihr wollt.\n\nBingo Jagd: Legt ein Ziel fest – wer die Bingos zuerst schafft, gewinnt!\n\nSprint: Findet einzelne Symbole so schnell wie möglich — 1 bis 10 Symbole einstellbar.",
   "onboardingReadyTitle": "Bereit?",
   "onboardingReadyDesc": "Wählt Thema, Ort und Spielfeldgröße. Dann schaut gemeinsam aus dem Fenster – die Entdeckungsreise beginnt!",
   "onboardingNext": "Weiter",
@@ -364,26 +364,26 @@
   "onboardingBingoHorizontal": "Horizontal",
   "onboardingBingoVertical": "Vertikal",
   "onboardingBingoDiagonal": "Diagonal",
-  "onboardingDuellTitle": "Duell: Wer findet mehr?",
-  "onboardingDuellDesc": "Zwei Spieler, zwei Geräte: Wer zuerst die gesuchten Dinge entdeckt, gewinnt die Runde!",
-  "onboardingDuellPlayer1": "Spieler 1",
-  "onboardingDuellPlayer2": "Spieler 2",
-  "onboardingDuellAccessibility": "Zwei Geräte nebeneinander zeigen, wie zwei Spieler gleichzeitig suchen",
-  "gamemodeDuellName": "Duell",
-  "gamemodeDuellDescription": "Spielt auf zwei Geräten und schaut, wer als Erstes alle gesuchten Dinge gefunden hat!",
-  "duellTargetQuestion": "Wie viele Funde braucht man zum Gewinnen?",
-  "duellSkip": "Überspringen",
-  "duellSkipHint": "Gedrückt halten",
-  "duellVictoryScore": "{score} Funde geschafft!",
-  "@duellVictoryScore": {
+  "onboardingSprintTitle": "Sprint",
+  "onboardingSprintDesc": "Such dir 1 bis 10 Symbole aus und finde sie so schnell wie möglich — alleine oder mit einem zweiten Gerät um die Wette!",
+  "onboardingSprintPlayer1": "Spieler 1",
+  "onboardingSprintPlayer2": "Spieler 2",
+  "onboardingSprintAccessibility": "Animation zeigt, wie ein Symbol gefunden und durch das nächste ersetzt wird",
+  "gamemodeSprintName": "Sprint",
+  "gamemodeSprintDescription": "Such dir 1 bis 10 Symbole aus und finde sie so schnell wie möglich. Auch zu zweit spielbar — wer ist schneller?",
+  "sprintTargetQuestion": "Wie viele Funde braucht man zum Gewinnen?",
+  "sprintSkip": "Überspringen",
+  "sprintSkipHint": "Gedrückt halten",
+  "sprintVictoryScore": "{score} Funde geschafft!",
+  "@sprintVictoryScore": {
     "placeholders": {
       "score": {
         "type": "int"
       }
     }
   },
-  "duellSkipCount": "{count} übersprungen",
-  "@duellSkipCount": {
+  "sprintSkipCount": "{count} übersprungen",
+  "@sprintSkipCount": {
     "placeholders": {
       "count": {
         "type": "int"

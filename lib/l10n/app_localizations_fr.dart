@@ -991,7 +991,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get onboardingModesDesc =>
-      'Regarde ! Recherche : Jouez tranquillement et collectionnez autant de bingos que vous voulez.\n\nChasse au Bingo : Fixez un objectif – celui qui obtient les bingos en premier gagne !\n\nDuel : Cherchez des choses individuelles en compétition – qui en trouve le plus ?';
+      'Regarde ! Recherche : Jouez tranquillement et collectionnez autant de bingos que vous voulez.\n\nChasse au Bingo : Fixez un objectif – celui qui obtient les bingos en premier gagne !\n\nSprint : Trouve des symboles individuels le plus vite possible — de 1 à 10 symboles à la fois.';
 
   @override
   String get onboardingReadyTitle => 'Prêts ?';
@@ -1094,45 +1094,45 @@ class AppLocalizationsFr extends AppLocalizations {
   String get onboardingBingoDiagonal => 'Diagonal';
 
   @override
-  String get onboardingDuellTitle => 'Duel : qui en trouve plus ?';
+  String get onboardingSprintTitle => 'Sprint';
 
   @override
-  String get onboardingDuellDesc =>
-      'Deux joueurs, deux appareils : le premier qui repère les objets gagne la manche !';
+  String get onboardingSprintDesc =>
+      'Choisis de 1 à 10 symboles et trouve-les le plus vite possible — seul·e ou en course avec un autre appareil !';
 
   @override
-  String get onboardingDuellPlayer1 => 'Joueur 1';
+  String get onboardingSprintPlayer1 => 'Joueur 1';
 
   @override
-  String get onboardingDuellPlayer2 => 'Joueur 2';
+  String get onboardingSprintPlayer2 => 'Joueur 2';
 
   @override
-  String get onboardingDuellAccessibility =>
-      'Deux appareils côte à côte montrent deux joueurs cherchant en même temps';
+  String get onboardingSprintAccessibility =>
+      'Animation montrant comment un symbole est trouvé et remplacé par le suivant';
 
   @override
-  String get gamemodeDuellName => 'Duel';
+  String get gamemodeSprintName => 'Sprint';
 
   @override
-  String get gamemodeDuellDescription =>
-      'Jouez sur deux appareils et voyez qui trouve toutes les choses en premier !';
+  String get gamemodeSprintDescription =>
+      'Choisis de 1 à 10 symboles et trouve-les le plus vite possible. Joue seul·e ou en compétition avec un autre appareil !';
 
   @override
-  String get duellTargetQuestion => 'Combien de trouvailles pour gagner ?';
+  String get sprintTargetQuestion => 'Combien de trouvailles pour gagner ?';
 
   @override
-  String get duellSkip => 'Passer';
+  String get sprintSkip => 'Passer';
 
   @override
-  String get duellSkipHint => 'Maintenir appuyé';
+  String get sprintSkipHint => 'Appuyer longuement';
 
   @override
-  String duellVictoryScore(int score) {
-    return '$score trouvailles réussies !';
+  String sprintVictoryScore(int score) {
+    return '$score trouvés !';
   }
 
   @override
-  String duellSkipCount(int count) {
+  String sprintSkipCount(int count) {
     return '$count passés';
   }
 }

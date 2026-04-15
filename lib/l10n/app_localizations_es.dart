@@ -991,7 +991,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get onboardingModesDesc =>
-      '¡Mira! Búsqueda: Juega relajado y colecciona todos los bingos que quieras.\n\nCaza de Bingo: Fija una meta – ¡quien consiga los bingos primero gana!\n\nDuelo: Compite buscando cosas individuales – ¿quién encuentra más?';
+      '¡Mira! Búsqueda: Juega relajado y colecciona todos los bingos que quieras.\n\nCaza de Bingo: Fija una meta – ¡quien consiga los bingos primero gana!\n\nSprint: Encuentra símbolos individuales lo más rápido posible — de 1 a 10 símbolos a la vez.';
 
   @override
   String get onboardingReadyTitle => '¿Listos?';
@@ -1094,46 +1094,46 @@ class AppLocalizationsEs extends AppLocalizations {
   String get onboardingBingoDiagonal => 'Diagonal';
 
   @override
-  String get onboardingDuellTitle => 'Duelo: ¿Quién encuentra más?';
+  String get onboardingSprintTitle => 'Sprint';
 
   @override
-  String get onboardingDuellDesc =>
-      'Dos jugadores, dos dispositivos: ¡quien encuentre primero los objetos gana la ronda!';
+  String get onboardingSprintDesc =>
+      '¡Elige de 1 a 10 símbolos y encuéntralos lo más rápido posible — en solitario o compitiendo con otro dispositivo!';
 
   @override
-  String get onboardingDuellPlayer1 => 'Jugador 1';
+  String get onboardingSprintPlayer1 => 'Jugador 1';
 
   @override
-  String get onboardingDuellPlayer2 => 'Jugador 2';
+  String get onboardingSprintPlayer2 => 'Jugador 2';
 
   @override
-  String get onboardingDuellAccessibility =>
-      'Dos dispositivos uno al lado del otro muestran a dos jugadores buscando al mismo tiempo';
+  String get onboardingSprintAccessibility =>
+      'Animación que muestra cómo se encuentra un símbolo y se reemplaza por el siguiente';
 
   @override
-  String get gamemodeDuellName => 'Duelo';
+  String get gamemodeSprintName => 'Sprint';
 
   @override
-  String get gamemodeDuellDescription =>
-      'Jugad en dos dispositivos y ved quién encuentra todas las cosas primero.';
+  String get gamemodeSprintDescription =>
+      'Elige de 1 a 10 símbolos y encuéntralos lo antes posible. ¡Solo o compitiendo con otro dispositivo!';
 
   @override
-  String get duellTargetQuestion =>
-      '¿Cuántos hallazgos se necesitan para ganar?';
+  String get sprintTargetQuestion =>
+      '¿Cuántos símbolos hay que encontrar para ganar?';
 
   @override
-  String get duellSkip => 'Saltar';
+  String get sprintSkip => 'Saltar';
 
   @override
-  String get duellSkipHint => 'Mantén pulsado';
+  String get sprintSkipHint => 'Mantén pulsado';
 
   @override
-  String duellVictoryScore(int score) {
-    return '¡$score hallazgos logrados!';
+  String sprintVictoryScore(int score) {
+    return '¡$score encontrados!';
   }
 
   @override
-  String duellSkipCount(int count) {
-    return '$count omitidos';
+  String sprintSkipCount(int count) {
+    return '$count saltados';
   }
 }

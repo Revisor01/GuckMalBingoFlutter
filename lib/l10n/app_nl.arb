@@ -321,7 +321,7 @@
   "onboardingBingoDesc": "Zie je iets buiten? Tik het aan op het bord! Een complete rij – horizontaal, verticaal of diagonaal – is een bingo!",
   "onboardingBingoAccessibility": "Drie voorbeelden tonen horizontale, verticale en diagonale bingo-lijnen",
   "onboardingModesTitle": "Drie spelmodi",
-  "onboardingModesDesc": "Kijk! Zoeken: Speel ontspannen en verzamel zoveel bingo's als je wilt.\n\nBingo Jacht: Stel een doel – wie de bingo's het eerst haalt, wint!\n\nDuel: Zoek om het snelst naar losse dingen – wie vindt er meer?",
+  "onboardingModesDesc": "Kijk! Zoeken: Speel ontspannen en verzamel zoveel bingo's als je wilt.\n\nBingo Jacht: Stel een doel – wie de bingo's het eerst haalt, wint!\n\nSprint: Vind individuele symbolen zo snel mogelijk — 1 tot 10 symbolen tegelijk.",
   "onboardingReadyTitle": "Klaar?",
   "onboardingReadyDesc": "Kies thema, locatie en bordgrootte. Kijk dan samen uit het raam – het avontuur begint!",
   "onboardingNext": "Volgende",
@@ -364,26 +364,26 @@
   "onboardingBingoHorizontal": "Horizontaal",
   "onboardingBingoVertical": "Verticaal",
   "onboardingBingoDiagonal": "Diagonaal",
-  "onboardingDuellTitle": "Duel: wie vindt er meer?",
-  "onboardingDuellDesc": "Twee spelers, twee apparaten: wie de dingen als eerste vindt, wint de ronde!",
-  "onboardingDuellPlayer1": "Speler 1",
-  "onboardingDuellPlayer2": "Speler 2",
-  "onboardingDuellAccessibility": "Twee apparaten naast elkaar laten zien hoe twee spelers tegelijk zoeken",
-  "gamemodeDuellName": "Duel",
-  "gamemodeDuellDescription": "Speel op twee apparaten en kijk wie als eerste alles vindt!",
-  "duellTargetQuestion": "Hoeveel vondsten zijn nodig om te winnen?",
-  "duellSkip": "Overslaan",
-  "duellSkipHint": "Ingedrukt houden",
-  "duellVictoryScore": "{score} vondsten gedaan!",
-  "@duellVictoryScore": {
+  "onboardingSprintTitle": "Sprint",
+  "onboardingSprintDesc": "Kies 1 tot 10 symbolen en vind ze zo snel mogelijk — alleen of in een wedstrijd met een ander apparaat!",
+  "onboardingSprintPlayer1": "Speler 1",
+  "onboardingSprintPlayer2": "Speler 2",
+  "onboardingSprintAccessibility": "Animatie toont hoe een symbool wordt gevonden en vervangen door het volgende",
+  "gamemodeSprintName": "Sprint",
+  "gamemodeSprintDescription": "Kies 1 tot 10 symbolen en vind ze zo snel mogelijk. Alleen of wedstrijdspelen met een ander apparaat!",
+  "sprintTargetQuestion": "Hoeveel vondsten om te winnen?",
+  "sprintSkip": "Overslaan",
+  "sprintSkipHint": "Ingedrukt houden",
+  "sprintVictoryScore": "{score} gevonden!",
+  "@sprintVictoryScore": {
     "placeholders": {
       "score": {
         "type": "int"
       }
     }
   },
-  "duellSkipCount": "{count} overgeslagen",
-  "@duellSkipCount": {
+  "sprintSkipCount": "{count} overgeslagen",
+  "@sprintSkipCount": {
     "placeholders": {
       "count": {
         "type": "int"

@@ -990,7 +990,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get onboardingModesDesc =>
-      'Guck mal! Suche: Spielt entspannt und sammelt so viele Bingos wie ihr wollt.\n\nBingo Jagd: Legt ein Ziel fest – wer die Bingos zuerst schafft, gewinnt!\n\nDuell: Sucht einzelne Dinge um die Wette – wer findet mehr?';
+      'Guck mal! Suche: Spielt entspannt und sammelt so viele Bingos wie ihr wollt.\n\nBingo Jagd: Legt ein Ziel fest – wer die Bingos zuerst schafft, gewinnt!\n\nSprint: Findet einzelne Symbole so schnell wie möglich — 1 bis 10 Symbole einstellbar.';
 
   @override
   String get onboardingReadyTitle => 'Bereit?';
@@ -1093,45 +1093,46 @@ class AppLocalizationsDe extends AppLocalizations {
   String get onboardingBingoDiagonal => 'Diagonal';
 
   @override
-  String get onboardingDuellTitle => 'Duell: Wer findet mehr?';
+  String get onboardingSprintTitle => 'Sprint';
 
   @override
-  String get onboardingDuellDesc =>
-      'Zwei Spieler, zwei Geräte: Wer zuerst die gesuchten Dinge entdeckt, gewinnt die Runde!';
+  String get onboardingSprintDesc =>
+      'Such dir 1 bis 10 Symbole aus und finde sie so schnell wie möglich — alleine oder mit einem zweiten Gerät um die Wette!';
 
   @override
-  String get onboardingDuellPlayer1 => 'Spieler 1';
+  String get onboardingSprintPlayer1 => 'Spieler 1';
 
   @override
-  String get onboardingDuellPlayer2 => 'Spieler 2';
+  String get onboardingSprintPlayer2 => 'Spieler 2';
 
   @override
-  String get onboardingDuellAccessibility =>
-      'Zwei Geräte nebeneinander zeigen, wie zwei Spieler gleichzeitig suchen';
+  String get onboardingSprintAccessibility =>
+      'Animation zeigt, wie ein Symbol gefunden und durch das nächste ersetzt wird';
 
   @override
-  String get gamemodeDuellName => 'Duell';
+  String get gamemodeSprintName => 'Sprint';
 
   @override
-  String get gamemodeDuellDescription =>
-      'Spielt auf zwei Geräten und schaut, wer als Erstes alle gesuchten Dinge gefunden hat!';
+  String get gamemodeSprintDescription =>
+      'Such dir 1 bis 10 Symbole aus und finde sie so schnell wie möglich. Auch zu zweit spielbar — wer ist schneller?';
 
   @override
-  String get duellTargetQuestion => 'Wie viele Funde braucht man zum Gewinnen?';
+  String get sprintTargetQuestion =>
+      'Wie viele Funde braucht man zum Gewinnen?';
 
   @override
-  String get duellSkip => 'Überspringen';
+  String get sprintSkip => 'Überspringen';
 
   @override
-  String get duellSkipHint => 'Gedrückt halten';
+  String get sprintSkipHint => 'Gedrückt halten';
 
   @override
-  String duellVictoryScore(int score) {
+  String sprintVictoryScore(int score) {
     return '$score Funde geschafft!';
   }
 
   @override
-  String duellSkipCount(int count) {
+  String sprintSkipCount(int count) {
     return '$count übersprungen';
   }
 }

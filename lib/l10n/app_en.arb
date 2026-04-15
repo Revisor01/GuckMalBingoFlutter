@@ -321,7 +321,7 @@
   "onboardingBingoDesc": "See something outside? Tap it on the board! A complete row – horizontal, vertical or diagonal – makes a bingo!",
   "onboardingBingoAccessibility": "Three examples show horizontal, vertical and diagonal bingo lines",
   "onboardingModesTitle": "Three Game Modes",
-  "onboardingModesDesc": "Look! Search: Play relaxed and collect as many bingos as you want.\n\nBingo Hunt: Set a goal – whoever gets the bingos first wins!\n\nDuel: Race to find individual things – who finds more?",
+  "onboardingModesDesc": "Look! Search: Play relaxed and collect as many bingos as you want.\n\nBingo Hunt: Set a goal – whoever gets the bingos first wins!\n\nSprint: Find individual symbols as fast as you can — 1 to 10 symbols at a time.",
   "onboardingReadyTitle": "Ready?",
   "onboardingReadyDesc": "Choose your theme, location and board size. Then look out the window together – the discovery journey begins!",
   "onboardingNext": "Next",
@@ -364,26 +364,26 @@
   "onboardingBingoHorizontal": "Horizontal",
   "onboardingBingoVertical": "Vertical",
   "onboardingBingoDiagonal": "Diagonal",
-  "onboardingDuellTitle": "Duel: Who finds more?",
-  "onboardingDuellDesc": "Two players, two devices: whoever spots the items first wins the round!",
-  "onboardingDuellPlayer1": "Player 1",
-  "onboardingDuellPlayer2": "Player 2",
-  "onboardingDuellAccessibility": "Two devices side by side showing two players searching at the same time",
-  "gamemodeDuellName": "Duel",
-  "gamemodeDuellDescription": "Play on two devices and see who finds all the things first!",
-  "duellTargetQuestion": "How many finds are needed to win?",
-  "duellSkip": "Skip",
-  "duellSkipHint": "Hold to skip",
-  "duellVictoryScore": "{score} finds made!",
-  "@duellVictoryScore": {
+  "onboardingSprintTitle": "Sprint",
+  "onboardingSprintDesc": "Pick 1 to 10 symbols and find them as fast as you can — solo or racing another device!",
+  "onboardingSprintPlayer1": "Player 1",
+  "onboardingSprintPlayer2": "Player 2",
+  "onboardingSprintAccessibility": "Animation shows a symbol being found and replaced by the next one",
+  "gamemodeSprintName": "Sprint",
+  "gamemodeSprintDescription": "Pick 1 to 10 symbols and find them as fast as you can. Play solo or race another device!",
+  "sprintTargetQuestion": "How many finds to win?",
+  "sprintSkip": "Skip",
+  "sprintSkipHint": "Hold to skip",
+  "sprintVictoryScore": "{score} finds!",
+  "@sprintVictoryScore": {
     "placeholders": {
       "score": {
         "type": "int"
       }
     }
   },
-  "duellSkipCount": "{count} skipped",
-  "@duellSkipCount": {
+  "sprintSkipCount": "{count} skipped",
+  "@sprintSkipCount": {
     "placeholders": {
       "count": {
         "type": "int"

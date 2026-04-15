@@ -2035,7 +2035,7 @@ abstract class AppLocalizations {
   /// No description provided for @onboardingModesDesc.
   ///
   /// In de, this message translates to:
-  /// **'Guck mal! Suche: Spielt entspannt und sammelt so viele Bingos wie ihr wollt.\n\nBingo Jagd: Legt ein Ziel fest – wer die Bingos zuerst schafft, gewinnt!\n\nDuell: Sucht einzelne Dinge um die Wette – wer findet mehr?'**
+  /// **'Guck mal! Suche: Spielt entspannt und sammelt so viele Bingos wie ihr wollt.\n\nBingo Jagd: Legt ein Ziel fest – wer die Bingos zuerst schafft, gewinnt!\n\nSprint: Findet einzelne Symbole so schnell wie möglich — 1 bis 10 Symbole einstellbar.'**
   String get onboardingModesDesc;
 
   /// No description provided for @onboardingReadyTitle.
@@ -2230,77 +2230,77 @@ abstract class AppLocalizations {
   /// **'Diagonal'**
   String get onboardingBingoDiagonal;
 
-  /// No description provided for @onboardingDuellTitle.
+  /// No description provided for @onboardingSprintTitle.
   ///
   /// In de, this message translates to:
-  /// **'Duell: Wer findet mehr?'**
-  String get onboardingDuellTitle;
+  /// **'Sprint'**
+  String get onboardingSprintTitle;
 
-  /// No description provided for @onboardingDuellDesc.
+  /// No description provided for @onboardingSprintDesc.
   ///
   /// In de, this message translates to:
-  /// **'Zwei Spieler, zwei Geräte: Wer zuerst die gesuchten Dinge entdeckt, gewinnt die Runde!'**
-  String get onboardingDuellDesc;
+  /// **'Such dir 1 bis 10 Symbole aus und finde sie so schnell wie möglich — alleine oder mit einem zweiten Gerät um die Wette!'**
+  String get onboardingSprintDesc;
 
-  /// No description provided for @onboardingDuellPlayer1.
+  /// No description provided for @onboardingSprintPlayer1.
   ///
   /// In de, this message translates to:
   /// **'Spieler 1'**
-  String get onboardingDuellPlayer1;
+  String get onboardingSprintPlayer1;
 
-  /// No description provided for @onboardingDuellPlayer2.
+  /// No description provided for @onboardingSprintPlayer2.
   ///
   /// In de, this message translates to:
   /// **'Spieler 2'**
-  String get onboardingDuellPlayer2;
+  String get onboardingSprintPlayer2;
 
-  /// No description provided for @onboardingDuellAccessibility.
+  /// No description provided for @onboardingSprintAccessibility.
   ///
   /// In de, this message translates to:
-  /// **'Zwei Geräte nebeneinander zeigen, wie zwei Spieler gleichzeitig suchen'**
-  String get onboardingDuellAccessibility;
+  /// **'Animation zeigt, wie ein Symbol gefunden und durch das nächste ersetzt wird'**
+  String get onboardingSprintAccessibility;
 
-  /// No description provided for @gamemodeDuellName.
+  /// No description provided for @gamemodeSprintName.
   ///
   /// In de, this message translates to:
-  /// **'Duell'**
-  String get gamemodeDuellName;
+  /// **'Sprint'**
+  String get gamemodeSprintName;
 
-  /// No description provided for @gamemodeDuellDescription.
+  /// No description provided for @gamemodeSprintDescription.
   ///
   /// In de, this message translates to:
-  /// **'Spielt auf zwei Geräten und schaut, wer als Erstes alle gesuchten Dinge gefunden hat!'**
-  String get gamemodeDuellDescription;
+  /// **'Such dir 1 bis 10 Symbole aus und finde sie so schnell wie möglich. Auch zu zweit spielbar — wer ist schneller?'**
+  String get gamemodeSprintDescription;
 
-  /// No description provided for @duellTargetQuestion.
+  /// No description provided for @sprintTargetQuestion.
   ///
   /// In de, this message translates to:
   /// **'Wie viele Funde braucht man zum Gewinnen?'**
-  String get duellTargetQuestion;
+  String get sprintTargetQuestion;
 
-  /// No description provided for @duellSkip.
+  /// No description provided for @sprintSkip.
   ///
   /// In de, this message translates to:
   /// **'Überspringen'**
-  String get duellSkip;
+  String get sprintSkip;
 
-  /// No description provided for @duellSkipHint.
+  /// No description provided for @sprintSkipHint.
   ///
   /// In de, this message translates to:
   /// **'Gedrückt halten'**
-  String get duellSkipHint;
+  String get sprintSkipHint;
 
-  /// No description provided for @duellVictoryScore.
+  /// No description provided for @sprintVictoryScore.
   ///
   /// In de, this message translates to:
   /// **'{score} Funde geschafft!'**
-  String duellVictoryScore(int score);
+  String sprintVictoryScore(int score);
 
-  /// No description provided for @duellSkipCount.
+  /// No description provided for @sprintSkipCount.
   ///
   /// In de, this message translates to:
   /// **'{count} übersprungen'**
-  String duellSkipCount(int count);
+  String sprintSkipCount(int count);
 }
 
 class _AppLocalizationsDelegate
