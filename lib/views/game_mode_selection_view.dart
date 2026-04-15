@@ -196,7 +196,7 @@ class _GameModeSelectionViewState extends State<GameModeSelectionView> {
                                           icon: mode.icon,
                                           iconColor: mode == GameMode.suche
                                               ? AppColors.successGreen
-                                              : mode == GameMode.duell
+                                              : mode == GameMode.sprint
                                                   ? AppColors.primary
                                                   : Colors.red,
                                           title: AppLocalizations.of(context)!.getByKey(mode.displayNameKey) ?? mode.displayNameKey,
@@ -227,8 +227,8 @@ class _GameModeSelectionViewState extends State<GameModeSelectionView> {
                                   description: AppLocalizations.of(context)!.gamemodeJagdDescription,
                                 ),
                                 DescriptionItem(
-                                  title: AppLocalizations.of(context)!.gamemodeDuellName,
-                                  description: AppLocalizations.of(context)!.gamemodeDuellDescription,
+                                  title: AppLocalizations.of(context)!.gamemodeSprintName,
+                                  description: AppLocalizations.of(context)!.gamemodeSprintDescription,
                                 ),
                               ],
                             ),

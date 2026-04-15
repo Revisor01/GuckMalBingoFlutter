@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 enum GameMode {
   suche('suche'),
   jagd('jagd'),
-  duell('duell');
+  sprint('sprint');
 
   final String value;
   const GameMode(this.value);
@@ -16,8 +16,8 @@ enum GameMode {
         return Icons.search;
       case GameMode.jagd:
         return Icons.flag;
-      case GameMode.duell:
-        return Icons.sports_esports;
+      case GameMode.sprint:
+        return Icons.speed;
     }
   }
 
@@ -28,8 +28,8 @@ enum GameMode {
         return 'gamemodeSucheName';
       case GameMode.jagd:
         return 'gamemodeJagdName';
-      case GameMode.duell:
-        return 'gamemodeDuellName';
+      case GameMode.sprint:
+        return 'gamemodeSprintName';
     }
   }
 
@@ -40,8 +40,8 @@ enum GameMode {
         return 'gamemodeSucheDescription';
       case GameMode.jagd:
         return 'gamemodeJagdDescription';
-      case GameMode.duell:
-        return 'gamemodeDuellDescription';
+      case GameMode.sprint:
+        return 'gamemodeSprintDescription';
     }
   }
 
