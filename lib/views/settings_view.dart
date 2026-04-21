@@ -244,10 +244,10 @@ class _SettingsViewState extends State<SettingsView> {
                               ),
                             ),
                             const SizedBox(width: 4),
-                            const Icon(
-                              Icons.flutter_dash,
-                              size: 12,
-                              color: Colors.red,
+                            Image.asset(
+                              'assets/images/bird.png',
+                              width: 12,
+                              height: 12,
                             ),
                             const SizedBox(width: 4),
                             Text(
