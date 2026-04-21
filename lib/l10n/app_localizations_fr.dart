@@ -1118,7 +1118,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get gamemodeSprintDescription =>
-      'Choisis combien de symboles trouver au total (1 à 10). Ils apparaissent l\'un après l\'autre — trouve-les le plus vite possible. Aussi à deux : chacun sur son appareil, qui est le plus rapide ?';
+      'Choisis combien de symboles trouver au total (1 à 10). Ils apparaissent l\'un après l\'autre — trouve-les le plus vite possible.';
 
   @override
   String get sprintTargetQuestion => 'Combien de trouvailles pour gagner ?';

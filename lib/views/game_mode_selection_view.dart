@@ -52,8 +52,8 @@ class _GameModeSelectionViewState extends State<GameModeSelectionView> {
               child: LayoutBuilder(
                 builder: (context, constraints) {
                   return SingleChildScrollView(
-                    child: SizedBox(
-                      height: constraints.maxHeight,
+                    child: ConstrainedBox(
+                      constraints: BoxConstraints(minHeight: constraints.maxHeight),
                       child: Column(
                         children: [
                           // Settings & Theme Buttons oben

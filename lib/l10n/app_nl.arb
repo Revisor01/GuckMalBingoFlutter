@@ -371,7 +371,7 @@
   "onboardingSprintPlayer2": "Speler 2",
   "onboardingSprintAccessibility": "Animatie toont hoe een symbool wordt gevonden en vervangen door het volgende",
   "gamemodeSprintName": "Sprint",
-  "gamemodeSprintDescription": "Bepaal hoeveel symbolen je in totaal zoekt (1 tot 10). Ze verschijnen één voor één — vind ze zo snel mogelijk. Ook met z'n tweeën: ieder op zijn apparaat, wie is sneller?",
+  "gamemodeSprintDescription": "Bepaal hoeveel symbolen je in totaal zoekt (1 tot 10). Ze verschijnen één voor één — vind ze zo snel mogelijk.",
   "sprintTargetQuestion": "Hoeveel vondsten om te winnen?",
   "sprintSkip": "Overslaan",
   "sprintSkipHint": "Ingedrukt houden",

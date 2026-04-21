@@ -2275,7 +2275,7 @@ abstract class AppLocalizations {
   /// No description provided for @gamemodeSprintDescription.
   ///
   /// In de, this message translates to:
-  /// **'Lege fest, wie viele Symbole du insgesamt suchst (1 bis 10). Sie erscheinen nacheinander — finde sie so schnell wie möglich. Auch zu zweit spielbar: jeder auf seinem Gerät, wer ist schneller?'**
+  /// **'Lege fest, wie viele Symbole du insgesamt suchst (1 bis 10). Sie erscheinen nacheinander — finde sie so schnell wie möglich.'**
   String get gamemodeSprintDescription;
 
   /// No description provided for @sprintTargetQuestion.

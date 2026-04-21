@@ -371,7 +371,7 @@
   "onboardingSprintPlayer2": "Giocatore 2",
   "onboardingSprintAccessibility": "Animazione che mostra come un simbolo viene trovato e sostituito dal successivo",
   "gamemodeSprintName": "Sprint",
-  "gamemodeSprintDescription": "Decidi quanti simboli trovare in totale (1 a 10). Appaiono uno dopo l'altro — trovali il più velocemente possibile. Anche in due: ognuno sul suo dispositivo, chi è più veloce?",
+  "gamemodeSprintDescription": "Decidi quanti simboli trovare in totale (1 a 10). Appaiono uno dopo l'altro — trovali il più velocemente possibile.",
   "sprintTargetQuestion": "Quante trovate servono per vincere?",
   "sprintSkip": "Salta",
   "sprintSkipHint": "Tieni premuto",

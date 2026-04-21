@@ -371,7 +371,7 @@
   "onboardingSprintPlayer2": "Spieler 2",
   "onboardingSprintAccessibility": "Animation zeigt, wie ein Symbol gefunden und durch das nächste ersetzt wird",
   "gamemodeSprintName": "Sprint",
-  "gamemodeSprintDescription": "Lege fest, wie viele Symbole du insgesamt suchst (1 bis 10). Sie erscheinen nacheinander — finde sie so schnell wie möglich. Auch zu zweit spielbar: jeder auf seinem Gerät, wer ist schneller?",
+  "gamemodeSprintDescription": "Lege fest, wie viele Symbole du insgesamt suchst (1 bis 10). Sie erscheinen nacheinander — finde sie so schnell wie möglich.",
   "sprintTargetQuestion": "Wie viele Funde braucht man zum Gewinnen?",
   "sprintSkip": "Überspringen",
   "sprintSkipHint": "Gedrückt halten",

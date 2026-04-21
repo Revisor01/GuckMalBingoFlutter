@@ -1116,7 +1116,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get gamemodeSprintDescription =>
-      'Bepaal hoeveel symbolen je in totaal zoekt (1 tot 10). Ze verschijnen één voor één — vind ze zo snel mogelijk. Ook met z\'n tweeën: ieder op zijn apparaat, wie is sneller?';
+      'Bepaal hoeveel symbolen je in totaal zoekt (1 tot 10). Ze verschijnen één voor één — vind ze zo snel mogelijk.';
 
   @override
   String get sprintTargetQuestion => 'Hoeveel vondsten om te winnen?';
