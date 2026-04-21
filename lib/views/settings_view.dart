@@ -226,19 +226,10 @@ class _SettingsViewState extends State<SettingsView> {
                     child: Column(
                       children: [
                         Text(
-                          AppLocalizations.of(context)!.appTitle,
-                          style: const TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.white,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        Text(
-                          'Version $_version',
+                          '${AppLocalizations.of(context)!.appTitle} v$_version',
                           style: TextStyle(
                             fontSize: 12,
-                            color: Colors.white.withValues(alpha:0.7),
+                            color: Colors.white.withValues(alpha:0.6),
                           ),
                         ),
                         const SizedBox(height: 8),
@@ -253,12 +244,10 @@ class _SettingsViewState extends State<SettingsView> {
                               ),
                             ),
                             const SizedBox(width: 4),
-                            Text(
-                              '🕊️',
-                              style: TextStyle(
-                                fontSize: 11,
-                                color: Colors.white.withValues(alpha:0.8),
-                              ),
+                            const Icon(
+                              Icons.flutter_dash,
+                              size: 12,
+                              color: Colors.red,
                             ),
                             const SizedBox(width: 4),
                             Text(
