@@ -826,7 +826,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get settingsMadeWith => 'Gemaakt met';
 
   @override
-  String get settingsPeaceBlessing => 'Friede. Schalom. Salam.';
+  String get settingsPeaceBlessing => 'Vrede. Shalom. Salam.';
 
   @override
   String get settingsPrivacy => 'Privacybeleid';

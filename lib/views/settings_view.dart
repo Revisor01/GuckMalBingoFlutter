@@ -228,7 +228,7 @@ class _SettingsViewState extends State<SettingsView> {
                         Text(
                           '${AppLocalizations.of(context)!.appTitle} v$_version',
                           style: TextStyle(
-                            fontSize: 12,
+                            fontSize: 10,
                             color: Colors.white.withValues(alpha:0.6),
                           ),
                         ),
