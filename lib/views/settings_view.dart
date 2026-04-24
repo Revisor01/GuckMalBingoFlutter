@@ -229,7 +229,7 @@ class _SettingsViewState extends State<SettingsView> {
                           '${AppLocalizations.of(context)!.appTitle} v$_version',
                           style: TextStyle(
                             fontSize: 13,
-                            color: Colors.white.withValues(alpha:0.6),
+                            color: Colors.white.withValues(alpha:0.8),
                           ),
                         ),
                         const SizedBox(height: 4),
@@ -240,7 +240,7 @@ class _SettingsViewState extends State<SettingsView> {
                               AppLocalizations.of(context)!.settingsMadeWith,
                               style: TextStyle(
                                 fontSize: 13,
-                                color: Colors.white.withValues(alpha:0.6),
+                                color: Colors.white.withValues(alpha:0.8),
                               ),
                             ),
                             const SizedBox(width: 4),
@@ -254,7 +254,7 @@ class _SettingsViewState extends State<SettingsView> {
                               AppLocalizations.of(context)!.settingsInOrt,
                               style: TextStyle(
                                 fontSize: 13,
-                                color: Colors.white.withValues(alpha:0.6),
+                                color: Colors.white.withValues(alpha:0.8),
                               ),
                             ),
                           ],
@@ -265,7 +265,7 @@ class _SettingsViewState extends State<SettingsView> {
                           style: TextStyle(
                             fontSize: 11,
                             fontStyle: FontStyle.italic,
-                            color: Colors.white.withValues(alpha:0.5),
+                            color: Colors.white.withValues(alpha:0.7),
                           ),
                         ),
                       ],
