@@ -228,7 +228,7 @@ class _SettingsViewState extends State<SettingsView> {
                         Text(
                           '${AppLocalizations.of(context)!.appTitle} v$_version',
                           style: TextStyle(
-                            fontSize: 12,
+                            fontSize: 13,
                             color: Colors.white.withValues(alpha:0.6),
                           ),
                         ),
@@ -239,7 +239,7 @@ class _SettingsViewState extends State<SettingsView> {
                             Text(
                               AppLocalizations.of(context)!.settingsMadeWith,
                               style: TextStyle(
-                                fontSize: 12,
+                                fontSize: 13,
                                 color: Colors.white.withValues(alpha:0.6),
                               ),
                             ),
@@ -253,7 +253,7 @@ class _SettingsViewState extends State<SettingsView> {
                             Text(
                               AppLocalizations.of(context)!.settingsInOrt,
                               style: TextStyle(
-                                fontSize: 12,
+                                fontSize: 13,
                                 color: Colors.white.withValues(alpha:0.6),
                               ),
                             ),
@@ -263,7 +263,7 @@ class _SettingsViewState extends State<SettingsView> {
                         Text(
                           AppLocalizations.of(context)!.settingsPeaceBlessing,
                           style: TextStyle(
-                            fontSize: 10,
+                            fontSize: 11,
                             fontStyle: FontStyle.italic,
                             color: Colors.white.withValues(alpha:0.5),
                           ),
