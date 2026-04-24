@@ -104,7 +104,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get gamemodeJagdDescription =>
-      'Chi fa abbastanza bingo per primo? Ognuno gioca sul proprio dispositivo e guarda chi è più veloce!';
+      'Decidi quanti bingo servono. Chi ne fa abbastanza per primo?';
 
   @override
   String get gamemodeJagdName => 'Caccia al Bingo';
@@ -114,7 +114,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get gamemodeSucheDescription =>
-      'Guarda fuori dal finestrino e trova tutte le cose belle sulla tua scheda bingo! Gioca da solo o insieme, senza fretta.';
+      'Guarda fuori dal finestrino e trova tutte le cose belle sulla tua scheda bingo!';
 
   @override
   String get gamemodeSucheName => 'Guarda!';
@@ -1116,7 +1116,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get gamemodeSprintDescription =>
-      'Decidi quanti simboli trovare in totale (1 a 10). Appaiono uno dopo l\'altro — trovali il più velocemente possibile.';
+      'Decidi quanti simboli trovare in totale (1 a 10). Trovali il più velocemente possibile.';
 
   @override
   String get sprintTargetQuestion => 'Quante trovate servono per vincere?';

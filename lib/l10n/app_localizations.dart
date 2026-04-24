@@ -289,7 +289,7 @@ abstract class AppLocalizations {
   /// No description provided for @gamemodeJagdDescription.
   ///
   /// In de, this message translates to:
-  /// **'Wer hat zuerst genug Bingos? Jeder spielt auf seinem Gerät und schaut, wer schneller ist!'**
+  /// **'Lege fest, wie viele Bingos gebraucht werden. Wer hat zuerst genug Bingos?'**
   String get gamemodeJagdDescription;
 
   /// No description provided for @gamemodeJagdName.
@@ -307,7 +307,7 @@ abstract class AppLocalizations {
   /// No description provided for @gamemodeSucheDescription.
   ///
   /// In de, this message translates to:
-  /// **'Schau aus dem Fenster und finde all die tollen Sachen auf deinem Bingo-Feld! Spiele alleine oder zusammen, ganz ohne Zeitdruck.'**
+  /// **'Schau aus dem Fenster und finde all die tollen Sachen auf deinem Bingo-Feld!'**
   String get gamemodeSucheDescription;
 
   /// No description provided for @gamemodeSucheName.
@@ -2275,7 +2275,7 @@ abstract class AppLocalizations {
   /// No description provided for @gamemodeSprintDescription.
   ///
   /// In de, this message translates to:
-  /// **'Lege fest, wie viele Symbole du insgesamt suchst (1 bis 10). Sie erscheinen nacheinander — finde sie so schnell wie möglich.'**
+  /// **'Lege fest, wie viele Symbole du insgesamt suchst (1 bis 10). Finde sie so schnell wie möglich.'**
   String get gamemodeSprintDescription;
 
   /// No description provided for @sprintTargetQuestion.
