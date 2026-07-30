@@ -14,6 +14,10 @@ class BingoCellView extends StatelessWidget {
   final int gridSize;
   final VoidCallback onTap;
 
+  /// Pixelgröße der Zelle im Auto-Modus — skaliert Emoji und Text mit,
+  /// statt der festen Grid-Size-Stufen.
+  final double? cellSize;
+
   const BingoCellView({
     super.key,
     required this.item,
@@ -23,9 +27,11 @@ class BingoCellView extends StatelessWidget {
     required this.showText,
     required this.gridSize,
     required this.onTap,
+    this.cellSize,
   });
 
   double get fontSize {
+    if (cellSize != null) return cellSize! * 0.42;
     switch (gridSize) {
       case 3:
         return 56;
@@ -37,6 +43,7 @@ class BingoCellView extends StatelessWidget {
   }
 
   double get textSize {
+    if (cellSize != null) return (cellSize! * 0.10).clamp(10.0, 20.0);
     switch (gridSize) {
       case 3:
         return 11;

@@ -1984,6 +1984,18 @@ abstract class AppLocalizations {
   /// **'Ton ein- oder ausschalten'**
   String get accessibilitySoundToggle;
 
+  /// No description provided for @accessibilityCarModeButton.
+  ///
+  /// In de, this message translates to:
+  /// **'Auto-Modus starten'**
+  String get accessibilityCarModeButton;
+
+  /// No description provided for @accessibilityExitCarModeButton.
+  ///
+  /// In de, this message translates to:
+  /// **'Auto-Modus beenden'**
+  String get accessibilityExitCarModeButton;
+
   /// No description provided for @onboardingWelcomeTitle.
   ///
   /// In de, this message translates to:

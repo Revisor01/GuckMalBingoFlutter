@@ -313,6 +313,8 @@
   "accessibilityThemeButton": "Choose color theme",
   "accessibilityTextToggle": "Toggle text visibility",
   "accessibilitySoundToggle": "Toggle sound",
+  "accessibilityCarModeButton": "Start car mode",
+  "accessibilityExitCarModeButton": "Exit car mode",
   "onboardingWelcomeTitle": "Look!",
   "onboardingWelcomeSubtitle": "Bingo for Kids",
   "onboardingWelcomeDesc": "Look out the window together and discover the world! Who can find the things on the game board?",

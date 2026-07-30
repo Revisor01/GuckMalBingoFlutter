@@ -1,7 +1,7 @@
 name: guck_mal_bingo
 description: Guck mal! - Reise Bingo App für iOS und Android
 publish_to: 'none'
-version: 2.0.1+34
+version: 2.1.0+35
 
 environment:
   sdk: '>=3.0.0 <4.0.0'

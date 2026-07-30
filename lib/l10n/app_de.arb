@@ -313,6 +313,8 @@
   "accessibilityThemeButton": "Farbthema wählen",
   "accessibilityTextToggle": "Text ein- oder ausblenden",
   "accessibilitySoundToggle": "Ton ein- oder ausschalten",
+  "accessibilityCarModeButton": "Auto-Modus starten",
+  "accessibilityExitCarModeButton": "Auto-Modus beenden",
   "onboardingWelcomeTitle": "Guck mal!",
   "onboardingWelcomeSubtitle": "Bingo für Kinder",
   "onboardingWelcomeDesc": "Schaut gemeinsam aus dem Fenster und entdeckt die Welt! Wer findet die Dinge auf dem Spielfeld?",
