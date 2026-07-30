@@ -961,12 +961,6 @@ class AppLocalizationsDe extends AppLocalizations {
   String get accessibilitySoundToggle => 'Ton ein- oder ausschalten';
 
   @override
-  String get accessibilityCarModeButton => 'Auto-Modus starten';
-
-  @override
-  String get accessibilityExitCarModeButton => 'Auto-Modus beenden';
-
-  @override
   String get onboardingWelcomeTitle => 'Guck mal!';
 
   @override

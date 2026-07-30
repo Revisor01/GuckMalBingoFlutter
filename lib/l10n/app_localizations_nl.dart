@@ -961,12 +961,6 @@ class AppLocalizationsNl extends AppLocalizations {
   String get accessibilitySoundToggle => 'Geluid aan of uit';
 
   @override
-  String get accessibilityCarModeButton => 'Automodus starten';
-
-  @override
-  String get accessibilityExitCarModeButton => 'Automodus afsluiten';
-
-  @override
   String get onboardingWelcomeTitle => 'Kijk!';
 
   @override

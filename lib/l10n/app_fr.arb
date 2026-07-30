@@ -313,8 +313,6 @@
   "accessibilityThemeButton": "Choisir le thème de couleur",
   "accessibilityTextToggle": "Afficher ou masquer le texte",
   "accessibilitySoundToggle": "Activer ou désactiver le son",
-  "accessibilityCarModeButton": "Activer le mode voiture",
-  "accessibilityExitCarModeButton": "Quitter le mode voiture",
   "onboardingWelcomeTitle": "Regarde !",
   "onboardingWelcomeSubtitle": "Bingo pour enfants",
   "onboardingWelcomeDesc": "Regardez ensemble par la fenêtre et découvrez le monde ! Qui trouve les choses sur le plateau ?",

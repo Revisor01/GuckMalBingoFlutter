@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import '../viewmodels/sprint_game_viewmodel.dart';
 import '../utilities/background_pattern_view.dart';
@@ -11,7 +10,6 @@ import '../l10n/app_localizations.dart';
 import 'widgets/shared_game_header.dart';
 import 'widgets/shared_toggle_buttons.dart';
 import 'widgets/victory_dialog_view.dart';
-import 'widgets/round_icon_button.dart';
 
 /// SprintGameView — Einzelitem-Ansicht für den Sprint-Modus.
 ///
@@ -35,20 +33,9 @@ class _SprintGameViewState extends State<SprintGameView>
   late final SprintGameViewModel _viewModel;
 
   bool _isFound = false;
-  bool _carMode = false;
   Timer? _foundTimer;
 
   late final AnimationController _skipProgressController;
-
-  void _enterCarMode() {
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
-    setState(() => _carMode = true);
-  }
-
-  void _exitCarMode() {
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-    setState(() => _carMode = false);
-  }
 
   @override
   void initState() {
@@ -77,9 +64,6 @@ class _SprintGameViewState extends State<SprintGameView>
 
   @override
   void dispose() {
-    if (_carMode) {
-      SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-    }
     _skipProgressController.dispose();
     WidgetsBinding.instance.removeObserver(this);
     _foundTimer?.cancel();
@@ -130,9 +114,7 @@ class _SprintGameViewState extends State<SprintGameView>
 
                   // Content — identisches Layout wie BingoGameView._ContentView
                   SafeArea(
-                    child: _carMode
-                        ? _buildCarModeContent(viewModel, l10n, brightness)
-                        : Column(
+                    child: Column(
                       children: [
                         // Header
                         SharedGameHeader(
@@ -140,11 +122,6 @@ class _SprintGameViewState extends State<SprintGameView>
                             _viewModel.clearSavedGameState();
                             Navigator.of(context).pop();
                           },
-                          trailing: RoundIconButton(
-                            icon: Icons.directions_car,
-                            semanticLabel: l10n.accessibilityCarModeButton,
-                            onTap: _enterCarMode,
-                          ),
                         ),
 
                         // Punkte-Anzeige (wie Bingo-Jagd Zähler)
@@ -182,7 +159,51 @@ class _SprintGameViewState extends State<SprintGameView>
                         // Grid-Hintergrund mit 1x1 Item-Karte (wie BingoGrid Container)
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 16),
-                          child: _buildItemCard(viewModel, l10n, brightness),
+                          child: Container(
+                            padding: const EdgeInsets.all(16),
+                            decoration: BoxDecoration(
+                              color: brightness == Brightness.dark
+                                  ? Colors.white.withValues(alpha: 0.15)
+                                  : Colors.white.withValues(alpha: 0.25),
+                              borderRadius: BorderRadius.circular(28),
+                              border: Border.all(
+                                color: Colors.white.withValues(alpha: 0.3),
+                                width: 1.5,
+                              ),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: brightness == Brightness.dark
+                                      ? Colors.white.withValues(alpha: 0.1)
+                                      : Colors.black.withValues(alpha: 0.15),
+                                  blurRadius: 20,
+                                  offset: const Offset(0, 10),
+                                ),
+                              ],
+                            ),
+                            child: AspectRatio(
+                              aspectRatio: 1.0,
+                              child: AnimatedSwitcher(
+                                duration: const Duration(milliseconds: 300),
+                                transitionBuilder: (child, animation) {
+                                  return SlideTransition(
+                                    position: Tween<Offset>(
+                                      begin: const Offset(1.0, 0.0),
+                                      end: Offset.zero,
+                                    ).animate(CurvedAnimation(
+                                      parent: animation,
+                                      curve: Curves.easeOutCubic,
+                                    )),
+                                    child: FadeTransition(opacity: animation, child: child),
+                                  );
+                                },
+                                child: GestureDetector(
+                                  key: ValueKey('${viewModel.currentItem.name}_${viewModel.queueIndex}'),
+                                  onTap: _onItemTap,
+                                  child: _buildCellContent(viewModel, l10n, brightness),
+                                ),
+                              ),
+                            ),
+                          ),
                         ),
 
                         const SizedBox(height: 16),
@@ -220,156 +241,12 @@ class _SprintGameViewState extends State<SprintGameView>
     );
   }
 
-  /// Glas-Container mit 1x1 Item-Karte inkl. Slide-Animation.
-  /// Wird vom Normal-Layout und vom Auto-Modus genutzt.
-  Widget _buildItemCard(
-    SprintGameViewModel viewModel,
-    AppLocalizations l10n,
-    Brightness brightness, {
-    bool big = false,
-  }) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: brightness == Brightness.dark
-            ? Colors.white.withValues(alpha: 0.15)
-            : Colors.white.withValues(alpha: 0.25),
-        borderRadius: BorderRadius.circular(28),
-        border: Border.all(
-          color: Colors.white.withValues(alpha: 0.3),
-          width: 1.5,
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: brightness == Brightness.dark
-                ? Colors.white.withValues(alpha: 0.1)
-                : Colors.black.withValues(alpha: 0.15),
-            blurRadius: 20,
-            offset: const Offset(0, 10),
-          ),
-        ],
-      ),
-      child: AspectRatio(
-        aspectRatio: 1.0,
-        child: AnimatedSwitcher(
-          duration: const Duration(milliseconds: 300),
-          transitionBuilder: (child, animation) {
-            return SlideTransition(
-              position: Tween<Offset>(
-                begin: const Offset(1.0, 0.0),
-                end: Offset.zero,
-              ).animate(CurvedAnimation(
-                parent: animation,
-                curve: Curves.easeOutCubic,
-              )),
-              child: FadeTransition(opacity: animation, child: child),
-            );
-          },
-          child: GestureDetector(
-            key: ValueKey('${viewModel.currentItem.name}_${viewModel.queueIndex}'),
-            onTap: _onItemTap,
-            child: _buildCellContent(viewModel, l10n, brightness, big: big),
-          ),
-        ),
-      ),
-    );
-  }
-
-  /// Auto-Modus: immersives Großbild-Layout.
-  /// Querformat: Karte links, Skip-Button rechts. Hochformat: untereinander.
-  Widget _buildCarModeContent(
-    SprintGameViewModel viewModel,
-    AppLocalizations l10n,
-    Brightness brightness,
-  ) {
-    return Padding(
-      padding: const EdgeInsets.all(12),
-      child: Column(
-        children: [
-          // Slim Top-Bar: Exit + Punkte
-          Row(
-            children: [
-              RoundIconButton(
-                icon: Icons.fullscreen_exit,
-                semanticLabel: l10n.accessibilityExitCarModeButton,
-                onTap: _exitCarMode,
-              ),
-              const Spacer(),
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                decoration: BoxDecoration(
-                  color: Colors.white.withValues(alpha: 0.2),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Wrap(
-                  alignment: WrapAlignment.center,
-                  spacing: 8,
-                  runSpacing: 6,
-                  children: List.generate(
-                    viewModel.targetScore,
-                    (index) => Container(
-                      width: 14,
-                      height: 14,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: index < viewModel.score
-                            ? Colors.yellow
-                            : Colors.white.withValues(alpha: 0.3),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              const Spacer(),
-              // Symmetrie-Platzhalter in Breite des Exit-Buttons
-              const SizedBox(width: 48),
-            ],
-          ),
-          const SizedBox(height: 8),
-          Expanded(
-            child: LayoutBuilder(
-              builder: (context, constraints) {
-                final isWide = constraints.maxWidth > constraints.maxHeight;
-                final card = Center(
-                  child: _buildItemCard(viewModel, l10n, brightness, big: true),
-                );
-                if (isWide) {
-                  return Row(
-                    children: [
-                      Expanded(child: card),
-                      const SizedBox(width: 8),
-                      SizedBox(
-                        width: 260,
-                        child: Center(
-                          child: _buildSkipButton(viewModel, l10n),
-                        ),
-                      ),
-                    ],
-                  );
-                }
-                return Column(
-                  children: [
-                    Expanded(child: card),
-                    const SizedBox(height: 12),
-                    _buildSkipButton(viewModel, l10n),
-                  ],
-                );
-              },
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
   /// Item-Karte Inhalt — BingoCellView-Stil (borderRadius 14, Bild+Text-Stack)
   Widget _buildCellContent(
     SprintGameViewModel viewModel,
     AppLocalizations l10n,
-    Brightness brightness, {
-    bool big = false,
-  }) {
+    Brightness brightness,
+  ) {
     final item = viewModel.currentItem;
     final itemName = l10n.getByKey(item.name) ?? item.name;
 
@@ -421,7 +298,7 @@ class _SprintGameViewState extends State<SprintGameView>
                   opacity: AlwaysStoppedAnimation(_isFound ? 0.7 : 1.0),
                   errorBuilder: (ctx, error, stackTrace) => Text(
                     item.emoji,
-                    style: TextStyle(fontSize: big ? 140 : 80),
+                    style: const TextStyle(fontSize: 80),
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -431,7 +308,7 @@ class _SprintGameViewState extends State<SprintGameView>
             Center(
               child: Text(
                 item.emoji,
-                style: TextStyle(fontSize: big ? 140 : 80),
+                style: const TextStyle(fontSize: 80),
                 textAlign: TextAlign.center,
               ),
             ),
@@ -449,8 +326,8 @@ class _SprintGameViewState extends State<SprintGameView>
                 ),
                 child: Text(
                   itemName,
-                  style: TextStyle(
-                    fontSize: big ? 24 : 16,
+                  style: const TextStyle(
+                    fontSize: 16,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                     fontFamily: 'Nunito',
