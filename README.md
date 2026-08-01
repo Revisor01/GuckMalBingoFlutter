@@ -46,6 +46,12 @@ flutter analyze           # Statische Analyse
 flutter gen-l10n          # nach Änderungen an den ARB-Dateien
 ```
 
+Debug-Builds laufen ohne weitere Einrichtung. Für **Android-Release-Builds** wird
+`android/key.properties` samt Keystore erwartet — beides ist bewusst nicht im Repo.
+Ohne diese Dateien greift der Fallback auf die Debug-Signatur; für eigene Builds
+legst du einen eigenen Keystore an. Für **iOS-Release-Builds** brauchst du dein
+eigenes Apple-Developer-Signing.
+
 Nach neuen Items zusätzlich den Generator laufen lassen, nie die Extension von Hand editieren:
 
 ```bash
@@ -83,7 +89,14 @@ flutter clean && flutter pub get
 
 ## Lizenz
 
-Proprietäre Software – alle Rechte vorbehalten. Siehe [LICENSE](LICENSE).
+Source-available, **keine** Open-Source-Lizenz. Kurzfassung:
+
+- ✅ Ansehen, daraus lernen, für dich selbst bauen und auf deinen eigenen Geräten nutzen
+- ❌ Kommerzielle Nutzung, Weitergabe an Dritte, Veröffentlichung in App Stores
+- ❌ Grafiken, Sounds und der Name "Guck mal!" sind **nicht** mitlizenziert — die bleiben vorbehalten
+
+Wer die App selbst bauen möchte: gern. Wer sie veröffentlichen möchte: bitte vorher fragen.
+Verbindlich ist der Text in [LICENSE](LICENSE).
 
 ## Autor
 

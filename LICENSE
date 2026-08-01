@@ -1,29 +1,119 @@
-PROPRIETARY SOFTWARE LICENSE
+SOURCE-AVAILABLE LICENSE — PRIVATE USE ONLY
 
-Copyright (c) 2025 Simon Luthe / Revisor. All Rights Reserved.
+Copyright (c) 2025-2026 Simon Luthe / Revisor. Alle Rechte vorbehalten.
 
-This software and associated documentation files (the "Software") are proprietary 
-and confidential. The Software is licensed, not sold.
+Der Quellcode dieses Projekts ist öffentlich einsehbar. Er ist jedoch KEINE
+Open-Source-Software im Sinne der Open Source Initiative: die unten genannten
+Einschränkungen gelten.
 
-RESTRICTIONS:
+(An English translation follows below. In case of doubt, the German text governs.)
 
-1. You may NOT copy, modify, merge, publish, distribute, sublicense, or sell 
-   copies of the Software.
 
-2. You may NOT reverse engineer, decompile, or disassemble the Software.
+ERLAUBT IST
 
-3. You may NOT use the Software for any commercial purpose without explicit 
-   written permission from the copyright holder.
+1. Den Quellcode anzusehen, zu lesen und daraus zu lernen.
 
-4. You may NOT remove or alter any proprietary notices, labels, or marks on 
-   the Software.
+2. Den Quellcode für rein private, nicht-kommerzielle Zwecke zu kopieren,
+   zu verändern und zu bauen — einschließlich der Installation der selbst
+   gebauten App auf eigenen Geräten.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
-SOFTWARE.
+3. Änderungen als Pull Request oder Patch an den Rechteinhaber zurückzugeben.
 
-For licensing inquiries, contact: simon@revisor.de
+
+NICHT ERLAUBT IST
+
+4. Jede kommerzielle Nutzung, gleich welcher Art.
+
+5. Die Verbreitung an Dritte — insbesondere die Veröffentlichung des Programms
+   oder abgeleiteter Werke in App Stores, auf Websites oder über sonstige
+   Vertriebswege, entgeltlich oder unentgeltlich.
+
+6. Die Weiterlizenzierung, der Verkauf oder die Vermietung der Software oder
+   abgeleiteter Werke.
+
+7. Das Entfernen oder Verändern von Urheberrechtshinweisen.
+
+
+NICHT VON DIESER LIZENZ ERFASST
+
+8. Diese Lizenz gilt ausschließlich für den Quellcode.
+
+   Ausdrücklich NICHT erfasst und vollständig vorbehalten sind:
+
+   - alle Grafiken, Bilder und Icons (u. a. in assets/images/)
+   - alle Audiodateien (u. a. in assets/sounds/)
+   - der Name und die Wortmarke "Guck mal!" sowie "Reise Bingo"
+   - App-Icons, Store-Assets und sonstiges Marketing-Material
+
+   Diese Inhalte dürfen ohne ausdrückliche schriftliche Zustimmung des
+   Rechteinhabers weder genutzt noch vervielfältigt oder verbreitet werden —
+   auch nicht im Rahmen der oben unter Ziffer 2 erlaubten privaten Nutzung
+   in einer weitergegebenen Form.
+
+9. Schriften und Bibliotheken von Drittanbietern unterliegen ihren jeweils
+   eigenen Lizenzen.
+
+
+GEWÄHRLEISTUNGSAUSSCHLUSS
+
+DIE SOFTWARE WIRD OHNE MÄNGELGEWÄHR ("AS IS") BEREITGESTELLT, OHNE JEGLICHE
+AUSDRÜCKLICHE ODER STILLSCHWEIGENDE GEWÄHRLEISTUNG, EINSCHLIESSLICH, ABER NICHT
+BESCHRÄNKT AUF DIE GEWÄHRLEISTUNG DER MARKTGÄNGIGKEIT, DER EIGNUNG FÜR EINEN
+BESTIMMTEN ZWECK UND DER NICHTVERLETZUNG VON RECHTEN DRITTER. DIE AUTOREN ODER
+RECHTEINHABER HAFTEN NICHT FÜR ANSPRÜCHE, SCHÄDEN ODER SONSTIGE
+VERPFLICHTUNGEN, GLEICH OB AUS VERTRAG, UNERLAUBTER HANDLUNG ODER ANDERWEITIG,
+DIE SICH AUS DER SOFTWARE ODER DEREN NUTZUNG ERGEBEN.
+
+
+Anfragen zu abweichenden Nutzungsrechten: simon@revisor.de
+
+
+================================================================================
+ENGLISH TRANSLATION (non-binding — the German text above governs)
+================================================================================
+
+SOURCE-AVAILABLE LICENSE — PRIVATE USE ONLY
+
+Copyright (c) 2025-2026 Simon Luthe / Revisor. All rights reserved.
+
+The source code of this project is publicly viewable. It is NOT open source
+software as defined by the Open Source Initiative; the restrictions below apply.
+
+PERMITTED
+
+1. Viewing, reading and learning from the source code.
+
+2. Copying, modifying and building the source code for strictly private,
+   non-commercial purposes — including installing your own build on your own
+   devices.
+
+3. Contributing changes back to the copyright holder as a pull request or patch.
+
+NOT PERMITTED
+
+4. Any commercial use whatsoever.
+
+5. Distribution to third parties — in particular publishing the program or
+   derivative works in app stores, on websites or through any other channel,
+   whether for a fee or free of charge.
+
+6. Sublicensing, selling or renting the software or derivative works.
+
+7. Removing or altering copyright notices.
+
+NOT COVERED BY THIS LICENSE
+
+8. This license covers the source code only. Expressly excluded and fully
+   reserved are: all graphics, images and icons (including assets/images/),
+   all audio files (including assets/sounds/), the name and word mark
+   "Guck mal!" and "Reise Bingo", app icons, store assets and other marketing
+   material. These may not be used, reproduced or distributed without the
+   copyright holder's express written consent.
+
+9. Third-party fonts and libraries are subject to their own licenses.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED. THE AUTHORS OR COPYRIGHT HOLDERS SHALL NOT BE LIABLE FOR ANY CLAIM,
+DAMAGES OR OTHER LIABILITY ARISING FROM THE SOFTWARE OR ITS USE.
+
+Licensing inquiries: simon@revisor.de
