@@ -5,21 +5,25 @@ Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokument
 Das Format basiert auf [Keep a Changelog 1.1.0](https://keepachangelog.com/de/1.1.0/),
 und dieses Projekt folgt [Semantic Versioning 2.0.0](https://semver.org/lang/de/).
 
-## [Unreleased] - 2.1.0
+## [2.1.0] — 2026-09-27
 
 ### Added
-- Herbst-Special (1. September bis 15. November): zwölf neue Herbst-Items wie Kürbis, Igel, Eichhörnchen, Pilze und buntes Laub
-- Halloween-Special (15. Oktober bis 2. November): zehn Halloween-Items wie Kürbislaterne, Fledermaus und Hexenhut sowie sechs Kostüme zum Entdecken
-- Fallende Herbstblätter als Effekt, zur Halloween-Zeit fliegen zwischendurch Fledermäuse und Gespenster durchs Bild
+- Herbst-Special vom 1. September bis 15. November: zwölf neue Herbst-Items wie Kürbis, Igel, Eichhörnchen, Pilze und buntes Laub
+- Halloween-Special vom 15. Oktober bis 2. November: zehn Halloween-Items wie Kürbislaterne, Fledermaus und Hexenhut sowie sechs Kostüme zum Entdecken
+- Fallende Herbstblätter als Effekt; zur Halloween-Zeit fliegen zwischendurch Fledermäuse und Gespenster durchs Bild
+- Herbst-Theme mit warmem Laubverlauf und Herbst-Symbolen im Hintergrund
+- Halloween-Theme als Nachthimmel mit Kürbisglühen, Fledermäusen, Gespenstern und Mond im Hintergrund
 - Schalter für den Herbst-Effekt in der Theme-Auswahl
-- Herbst-Theme mit warmem Laubverlauf und Herbst-Silhouetten im Hintergrund (1. September bis 15. November)
-- Halloween-Theme als Nachthimmel mit Kürbisglühen, Fledermäusen, Gespenstern und Mond im Hintergrund (15. Oktober bis 2. November)
-- Zu Beginn von Herbst, Halloween, Weihnachten und Ostern schaltet die App einmal automatisch auf das passende Theme samt Effekt; nach der Saison kommt das vorher gewählte Theme zurück
 
 ### Changed
-- `.gitignore` erweitert (Signing-Material, Build-Artefakte, Grafik-Quellen, Tooling-Debug)
-- Release-AABs, `AppIconXmas.png` und der PNG-Doppelablage-Ordner `ostern:frühling` aus dem Tracking entfernt — die Oster-Items liegen als `.webp` in `assets/images/`
-- Flutter-Migrator-Flags in `android/gradle.properties` (`builtInKotlin`, `newDsl`) und JNI-FFI-Plugin in den Linux-/Windows-Plugin-Registrierungen
+- Zu Beginn von Herbst, Halloween, Weihnachten und Ostern wechselt die App einmal automatisch ins passende Theme und schaltet den Saison-Effekt ein; nach der Saison kommt das vorher gewählte Theme zurück
+
+- Android: randlose Darstellung jetzt auf allen unterstützten Android-Versionen
+
+### Other
+- Android: geringerer Speicherbedarf und bessere Leistung durch gründlichere Optimierung beim Bauen der App
+- Absturzberichte von Android-Geräten lassen sich jetzt vollständig auswerten
+- Aufräumarbeiten am Projekt und an der Build-Einrichtung
 
 ## [2.0.2] — 2026-07-30
 
