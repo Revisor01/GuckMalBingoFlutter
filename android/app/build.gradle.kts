@@ -49,6 +49,19 @@ android {
 
     buildTypes {
         release {
+            // R8: Code verkleinern/verschleiern und ungenutzte Ressourcen entfernen.
+            // Flutter setzt das implizit – hier explizit, damit es nicht still wegfällt.
+            isMinifyEnabled = true
+            isShrinkResources = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro",
+            )
+            // Native Debug-Symbole ins App-Bundle, damit Play Abstürze in .so-Code lesbar macht.
+            // Die R8-Mapping-Datei (mapping.txt) legt AGP automatisch mit ins Bundle.
+            ndk {
+                debugSymbolLevel = "FULL"
+            }
             signingConfig = if (keystorePropertiesFile.exists()) {
                 signingConfigs.getByName("release")
             } else {
