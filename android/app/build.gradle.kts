@@ -60,7 +60,7 @@ android {
             // Native Debug-Symbole ins App-Bundle, damit Play Abstürze in .so-Code lesbar macht.
             // Die R8-Mapping-Datei (mapping.txt) legt AGP automatisch mit ins Bundle.
             ndk {
-                debugSymbolLevel = "FULL"
+                debugSymbolLevel = "SYMBOL_TABLE"
             }
             signingConfig = if (keystorePropertiesFile.exists()) {
                 signingConfigs.getByName("release")
