@@ -39,5 +39,10 @@ end
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     flutter_additional_ios_build_settings(target)
+    # Xcode 27 akzeptiert nur noch iOS 15+ als Deployment-Target; einige Pods
+    # bringen 9.0/13.0 mit. Die App selbst steht ohnehin auf 15.0.
+    target.build_configurations.each do |config|
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '15.0'
+    end
   end
 end
