@@ -20,6 +20,9 @@ und dieses Projekt folgt [Semantic Versioning 2.0.0](https://semver.org/lang/de/
 
 - Android: randlose Darstellung jetzt auf allen unterstützten Android-Versionen
 
+### Fixed
+- Im App Store werden jetzt alle sechs Sprachen der App angezeigt, bisher stand dort nur Deutsch
+
 ### Other
 - Android: geringerer Speicherbedarf und bessere Leistung durch gründlichere Optimierung beim Bauen der App
 - Absturzberichte von Android-Geräten lassen sich jetzt vollständig auswerten

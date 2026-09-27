@@ -1,0 +1,2 @@
+/* Sprachordner: Damit zeigt der App Store diese Sprache an. Name auf dem Homescreen bleibt überall gleich. */
+"CFBundleDisplayName" = "Guck mal!";
