@@ -66,7 +66,7 @@ class _BingoGameViewState extends State<BingoGameView> with WidgetsBindingObserv
             child: Stack(
               children: [
                 // Background Pattern
-                BackgroundPatternView(area: viewModel.config.area),
+                BackgroundPatternView(area: viewModel.config.area, theme: selectedTheme),
 
                 // Content
                 SafeArea(

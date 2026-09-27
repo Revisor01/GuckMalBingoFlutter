@@ -41,7 +41,7 @@ class _BaseSelectionView extends StatelessWidget {
         ),
         child: Stack(
           children: [
-            const BackgroundPatternView(),
+            BackgroundPatternView(theme: theme),
             SafeArea(
               child: Column(
                 children: [

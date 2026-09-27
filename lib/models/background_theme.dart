@@ -12,7 +12,9 @@ enum BackgroundTheme {
   pinkYellow('pinkYellow', 'themePinkyellow'),
   greenMint('greenMint', 'themeGreenmint'),
   christmas('christmas', 'themeChristmas'), // Weihnachts-Theme
-  easter('easter', 'themeEaster'); // Oster-Theme
+  easter('easter', 'themeEaster'), // Oster-Theme
+  autumn('autumn', 'themeAutumn'), // Herbst-Theme
+  halloween('halloween', 'themeHalloween'); // Halloween-Theme
 
   final String value;
   final String displayNameKey;
@@ -105,6 +107,30 @@ enum BackgroundTheme {
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
         );
+
+      case BackgroundTheme.autumn:
+        return LinearGradient(
+          colors: [
+            _hexToColor('#E0892A'), // Kürbisorange oben
+            _hexToColor('#C4562A'), // Rostrot
+            _hexToColor('#7E3A1E'), // Kastanienbraun unten
+          ],
+          stops: const [0.0, 0.5, 1.0],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+        );
+
+      case BackgroundTheme.halloween:
+        return LinearGradient(
+          colors: [
+            _hexToColor('#2A1B4D'), // Nachtviolett oben
+            _hexToColor('#56286E'), // Hexenlila
+            _hexToColor('#D2601A'), // Kürbisglühen unten
+          ],
+          stops: const [0.0, 0.6, 1.0],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+        );
     }
   }
 
@@ -194,6 +220,85 @@ enum BackgroundTheme {
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
         );
+
+      case BackgroundTheme.autumn:
+        return const LinearGradient(
+          colors: [
+            Color.fromRGBO(120, 66, 22, 1.0), // Gedämpftes Kürbisorange
+            Color.fromRGBO(100, 42, 20, 1.0), // Dunkles Rost
+            Color.fromRGBO(60, 28, 14, 1.0), // Tiefes Kastanienbraun
+          ],
+          stops: [0.0, 0.5, 1.0],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+        );
+
+      case BackgroundTheme.halloween:
+        return const LinearGradient(
+          colors: [
+            Color.fromRGBO(20, 12, 40, 1.0), // Mitternacht
+            Color.fromRGBO(50, 22, 66, 1.0), // Dunkles Lila
+            Color.fromRGBO(120, 52, 14, 1.0), // Glimmendes Orange
+          ],
+          stops: [0.0, 0.6, 1.0],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+        );
+    }
+  }
+
+  /// Saisonale Themes werden nur in ihrer Saison zur Auswahl angeboten
+  bool isSelectable({
+    required bool isChristmas,
+    required bool isEaster,
+    required bool isAutumn,
+    required bool isHalloween,
+  }) {
+    switch (this) {
+      case BackgroundTheme.christmas:
+        return isChristmas;
+      case BackgroundTheme.easter:
+        return isEaster;
+      case BackgroundTheme.autumn:
+        return isAutumn;
+      case BackgroundTheme.halloween:
+        return isHalloween;
+      default:
+        return true;
+    }
+  }
+
+  /// Eigene Hintergrund-Symbole des Themes; null = die normalen Bereichs-Icons
+  List<BackgroundSymbol>? get patternSymbols {
+    switch (this) {
+      case BackgroundTheme.autumn:
+        return const [
+          BackgroundSymbol.asset('herbst_ahorn'),
+          BackgroundSymbol.asset('herbst_eichhoernchen'),
+          BackgroundSymbol.asset('herbst_eiche'),
+          BackgroundSymbol.asset('herbst_kuerbis'),
+          BackgroundSymbol.asset('herbst_pappel'),
+          BackgroundSymbol.asset('herbst_igel'),
+          BackgroundSymbol.asset('herbst_kastanie'),
+          BackgroundSymbol.asset('herbst_pilze'),
+          BackgroundSymbol.asset('herbst_birke'),
+          BackgroundSymbol.asset('herbst_eule'),
+        ];
+      case BackgroundTheme.halloween:
+        return const [
+          BackgroundSymbol.asset('halloween_fledermaus'),
+          BackgroundSymbol.asset('halloween_kuerbis'),
+          BackgroundSymbol.icon(Icons.dark_mode),
+          BackgroundSymbol.asset('halloween_gespenst'),
+          BackgroundSymbol.asset('halloween_spinne'),
+          BackgroundSymbol.icon(Icons.star),
+          BackgroundSymbol.asset('halloween_hexenhut'),
+          BackgroundSymbol.asset('halloween_katze'),
+          BackgroundSymbol.asset('halloween_totenkopf'),
+          BackgroundSymbol.asset('halloween_kessel'),
+        ];
+      default:
+        return null;
     }
   }
 
@@ -221,7 +326,15 @@ enum BackgroundTheme {
   /// Lade gespeichertes Theme (saisonales Theme als Default)
   static BackgroundTheme loadSavedTheme() {
     final prefs = AppPreferences.instance;
-    final defaultTheme = isChristmasSeason() ? 'christmas' : isEasterSeason() ? 'easter' : 'lightBlue';
+    final defaultTheme = isChristmasSeason()
+        ? 'christmas'
+        : isEasterSeason()
+            ? 'easter'
+            : isHalloweenSeason()
+                ? 'halloween'
+                : isAutumnSeason()
+                    ? 'autumn'
+                    : 'lightBlue';
     final themeName = prefs.backgroundThemeRaw ?? defaultTheme;
 
     // Migration: alte deutsche Namen auf neue englische Namen mappen
@@ -250,4 +363,17 @@ enum BackgroundTheme {
   Future<void> save() async {
     await AppPreferences.instance.setBackgroundTheme(value);
   }
+}
+
+/// Ein Symbol im Hintergrundmuster: Material-Icon oder weiße Silhouette
+/// aus assets/images/patterns/.
+class BackgroundSymbol {
+  final IconData? icon;
+  final String? assetName;
+
+  const BackgroundSymbol.icon(IconData this.icon) : assetName = null;
+  const BackgroundSymbol.asset(String this.assetName) : icon = null;
+
+  String? get assetPath =>
+      assetName == null ? null : 'assets/images/patterns/$assetName.webp';
 }

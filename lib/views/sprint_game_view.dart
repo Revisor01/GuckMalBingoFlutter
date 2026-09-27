@@ -110,7 +110,7 @@ class _SprintGameViewState extends State<SprintGameView>
               ),
               child: Stack(
                 children: [
-                  BackgroundPatternView(area: _viewModel.config.area),
+                  BackgroundPatternView(area: _viewModel.config.area, theme: selectedTheme),
 
                   // Content — identisches Layout wie BingoGameView._ContentView
                   SafeArea(

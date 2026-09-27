@@ -419,5 +419,7 @@
   "itemKostuemPirat": "Piratenkostuum",
   "itemKostuemZauberer": "Tovenaarskostuum",
   "itemKostuemMumie": "Mummiekostuum",
-  "settingsAutumnEffect": "Herfsteffect"
+  "settingsAutumnEffect": "Herfsteffect",
+  "themeAutumn": "Herfst",
+  "themeHalloween": "Halloween"
 }

@@ -45,7 +45,7 @@ class _GameModeSelectionViewState extends State<GameModeSelectionView> {
         child: Stack(
           children: [
             // Background Pattern
-            const BackgroundPatternView(),
+            BackgroundPatternView(theme: themeNotifier.theme),
 
             // Content
             SafeArea(

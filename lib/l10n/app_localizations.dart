@@ -2481,6 +2481,18 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Herbst-Effekt'**
   String get settingsAutumnEffect;
+
+  /// No description provided for @themeAutumn.
+  ///
+  /// In de, this message translates to:
+  /// **'Herbst'**
+  String get themeAutumn;
+
+  /// No description provided for @themeHalloween.
+  ///
+  /// In de, this message translates to:
+  /// **'Halloween'**
+  String get themeHalloween;
 }
 
 class _AppLocalizationsDelegate

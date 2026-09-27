@@ -1225,4 +1225,10 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get settingsAutumnEffect => 'Effet d\'automne';
+
+  @override
+  String get themeAutumn => 'Automne';
+
+  @override
+  String get themeHalloween => 'Halloween';
 }

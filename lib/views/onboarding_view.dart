@@ -118,7 +118,7 @@ class _OnboardingViewState extends State<OnboardingView> {
           ),
           child: Stack(
             children: [
-              const BackgroundPatternView(),
+              BackgroundPatternView(theme: selectedTheme),
               SafeArea(
                 child: Column(
                   children: [

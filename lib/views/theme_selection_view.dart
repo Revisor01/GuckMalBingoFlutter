@@ -57,7 +57,7 @@ class _ThemeSelectionViewState extends State<ThemeSelectionView> {
           ),
           child: Stack(
           children: [
-            const BackgroundPatternView(),
+            BackgroundPatternView(theme: _currentTheme),
             SafeArea(
               bottom: false,
               child: SingleChildScrollView(
@@ -237,7 +237,12 @@ class _ThemeSelectionViewState extends State<ThemeSelectionView> {
                       padding: const EdgeInsets.symmetric(horizontal: 30),
                       child: Column(
                         children: BackgroundTheme.values
-                            .where((theme) => (theme != BackgroundTheme.christmas || season.isChristmas) && (theme != BackgroundTheme.easter || season.isEaster))
+                            .where((theme) => theme.isSelectable(
+                                  isChristmas: season.isChristmas,
+                                  isEaster: season.isEaster,
+                                  isAutumn: season.isAutumn,
+                                  isHalloween: season.isHalloween,
+                                ))
                             .map((theme) => Padding(
                                   padding: const EdgeInsets.only(bottom: 20),
                                   child: AppButton(

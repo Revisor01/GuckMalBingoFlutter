@@ -1224,4 +1224,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settingsAutumnEffect => 'Autumn Effect';
+
+  @override
+  String get themeAutumn => 'Autumn';
+
+  @override
+  String get themeHalloween => 'Halloween';
 }

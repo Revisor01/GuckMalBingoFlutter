@@ -419,5 +419,7 @@
   "itemKostuemPirat": "Pirate Costume",
   "itemKostuemZauberer": "Wizard Costume",
   "itemKostuemMumie": "Mummy Costume",
-  "settingsAutumnEffect": "Autumn Effect"
+  "settingsAutumnEffect": "Autumn Effect",
+  "themeAutumn": "Autumn",
+  "themeHalloween": "Halloween"
 }

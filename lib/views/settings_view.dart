@@ -99,7 +99,7 @@ class _SettingsViewState extends State<SettingsView> {
           ),
           child: Stack(
           children: [
-            const BackgroundPatternView(),
+            BackgroundPatternView(theme: theme),
             SafeArea(
               child: Column(
                 children: [

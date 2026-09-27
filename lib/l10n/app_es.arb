@@ -419,5 +419,7 @@
   "itemKostuemPirat": "Disfraz de pirata",
   "itemKostuemZauberer": "Disfraz de mago",
   "itemKostuemMumie": "Disfraz de momia",
-  "settingsAutumnEffect": "Efecto de otoño"
+  "settingsAutumnEffect": "Efecto de otoño",
+  "themeAutumn": "Otoño",
+  "themeHalloween": "Halloween"
 }

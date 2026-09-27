@@ -12,6 +12,9 @@ und dieses Projekt folgt [Semantic Versioning 2.0.0](https://semver.org/lang/de/
 - Halloween-Special (15. Oktober bis 2. November): zehn Halloween-Items wie Kürbislaterne, Fledermaus und Hexenhut sowie sechs Kostüme zum Entdecken
 - Fallende Herbstblätter als Effekt, zur Halloween-Zeit fliegen zwischendurch Fledermäuse und Gespenster durchs Bild
 - Schalter für den Herbst-Effekt in der Theme-Auswahl
+- Herbst-Theme mit warmem Laubverlauf und Herbst-Silhouetten im Hintergrund (1. September bis 15. November)
+- Halloween-Theme als Nachthimmel mit Kürbisglühen, Fledermäusen, Gespenstern und Mond im Hintergrund (15. Oktober bis 2. November)
+- Wer noch kein Theme gewählt hat, startet in der Saison automatisch im Herbst- bzw. Halloween-Theme
 
 ### Changed
 - `.gitignore` erweitert (Signing-Material, Build-Artefakte, Grafik-Quellen, Tooling-Debug)

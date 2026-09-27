@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 import '../models/area.dart';
+import '../models/background_theme.dart';
 
 /// BackgroundPatternView - Portiert von Swift
-/// Zeigt dekorative Icons im Hintergrund mit Positions-Caching
+/// Zeigt dekorative Icons im Hintergrund mit Positions-Caching.
+/// Themes mit eigenen Symbolen (Herbst, Halloween) ersetzen die Bereichs-Icons.
 class BackgroundPatternView extends StatefulWidget {
   final Area? area;
+  final BackgroundTheme? theme;
 
-  const BackgroundPatternView({super.key, this.area});
+  const BackgroundPatternView({super.key, this.area, this.theme});
 
   @override
   State<BackgroundPatternView> createState() => _BackgroundPatternViewState();
@@ -16,7 +19,12 @@ class BackgroundPatternView extends StatefulWidget {
 class _BackgroundPatternViewState extends State<BackgroundPatternView> {
   Size? _lastSize;
   Area? _lastArea;
+  BackgroundTheme? _lastTheme;
   List<_IconPosition> _cachedPositions = [];
+
+  List<BackgroundSymbol> get symbols =>
+      widget.theme?.patternSymbols ??
+      icons.map((icon) => BackgroundSymbol.icon(icon)).toList();
 
   List<IconData> get icons {
     if (widget.area != null) {
@@ -119,10 +127,14 @@ class _BackgroundPatternViewState extends State<BackgroundPatternView> {
   /// Gibt gecachte Positionen zurück oder berechnet neu bei Größen-/Area-Änderung
   List<_IconPosition> _getPositions(double width, double height) {
     final newSize = Size(width, height);
-    if (newSize != _lastSize || widget.area != _lastArea || _cachedPositions.isEmpty) {
+    if (newSize != _lastSize ||
+        widget.area != _lastArea ||
+        widget.theme != _lastTheme ||
+        _cachedPositions.isEmpty) {
       _cachedPositions = _generatePositions(width, height);
       _lastSize = newSize;
       _lastArea = widget.area;
+      _lastTheme = widget.theme;
     }
     return _cachedPositions;
   }
@@ -137,6 +149,7 @@ class _BackgroundPatternViewState extends State<BackgroundPatternView> {
     }
 
     final rng = math.Random(42); // Seeded für konsistente Positionen
+    final symbols = this.symbols;
 
     const minDistance = 110.0; // Mindestabstand zwischen Icons
     const maxAttempts = 200; // Max Versuche pro Icon
@@ -164,12 +177,12 @@ class _BackgroundPatternViewState extends State<BackgroundPatternView> {
         }
 
         if (hasSpace) {
-          final icon = icons[i % icons.length];
+          final symbol = symbols[i % symbols.length];
           final rotation = -20 + rng.nextDouble() * 40;
           positions.add(_IconPosition(
             x: x,
             y: y,
-            icon: icon,
+            symbol: symbol,
             rotation: rotation,
           ));
           placed = true;
@@ -199,12 +212,7 @@ class _BackgroundPatternViewState extends State<BackgroundPatternView> {
                       top: pos.y - 22.5,
                       child: Transform.rotate(
                         angle: pos.rotation * math.pi / 180,
-                        child: Icon(
-                          pos.icon,
-                          size: 45,
-                          color: Colors.white.withValues(alpha: 0.2),
-                          weight: 100, // thin
-                        ),
+                        child: _buildSymbol(pos.symbol),
                       ),
                     ))
                 .toList(),
@@ -218,13 +226,37 @@ class _BackgroundPatternViewState extends State<BackgroundPatternView> {
 class _IconPosition {
   final double x;
   final double y;
-  final IconData icon;
+  final BackgroundSymbol symbol;
   final double rotation;
 
   _IconPosition({
     required this.x,
     required this.y,
-    required this.icon,
+    required this.symbol,
     required this.rotation,
   });
+}
+
+const _symbolSize = 45.0;
+final _symbolColor = Colors.white.withValues(alpha: 0.2);
+
+Widget _buildSymbol(BackgroundSymbol symbol) {
+  final assetPath = symbol.assetPath;
+  if (assetPath == null) {
+    return Icon(
+      symbol.icon,
+      size: _symbolSize,
+      color: _symbolColor,
+      weight: 100, // thin
+    );
+  }
+  // Weiße Silhouette, eingefärbt wie die Icons
+  return Image.asset(
+    assetPath,
+    width: _symbolSize,
+    height: _symbolSize,
+    fit: BoxFit.contain,
+    color: _symbolColor,
+    colorBlendMode: BlendMode.srcIn,
+  );
 }
