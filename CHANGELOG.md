@@ -14,7 +14,7 @@ und dieses Projekt folgt [Semantic Versioning 2.0.0](https://semver.org/lang/de/
 - Schalter für den Herbst-Effekt in der Theme-Auswahl
 - Herbst-Theme mit warmem Laubverlauf und Herbst-Silhouetten im Hintergrund (1. September bis 15. November)
 - Halloween-Theme als Nachthimmel mit Kürbisglühen, Fledermäusen, Gespenstern und Mond im Hintergrund (15. Oktober bis 2. November)
-- Wer noch kein Theme gewählt hat, startet in der Saison automatisch im Herbst- bzw. Halloween-Theme
+- Zu Beginn von Herbst, Halloween, Weihnachten und Ostern schaltet die App einmal automatisch auf das passende Theme samt Effekt; nach der Saison kommt das vorher gewählte Theme zurück
 
 ### Changed
 - `.gitignore` erweitert (Signing-Material, Build-Artefakte, Grafik-Quellen, Tooling-Debug)

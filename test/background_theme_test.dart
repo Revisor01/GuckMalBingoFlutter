@@ -90,49 +90,125 @@ void main() {
     });
   });
 
-  group('BackgroundTheme.loadSavedTheme default by date', () {
-    // AppPreferences.instance ist late final → nur einmal initialisieren.
-    // Kein Test außer dem letzten speichert ein Theme.
+  group('BackgroundTheme.loadSavedTheme – Saisonwechsel', () {
+    // AppPreferences.instance ist late final → einmal initialisieren,
+    // vor jedem Test den Cache leeren (= frische Installation).
     setUpAll(() async {
       FlutterSecureStorage.setMockInitialValues({});
       SharedPreferences.setMockInitialValues({});
       await AppPreferences.init();
     });
 
+    setUp(() => AppPreferences.instance.debugClearCache());
+
     tearDown(() {
       debugOverrideDate = null;
     });
 
-    test('September 20 → autumn', () {
-      debugOverrideDate = DateTime(2026, 9, 20);
-      expect(BackgroundTheme.loadSavedTheme(), BackgroundTheme.autumn);
+    AppPreferences prefs() => AppPreferences.instance;
+
+    BackgroundTheme startAt(DateTime date) {
+      debugOverrideDate = date;
+      return BackgroundTheme.loadSavedTheme();
+    }
+
+    test('fresh install in July → lightBlue, nothing applied', () {
+      expect(startAt(DateTime(2026, 7, 15)), BackgroundTheme.lightBlue);
+      expect(prefs().seasonThemeApplied, isNull);
     });
 
-    test('October 31 → halloween (wins over autumn)', () {
-      debugOverrideDate = DateTime(2026, 10, 31);
-      expect(BackgroundTheme.loadSavedTheme(), BackgroundTheme.halloween);
+    test('autumn start switches to autumn, remembers own theme, enables effect', () async {
+      await prefs().setBackgroundTheme('greenMint');
+      await prefs().setAutumnEffectEnabled(false);
+
+      expect(startAt(DateTime(2026, 9, 1)), BackgroundTheme.autumn);
+      expect(prefs().backgroundThemeRaw, 'autumn');
+      expect(prefs().themeBeforeSeason, 'greenMint');
+      expect(prefs().seasonThemeApplied, 'autumn-2026');
+      expect(prefs().autumnEffectEnabled, isTrue);
     });
 
-    test('November 10 → autumn again', () {
-      debugOverrideDate = DateTime(2026, 11, 10);
-      expect(BackgroundTheme.loadSavedTheme(), BackgroundTheme.autumn);
+    test('own choice within the season is kept on the next start', () async {
+      startAt(DateTime(2026, 9, 1));
+      await prefs().setBackgroundTheme('pinkRed');
+      await prefs().setAutumnEffectEnabled(false);
+
+      expect(startAt(DateTime(2026, 9, 20)), BackgroundTheme.pinkRed);
+      expect(prefs().autumnEffectEnabled, isFalse);
     });
 
-    test('December 24 → christmas', () {
-      debugOverrideDate = DateTime(2026, 12, 24);
-      expect(BackgroundTheme.loadSavedTheme(), BackgroundTheme.christmas);
+    test('full year: autumn → halloween → autumn → own theme → christmas → own theme → easter', () async {
+      await prefs().setBackgroundTheme('deepBlue');
+
+      expect(startAt(DateTime(2026, 9, 5)), BackgroundTheme.autumn);
+      expect(startAt(DateTime(2026, 10, 15)), BackgroundTheme.halloween);
+      expect(prefs().seasonThemeApplied, 'halloween-2026');
+      expect(startAt(DateTime(2026, 11, 3)), BackgroundTheme.autumn);
+      expect(prefs().seasonThemeApplied, 'autumn-2026');
+      // Seasonal → seasonal overwrites nothing: own choice still known
+      expect(prefs().themeBeforeSeason, 'deepBlue');
+
+      expect(startAt(DateTime(2026, 11, 16)), BackgroundTheme.deepBlue);
+      expect(prefs().backgroundThemeRaw, 'deepBlue');
+
+      await prefs().setSnowfallEnabled(false);
+      expect(startAt(DateTime(2026, 12, 1)), BackgroundTheme.christmas);
+      expect(prefs().snowfallEnabled, isTrue);
+      expect(prefs().seasonThemeApplied, 'christmas-2026');
+
+      expect(startAt(DateTime(2027, 1, 7)), BackgroundTheme.deepBlue);
+
+      // Ostern 2027: 28. März → Saison ab 14. März
+      await prefs().setEasterEffectEnabled(false);
+      expect(startAt(DateTime(2027, 3, 20)), BackgroundTheme.easter);
+      expect(prefs().easterEffectEnabled, isTrue);
+      expect(startAt(DateTime(2027, 4, 1)), BackgroundTheme.deepBlue);
     });
 
-    test('July → lightBlue', () {
-      debugOverrideDate = DateTime(2026, 7, 15);
-      expect(BackgroundTheme.loadSavedTheme(), BackgroundTheme.lightBlue);
+    test('christmas season in January belongs to the previous year – no second switch', () async {
+      startAt(DateTime(2026, 12, 1));
+      await prefs().setBackgroundTheme('greenMint');
+
+      expect(startAt(DateTime(2027, 1, 3)), BackgroundTheme.greenMint);
+      expect(prefs().seasonThemeApplied, 'christmas-2026');
     });
 
-    // Muss der letzte Test der Gruppe bleiben (speichert ein Theme).
-    test('a saved theme wins over the seasonal default', () async {
-      debugOverrideDate = DateTime(2026, 10, 31);
-      await AppPreferences.instance.setBackgroundTheme('greenMint');
-      expect(BackgroundTheme.loadSavedTheme(), BackgroundTheme.greenMint);
+    test('next year the same season switches again', () async {
+      startAt(DateTime(2026, 9, 1));
+      await prefs().setBackgroundTheme('pinkYellow');
+      startAt(DateTime(2026, 12, 20)); // Weihnachten dazwischen
+      await prefs().setBackgroundTheme('pinkYellow');
+      startAt(DateTime(2027, 7, 1));
+
+      expect(startAt(DateTime(2027, 9, 1)), BackgroundTheme.autumn);
+      expect(prefs().seasonThemeApplied, 'autumn-2027');
+    });
+
+    test('seasonal theme without remembered own theme falls back to lightBlue', () async {
+      await prefs().setBackgroundTheme('halloween');
+      expect(startAt(DateTime(2026, 7, 15)), BackgroundTheme.lightBlue);
+      expect(prefs().backgroundThemeRaw, 'lightBlue');
+    });
+
+    test('old German theme names are still migrated', () async {
+      await prefs().setBackgroundTheme('Himmelblau');
+      expect(startAt(DateTime(2026, 7, 15)), BackgroundTheme.lightBlue);
+      expect(prefs().backgroundThemeRaw, 'lightBlue');
+    });
+
+    test('seasonKey', () {
+      expect(BackgroundTheme.seasonKey(BackgroundTheme.autumn, DateTime(2026, 9, 1)), 'autumn-2026');
+      expect(BackgroundTheme.seasonKey(BackgroundTheme.christmas, DateTime(2026, 12, 24)), 'christmas-2026');
+      expect(BackgroundTheme.seasonKey(BackgroundTheme.christmas, DateTime(2027, 1, 6)), 'christmas-2026');
+    });
+
+    test('currentSeasonalTheme: halloween wins inside autumn', () {
+      debugOverrideDate = DateTime(2026, 10, 20);
+      expect(BackgroundTheme.currentSeasonalTheme(), BackgroundTheme.halloween);
+      debugOverrideDate = DateTime(2026, 10, 14);
+      expect(BackgroundTheme.currentSeasonalTheme(), BackgroundTheme.autumn);
+      debugOverrideDate = DateTime(2026, 8, 31);
+      expect(BackgroundTheme.currentSeasonalTheme(), isNull);
     });
   });
 

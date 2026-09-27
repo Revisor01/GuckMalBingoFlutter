@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -78,7 +79,7 @@ class AppPreferences {
 
   /// Lädt alle bekannten Keys in den Cache für synchronen Zugriff
   Future<void> _loadCache() async {
-    for (final key in ['snowfallEnabled', 'easterEffectEnabled', 'autumnEffectEnabled', 'hasSeenOnboarding', 'backgroundTheme', 'savedGameState', 'savedDuellState', 'savedSprintState']) {
+    for (final key in ['snowfallEnabled', 'easterEffectEnabled', 'autumnEffectEnabled', 'hasSeenOnboarding', 'backgroundTheme', 'seasonThemeApplied', 'themeBeforeSeason', 'savedGameState', 'savedDuellState', 'savedSprintState']) {
       _cache[key] = await _storage.read(key: key);
     }
   }
@@ -112,6 +113,24 @@ class AppPreferences {
     _cache['backgroundTheme'] = value;
     await _storage.write(key: 'backgroundTheme', value: value);
   }
+
+  // Saison-Theme: welche Saison schon einmal umgeschaltet hat (z.B. 'autumn-2026')
+  String? get seasonThemeApplied => _cache['seasonThemeApplied'];
+  Future<void> setSeasonThemeApplied(String value) async {
+    _cache['seasonThemeApplied'] = value;
+    await _storage.write(key: 'seasonThemeApplied', value: value);
+  }
+
+  // Theme vor Saisonbeginn, wird nach Saisonende wiederhergestellt
+  String? get themeBeforeSeason => _cache['themeBeforeSeason'];
+  Future<void> setThemeBeforeSeason(String value) async {
+    _cache['themeBeforeSeason'] = value;
+    await _storage.write(key: 'themeBeforeSeason', value: value);
+  }
+
+  /// Nur für Tests: Cache leeren, damit jeder Test mit frischen Einstellungen startet
+  @visibleForTesting
+  void debugClearCache() => _cache.clear();
 
   // Onboarding
   bool get hasSeenOnboarding => _cache['hasSeenOnboarding'] == 'true';

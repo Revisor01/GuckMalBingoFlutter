@@ -323,19 +323,83 @@ enum BackgroundTheme {
     );
   }
 
-  /// Lade gespeichertes Theme (saisonales Theme als Default)
+  /// Saisonale Themes (Weihnachten, Ostern, Herbst, Halloween)
+  bool get isSeasonal =>
+      this == BackgroundTheme.christmas ||
+      this == BackgroundTheme.easter ||
+      this == BackgroundTheme.autumn ||
+      this == BackgroundTheme.halloween;
+
+  /// Das Theme der gerade laufenden Saison, sonst null.
+  /// Halloween liegt im Herbst und hat Vorrang.
+  static BackgroundTheme? currentSeasonalTheme() {
+    if (isChristmasSeason()) return BackgroundTheme.christmas;
+    if (isEasterSeason()) return BackgroundTheme.easter;
+    if (isHalloweenSeason()) return BackgroundTheme.halloween;
+    if (isAutumnSeason()) return BackgroundTheme.autumn;
+    return null;
+  }
+
+  /// Eindeutiger Schlüssel pro Saison und Jahr, z.B. 'autumn-2026'.
+  /// Die Weihnachtszeit im Januar gehört zum Vorjahr.
+  static String seasonKey(BackgroundTheme theme, DateTime date) {
+    final year = theme == BackgroundTheme.christmas && date.month == 1 ? date.year - 1 : date.year;
+    return '${theme.value}-$year';
+  }
+
+  /// Lade das Theme beim App-Start.
+  ///
+  /// - Beginnt eine Saison (einmal pro Saison und Jahr), wird auf ihr Theme
+  ///   umgeschaltet und ihr Effekt eingeschaltet.
+  /// - Innerhalb der Saison bleibt eine eigene Wahl erhalten.
+  /// - Nach Saisonende kommt das Theme von vor der Saison zurück.
   static BackgroundTheme loadSavedTheme() {
     final prefs = AppPreferences.instance;
-    final defaultTheme = isChristmasSeason()
-        ? 'christmas'
-        : isEasterSeason()
-            ? 'easter'
-            : isHalloweenSeason()
-                ? 'halloween'
-                : isAutumnSeason()
-                    ? 'autumn'
-                    : 'lightBlue';
-    final themeName = prefs.backgroundThemeRaw ?? defaultTheme;
+    final saved = _migratedSavedTheme(prefs);
+    final season = currentSeasonalTheme();
+
+    if (season != null) {
+      final key = seasonKey(season, getCurrentDate());
+      if (prefs.seasonThemeApplied != key) {
+        // Nur eine eigene (nicht-saisonale) Wahl merken – beim Wechsel
+        // Herbst → Halloween → Herbst bleibt die ursprüngliche Wahl stehen
+        if (saved == null || !saved.isSeasonal) {
+          prefs.setThemeBeforeSeason((saved ?? BackgroundTheme.lightBlue).value);
+        }
+        prefs.setBackgroundTheme(season.value);
+        prefs.setSeasonThemeApplied(key);
+        _enableEffectFor(season, prefs);
+        return season;
+      }
+      return saved ?? season;
+    }
+
+    if (saved != null && saved.isSeasonal) {
+      final restored = BackgroundTheme.fromString(prefs.themeBeforeSeason ?? 'lightBlue');
+      prefs.setBackgroundTheme(restored.value);
+      return restored;
+    }
+    return saved ?? BackgroundTheme.lightBlue;
+  }
+
+  static void _enableEffectFor(BackgroundTheme season, AppPreferences prefs) {
+    switch (season) {
+      case BackgroundTheme.christmas:
+        prefs.setSnowfallEnabled(true);
+      case BackgroundTheme.easter:
+        prefs.setEasterEffectEnabled(true);
+      case BackgroundTheme.autumn:
+      case BackgroundTheme.halloween:
+        prefs.setAutumnEffectEnabled(true);
+      default:
+        break;
+    }
+  }
+
+  /// Gespeichertes Theme lesen, alte deutsche Namen migrieren
+  static BackgroundTheme? _migratedSavedTheme(AppPreferences prefs) {
+    final themeName = prefs.backgroundThemeRaw;
+    if (themeName == null) return null;
 
     // Migration: alte deutsche Namen auf neue englische Namen mappen
     const migrationMap = {
