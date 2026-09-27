@@ -390,5 +390,34 @@
         "type": "int"
       }
     }
-  }
+  },
+  "itemKuerbis": "Kürbis",
+  "itemLaub": "Buntes Laub",
+  "itemEicheln": "Eicheln",
+  "itemIgel": "Igel",
+  "itemPilze": "Pilze",
+  "itemEichhoernchen": "Eichhörnchen",
+  "itemSchal": "Schal",
+  "itemApfelkorb": "Äpfel",
+  "itemEule": "Eule",
+  "itemKakao": "Kakao",
+  "itemMuetze": "Mütze",
+  "itemHerbstkranz": "Herbstkranz",
+  "itemKuerbislaterne": "Kürbislaterne",
+  "itemGespenst": "Gespenst",
+  "itemFledermaus": "Fledermaus",
+  "itemHexenhut": "Hexenhut",
+  "itemSpinne": "Spinne",
+  "itemTotenkopf": "Totenkopf",
+  "itemSchwarzeKatze": "Schwarze Katze",
+  "itemZaubertrank": "Zaubertrank",
+  "itemSuessigkeiten": "Süßigkeiten",
+  "itemHexenkessel": "Hexenkessel",
+  "itemKostuemDino": "Dino-Kostüm",
+  "itemKostuemGespenst": "Gespenster-Kostüm",
+  "itemKostuemHexe": "Hexen-Kostüm",
+  "itemKostuemPirat": "Piraten-Kostüm",
+  "itemKostuemZauberer": "Zauberer-Kostüm",
+  "itemKostuemMumie": "Mumien-Kostüm",
+  "settingsAutumnEffect": "Herbst-Effekt"
 }

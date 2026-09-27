@@ -1136,4 +1136,91 @@ class AppLocalizationsNl extends AppLocalizations {
   String sprintSkipCount(int count) {
     return '$count overgeslagen';
   }
+
+  @override
+  String get itemKuerbis => 'Pompoen';
+
+  @override
+  String get itemLaub => 'Herfstbladeren';
+
+  @override
+  String get itemEicheln => 'Eikels';
+
+  @override
+  String get itemIgel => 'Egel';
+
+  @override
+  String get itemPilze => 'Paddenstoelen';
+
+  @override
+  String get itemEichhoernchen => 'Eekhoorn';
+
+  @override
+  String get itemSchal => 'Sjaal';
+
+  @override
+  String get itemApfelkorb => 'Appels';
+
+  @override
+  String get itemEule => 'Uil';
+
+  @override
+  String get itemKakao => 'Warme chocolademelk';
+
+  @override
+  String get itemMuetze => 'Muts';
+
+  @override
+  String get itemHerbstkranz => 'Herfstkrans';
+
+  @override
+  String get itemKuerbislaterne => 'Halloweenpompoen';
+
+  @override
+  String get itemGespenst => 'Spook';
+
+  @override
+  String get itemFledermaus => 'Vleermuis';
+
+  @override
+  String get itemHexenhut => 'Heksenhoed';
+
+  @override
+  String get itemSpinne => 'Spin';
+
+  @override
+  String get itemTotenkopf => 'Doodshoofd';
+
+  @override
+  String get itemSchwarzeKatze => 'Zwarte kat';
+
+  @override
+  String get itemZaubertrank => 'Toverdrank';
+
+  @override
+  String get itemSuessigkeiten => 'Snoep';
+
+  @override
+  String get itemHexenkessel => 'Heksenketel';
+
+  @override
+  String get itemKostuemDino => 'Dinokostuum';
+
+  @override
+  String get itemKostuemGespenst => 'Spookkostuum';
+
+  @override
+  String get itemKostuemHexe => 'Heksenkostuum';
+
+  @override
+  String get itemKostuemPirat => 'Piratenkostuum';
+
+  @override
+  String get itemKostuemZauberer => 'Tovenaarskostuum';
+
+  @override
+  String get itemKostuemMumie => 'Mummiekostuum';
+
+  @override
+  String get settingsAutumnEffect => 'Herfsteffect';
 }

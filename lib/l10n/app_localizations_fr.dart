@@ -1138,4 +1138,91 @@ class AppLocalizationsFr extends AppLocalizations {
   String sprintSkipCount(int count) {
     return '$count passés';
   }
+
+  @override
+  String get itemKuerbis => 'Citrouille';
+
+  @override
+  String get itemLaub => 'Feuilles d\'automne';
+
+  @override
+  String get itemEicheln => 'Glands';
+
+  @override
+  String get itemIgel => 'Hérisson';
+
+  @override
+  String get itemPilze => 'Champignons';
+
+  @override
+  String get itemEichhoernchen => 'Écureuil';
+
+  @override
+  String get itemSchal => 'Écharpe';
+
+  @override
+  String get itemApfelkorb => 'Pommes';
+
+  @override
+  String get itemEule => 'Hibou';
+
+  @override
+  String get itemKakao => 'Chocolat chaud';
+
+  @override
+  String get itemMuetze => 'Bonnet';
+
+  @override
+  String get itemHerbstkranz => 'Couronne d\'automne';
+
+  @override
+  String get itemKuerbislaterne => 'Citrouille d\'Halloween';
+
+  @override
+  String get itemGespenst => 'Fantôme';
+
+  @override
+  String get itemFledermaus => 'Chauve-souris';
+
+  @override
+  String get itemHexenhut => 'Chapeau de sorcière';
+
+  @override
+  String get itemSpinne => 'Araignée';
+
+  @override
+  String get itemTotenkopf => 'Tête de mort';
+
+  @override
+  String get itemSchwarzeKatze => 'Chat noir';
+
+  @override
+  String get itemZaubertrank => 'Potion magique';
+
+  @override
+  String get itemSuessigkeiten => 'Bonbons';
+
+  @override
+  String get itemHexenkessel => 'Chaudron';
+
+  @override
+  String get itemKostuemDino => 'Costume de dino';
+
+  @override
+  String get itemKostuemGespenst => 'Costume de fantôme';
+
+  @override
+  String get itemKostuemHexe => 'Costume de sorcière';
+
+  @override
+  String get itemKostuemPirat => 'Costume de pirate';
+
+  @override
+  String get itemKostuemZauberer => 'Costume de magicien';
+
+  @override
+  String get itemKostuemMumie => 'Costume de momie';
+
+  @override
+  String get settingsAutumnEffect => 'Effet d\'automne';
 }

@@ -17,6 +17,7 @@ import 'views/sprint_game_view.dart';
 import 'views/onboarding_view.dart';
 import 'l10n/app_localizations.dart';
 import 'views/snowfall_widget.dart';
+import 'views/autumn_effect_widget.dart';
 import 'views/easter_effect_widget.dart';
 import 'utilities/app_preferences.dart';
 import 'utilities/theme_provider.dart';
@@ -443,7 +444,7 @@ class _NavigationCoordinatorState extends State<NavigationCoordinator> {
 }
 
 /// App-Level Lifecycle Observer für saisonale Animationen
-/// Pausiert Schnefall/Osterblüten wenn die App im Hintergrund ist
+/// Pausiert Schneefall/Osterblüten/Herbstblätter wenn die App im Hintergrund ist
 class _AppLifecycleWrapper extends StatefulWidget {
   final Widget child;
   const _AppLifecycleWrapper({required this.child});
@@ -491,6 +492,12 @@ class _AppLifecycleWrapperState extends State<_AppLifecycleWrapper>
                 snowflakeCount: 40,
                 child: widget.child,
               )
-            : widget.child;
+            : season.isAutumn
+                ? AutumnEffectWidget(
+                    enabled: season.shouldShowAutumnEffect && _isActive,
+                    withHalloweenVisitors: season.isHalloween,
+                    child: widget.child,
+                  )
+                : widget.child;
   }
 }

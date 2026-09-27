@@ -390,5 +390,34 @@
         "type": "int"
       }
     }
-  }
+  },
+  "itemKuerbis": "Calabaza",
+  "itemLaub": "Hojas de otoño",
+  "itemEicheln": "Bellotas",
+  "itemIgel": "Erizo",
+  "itemPilze": "Setas",
+  "itemEichhoernchen": "Ardilla",
+  "itemSchal": "Bufanda",
+  "itemApfelkorb": "Manzanas",
+  "itemEule": "Búho",
+  "itemKakao": "Chocolate caliente",
+  "itemMuetze": "Gorro",
+  "itemHerbstkranz": "Corona de otoño",
+  "itemKuerbislaterne": "Calabaza de Halloween",
+  "itemGespenst": "Fantasma",
+  "itemFledermaus": "Murciélago",
+  "itemHexenhut": "Sombrero de bruja",
+  "itemSpinne": "Araña",
+  "itemTotenkopf": "Calavera",
+  "itemSchwarzeKatze": "Gato negro",
+  "itemZaubertrank": "Poción mágica",
+  "itemSuessigkeiten": "Caramelos",
+  "itemHexenkessel": "Caldero",
+  "itemKostuemDino": "Disfraz de dinosaurio",
+  "itemKostuemGespenst": "Disfraz de fantasma",
+  "itemKostuemHexe": "Disfraz de bruja",
+  "itemKostuemPirat": "Disfraz de pirata",
+  "itemKostuemZauberer": "Disfraz de mago",
+  "itemKostuemMumie": "Disfraz de momia",
+  "settingsAutumnEffect": "Efecto de otoño"
 }

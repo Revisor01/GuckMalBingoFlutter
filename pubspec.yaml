@@ -50,8 +50,9 @@ flutter:
     # Sounds
     - assets/sounds/
 
-    # Images (alle 206 Bilder)
+    # Images (Bingo-Items; effects/ = Sprites für saisonale Effekte)
     - assets/images/
+    - assets/images/effects/
 
   fonts:
     - family: Nunito

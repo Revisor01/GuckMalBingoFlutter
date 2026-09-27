@@ -2307,6 +2307,180 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'{count} übersprungen'**
   String sprintSkipCount(int count);
+
+  /// No description provided for @itemKuerbis.
+  ///
+  /// In de, this message translates to:
+  /// **'Kürbis'**
+  String get itemKuerbis;
+
+  /// No description provided for @itemLaub.
+  ///
+  /// In de, this message translates to:
+  /// **'Buntes Laub'**
+  String get itemLaub;
+
+  /// No description provided for @itemEicheln.
+  ///
+  /// In de, this message translates to:
+  /// **'Eicheln'**
+  String get itemEicheln;
+
+  /// No description provided for @itemIgel.
+  ///
+  /// In de, this message translates to:
+  /// **'Igel'**
+  String get itemIgel;
+
+  /// No description provided for @itemPilze.
+  ///
+  /// In de, this message translates to:
+  /// **'Pilze'**
+  String get itemPilze;
+
+  /// No description provided for @itemEichhoernchen.
+  ///
+  /// In de, this message translates to:
+  /// **'Eichhörnchen'**
+  String get itemEichhoernchen;
+
+  /// No description provided for @itemSchal.
+  ///
+  /// In de, this message translates to:
+  /// **'Schal'**
+  String get itemSchal;
+
+  /// No description provided for @itemApfelkorb.
+  ///
+  /// In de, this message translates to:
+  /// **'Äpfel'**
+  String get itemApfelkorb;
+
+  /// No description provided for @itemEule.
+  ///
+  /// In de, this message translates to:
+  /// **'Eule'**
+  String get itemEule;
+
+  /// No description provided for @itemKakao.
+  ///
+  /// In de, this message translates to:
+  /// **'Kakao'**
+  String get itemKakao;
+
+  /// No description provided for @itemMuetze.
+  ///
+  /// In de, this message translates to:
+  /// **'Mütze'**
+  String get itemMuetze;
+
+  /// No description provided for @itemHerbstkranz.
+  ///
+  /// In de, this message translates to:
+  /// **'Herbstkranz'**
+  String get itemHerbstkranz;
+
+  /// No description provided for @itemKuerbislaterne.
+  ///
+  /// In de, this message translates to:
+  /// **'Kürbislaterne'**
+  String get itemKuerbislaterne;
+
+  /// No description provided for @itemGespenst.
+  ///
+  /// In de, this message translates to:
+  /// **'Gespenst'**
+  String get itemGespenst;
+
+  /// No description provided for @itemFledermaus.
+  ///
+  /// In de, this message translates to:
+  /// **'Fledermaus'**
+  String get itemFledermaus;
+
+  /// No description provided for @itemHexenhut.
+  ///
+  /// In de, this message translates to:
+  /// **'Hexenhut'**
+  String get itemHexenhut;
+
+  /// No description provided for @itemSpinne.
+  ///
+  /// In de, this message translates to:
+  /// **'Spinne'**
+  String get itemSpinne;
+
+  /// No description provided for @itemTotenkopf.
+  ///
+  /// In de, this message translates to:
+  /// **'Totenkopf'**
+  String get itemTotenkopf;
+
+  /// No description provided for @itemSchwarzeKatze.
+  ///
+  /// In de, this message translates to:
+  /// **'Schwarze Katze'**
+  String get itemSchwarzeKatze;
+
+  /// No description provided for @itemZaubertrank.
+  ///
+  /// In de, this message translates to:
+  /// **'Zaubertrank'**
+  String get itemZaubertrank;
+
+  /// No description provided for @itemSuessigkeiten.
+  ///
+  /// In de, this message translates to:
+  /// **'Süßigkeiten'**
+  String get itemSuessigkeiten;
+
+  /// No description provided for @itemHexenkessel.
+  ///
+  /// In de, this message translates to:
+  /// **'Hexenkessel'**
+  String get itemHexenkessel;
+
+  /// No description provided for @itemKostuemDino.
+  ///
+  /// In de, this message translates to:
+  /// **'Dino-Kostüm'**
+  String get itemKostuemDino;
+
+  /// No description provided for @itemKostuemGespenst.
+  ///
+  /// In de, this message translates to:
+  /// **'Gespenster-Kostüm'**
+  String get itemKostuemGespenst;
+
+  /// No description provided for @itemKostuemHexe.
+  ///
+  /// In de, this message translates to:
+  /// **'Hexen-Kostüm'**
+  String get itemKostuemHexe;
+
+  /// No description provided for @itemKostuemPirat.
+  ///
+  /// In de, this message translates to:
+  /// **'Piraten-Kostüm'**
+  String get itemKostuemPirat;
+
+  /// No description provided for @itemKostuemZauberer.
+  ///
+  /// In de, this message translates to:
+  /// **'Zauberer-Kostüm'**
+  String get itemKostuemZauberer;
+
+  /// No description provided for @itemKostuemMumie.
+  ///
+  /// In de, this message translates to:
+  /// **'Mumien-Kostüm'**
+  String get itemKostuemMumie;
+
+  /// No description provided for @settingsAutumnEffect.
+  ///
+  /// In de, this message translates to:
+  /// **'Herbst-Effekt'**
+  String get settingsAutumnEffect;
 }
 
 class _AppLocalizationsDelegate

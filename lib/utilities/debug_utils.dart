@@ -67,3 +67,19 @@ bool isEasterSeason() {
   return !today.isBefore(start) && !today.isAfter(end);
 }
 
+
+/// Prüft, ob aktuell Herbstzeit ist (1. September - 15. November)
+/// Steuert den Blätter-Effekt; die Herbst-Items tragen dasselbe Datumsfenster.
+bool isAutumnSeason() {
+  final now = getCurrentDate();
+  final date = now.month * 100 + now.day;
+  return date >= 901 && date <= 1115;
+}
+
+/// Prüft, ob aktuell Halloween-Zeit ist (15. Oktober - 2. November)
+/// In diesem Fenster mischen sich Fledermäuse und Gespenster unter die Blätter.
+bool isHalloweenSeason() {
+  final now = getCurrentDate();
+  final date = now.month * 100 + now.day;
+  return date >= 1015 && date <= 1102;
+}

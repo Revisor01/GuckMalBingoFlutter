@@ -390,5 +390,34 @@
         "type": "int"
       }
     }
-  }
+  },
+  "itemKuerbis": "Pompoen",
+  "itemLaub": "Herfstbladeren",
+  "itemEicheln": "Eikels",
+  "itemIgel": "Egel",
+  "itemPilze": "Paddenstoelen",
+  "itemEichhoernchen": "Eekhoorn",
+  "itemSchal": "Sjaal",
+  "itemApfelkorb": "Appels",
+  "itemEule": "Uil",
+  "itemKakao": "Warme chocolademelk",
+  "itemMuetze": "Muts",
+  "itemHerbstkranz": "Herfstkrans",
+  "itemKuerbislaterne": "Halloweenpompoen",
+  "itemGespenst": "Spook",
+  "itemFledermaus": "Vleermuis",
+  "itemHexenhut": "Heksenhoed",
+  "itemSpinne": "Spin",
+  "itemTotenkopf": "Doodshoofd",
+  "itemSchwarzeKatze": "Zwarte kat",
+  "itemZaubertrank": "Toverdrank",
+  "itemSuessigkeiten": "Snoep",
+  "itemHexenkessel": "Heksenketel",
+  "itemKostuemDino": "Dinokostuum",
+  "itemKostuemGespenst": "Spookkostuum",
+  "itemKostuemHexe": "Heksenkostuum",
+  "itemKostuemPirat": "Piratenkostuum",
+  "itemKostuemZauberer": "Tovenaarskostuum",
+  "itemKostuemMumie": "Mummiekostuum",
+  "settingsAutumnEffect": "Herfsteffect"
 }

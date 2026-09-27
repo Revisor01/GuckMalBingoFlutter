@@ -390,5 +390,34 @@
         "type": "int"
       }
     }
-  }
+  },
+  "itemKuerbis": "Pumpkin",
+  "itemLaub": "Autumn Leaves",
+  "itemEicheln": "Acorns",
+  "itemIgel": "Hedgehog",
+  "itemPilze": "Mushrooms",
+  "itemEichhoernchen": "Squirrel",
+  "itemSchal": "Scarf",
+  "itemApfelkorb": "Apples",
+  "itemEule": "Owl",
+  "itemKakao": "Hot Chocolate",
+  "itemMuetze": "Beanie",
+  "itemHerbstkranz": "Autumn Wreath",
+  "itemKuerbislaterne": "Jack-o'-Lantern",
+  "itemGespenst": "Ghost",
+  "itemFledermaus": "Bat",
+  "itemHexenhut": "Witch Hat",
+  "itemSpinne": "Spider",
+  "itemTotenkopf": "Skull",
+  "itemSchwarzeKatze": "Black Cat",
+  "itemZaubertrank": "Magic Potion",
+  "itemSuessigkeiten": "Candy",
+  "itemHexenkessel": "Cauldron",
+  "itemKostuemDino": "Dino Costume",
+  "itemKostuemGespenst": "Ghost Costume",
+  "itemKostuemHexe": "Witch Costume",
+  "itemKostuemPirat": "Pirate Costume",
+  "itemKostuemZauberer": "Wizard Costume",
+  "itemKostuemMumie": "Mummy Costume",
+  "settingsAutumnEffect": "Autumn Effect"
 }

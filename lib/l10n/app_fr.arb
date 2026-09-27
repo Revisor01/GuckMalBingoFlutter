@@ -390,5 +390,34 @@
         "type": "int"
       }
     }
-  }
+  },
+  "itemKuerbis": "Citrouille",
+  "itemLaub": "Feuilles d'automne",
+  "itemEicheln": "Glands",
+  "itemIgel": "Hérisson",
+  "itemPilze": "Champignons",
+  "itemEichhoernchen": "Écureuil",
+  "itemSchal": "Écharpe",
+  "itemApfelkorb": "Pommes",
+  "itemEule": "Hibou",
+  "itemKakao": "Chocolat chaud",
+  "itemMuetze": "Bonnet",
+  "itemHerbstkranz": "Couronne d'automne",
+  "itemKuerbislaterne": "Citrouille d'Halloween",
+  "itemGespenst": "Fantôme",
+  "itemFledermaus": "Chauve-souris",
+  "itemHexenhut": "Chapeau de sorcière",
+  "itemSpinne": "Araignée",
+  "itemTotenkopf": "Tête de mort",
+  "itemSchwarzeKatze": "Chat noir",
+  "itemZaubertrank": "Potion magique",
+  "itemSuessigkeiten": "Bonbons",
+  "itemHexenkessel": "Chaudron",
+  "itemKostuemDino": "Costume de dino",
+  "itemKostuemGespenst": "Costume de fantôme",
+  "itemKostuemHexe": "Costume de sorcière",
+  "itemKostuemPirat": "Costume de pirate",
+  "itemKostuemZauberer": "Costume de magicien",
+  "itemKostuemMumie": "Costume de momie",
+  "settingsAutumnEffect": "Effet d'automne"
 }

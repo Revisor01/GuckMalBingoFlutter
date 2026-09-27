@@ -390,5 +390,34 @@
         "type": "int"
       }
     }
-  }
+  },
+  "itemKuerbis": "Zucca",
+  "itemLaub": "Foglie d'autunno",
+  "itemEicheln": "Ghiande",
+  "itemIgel": "Riccio",
+  "itemPilze": "Funghi",
+  "itemEichhoernchen": "Scoiattolo",
+  "itemSchal": "Sciarpa",
+  "itemApfelkorb": "Mele",
+  "itemEule": "Gufo",
+  "itemKakao": "Cioccolata calda",
+  "itemMuetze": "Berretto",
+  "itemHerbstkranz": "Ghirlanda autunnale",
+  "itemKuerbislaterne": "Zucca di Halloween",
+  "itemGespenst": "Fantasma",
+  "itemFledermaus": "Pipistrello",
+  "itemHexenhut": "Cappello da strega",
+  "itemSpinne": "Ragno",
+  "itemTotenkopf": "Teschio",
+  "itemSchwarzeKatze": "Gatto nero",
+  "itemZaubertrank": "Pozione magica",
+  "itemSuessigkeiten": "Caramelle",
+  "itemHexenkessel": "Calderone",
+  "itemKostuemDino": "Costume da dinosauro",
+  "itemKostuemGespenst": "Costume da fantasma",
+  "itemKostuemHexe": "Costume da strega",
+  "itemKostuemPirat": "Costume da pirata",
+  "itemKostuemZauberer": "Costume da mago",
+  "itemKostuemMumie": "Costume da mummia",
+  "settingsAutumnEffect": "Effetto autunnale"
 }

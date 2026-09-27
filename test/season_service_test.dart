@@ -114,5 +114,50 @@ void main() {
       expect(notifyCount, greaterThan(0));
       expect(service.easterEffectEnabled, isFalse);
     });
+    test('isAutumn true and isHalloween false in mid-September', () {
+      debugOverrideDate = DateTime(2026, 9, 20);
+      final service = SeasonService();
+      expect(service.isAutumn, isTrue);
+      expect(service.isHalloween, isFalse);
+    });
+
+    test('isAutumn and isHalloween both true on October 31', () {
+      debugOverrideDate = DateTime(2026, 10, 31);
+      final service = SeasonService();
+      expect(service.isAutumn, isTrue);
+      expect(service.isHalloween, isTrue);
+    });
+
+    test('isAutumn false in July', () {
+      debugOverrideDate = DateTime(2026, 7, 15);
+      final service = SeasonService();
+      expect(service.isAutumn, isFalse);
+      expect(service.isHalloween, isFalse);
+      expect(service.shouldShowAutumnEffect, isFalse);
+    });
+
+    test('shouldShowAutumnEffect true in autumn with default setting', () {
+      debugOverrideDate = DateTime(2026, 10, 1);
+      final service = SeasonService();
+      expect(service.autumnEffectEnabled, isTrue);
+      expect(service.shouldShowAutumnEffect, isTrue);
+    });
+
+    test('setAutumnEffectEnabled(false) hides effect, persists and notifies', () async {
+      debugOverrideDate = DateTime(2026, 10, 1);
+      final service = SeasonService();
+      int notifyCount = 0;
+      service.addListener(() => notifyCount++);
+
+      await service.setAutumnEffectEnabled(false);
+
+      expect(notifyCount, 1);
+      expect(service.autumnEffectEnabled, isFalse);
+      expect(service.shouldShowAutumnEffect, isFalse);
+      expect(AppPreferences.instance.autumnEffectEnabled, isFalse);
+
+      await service.setAutumnEffectEnabled(true);
+      expect(AppPreferences.instance.autumnEffectEnabled, isTrue);
+    });
   });
 }

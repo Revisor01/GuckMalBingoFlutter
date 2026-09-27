@@ -1139,4 +1139,91 @@ class AppLocalizationsEs extends AppLocalizations {
   String sprintSkipCount(int count) {
     return '$count saltados';
   }
+
+  @override
+  String get itemKuerbis => 'Calabaza';
+
+  @override
+  String get itemLaub => 'Hojas de otoño';
+
+  @override
+  String get itemEicheln => 'Bellotas';
+
+  @override
+  String get itemIgel => 'Erizo';
+
+  @override
+  String get itemPilze => 'Setas';
+
+  @override
+  String get itemEichhoernchen => 'Ardilla';
+
+  @override
+  String get itemSchal => 'Bufanda';
+
+  @override
+  String get itemApfelkorb => 'Manzanas';
+
+  @override
+  String get itemEule => 'Búho';
+
+  @override
+  String get itemKakao => 'Chocolate caliente';
+
+  @override
+  String get itemMuetze => 'Gorro';
+
+  @override
+  String get itemHerbstkranz => 'Corona de otoño';
+
+  @override
+  String get itemKuerbislaterne => 'Calabaza de Halloween';
+
+  @override
+  String get itemGespenst => 'Fantasma';
+
+  @override
+  String get itemFledermaus => 'Murciélago';
+
+  @override
+  String get itemHexenhut => 'Sombrero de bruja';
+
+  @override
+  String get itemSpinne => 'Araña';
+
+  @override
+  String get itemTotenkopf => 'Calavera';
+
+  @override
+  String get itemSchwarzeKatze => 'Gato negro';
+
+  @override
+  String get itemZaubertrank => 'Poción mágica';
+
+  @override
+  String get itemSuessigkeiten => 'Caramelos';
+
+  @override
+  String get itemHexenkessel => 'Caldero';
+
+  @override
+  String get itemKostuemDino => 'Disfraz de dinosaurio';
+
+  @override
+  String get itemKostuemGespenst => 'Disfraz de fantasma';
+
+  @override
+  String get itemKostuemHexe => 'Disfraz de bruja';
+
+  @override
+  String get itemKostuemPirat => 'Disfraz de pirata';
+
+  @override
+  String get itemKostuemZauberer => 'Disfraz de mago';
+
+  @override
+  String get itemKostuemMumie => 'Disfraz de momia';
+
+  @override
+  String get settingsAutumnEffect => 'Efecto de otoño';
 }

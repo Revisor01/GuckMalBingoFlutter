@@ -5,7 +5,13 @@ Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokument
 Das Format basiert auf [Keep a Changelog 1.1.0](https://keepachangelog.com/de/1.1.0/),
 und dieses Projekt folgt [Semantic Versioning 2.0.0](https://semver.org/lang/de/).
 
-## [Unreleased]
+## [Unreleased] - 2.1.0
+
+### Added
+- Herbst-Special (1. September bis 15. November): zwölf neue Herbst-Items wie Kürbis, Igel, Eichhörnchen, Pilze und buntes Laub
+- Halloween-Special (15. Oktober bis 2. November): zehn Halloween-Items wie Kürbislaterne, Fledermaus und Hexenhut sowie sechs Kostüme zum Entdecken
+- Fallende Herbstblätter als Effekt, zur Halloween-Zeit fliegen zwischendurch Fledermäuse und Gespenster durchs Bild
+- Schalter für den Herbst-Effekt in der Theme-Auswahl
 
 ### Changed
 - `.gitignore` erweitert (Signing-Material, Build-Artefakte, Grafik-Quellen, Tooling-Debug)

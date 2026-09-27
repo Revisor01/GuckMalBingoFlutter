@@ -78,7 +78,7 @@ class AppPreferences {
 
   /// Lädt alle bekannten Keys in den Cache für synchronen Zugriff
   Future<void> _loadCache() async {
-    for (final key in ['snowfallEnabled', 'easterEffectEnabled', 'hasSeenOnboarding', 'backgroundTheme', 'savedGameState', 'savedDuellState', 'savedSprintState']) {
+    for (final key in ['snowfallEnabled', 'easterEffectEnabled', 'autumnEffectEnabled', 'hasSeenOnboarding', 'backgroundTheme', 'savedGameState', 'savedDuellState', 'savedSprintState']) {
       _cache[key] = await _storage.read(key: key);
     }
   }
@@ -97,6 +97,13 @@ class AppPreferences {
   Future<void> setEasterEffectEnabled(bool value) async {
     _cache['easterEffectEnabled'] = value.toString();
     await _storage.write(key: 'easterEffectEnabled', value: value.toString());
+  }
+
+  // Autumn Effect
+  bool get autumnEffectEnabled => _cache['autumnEffectEnabled'] != 'false'; // Default true
+  Future<void> setAutumnEffectEnabled(bool value) async {
+    _cache['autumnEffectEnabled'] = value.toString();
+    await _storage.write(key: 'autumnEffectEnabled', value: value.toString());
   }
 
   // Background Theme

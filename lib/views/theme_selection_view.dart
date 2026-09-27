@@ -190,6 +190,48 @@ class _ThemeSelectionViewState extends State<ThemeSelectionView> {
                       const SizedBox(height: 30),
                     ],
 
+                    // Herbst-Effekt-Toggle (nur in der Herbstzeit)
+                    if (season.isAutumn) ...[
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 30),
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
+                          decoration: BoxDecoration(
+                            color: brightness == Brightness.dark
+                                ? Colors.white.withValues(alpha:0.15)
+                                : Colors.white.withValues(alpha:0.25),
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: Row(
+                            children: [
+                              const Icon(
+                                Icons.eco,
+                                size: 28,
+                                color: Color(0xFFFF8C00),
+                              ),
+                              const SizedBox(width: 16),
+                              Expanded(
+                                child: Text(
+                                  AppLocalizations.of(context)!.settingsAutumnEffect,
+                                  style: const TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                              Switch(
+                                value: season.autumnEffectEnabled,
+                                onChanged: (enabled) => season.setAutumnEffectEnabled(enabled),
+                                activeTrackColor: const Color(0xFFFF8C00),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 30),
+                    ],
+
                     // Theme Buttons (Saisonale Themes nur in jeweiliger Saison)
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 30),
