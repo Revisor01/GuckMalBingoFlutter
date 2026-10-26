@@ -86,3 +86,12 @@ first violation, the rights are reinstated.
 ## 8. Applicable law
 
 German law applies.
+
+## 9. Scope and contributions
+
+These terms apply to every version of this source code, including earlier
+ones, and replace all earlier license statements. Rights that someone can
+show they validly acquired before remain unaffected.
+
+Contributions from outside are not accepted. Suggestions and bug reports are
+welcome as issues; any implementation is done by the author.
