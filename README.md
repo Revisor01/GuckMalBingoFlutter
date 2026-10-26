@@ -104,8 +104,9 @@ flutter run
 
 Fehlermeldungen und Vorschläge sind willkommen, bitte als
 [Issue](../../issues/new/choose). Sicherheitslücken bitte vertraulich melden,
-wie in [SECURITY.md](SECURITY.md) beschrieben. Pull Requests von außen werden
-nicht übernommen; warum, steht in [CONTRIBUTING.md](CONTRIBUTING.md).
+wie in [SECURITY.md](SECURITY.md) beschrieben. Pull Requests sind willkommen;
+was dabei für die Rechte an deinem Beitrag gilt, steht in
+[CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Lizenz
 

@@ -101,8 +101,9 @@ flutter run
 
 Bug reports and suggestions are welcome as an [issue](../../issues/new/choose).
 Please report security issues privately as described in
-[SECURITY.md](SECURITY.md). Pull requests from outside are not accepted; see
-[CONTRIBUTING.md](CONTRIBUTING.md) for why.
+[SECURITY.md](SECURITY.md). Pull requests are welcome;
+[CONTRIBUTING.md](CONTRIBUTING.md) explains what applies to the rights in your
+contribution.
 
 ## License
 
