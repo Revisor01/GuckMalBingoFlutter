@@ -6,7 +6,7 @@
 
 <p align="center">
   Bingo für Kinder und Familien unterwegs: Wer sieht zuerst die Kuh,<br>
-  die Brücke oder den Kirchturm?
+  die Brücke oder das Windrad?
 </p>
 
 <p align="center">

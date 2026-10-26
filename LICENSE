@@ -4,14 +4,14 @@ Copyright (c) 2025-2026 Simon Luthe
 QUELLOFFEN ZUR EINSICHT — NUTZUNG NUR MIT SCHRIFTLICHER ERLAUBNIS
 
 Der Quelltext jeder veroeffentlichten Version dieser Software ist
-oeffentlich einsehbar. Wer nachlesen will, wie Guck mal! – Reise Bingo arbeitet,
-welche Daten es verarbeitet und wie es gesichert ist, soll das jederzeit
-tun koennen. Diese Offenheit ist gewollt.
+oeffentlich einsehbar. Wer nachlesen will, wie die App arbeitet, welche
+Daten sie verarbeitet und wie sie gesichert ist, soll das jederzeit tun
+koennen. Diese Offenheit ist gewollt.
 
-Einsehen ist aber nicht dasselbe wie Betreiben. Der produktive Einsatz
-dieser Software — fuer eine Gemeinde, einen Kirchenkreis, eine
-Landeskirche oder sonst jemanden — bedarf einer schriftlichen
-Vereinbarung mit dem Urheber.
+Einsehen ist aber nicht dasselbe wie Nutzen. Gespielt wird mit der App
+aus dem App Store oder von Google Play. Wer die Software selbst baut und
+nutzt, veroeffentlicht oder in eigene Software uebernimmt, braucht dafuer
+eine schriftliche Vereinbarung mit dem Urheber.
 
 Kontakt: mail@simonluthe.de
 
@@ -40,19 +40,17 @@ Ohne gesonderte Vereinbarung duerfen Sie:
 Einer vorherigen schriftlichen Vereinbarung mit dem Urheber bedarf
 insbesondere:
 
-  a) der Betrieb der Software fuer echte Nutzerinnen und Nutzer,
-     gleich ob entgeltlich oder unentgeltlich;
+  a) das Bauen und Nutzen einer eigenen Fassung ueber Abschnitt 1
+     hinaus, auch im privaten Kreis;
 
-  b) der Betrieb als Dienst fuer Personen ausserhalb der eigenen
-     Organisation;
+  b) die Veroeffentlichung der Software oder veraenderter Fassungen,
+     insbesondere in App Stores, gleich ob entgeltlich oder unentgeltlich;
 
   c) die Weitergabe der Software oder veraenderter Fassungen an Dritte;
 
   d) die Nutzung von Teilen des Quelltextes in anderer Software.
 
 Dies gilt unabhaengig davon, ob die Nutzung kommerziell erfolgt.
-Auch kirchliche, gemeinnuetzige und oeffentliche Einrichtungen fallen
-hierunter.
 
 
 ================================================================================
@@ -62,7 +60,7 @@ hierunter.
 Vereinbarungen nach Abschnitt 2 werden einzeln getroffen. Der Urheber
 erteilt sie nach eigenem Ermessen; ein Anspruch darauf besteht nicht.
 
-Eine erteilte Erlaubnis gilt nur fuer die darin genannte Einrichtung,
+Eine erteilte Erlaubnis gilt nur fuer die darin genannte Person,
 den genannten Umfang und den genannten Zeitraum. Sie ist nicht
 uebertragbar, soweit nichts anderes vereinbart ist.
 
@@ -71,7 +69,7 @@ uebertragbar, soweit nichts anderes vereinbart ist.
 4. URHEBERVERMERK
 ================================================================================
 
-In jeder erlaubten Fassung und in jedem erlaubten Betrieb bleibt der
+In jeder erlaubten Fassung und in jeder erlaubten Nutzung bleibt der
 Urhebervermerk erhalten:
 
   Guck mal! – Reise Bingo — Copyright (c) 2025-2026 Simon Luthe

@@ -9,13 +9,14 @@ Copyright (c) 2025-2026 Simon Luthe
 **SOURCE AVAILABLE FOR INSPECTION — USE ONLY WITH WRITTEN PERMISSION**
 
 The source code of every published version of this software is publicly
-available. Anyone who wants to read how Guck mal! – Reise Bingo works, which data it processes
-and how it is secured should be able to do so at any time. This openness is
-intentional.
+available. Anyone who wants to read how the app works, which data it
+processes and how it is secured should be able to do so at any time. This
+openness is intentional.
 
-Inspecting is not the same as operating, however. Productive use of this
-software — for a parish, a church district, a regional church or anyone
-else — requires a written agreement with the author.
+Inspecting is not the same as using, however. To play, use the app from the
+App Store or Google Play. Anyone who builds and uses the software themselves,
+publishes it or incorporates it into their own software needs a written
+agreement with the author.
 
 Contact: mail@simonluthe.de
 
@@ -36,28 +37,29 @@ d) report on, quote and discuss the software.
 
 A prior written agreement with the author is required in particular for:
 
-a) operating the software for real users, whether paid or free of charge;
+a) building and using a version of your own beyond section 1, including
+   within your private circle;
 
-b) operating it as a service for persons outside your own organisation;
+b) publishing the software or modified versions, in particular in app
+   stores, whether paid or free of charge;
 
 c) passing the software or modified versions on to third parties;
 
 d) using parts of the source code in other software.
 
-This applies regardless of whether the use is commercial. Church,
-non-profit and public institutions are included.
+This applies regardless of whether the use is commercial.
 
 ## 3. Agreements
 
 Agreements under section 2 are made individually. The author grants them at
 his own discretion; there is no entitlement to them.
 
-A permission applies only to the institution, scope and period named in it.
+A permission applies only to the person, scope and period named in it.
 It is not transferable unless agreed otherwise.
 
 ## 4. Copyright notice
 
-In every permitted version and every permitted operation the copyright
+In every permitted version and every permitted use the copyright
 notice is retained:
 
     Guck mal! – Reise Bingo — Copyright (c) 2025-2026 Simon Luthe
