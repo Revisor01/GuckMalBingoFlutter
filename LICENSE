@@ -1,119 +1,115 @@
-SOURCE-AVAILABLE LICENSE — PRIVATE USE ONLY
+Guck mal! – Reise Bingo
+Copyright (c) 2025-2026 Simon Luthe
 
-Copyright (c) 2025-2026 Simon Luthe / Revisor. Alle Rechte vorbehalten.
+QUELLOFFEN ZUR EINSICHT — NUTZUNG NUR MIT SCHRIFTLICHER ERLAUBNIS
 
-Der Quellcode dieses Projekts ist öffentlich einsehbar. Er ist jedoch KEINE
-Open-Source-Software im Sinne der Open Source Initiative: die unten genannten
-Einschränkungen gelten.
+Der Quelltext jeder veroeffentlichten Version dieser Software ist
+oeffentlich einsehbar. Wer nachlesen will, wie Guck mal! – Reise Bingo arbeitet,
+welche Daten es verarbeitet und wie es gesichert ist, soll das jederzeit
+tun koennen. Diese Offenheit ist gewollt.
 
-(An English translation follows below. In case of doubt, the German text governs.)
+Einsehen ist aber nicht dasselbe wie Betreiben. Der produktive Einsatz
+dieser Software — fuer eine Gemeinde, einen Kirchenkreis, eine
+Landeskirche oder sonst jemanden — bedarf einer schriftlichen
+Vereinbarung mit dem Urheber.
 
-
-ERLAUBT IST
-
-1. Den Quellcode anzusehen, zu lesen und daraus zu lernen.
-
-2. Den Quellcode für rein private, nicht-kommerzielle Zwecke zu kopieren,
-   zu verändern und zu bauen — einschließlich der Installation der selbst
-   gebauten App auf eigenen Geräten.
-
-3. Änderungen als Pull Request oder Patch an den Rechteinhaber zurückzugeben.
-
-
-NICHT ERLAUBT IST
-
-4. Jede kommerzielle Nutzung, gleich welcher Art.
-
-5. Die Verbreitung an Dritte — insbesondere die Veröffentlichung des Programms
-   oder abgeleiteter Werke in App Stores, auf Websites oder über sonstige
-   Vertriebswege, entgeltlich oder unentgeltlich.
-
-6. Die Weiterlizenzierung, der Verkauf oder die Vermietung der Software oder
-   abgeleiteter Werke.
-
-7. Das Entfernen oder Verändern von Urheberrechtshinweisen.
-
-
-NICHT VON DIESER LIZENZ ERFASST
-
-8. Diese Lizenz gilt ausschließlich für den Quellcode.
-
-   Ausdrücklich NICHT erfasst und vollständig vorbehalten sind:
-
-   - alle Grafiken, Bilder und Icons (u. a. in assets/images/)
-   - alle Audiodateien (u. a. in assets/sounds/)
-   - der Name und die Wortmarke "Guck mal!" sowie "Reise Bingo"
-   - App-Icons, Store-Assets und sonstiges Marketing-Material
-
-   Diese Inhalte dürfen ohne ausdrückliche schriftliche Zustimmung des
-   Rechteinhabers weder genutzt noch vervielfältigt oder verbreitet werden —
-   auch nicht im Rahmen der oben unter Ziffer 2 erlaubten privaten Nutzung
-   in einer weitergegebenen Form.
-
-9. Schriften und Bibliotheken von Drittanbietern unterliegen ihren jeweils
-   eigenen Lizenzen.
-
-
-GEWÄHRLEISTUNGSAUSSCHLUSS
-
-DIE SOFTWARE WIRD OHNE MÄNGELGEWÄHR ("AS IS") BEREITGESTELLT, OHNE JEGLICHE
-AUSDRÜCKLICHE ODER STILLSCHWEIGENDE GEWÄHRLEISTUNG, EINSCHLIESSLICH, ABER NICHT
-BESCHRÄNKT AUF DIE GEWÄHRLEISTUNG DER MARKTGÄNGIGKEIT, DER EIGNUNG FÜR EINEN
-BESTIMMTEN ZWECK UND DER NICHTVERLETZUNG VON RECHTEN DRITTER. DIE AUTOREN ODER
-RECHTEINHABER HAFTEN NICHT FÜR ANSPRÜCHE, SCHÄDEN ODER SONSTIGE
-VERPFLICHTUNGEN, GLEICH OB AUS VERTRAG, UNERLAUBTER HANDLUNG ODER ANDERWEITIG,
-DIE SICH AUS DER SOFTWARE ODER DEREN NUTZUNG ERGEBEN.
-
-
-Anfragen zu abweichenden Nutzungsrechten: simon@revisor.de
+Kontakt: mail@simonluthe.de
 
 
 ================================================================================
-ENGLISH TRANSLATION (non-binding — the German text above governs)
+1. WAS OHNE WEITERES ERLAUBT IST
 ================================================================================
 
-SOURCE-AVAILABLE LICENSE — PRIVATE USE ONLY
+Ohne gesonderte Vereinbarung duerfen Sie:
 
-Copyright (c) 2025-2026 Simon Luthe / Revisor. All rights reserved.
+  a) den Quelltext lesen, herunterladen und studieren;
 
-The source code of this project is publicly viewable. It is NOT open source
-software as defined by the Open Source Initiative; the restrictions below apply.
+  b) die Software zu eigenen Lern-, Pruef- und Forschungszwecken auf
+     eigenen Geraeten ausfuehren, solange dabei keine Daten Dritter
+     verarbeitet werden;
 
-PERMITTED
+  c) Sicherheitsluecken und Fehler suchen und melden;
 
-1. Viewing, reading and learning from the source code.
+  d) ueber die Software berichten, sie zitieren und besprechen.
 
-2. Copying, modifying and building the source code for strictly private,
-   non-commercial purposes — including installing your own build on your own
-   devices.
 
-3. Contributing changes back to the copyright holder as a pull request or patch.
+================================================================================
+2. WAS EINER VEREINBARUNG BEDARF
+================================================================================
 
-NOT PERMITTED
+Einer vorherigen schriftlichen Vereinbarung mit dem Urheber bedarf
+insbesondere:
 
-4. Any commercial use whatsoever.
+  a) der Betrieb der Software fuer echte Nutzerinnen und Nutzer,
+     gleich ob entgeltlich oder unentgeltlich;
 
-5. Distribution to third parties — in particular publishing the program or
-   derivative works in app stores, on websites or through any other channel,
-   whether for a fee or free of charge.
+  b) der Betrieb als Dienst fuer Personen ausserhalb der eigenen
+     Organisation;
 
-6. Sublicensing, selling or renting the software or derivative works.
+  c) die Weitergabe der Software oder veraenderter Fassungen an Dritte;
 
-7. Removing or altering copyright notices.
+  d) die Nutzung von Teilen des Quelltextes in anderer Software.
 
-NOT COVERED BY THIS LICENSE
+Dies gilt unabhaengig davon, ob die Nutzung kommerziell erfolgt.
+Auch kirchliche, gemeinnuetzige und oeffentliche Einrichtungen fallen
+hierunter.
 
-8. This license covers the source code only. Expressly excluded and fully
-   reserved are: all graphics, images and icons (including assets/images/),
-   all audio files (including assets/sounds/), the name and word mark
-   "Guck mal!" and "Reise Bingo", app icons, store assets and other marketing
-   material. These may not be used, reproduced or distributed without the
-   copyright holder's express written consent.
 
-9. Third-party fonts and libraries are subject to their own licenses.
+================================================================================
+3. VEREINBARUNGEN
+================================================================================
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED. THE AUTHORS OR COPYRIGHT HOLDERS SHALL NOT BE LIABLE FOR ANY CLAIM,
-DAMAGES OR OTHER LIABILITY ARISING FROM THE SOFTWARE OR ITS USE.
+Vereinbarungen nach Abschnitt 2 werden einzeln getroffen. Der Urheber
+erteilt sie nach eigenem Ermessen; ein Anspruch darauf besteht nicht.
 
-Licensing inquiries: simon@revisor.de
+Eine erteilte Erlaubnis gilt nur fuer die darin genannte Einrichtung,
+den genannten Umfang und den genannten Zeitraum. Sie ist nicht
+uebertragbar, soweit nichts anderes vereinbart ist.
+
+
+================================================================================
+4. URHEBERVERMERK
+================================================================================
+
+In jeder erlaubten Fassung und in jedem erlaubten Betrieb bleibt der
+Urhebervermerk erhalten:
+
+  Guck mal! – Reise Bingo — Copyright (c) 2025-2026 Simon Luthe
+  mail@simonluthe.de
+
+
+================================================================================
+5. KEINE MARKENRECHTE
+================================================================================
+
+Diese Lizenz erteilt keine Rechte an den Namen "Guck mal!", an Logos, Grafiken,
+Sounds oder sonstigen Kennzeichen.
+
+
+================================================================================
+6. GEWAEHRLEISTUNG UND HAFTUNG
+================================================================================
+
+Die Software wird ohne jede Gewaehr bereitgestellt. Der Urheber haftet
+nicht fuer Schaeden, die aus ihrer Nutzung entstehen, soweit gesetzlich
+zulaessig. Insbesondere wird keine Verfuegbarkeit, Fehlerfreiheit oder
+Eignung fuer einen bestimmten Zweck zugesichert.
+
+Diese Beschraenkung gilt nicht bei Vorsatz und grober Fahrlaessigkeit
+sowie bei der Verletzung von Leben, Koerper und Gesundheit.
+
+
+================================================================================
+7. BEENDIGUNG
+================================================================================
+
+Wer gegen diese Bedingungen verstoesst, verliert die daraus folgenden
+Rechte. Wird der Verstoss innerhalb von 30 Tagen nach Kenntnis
+abgestellt und ist es der erste Verstoss, leben die Rechte wieder auf.
+
+
+================================================================================
+8. ANWENDBARES RECHT
+================================================================================
+
+Es gilt deutsches Recht.

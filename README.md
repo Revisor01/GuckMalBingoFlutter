@@ -89,14 +89,16 @@ flutter clean && flutter pub get
 
 ## Lizenz
 
-Source-available, **keine** Open-Source-Lizenz. Kurzfassung:
+**Quelloffen zur Einsicht — Nutzung nur mit schriftlicher Erlaubnis.**
+Der vollständige Text steht in [LICENSE](LICENSE), eine englische Übersetzung
+in [LICENSE.en.md](LICENSE.en.md) (maßgeblich ist die deutsche Fassung).
 
-- ✅ Ansehen, daraus lernen, für dich selbst bauen und auf deinen eigenen Geräten nutzen
-- ❌ Kommerzielle Nutzung, Weitergabe an Dritte, Veröffentlichung in App Stores
-- ❌ Grafiken, Sounds und der Name "Guck mal!" sind **nicht** mitlizenziert — die bleiben vorbehalten
-
-Wer die App selbst bauen möchte: gern. Wer sie veröffentlichen möchte: bitte vorher fragen.
-Verbindlich ist der Text in [LICENSE](LICENSE).
+- **Ohne Weiteres erlaubt:** lesen, herunterladen, studieren, zu Lern- und
+  Prüfzwecken auf eigenen Geräten ausführen, Fehler melden, darüber berichten.
+- **Braucht eine Vereinbarung:** der Betrieb für echte Nutzer:innen, die
+  Weitergabe an Dritte und in App Stores, die Verwendung von Teilen des Codes
+  in anderer Software.
+- Grafiken, Sounds und der Name „Guck mal!“ sind nicht mitlizenziert.
 
 ## Autor
 

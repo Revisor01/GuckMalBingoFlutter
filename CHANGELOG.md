@@ -5,6 +5,11 @@ Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokument
 Das Format basiert auf [Keep a Changelog 1.1.0](https://keepachangelog.com/de/1.1.0/),
 und dieses Projekt folgt [Semantic Versioning 2.0.0](https://semver.org/lang/de/).
 
+## [Unreleased]
+
+### Changed
+- Neue Lizenz: Der Quelltext bleibt einsehbar, das eigene Bauen und Nutzen braucht jetzt aber wie jeder Betrieb eine schriftliche Erlaubnis.
+
 ## [2.1.0] — 2026-09-27
 
 ### Added
