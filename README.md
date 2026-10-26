@@ -1,8 +1,10 @@
 # Guck mal! – Reise Bingo
 
+**Deutsch** · [English](README.en.md)
+
 Eine Bingo-App für Kinder und Familien auf Reisen. Auf einem Raster stehen Dinge, die es unterwegs zu entdecken gibt — wer sie sieht, tippt sie an.
 
-Live im App Store und bei Google Play (Package `de.revisor.guckmalreisebingo`), aktuell in Version 2.0.2 (Build 38).
+Live im App Store und bei Google Play (Package `de.revisor.guckmalreisebingo`). Was sich in welcher Version geändert hat, steht im [CHANGELOG](CHANGELOG.md).
 
 ## Features
 
@@ -85,7 +87,7 @@ flutter clean && flutter pub get
 # In Xcode: Clean Build Folder (Cmd+Shift+K), dann Archive
 ```
 
-**Grafiken** (Store-Screenshots, Marketing-Material) gehören nicht in dieses Repo, sondern in `der Grafikablage` (Projekt `guckmal.json`).
+**Grafiken** (Store-Screenshots, Marketing-Material, Bildquellen) werden außerhalb dieses Repos gepflegt.
 
 ## Lizenz
 
@@ -99,6 +101,13 @@ in [LICENSE.en.md](LICENSE.en.md) (maßgeblich ist die deutsche Fassung).
   Weitergabe an Dritte und in App Stores, die Verwendung von Teilen des Codes
   in anderer Software.
 - Grafiken, Sounds und der Name „Guck mal!“ sind nicht mitlizenziert.
+
+## Mitmachen
+
+Fehlermeldungen und Vorschläge sind willkommen, bitte als
+[Issue](../../issues/new/choose). Sicherheitslücken bitte vertraulich melden,
+wie in [SECURITY.md](SECURITY.md) beschrieben. Mehr in
+[CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Autor
 

@@ -1,78 +1,38 @@
-# CLAUDE.md
+# Hinweise für Coding-Agenten
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+Projektanweisungen, Übergaben und Betriebswissen liegen nicht in diesem
+Repository, sondern in einer privaten Ablage des Autors. Wer ohne diese Ablage
+arbeitet, hält sich an die folgenden Regeln.
 
-## Build Commands
+## Grundsätze
 
-```bash
-# Install dependencies
-flutter pub get
+- Änderungen nur über einen Pull Request auf `main`. Ein Thema pro PR.
+- Commits nach [Conventional Commits](https://www.conventionalcommits.org/de/),
+  Betreff im Präsens, höchstens 72 Zeichen, auf Deutsch oder Englisch.
+- Jede Änderung, die Nutzer:innen bemerken, kommt im selben PR in
+  `CHANGELOG.md` unter `[Unreleased]`
+  ([Keep a Changelog](https://keepachangelog.com/de/1.1.0/)).
+- Neues Verhalten bekommt einen Test, eine Fehlerbehebung zuerst den Test, der
+  den Fehler zeigt.
+- Keine neuen Abhängigkeiten ohne Rücksprache.
+- In dieses Repository gehören keine Zugangsdaten, Hostnamen privater Server,
+  lokalen Pfade, Testkonten oder Arbeitsnotizen, auch nicht in
+  Commit-Nachrichten, PR-Texten oder Kommentaren. Der Secret-Scan in CI prüft
+  das.
 
-# Run the app (debug)
-flutter run
+## Kommentare
 
-# Build iOS release
-flutter build ios --release
+Ein Kommentar sagt, warum etwas so ist, nicht was der Code tut oder wie es
+früher war. Höchstens drei Zeilen; was mehr braucht, gehört in die
+Commit-Nachricht oder nach `docs/`. Keine Hostnamen, IPs oder Serverdetails,
+kein `TODO` ohne Issue-Nummer, kein auskommentierter Code.
 
-# Build Android APK
-flutter build apk --release
+## In English
 
-# Run tests
-flutter test
-
-# Generate localization files
-flutter gen-l10n
-```
-
-## Architecture
-
-Flutter-App mit MVVM-Architektur für ein Reise-Bingo-Spiel (Kinder/Familien).
-
-### Struktur
-
-- **lib/main.dart** - App-Entry-Point mit `NavigationCoordinator` für den gesamten Navigationsfluss: Mode → [Target if Jagd] → Category → [Season] → Area → Size → Game
-- **lib/viewmodels/** - ChangeNotifier-basierte ViewModels (aktuell nur `BingoGameViewModel`)
-- **lib/models/** - Datenmodelle: `GameConfig`, `BingoItem`, `Area`, `Season`, `GameMode`, `CategoryTheme`, `BackgroundTheme`
-- **lib/views/** - Flutter Widgets/Screens
-- **lib/data/bingo_items_data.dart** - Alle 206 Bingo-Items mit Lokalisierung und saisonaler Filterung
-- **lib/utilities/** - Hilfsklassen (Audio, Farben, Responsive Text, Lokalisierung)
-- **lib/l10n/** - Lokalisierungsdateien (6 Sprachen: DE, EN, ES, FR, IT, NL)
-
-### Spielmodi
-
-- **Suche** - Unbegrenztes Spielen, alle Items finden
-- **Jagd** - Ziel-Bingos erreichen (1-5)
-
-### Saisonale Features
-
-- Frühling/Sommer und Herbst/Winter Items
-- Weihnachts-Special (1. Dez - 6. Jan): Schneefalleffekt, spezielle Sounds, Weihnachts-Items
-
-### Lokalisierung
-
-ARB-Dateien unter `lib/l10n/`, Template ist `app_de.arb`. Nach Änderungen: `flutter gen-l10n`
-
-## Android
-
-Package-Name: `de.revisor.guckmalreisebingo`
-
-## iOS
-
-Bundle-ID konfiguriert für App Store Release
-
-## Git Workflow
-
-Regelmäßig committen und pushen. Git-Zugangsdaten sind global konfiguriert.
-
-## Bekannte Probleme
-
-### iOS Codesigning-Fehler: "resource fork, Finder information, or similar detritus not allowed"
-
-Lösung:
-```bash
-xattr -cr ./ios
-xattr -cr ./assets
-flutter clean
-flutter pub get
-# In Xcode: Clean Build Folder (Cmd+Shift+K), dann Archive
-```
+Project instructions and handover notes are kept outside this repository.
+Without them: changes only via pull request to `main`, one topic each;
+Conventional Commits in English or German; user-visible changes go into
+`CHANGELOG.md` under `[Unreleased]`; new behaviour gets a test, a bug fix
+first gets the test that shows the bug; no new dependencies without asking;
+no credentials, private hostnames, local paths, test accounts or work notes
+anywhere in the repository. Comments explain why, at most three lines.
