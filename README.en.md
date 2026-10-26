@@ -6,7 +6,7 @@
 
 <p align="center">
   Bingo for children and families on the road: who spots the cow,<br>
-  the bridge or the church tower first?
+  the bridge or the wind turbine first?
 </p>
 
 <p align="center">
