@@ -1,93 +1,111 @@
-# Guck mal! – Reise Bingo
+<p align="center">
+  <img src="ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-Guck-mal.png" alt="Guck mal!" width="128" height="128">
+</p>
 
-**Deutsch** · [English](README.en.md)
+<h1 align="center">Guck mal! – Reise Bingo</h1>
 
-Eine Bingo-App für Kinder und Familien auf Reisen. Auf einem Raster stehen Dinge, die es unterwegs zu entdecken gibt — wer sie sieht, tippt sie an.
+<p align="center">
+  Bingo für Kinder und Familien unterwegs: Wer sieht zuerst die Kuh,<br>
+  die Brücke oder den Kirchturm?
+</p>
 
-Live im App Store und bei Google Play (Package `de.revisor.guckmalreisebingo`). Was sich in welcher Version geändert hat, steht im [CHANGELOG](CHANGELOG.md).
+<p align="center">
+  <b>Deutsch</b> · <a href="README.en.md">English</a>
+</p>
 
-## Features
+<p align="center">
+  <img src="https://img.shields.io/badge/Plattform-iOS%20%C2%B7%20Android-blue" alt="Plattform">
+  <img src="https://img.shields.io/badge/Flutter-Dart-02569B?logo=flutter" alt="Flutter">
+  <img src="https://img.shields.io/badge/Lizenz-zur%20Einsicht-lightgrey" alt="Lizenz">
+</p>
 
-- 🎮 **Drei Spielmodi**: Suche (unbegrenzt), Jagd (Ziel-Bingos 1–5), Sprint (auf Zeit, jeder auf dem eigenen Gerät)
-- 🗺️ **7 Bereiche**: Autobahn, Land, Stadt, Zug, Kirche, Zuhause, Zoo
-- 🌸 **Saisonale Items**: eigene Sets für Frühling/Sommer und Herbst/Winter
-- 🐣 **Oster-Special**: Oster-Theme mit Blütenblatt-Effekt, Osterdatum wird berechnet
-- 🎄 **Weihnachts-Special** (1. Dez – 6. Jan): Schneefall, Weihnachts-Theme, Glocken-Sounds, saisonale Items
-- 🌍 **6 Sprachen**: Deutsch, Englisch, Spanisch, Französisch, Italienisch, Niederländisch
-- ♿ **Barrierefrei**: Semantics-Labels für Screenreader
-- 📱 **iOS und Android**
+## Worum es geht
 
-## Technologie
+Lange Autofahrten, Zugreisen, Wartezeiten: Guck mal! macht aus dem Blick aus
+dem Fenster ein Spiel. Auf einem Raster stehen Dinge, die es unterwegs zu
+entdecken gibt. Wer eines sieht, tippt es an; eine volle Reihe ist ein Bingo.
 
-- Flutter 3.44 / Dart, MVVM-Architektur
-- Zustand über `ChangeNotifier` + Provider (`SeasonService`, `ThemeNotifier`)
-- Spielstand-Persistenz via `flutter_secure_storage`
-- Keine externe Datenerhebung — bewusst kein Crash-Reporting, da Kinder-App
+Die App ist für Kinder gemacht. Sie kommt ohne Konto, ohne Werbung, ohne
+Tracking und ohne Internetverbindung aus.
 
-## Struktur
+## Funktionen
+
+- **Drei Spielmodi:** Suche ohne Zeitdruck, Jagd auf ein Ziel von ein bis fünf
+  Bingos, Sprint auf Zeit, jede und jeder auf dem eigenen Gerät
+- **Sieben Orte:** Autobahn, Land, Stadt, Zug, Kirche, Zuhause, Zoo
+- **Rund 250 Dinge zum Entdecken**, mit Bild und je nach Jahreszeit
+  ausgewählt: Frühling und Sommer, Herbst und Winter
+- **Feste im Jahr:** eigene Dinge, Farben und Effekte zu Ostern, im Herbst,
+  zu Halloween und zu Weihnachten
+- **Sechs Sprachen:** Deutsch, Englisch, Spanisch, Französisch, Italienisch,
+  Niederländisch
+- **Barrierearm:** Beschriftungen für Screenreader
+
+## Installation
+
+[**App Store**](https://apps.apple.com/de/app/id6755447380) ·
+[**Google Play**](https://play.google.com/store/apps/details?id=de.revisor.guckmalreisebingo)
+
+Die App kostet einmalig 0,99 €. Es gibt keine Käufe in der App und kein Abo.
+
+## Warum der Quelltext offen ist
+
+Eltern sollen nachsehen können, was eine App auf dem Gerät ihrer Kinder tut.
+Hier steht der ganze Quelltext der App, so wie sie im Store liegt. Wer selbst
+programmiert oder jemanden fragt, der es tut, kann nachprüfen, was unten unter
+Datenschutz steht.
+
+## Datenschutz
+
+- **Keine Daten verlassen das Gerät.** Die App sendet nichts an einen Server,
+  auch nicht an den Entwickler. Es gibt keine Analyse, keine Absturzberichte
+  und keine Werbenetzwerke.
+- **Keine Berechtigungen:** kein Standort, keine Kamera, kein Mikrofon, keine
+  Kontakte.
+- **Gespeichert wird nur auf dem Gerät:** der laufende Spielstand und die
+  Einstellungen.
+- Links in den Einstellungen (Datenschutzerklärung, Impressum, Bewerten)
+  öffnen sich erst nach einem Tipp im Browser oder Store.
+
+Die vollständige Datenschutzerklärung steht auf
+[simonluthe.de](https://simonluthe.de/apps/guckmal/datenschutz/).
+
+## Versionen
+
+Was sich wann geändert hat, steht in [CHANGELOG.md](CHANGELOG.md). Die
+[Releases](https://github.com/Revisor01/GuckMalBingoFlutter/releases) fassen
+jede Version zusammen.
+
+## Aufbau
+
+Flutter-App für iOS und Android, eine Codebasis.
 
 ```
 lib/
-├── main.dart              NavigationCoordinator: Mode → [Ziel] → Kategorie → [Saison] → Bereich → Größe → Spiel
-├── models/                GameConfig, BingoItem, Area, Season, GameMode, Themes
-├── viewmodels/            ChangeNotifier-ViewModels
-├── views/                 Screens und Widgets
-├── data/                  bingo_items_data.dart — alle Bingo-Items
-├── utilities/             Audio, Farben, responsive Texte, Lokalisierung
-└── l10n/                  ARB-Dateien (Template: app_de.arb)
+├── main.dart     Ablauf: Modus → [Ziel] → Kategorie → [Saison] → Ort → Größe → Spiel
+├── models/       Spielkonfiguration, Dinge, Orte, Jahreszeiten, Modi, Themes
+├── viewmodels/   Spiellogik
+├── views/        Bildschirme
+├── data/         alle Dinge zum Entdecken, mit Übersetzungen
+├── utilities/    Klang, Farben, Texte, Sprachen
+└── l10n/         Übersetzungen der Oberfläche
 ```
 
-## Lokale Entwicklung
+Zum Nachvollziehen auf dem eigenen Rechner (die Lizenz erlaubt das zum Lernen
+und Prüfen):
 
 ```bash
 flutter pub get
+flutter test
 flutter run
-
-flutter test              # Tests
-flutter analyze           # Statische Analyse
-flutter gen-l10n          # nach Änderungen an den ARB-Dateien
 ```
 
-Debug-Builds laufen ohne weitere Einrichtung. Für **Android-Release-Builds** wird
-`android/key.properties` samt Keystore erwartet — beides ist bewusst nicht im Repo.
-Ohne diese Dateien greift der Fallback auf die Debug-Signatur; für eigene Builds
-legst du einen eigenen Keystore an. Für **iOS-Release-Builds** brauchst du dein
-eigenes Apple-Developer-Signing.
+## Mitmachen
 
-Nach neuen Items zusätzlich den Generator laufen lassen, nie die Extension von Hand editieren:
-
-```bash
-dart run tool/generate_l10n_extension.dart
-```
-
-## Release
-
-Versionsnummer steht in `pubspec.yaml` (`version: X.Y.Z+BUILD`) und ist die einzige Quelle — iOS liest sie von dort, nichts wird im Xcode-Projekt hartkodiert.
-
-```bash
-# 1. Version in pubspec.yaml bumpen, dann iOS-Config regenerieren (sonst baut Xcode die alte Version):
-flutter build ios --config-only --no-codesign
-
-# 2. Builds
-flutter build ipa --release      # iOS → App Store Connect
-flutter build appbundle --release # Android → Google Play
-```
-
-Die Build-Nummer muss **immer höher** sein als die höchste je zu App Store Connect hochgeladene — auch als die von verworfenen oder abgelaufenen Builds. iOS nutzt manuelles Signing mit dem GuckMal-AppStore-Profil.
-
-Bei jedem Versionssprung: CHANGELOG-Eintrag, Git-Tag `vX.Y.Z` und GitHub-Release mit dem CHANGELOG-Abschnitt als Release Notes.
-
-## Bekannte Stolpersteine
-
-**iOS-Codesigning-Fehler „resource fork, Finder information, or similar detritus not allowed":**
-
-```bash
-xattr -cr ios assets
-flutter clean && flutter pub get
-# In Xcode: Clean Build Folder (Cmd+Shift+K), dann Archive
-```
-
-**Grafiken** (Store-Screenshots, Marketing-Material, Bildquellen) werden außerhalb dieses Repos gepflegt.
+Fehlermeldungen und Vorschläge sind willkommen, bitte als
+[Issue](../../issues/new/choose). Sicherheitslücken bitte vertraulich melden,
+wie in [SECURITY.md](SECURITY.md) beschrieben. Pull Requests von außen werden
+nicht übernommen; warum, steht in [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Lizenz
 
@@ -95,20 +113,15 @@ flutter clean && flutter pub get
 Der vollständige Text steht in [LICENSE](LICENSE), eine englische Übersetzung
 in [LICENSE.en.md](LICENSE.en.md) (maßgeblich ist die deutsche Fassung).
 
-- **Ohne Weiteres erlaubt:** lesen, herunterladen, studieren, zu Lern- und
-  Prüfzwecken auf eigenen Geräten ausführen, Fehler melden, darüber berichten.
-- **Braucht eine Vereinbarung:** der Betrieb für echte Nutzer:innen, die
-  Weitergabe an Dritte und in App Stores, die Verwendung von Teilen des Codes
-  in anderer Software.
-- Grafiken, Sounds und der Name „Guck mal!“ sind nicht mitlizenziert.
+- **Ohne Weiteres erlaubt:** lesen, herunterladen, studieren, zum Lernen und
+  Prüfen auf eigenen Geräten ausführen, Fehler melden, darüber berichten.
+- **Braucht eine Vereinbarung:** eine selbst gebaute Fassung im Alltag nutzen,
+  auch in der eigenen Familie, eigene Fassungen weitergeben, auch in App
+  Stores, und Teile des Codes in anderer Software verwenden. Gespielt wird mit
+  der App aus dem Store.
+- Bilder, Klänge und der Name „Guck mal!“ sind nicht mitlizenziert.
 
-## Mitmachen
+## Kontakt
 
-Fehlermeldungen und Vorschläge sind willkommen, bitte als
-[Issue](../../issues/new/choose). Sicherheitslücken bitte vertraulich melden,
-wie in [SECURITY.md](SECURITY.md) beschrieben. Mehr in
-[CONTRIBUTING.md](CONTRIBUTING.md).
-
-## Autor
-
-© 2025–2026 Simon Luthe / Revisor
+Pastor Simon Luthe · [mail@simonluthe.de](mailto:mail@simonluthe.de) ·
+[simonluthe.de](https://simonluthe.de)
