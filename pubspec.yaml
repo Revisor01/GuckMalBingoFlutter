@@ -21,12 +21,12 @@ dependencies:
   audioplayers: ^6.0.0
 
   # Storage
-  shared_preferences: ^2.2.2
+  shared_preferences: ^2.5.6
   flutter_secure_storage: ^10.3.4
 
   # Utils
   intl: ^0.20.0
-  url_launcher: ^6.2.5
+  url_launcher: ^6.3.3
   package_info_plus: ^9.0.0
   in_app_review: ^2.0.9
 
