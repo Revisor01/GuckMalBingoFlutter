@@ -25,3 +25,23 @@ jobs:
           persist-credentials: false
       - name: Skript gegen Kopien pruefen
         run: tool/xcode_cloud_test.sh
+
+  flutter-test:
+    # Flutter per git statt über eine fremde Action; die Version ist dieselbe
+    # wie beim Bau der ausgelieferten Fassungen.
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      FLUTTER_VERSION: "3.47.5"
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Flutter installieren
+        run: |
+          git clone --depth 1 -b "$FLUTTER_VERSION" https://github.com/flutter/flutter.git "$RUNNER_TEMP/flutter"
+          echo "$RUNNER_TEMP/flutter/bin" >> "$GITHUB_PATH"
+      - name: Abhaengigkeiten
+        run: flutter pub get --enforce-lockfile
+      - name: Tests
+        run: flutter test
