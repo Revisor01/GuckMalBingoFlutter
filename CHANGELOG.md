@@ -10,6 +10,9 @@ und dieses Projekt folgt [Semantic Versioning 2.0.0](https://semver.org/lang/de/
 ### Geändert
 - Neue Lizenz: Der Quelltext ist öffentlich einsehbar, damit Eltern nachprüfen können, was die App tut. Selbst bauen, nutzen und weitergeben braucht eine schriftliche Erlaubnis
 
+### Sonstiges
+- Die iOS-Fassung kann in Xcode Cloud gebaut und ausgeliefert werden; die Abhängigkeiten sind dafür auf feste Versionen eingefroren
+
 ## [2.1.0] — 2026-09-27
 
 ### Hinzugefügt
