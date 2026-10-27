@@ -10,10 +10,6 @@
 </p>
 
 <p align="center">
-  <b>Deutsch</b> · <a href="README.en.md">English</a>
-</p>
-
-<p align="center">
   <img src="https://img.shields.io/badge/Plattform-iOS%20%C2%B7%20Android-blue" alt="Plattform">
   <img src="https://img.shields.io/badge/Flutter-Dart-02569B?logo=flutter" alt="Flutter">
   <img src="https://img.shields.io/badge/Lizenz-zur%20Einsicht-lightgrey" alt="Lizenz">
@@ -111,8 +107,7 @@ was dabei für die Rechte an deinem Beitrag gilt, steht in
 ## Lizenz
 
 **Quelloffen zur Einsicht — Nutzung nur mit schriftlicher Erlaubnis.**
-Der vollständige Text steht in [LICENSE](LICENSE), eine englische Übersetzung
-in [LICENSE.en.md](LICENSE.en.md) (maßgeblich ist die deutsche Fassung).
+Der vollständige Text steht in [LICENSE](LICENSE).
 
 - **Ohne Weiteres erlaubt:** lesen, herunterladen, studieren, zum Lernen und
   Prüfen auf eigenen Geräten ausführen, Fehler melden, darüber berichten.

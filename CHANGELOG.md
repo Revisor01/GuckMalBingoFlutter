@@ -13,6 +13,7 @@ und dieses Projekt folgt [Semantic Versioning 2.0.0](https://semver.org/lang/de/
 ### Sonstiges
 - iOS-Builds entstehen in Xcode Cloud; der Release-Knopf auf GitHub startet sie und wartet darauf.
 - Die iOS-Fassung kann in Xcode Cloud gebaut und ausgeliefert werden; die Abhängigkeiten sind dafür auf feste Versionen eingefroren
+- README, Vorlagen und Hinweise gibt es nur noch auf Deutsch.
 
 ## [2.1.0] — 2026-09-27
 
