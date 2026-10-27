@@ -116,6 +116,18 @@ Ausgeliefert als Build 27.
 - Spielmodus-Untertitel auf den Selection-Screens
 - Tote Datei `localization_helper.dart`
 
+## [1.7.0] — 2026-04-03
+
+### Hinzugefügt
+- Neuer Spielmodus Duell: Zwei Geräte suchen um die Wette, wer zuerst die Zielanzahl gefunden hat, gewinnt
+- Gelbe Kreise zeigen im Duell den Fortschritt
+- Unterbrochene Duell-Spiele lassen sich beim nächsten Start fortsetzen
+
+### Geändert
+- Bei Bingo Jagd und Duell wird die Zielanzahl immer als letzter Schritt gewählt
+- Überspringen im Duell braucht langes Drücken, damit es nicht versehentlich passiert
+- Animationen pausieren, solange die App im Hintergrund ist
+
 ## [1.6.0] — 2026-04-04
 
 Ausgeliefert als Build 26.
@@ -234,7 +246,8 @@ Ausgeliefert als Build 4.
 [2.0.1]: https://github.com/Revisor01/GuckMalBingoFlutter/compare/2.0.0...2.0.1
 [2.0.0]: https://github.com/Revisor01/GuckMalBingoFlutter/compare/1.8.1...2.0.0
 [1.8.1]: https://github.com/Revisor01/GuckMalBingoFlutter/compare/1.8.0...1.8.1
-[1.8.0]: https://github.com/Revisor01/GuckMalBingoFlutter/compare/1.6.0...1.8.0
+[1.8.0]: https://github.com/Revisor01/GuckMalBingoFlutter/compare/1.7.0...1.8.0
+[1.7.0]: https://github.com/Revisor01/GuckMalBingoFlutter/compare/1.6.0...1.7.0
 [1.6.0]: https://github.com/Revisor01/GuckMalBingoFlutter/compare/1.5.0...1.6.0
 [1.5.0]: https://github.com/Revisor01/GuckMalBingoFlutter/compare/1.4.0...1.5.0
 [1.4.0]: https://github.com/Revisor01/GuckMalBingoFlutter/compare/1.3.0...1.4.0
