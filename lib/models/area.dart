@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'category_theme.dart';
 
-/// Area Enum - Portiert von Swift
+/// Spielbereiche.
 enum Area {
   // Reise-Thema
   autobahn('autobahn'),

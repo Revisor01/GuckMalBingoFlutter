@@ -123,8 +123,7 @@ class GuckMalBingoApp extends StatelessWidget {
         final width = MediaQuery.of(context).size.width;
         double textScaleFactor = 1.0;
 
-        // Nur für Tablets (>600px) kleiner skalieren
-        // Normale Phones (iPhone, Pixel, etc.) behalten 1.0
+        // Nur Tablets bekommen kleinere Schrift.
         if (width > 600) {
           textScaleFactor = 0.95;
         }
@@ -142,8 +141,7 @@ class GuckMalBingoApp extends StatelessWidget {
   }
 }
 
-/// Navigation Coordinator
-/// Verwaltet den Navigationsfluss: Mode → [Target if Jagd] → Category → [Season] → Area → Size → Game
+/// Navigationsfluss: Modus → [Ziel bei Jagd] → Kategorie → [Saison] → Bereich → Größe → Spiel.
 class NavigationCoordinator extends StatefulWidget {
   const NavigationCoordinator({super.key});
 
@@ -443,8 +441,7 @@ class _NavigationCoordinatorState extends State<NavigationCoordinator> {
   }
 }
 
-/// App-Level Lifecycle Observer für saisonale Animationen
-/// Pausiert Schneefall/Osterblüten/Herbstblätter wenn die App im Hintergrund ist
+/// Pausiert die saisonalen Animationen, solange die App im Hintergrund ist.
 class _AppLifecycleWrapper extends StatefulWidget {
   final Widget child;
   const _AppLifecycleWrapper({required this.child});

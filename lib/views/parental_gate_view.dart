@@ -3,8 +3,7 @@ import 'package:flutter/services.dart';
 import 'dart:math';
 import '../l10n/app_localizations.dart';
 
-/// Parental Gate gemäß Apple Kids Category Guidelines
-/// Verhindert versehentliche Taps von Kindern durch einfache mathematische Aufgabe
+/// Elternschranke nach Apples Kids-Category-Richtlinien.
 class ParentalGateView extends StatefulWidget {
   const ParentalGateView({super.key});
 

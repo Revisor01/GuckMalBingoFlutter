@@ -10,7 +10,7 @@ import 'parental_gate_view.dart';
 import 'onboarding_view.dart';
 import 'widgets/app_button.dart';
 
-/// SettingsView - Portiert von Swift
+/// Einstellungen.
 class SettingsView extends StatefulWidget {
   const SettingsView({super.key});
 
@@ -60,8 +60,7 @@ class _SettingsViewState extends State<SettingsView> {
     }
   }
 
-  /// Öffnet die Store-Seite (App Store / Play Store) für eine Bewertung.
-  /// Erst nach erfolgreichem Parental Gate — kein aufdringliches Native-Popup.
+  /// Öffnet die Store-Seite zur Bewertung, erst nach der Elternschranke.
   Future<void> _openStoreListing() async {
     final result = await showModalBottomSheet<bool>(
       context: context,

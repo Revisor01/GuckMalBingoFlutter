@@ -1,7 +1,5 @@
 #!/bin/bash
-# Prueft ios/ci_scripts/ci_post_clone.sh gegen Kopien von pubspec.yaml und
-# project.pbxproj. git, flutter, brew, pod und sleep sind Attrappen, die ihre
-# Aufrufe mitschreiben; das Skript laeuft sonst erst in Xcode Cloud.
+# Prueft ios/ci_scripts/ci_post_clone.sh gegen Kopien, mit Attrappen fuer git, flutter, brew, pod, sleep.
 set -euo pipefail
 
 WURZEL=$(cd "$(dirname "$0")/.." && pwd)

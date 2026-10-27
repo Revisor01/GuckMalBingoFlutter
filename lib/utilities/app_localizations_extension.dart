@@ -1,5 +1,4 @@
-// GENERATED FILE — DO NOT EDIT BY HAND
-// Run: dart run tool/generate_l10n_extension.dart
+// Erzeugt von tool/generate_l10n_extension.dart, nicht von Hand ändern.
 
 import '../l10n/app_localizations.dart';
 

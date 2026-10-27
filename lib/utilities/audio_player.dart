@@ -4,20 +4,16 @@ import 'debug_utils.dart';
 
 final _random = Random();
 
-/// AudioPlayer - Singleton Pattern
-/// Verwaltet alle Sound-Effekte der App mit einer einzigen Instanz
+/// Einzige Instanz für alle Soundeffekte.
 class GameAudioPlayer {
-  // Singleton instance
   static GameAudioPlayer? _instance;
   static GameAudioPlayer get instance {
     _instance ??= GameAudioPlayer._internal();
     return _instance!;
   }
 
-  // Factory constructor returns singleton
   factory GameAudioPlayer() => instance;
 
-  // Private constructor
   GameAudioPlayer._internal() {
     _loadSoundFiles();
   }
@@ -32,8 +28,7 @@ class GameAudioPlayer {
   final List<AudioPlayer> _pool = List.generate(_poolSize, (_) => AudioPlayer());
   int _poolIndex = 0;
 
-  /// Dedizierter Player fuer Bingo/Victory-Sounds (D-02: Hard-Stop bei Folge-Aufrufen)
-  /// NICHT Teil von _pool — unabhaengig von Click-Sounds
+  /// Eigener Player für Bingo/Victory, damit ein Folgesound den vorigen sofort abbricht.
   final AudioPlayer _bingoVictoryPlayer = AudioPlayer();
 
   late List<String> _bingoSounds;
@@ -82,8 +77,7 @@ class GameAudioPlayer {
     await _playSound(randomSound);
   }
 
-  /// Zufälliger Bingo-Sound (normale + Weihnachts-Sounds in der Weihnachtszeit)
-  /// Nutzt _bingoVictoryPlayer: stoppt vorherigen Bingo/Victory-Sound sofort (D-02)
+  /// Spielt einen zufälligen Bingo-Sound, in der Weihnachtszeit auch Weihnachts-Sounds.
   Future<void> playBingoSound({required int count}) async {
     if (!soundEnabled) return;
 
@@ -97,8 +91,7 @@ class GameAudioPlayer {
     await _playBingoVictorySound(randomSound);
   }
 
-  /// Zufälliger Victory-Sound (Weihnachts-Sound in der Weihnachtszeit)
-  /// Nutzt _bingoVictoryPlayer: stoppt vorherigen Bingo/Victory-Sound sofort (D-02)
+  /// Spielt einen zufälligen Victory-Sound, in der Weihnachtszeit den Weihnachts-Sound.
   Future<void> playVictorySound() async {
     if (!soundEnabled) return;
 
@@ -120,9 +113,7 @@ class GameAudioPlayer {
     await _playBingoVictorySound(randomSound);
   }
 
-  /// Dedizierter Slot fuer Bingo/Victory-Sounds.
-  /// stop() vor play() = Hard-Stop des vorherigen Sounds (D-02).
-  /// Click-Sounds bleiben unabhaengig im Pool.
+  /// Stoppt vor dem Abspielen den vorigen Bingo/Victory-Sound; Klicks bleiben im Pool.
   Future<void> _playBingoVictorySound(String assetPath) async {
     try {
       await _bingoVictoryPlayer.stop();

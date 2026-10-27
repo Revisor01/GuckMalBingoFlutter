@@ -5,10 +5,7 @@ import '../data/bingo_items_data.dart';
 import '../utilities/audio_player.dart';
 import '../utilities/app_preferences.dart';
 
-/// SprintGameViewModel — Verwaltet den Spielzustand des Sprint-Modus.
-///
-/// Haelt eine gemischte Item-Queue, trackt den Score und triggert
-/// den Victory-Dialog bei Erreichen des Ziels.
+/// Spielzustand des Sprint-Modus.
 class SprintGameViewModel extends ChangeNotifier {
   final GameConfig config;
   late List<BingoItem> _queue;
@@ -93,7 +90,7 @@ class SprintGameViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// Queue um eins weiterschalten — D-10: Zyklischer Neustart wenn alle Items abgearbeitet
+  /// Schaltet die Queue weiter und beginnt nach dem letzten Item neu.
   void _advanceQueue() {
     _queueIndex++;
     if (_queueIndex >= _queue.length) {

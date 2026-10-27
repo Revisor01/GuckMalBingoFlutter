@@ -3,9 +3,7 @@ import 'dart:math' as math;
 import '../models/area.dart';
 import '../models/background_theme.dart';
 
-/// BackgroundPatternView - Portiert von Swift
-/// Zeigt dekorative Icons im Hintergrund mit Positions-Caching.
-/// Themes mit eigenen Symbolen (Herbst, Halloween) ersetzen die Bereichs-Icons.
+/// Dekorative Hintergrund-Icons; Herbst und Halloween bringen eigene Symbole mit.
 class BackgroundPatternView extends StatefulWidget {
   final Area? area;
   final BackgroundTheme? theme;

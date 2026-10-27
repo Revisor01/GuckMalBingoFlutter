@@ -3,8 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:guck_mal_bingo/utilities/app_preferences.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-// Bestand, wie ihn die Store-Fassung 2.1.0 im sicheren Speicher hinterlässt:
-// Ein Update darf Spielstand und Einstellungen nicht verlieren.
+// Bestand der Store-Fassung 2.1.0: ein Update darf Spielstand und Einstellungen nicht verlieren.
 void main() {
   test('Spielstand und Einstellungen aus dem Bestand bleiben nach dem Start erhalten', () async {
     FlutterSecureStorage.setMockInitialValues({

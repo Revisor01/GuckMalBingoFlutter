@@ -4,8 +4,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 
-/// Herbst-Effekt: fallende Blätter, in der Halloween-Zeit fliegt ab und zu
-/// eine Fledermaus oder schwebt ein Gespenst durchs Bild.
+/// Fallende Blätter, zu Halloween auch Fledermäuse und Gespenster.
 class AutumnEffectWidget extends StatefulWidget {
   final Widget child;
   final int leafCount;

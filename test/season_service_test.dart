@@ -48,8 +48,7 @@ void main() {
     });
 
     test('isEaster true during Easter season', () {
-      // 2025 Easter Sunday: April 20
-      // Season starts 14 days before: April 6
+      // Ostern 2025: 20. April, Saisonbeginn 14 Tage vorher.
       debugOverrideDate = DateTime(2025, 4, 18);
       final service = SeasonService();
       expect(service.isEaster, isTrue);

@@ -2,7 +2,7 @@ import 'area.dart';
 import 'season.dart';
 import '../utilities/debug_utils.dart';
 
-/// BingoItem Class - Portiert von Swift
+/// Ein Bingo-Begriff mit Bereichen, Jahreszeiten und Datumsfenster.
 class BingoItem {
   final String emoji;
   final String name;

@@ -1,28 +1,15 @@
 import 'package:flutter/foundation.dart';
 
-/// Debug Utilities für Testing
-///
-/// Hier können Debug-Variablen gesetzt werden, die das Verhalten der App
-/// für Testing-Zwecke überschreiben.
-
-/// Debug-Datum für Weihnachts-Items Testing
-///
-/// Wenn != null, wird dieses Datum statt DateTime.now() verwendet.
-/// Damit können wir testen, ob die Weihnachts-Items ab 1. Dezember erscheinen.
-///
-/// Beispiel: DateTime(2025, 12, 2) simuliert den 2. Dezember 2025
-/// Im Release-Mode wird immer das echte Systemdatum verwendet.
+/// Ersatzdatum zum Testen saisonaler Inhalte; im Release immer das echte Datum.
 DateTime? debugOverrideDate = kReleaseMode ? null : null;
 
-/// Gibt das aktuelle Datum zurück - entweder das Debug-Datum oder das echte Datum
-/// Im Release-Mode wird immer das echte Systemdatum verwendet.
+/// Das aktuelle Datum oder im Debug-Modus [debugOverrideDate].
 DateTime getCurrentDate() {
   if (kReleaseMode) return DateTime.now();
   return debugOverrideDate ?? DateTime.now();
 }
 
-/// Prüft, ob aktuell Weihnachtszeit ist (1. Dezember - 6. Januar)
-/// Wird für Schneefalleffekt und Weihnachts-Sounds verwendet
+/// Ob Weihnachtszeit ist (1. Dezember bis 6. Januar).
 bool isChristmasSeason() {
   final now = getCurrentDate();
   // Dezember (ab 1.12.)
@@ -32,8 +19,7 @@ bool isChristmasSeason() {
   return false;
 }
 
-/// Berechnet das Datum von Ostersonntag für ein gegebenes Jahr
-/// Verwendet den Anonymous Gregorian Algorithmus (Meeus/Jones/Butcher)
+/// Ostersonntag des Jahres nach Meeus/Jones/Butcher.
 DateTime getEasterDate(int year) {
   final a = year % 19;
   final b = year ~/ 100;
@@ -68,16 +54,14 @@ bool isEasterSeason() {
 }
 
 
-/// Prüft, ob aktuell Herbstzeit ist (1. September - 15. November)
-/// Steuert den Blätter-Effekt; die Herbst-Items tragen dasselbe Datumsfenster.
+/// Ob Herbstzeit ist (1. September bis 15. November), wie bei den Herbst-Items.
 bool isAutumnSeason() {
   final now = getCurrentDate();
   final date = now.month * 100 + now.day;
   return date >= 901 && date <= 1115;
 }
 
-/// Prüft, ob aktuell Halloween-Zeit ist (15. Oktober - 2. November)
-/// In diesem Fenster mischen sich Fledermäuse und Gespenster unter die Blätter.
+/// Ob Halloween-Zeit ist (15. Oktober bis 2. November).
 bool isHalloweenSeason() {
   final now = getCurrentDate();
   final date = now.month * 100 + now.day;

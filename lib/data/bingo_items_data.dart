@@ -3,16 +3,13 @@ import '../models/area.dart';
 import '../models/season.dart';
 import '../models/category_theme.dart';
 
-/// BingoItemsData - Portiert von Swift
-/// Alle Items mit Areas, Seasons und Datum-Verfügbarkeit
+/// Alle Bingo-Items mit Bereichen, Jahreszeiten und Datumsfenstern.
 class BingoItemsData {
   /// Helper für Area-Arrays
   static List<Area> _areas(List<Area> areas) => areas;
   static List<Season>? _seasons(List<Season>? seasons) => seasons;
 
-  /// Alle Items - jedes nur 1x definiert
-  /// areas: Wo kommt das Item vor?
-  /// seasons: null = alle Seasons, [] = keine Seasons (besondere Orte)
+  /// Alle Items; seasons null heißt alle Jahreszeiten, [] heißt keine (besondere Orte).
   static final List<BingoItem> allItems = [
     // VERKEHR & FAHRZEUGE
     BingoItem(
@@ -1735,8 +1732,7 @@ class BingoItemsData {
       seasons: [],
     ),
 
-    // HERBST (1. September bis 15. November)
-    // seasons: null → unabhängig von der gewählten Jahreszeit, allein das Datum zählt
+    // HERBST (1.9.–15.11.): seasons null, allein das Datum zählt.
     BingoItem(
       emoji: '🎃',
       name: 'itemKuerbis',
@@ -2048,10 +2044,7 @@ class BingoItemsData {
       availableToDay: 2,
     ),
 
-    // OSTERN & FRÜHLING (nur während Osterzeit verfügbar)
-    // easterOnly: true → isAvailableNow() prüft isEasterSeason() statt fixer Monate
-    // seasons: null bedeutet hier "alle Seasons-Filter passieren", die eigentliche
-    // Verfügbarkeit wird allein durch easterOnly gesteuert (dynamisches Osterdatum)
+    // OSTERN: seasons null, die Verfügbarkeit steuert allein easterOnly (bewegliches Datum).
     BingoItem(
       emoji: '🐰',
       name: 'itemOsterhase',

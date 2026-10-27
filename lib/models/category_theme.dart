@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'area.dart';
 
-/// CategoryTheme Enum - Portiert von Swift
+/// Spielkategorien.
 enum CategoryTheme {
   reise('reise'),
   besondereOrte('besondere_orte');

@@ -549,8 +549,7 @@ class _MiniBingoGrid extends StatelessWidget {
   }
 }
 
-/// Sprint-Erklärungsseite mit animierter Icon-Motion-Demo.
-/// Zeigt Solo-first Framing: Icon erscheint → wird grün → fadet aus → nächstes Icon → Loop.
+/// Erklärseite zum Sprint mit animierter Icon-Folge.
 class _SprintExplanationPage extends StatefulWidget {
   final String title;
   final String description;

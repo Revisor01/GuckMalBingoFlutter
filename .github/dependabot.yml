@@ -13,8 +13,7 @@ updates:
     commit-message:
       prefix: ci
 
-  # Gebündelt, damit nicht jedes Paket einen eigenen PR bekommt. Majors kommen
-  # einzeln, weil sie oft Anpassungen am Code oder an den nativen Projekten brauchen.
+  # Gebündelt gegen PR-Flut; Majors einzeln, weil sie oft Code-Anpassungen brauchen.
   - package-ecosystem: pub
     directory: /
     schedule:

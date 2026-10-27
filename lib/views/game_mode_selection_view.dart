@@ -12,8 +12,7 @@ import 'theme_selection_view.dart';
 import 'widgets/app_button.dart';
 import 'widgets/description_item.dart';
 
-/// GameModeSelectionView - Portiert von Swift
-/// Erste Auswahl: Spielmodus (Suche oder Jagd)
+/// Auswahl des Spielmodus.
 class GameModeSelectionView extends StatefulWidget {
   final GameConfig config;
   final Function(GameMode) onModeSelected;

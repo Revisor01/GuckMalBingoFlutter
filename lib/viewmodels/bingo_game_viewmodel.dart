@@ -57,8 +57,7 @@ class BingoTypeWithIndex {
   int get hashCode => Object.hash(type, index);
 }
 
-/// BingoGameViewModel - Portiert von Swift
-/// Verwaltet den kompletten Spielzustand und die Logik
+/// Spielzustand und Spiellogik des Bingos.
 class BingoGameViewModel extends ChangeNotifier {
   /// O(1) Lookup-Map: BingoItem → Index in BingoItemsData.allItems
   static final Map<BingoItem, int> _itemIndexMap = {
@@ -88,7 +87,6 @@ class BingoGameViewModel extends ChangeNotifier {
   Timer? _winMessageTimer;
   final List<Timer> _blinkTimers = [];
 
-  // Public getters
   List<BingoItem> get board => _board;
   Set<int> get clickedIndices => _clickedIndices;
   int get bingoCount => _bingoCount;
@@ -160,8 +158,7 @@ class BingoGameViewModel extends ChangeNotifier {
     _highlightedIndices = result.allIndices;
   }
 
-  /// Shared bingo detection: finds all completed rows, columns, diagonals.
-  /// Returns the set of completed bingos and a map of bingo->indices.
+  /// Findet alle vollen Reihen, Spalten und Diagonalen samt ihrer Felder.
   _BingoScanResult _findAllBingos() {
     Set<BingoTypeWithIndex> bingos = {};
     Set<int> allIndices = {};
@@ -366,9 +363,7 @@ class BingoGameViewModel extends ChangeNotifier {
         _startBlinkAnimation(newBingoIndices);
       }
 
-      // D-03: Jagd-Endbingo → nur Victory-Sound (isFinal: true).
-      // Normales Bingo → nur Bingo-Sound (isFinal: false).
-      // Beide Pfade sind strikt getrennt — kein Sound-Overlap.
+      // Endbingo der Jagd nur Victory, sonst nur Bingo, damit sich keine Sounds überlagern.
       if (config.gameMode == GameMode.jagd && _bingoCount >= config.targetBingos) {
         _showVictory(count: _bingoCount, isFinal: true);
       } else {

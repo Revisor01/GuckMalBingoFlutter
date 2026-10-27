@@ -1,5 +1,4 @@
-// Generates lib/utilities/app_localizations_extension.dart from app_de.arb.
-// Usage: dart run tool/generate_l10n_extension.dart
+// Erzeugt lib/utilities/app_localizations_extension.dart aus app_de.arb: dart run tool/generate_l10n_extension.dart
 
 import 'dart:convert';
 import 'dart:io';

@@ -3,7 +3,7 @@ import 'category_theme.dart';
 import 'season.dart';
 import 'area.dart';
 
-/// GameConfig Class - Portiert von Swift
+/// Einstellungen eines Spiels.
 class GameConfig {
   final GameMode gameMode;
   final CategoryTheme categoryTheme;

@@ -1,7 +1,5 @@
 #!/bin/bash
-# Xcode Cloud, nach dem Klonen: Build-Nummer, Signierung, Flutter und Pods.
-# Release signiert im Projekt fest mit einem Profil, das es in der Cloud nicht
-# gibt; umgestellt wird nur der Klon. Geprueft von tool/xcode_cloud_test.sh.
+# Xcode Cloud nach dem Klonen: Build-Nummer, Signierung, Flutter, Pods. Test: tool/xcode_cloud_test.sh
 set -euo pipefail
 
 REPO="${CI_PRIMARY_REPOSITORY_PATH:?Nur fuer Xcode Cloud gedacht.}"
@@ -12,8 +10,7 @@ RELEASE_KONFIG='97C147071CF9000F007C117D /* Release */ = {'
 
 fehler() { echo "FEHLER: $*" >&2; exit 1; }
 
-# Xcode Cloud ersetzt die Build-Nummer durch die eigene. Liegt sie nicht ueber
-# der in pubspec.yaml, lehnt App Store Connect den Upload erst nach dem Build ab.
+# Liegt die Cloud-Build-Nummer nicht ueber pubspec, lehnt App Store Connect erst nach dem Build ab.
 [ "$(grep -c '^version: ' "$PUBSPEC")" = 1 ] || fehler "pubspec.yaml hat nicht genau eine version-Zeile."
 ZEILE=$(grep '^version: ' "$PUBSPEC")
 [[ "$ZEILE" =~ ^version:\ ([0-9]+\.[0-9]+\.[0-9]+)\+([0-9]+)$ ]] || fehler "'$ZEILE' hat nicht die Form X.Y.Z+BUILD."
@@ -24,9 +21,7 @@ if [ "$CI_BUILD_NUMBER" -le "$BUILD_ALT" ]; then
   fehler "Xcode-Cloud-Build $CI_BUILD_NUMBER liegt nicht ueber $BUILD_ALT aus pubspec.yaml. In App Store Connect unter Xcode Cloud > Settings > Build Number die naechste Nummer hoeher setzen."
 fi
 
-# Xcode Cloud signiert selbst und braucht dafuer automatisches Signieren. Nur
-# die Release-Konfiguration von Runner wird umgestellt, und nur wenn dort genau
-# die erwarteten Zeilen stehen.
+# Nur der Klon wird auf automatisches Signieren umgestellt, und nur bei genau den erwarteten Zeilen.
 if ! awk -v kopf="$RELEASE_KONFIG" '
   index($0, kopf) { drin = 1; bloecke++ }
   drin && index($0, "\"CODE_SIGN_IDENTITY[sdk=iphoneos*]\" = \"Apple Distribution\";") { sub(/Apple Distribution/, "Apple Development"); a++ }
