@@ -19,7 +19,7 @@ class AppPreferences {
 
   static Future<void> init() async {
     const storage = FlutterSecureStorage(
-      aOptions: AndroidOptions(encryptedSharedPreferences: true),
+      aOptions: AndroidOptions(),
       iOptions: IOSOptions(accessibility: KeychainAccessibility.first_unlock),
     );
     final prefs = AppPreferences._(storage);

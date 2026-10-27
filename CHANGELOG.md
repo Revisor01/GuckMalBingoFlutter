@@ -15,6 +15,7 @@ und dieses Projekt folgt [Semantic Versioning 2.0.0](https://semver.org/lang/de/
 - Die iOS-Fassung kann in Xcode Cloud gebaut und ausgeliefert werden; die Abhängigkeiten sind dafür auf feste Versionen eingefroren
 - README, Vorlagen und Hinweise gibt es nur noch auf Deutsch.
 - Die automatischen Tests der App laufen jetzt bei jeder Änderung.
+- Der sichere Speicher für Spielstand und Einstellungen nutzt unter Android eine neue Verschlüsselung; vorhandene Daten werden beim ersten Start übernommen.
 
 ## [2.1.0] — 2026-09-27
 
