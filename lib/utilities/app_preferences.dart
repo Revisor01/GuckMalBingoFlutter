@@ -3,8 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-/// Zentrale Preferences-Klasse — verschlüsselter Storage mit In-Memory-Cache.
-/// Migration von SharedPreferences erfolgt automatisch beim ersten Start.
+/// Verschlüsselter Einstellungsspeicher mit Cache; übernimmt alte SharedPreferences beim ersten Start.
 class AppPreferences {
   static late final AppPreferences instance;
   final FlutterSecureStorage _storage;
@@ -166,7 +165,7 @@ class AppPreferences {
     await _storage.delete(key: _keyGameState);
   }
 
-  // Duell Game State Persistence (Legacy — wird in Plan 05 migriert)
+  // Alter Duell-Spielstand, wird in den Sprint-Stand übernommen
   static const _keyDuellState = 'savedDuellState';
 
   bool get hasSavedDuellState => _cache[_keyDuellState] != null;

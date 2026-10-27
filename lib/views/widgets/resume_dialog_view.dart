@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import '../../l10n/app_localizations.dart';
 import '../../utilities/app_colors.dart';
 
-/// Resume Dialog im VictoryDialog-Stil.
-/// Wird als fullscreen Overlay in einem Stack gerendert (wie VictoryDialogView).
-/// Zeigt bei App-Start "Weiterspielen" und "Zurück zum Start".
-/// Gilt für ALLE Spielmodi (Suche, Jagd, Sprint).
+/// Vollbild-Dialog zum Weiterspielen beim App-Start, für alle Spielmodi.
 class ResumeDialogView extends StatelessWidget {
   final VoidCallback onContinue;
   final VoidCallback onBackToStart;

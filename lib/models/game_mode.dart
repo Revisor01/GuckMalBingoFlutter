@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-/// GameMode Enum - Portiert von Swift
+/// Spielmodi.
 enum GameMode {
   suche('suche'),
   jagd('jagd'),

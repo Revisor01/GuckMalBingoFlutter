@@ -1,9 +1,7 @@
 import 'package:flutter/foundation.dart';
 import '../models/background_theme.dart';
 
-/// Zentraler Theme-Notifier fuer die gesamte App.
-/// Wird einmalig beim App-Start geladen und per ChangeNotifierProvider
-/// an den Widget-Tree weitergegeben.
+/// App-weiter Theme-Zustand, einmal beim Start geladen.
 class ThemeNotifier extends ChangeNotifier {
   BackgroundTheme _theme = BackgroundTheme.lightBlue;
 

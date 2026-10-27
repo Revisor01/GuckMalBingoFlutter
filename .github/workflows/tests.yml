@@ -15,8 +15,7 @@ concurrency:
 
 jobs:
   xcode-cloud-skript:
-    # Das Skript laeuft sonst erst in Xcode Cloud; hier gegen Kopien, damit eine
-    # Aenderung an Version oder Signierung es nicht still bricht.
+    # Sonst liefe das Skript erst in Xcode Cloud und bräche dort still.
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
@@ -27,8 +26,7 @@ jobs:
         run: tool/xcode_cloud_test.sh
 
   flutter-test:
-    # Flutter per git statt über eine fremde Action; die Version ist dieselbe
-    # wie beim Bau der ausgelieferten Fassungen.
+    # Flutter per git statt fremder Action, Version wie beim Store-Build.
     runs-on: ubuntu-24.04
     timeout-minutes: 20
     env:

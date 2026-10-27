@@ -9,7 +9,7 @@ import '../l10n/app_localizations.dart';
 import '../utilities/app_localizations_extension.dart';
 import 'widgets/app_button.dart';
 
-/// ThemeSelectionView - Portiert von Swift
+/// Auswahl des Hintergrund-Themes.
 class ThemeSelectionView extends StatefulWidget {
   final BackgroundTheme selectedTheme;
   final Function(BackgroundTheme) onThemeSelected;

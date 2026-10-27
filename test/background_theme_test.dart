@@ -91,8 +91,7 @@ void main() {
   });
 
   group('BackgroundTheme.loadSavedTheme – Saisonwechsel', () {
-    // AppPreferences.instance ist late final → einmal initialisieren,
-    // vor jedem Test den Cache leeren (= frische Installation).
+    // late final: einmal initialisieren, vor jedem Test den Cache leeren.
     setUpAll(() async {
       FlutterSecureStorage.setMockInitialValues({});
       SharedPreferences.setMockInitialValues({});

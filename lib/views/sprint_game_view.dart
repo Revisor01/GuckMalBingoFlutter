@@ -11,11 +11,7 @@ import 'widgets/shared_game_header.dart';
 import 'widgets/shared_toggle_buttons.dart';
 import 'widgets/victory_dialog_view.dart';
 
-/// SprintGameView — Einzelitem-Ansicht für den Sprint-Modus.
-///
-/// Layout identisch zum BingoGameView: Header mit "Guck mal!", Grid-Hintergrund
-/// mit 1x1-Zelle (BingoCellView-Stil), Ton/Text-Toggle Buttons unten.
-/// Tap auf das Item = gefunden. Long-Press Skip mit Füll-Animation.
+/// Einzelitem-Ansicht des Sprint-Modus.
 class SprintGameView extends StatefulWidget {
   final VoidCallback onBackToStart;
 
@@ -67,9 +63,7 @@ class _SprintGameViewState extends State<SprintGameView>
     _skipProgressController.dispose();
     WidgetsBinding.instance.removeObserver(this);
     _foundTimer?.cancel();
-    // clearSavedGameState() wird NICHT hier aufgerufen — das passiert explizit in
-    // PopScope.onPopInvokedWithResult und im Header-Back-Button.
-    // dispose() ist kein geeigneter Ort fuer State-Cleanup mit Seiteneffekten.
+    // Kein clearSavedGameState() hier: dispose() ist kein Ort für Aufräumen mit Seiteneffekten.
     super.dispose();
   }
 

@@ -2,9 +2,7 @@ import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
 
-/// Der App Store zeigt unter „Sprachen“ nur, wofür ein .lproj-Ordner im
-/// App-Paket liegt – CFBundleLocalizations allein reicht nicht. Ohne diese
-/// Ordner stand dort bis 2.1.0 nur „Deutsch“, obwohl die App 6 Sprachen kann.
+/// Ohne .lproj-Ordner zeigt der App Store nur „Deutsch“; CFBundleLocalizations reicht nicht.
 void main() {
   final appLanguages = Directory('lib/l10n')
       .listSync()

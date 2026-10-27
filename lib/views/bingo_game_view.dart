@@ -11,8 +11,7 @@ import 'widgets/victory_dialog_view.dart';
 import 'widgets/win_message_view.dart';
 import 'widgets/bingo_cell_view.dart';
 
-/// BingoGameView - Portiert von Swift
-/// Hauptspiel-Ansicht mit Bingo-Grid
+/// Spielansicht mit Bingo-Raster.
 class BingoGameView extends StatefulWidget {
   final VoidCallback onBackToStart;
 

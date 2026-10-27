@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-/// Season Enum - Portiert von Swift
+/// Jahreszeiten.
 enum Season {
   fruehling_sommer('fruehling_sommer'),
   herbst_winter('herbst_winter');

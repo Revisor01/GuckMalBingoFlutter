@@ -33,8 +33,7 @@ void main() {
     test(
         'Test 1: playBingoVictorySound-Methode existiert und wird von playBingoSound genutzt',
         () {
-      // Prueft ob _bingoVictoryPlayer im Quellcode-Kontext existiert.
-      // Da AudioPlayer private ist, genuegt es die Methoden ohne Fehler aufzurufen.
+      // AudioPlayer ist privat, deshalb genügt der fehlerfreie Aufruf.
       expect(() => player.playBingoSound(count: 1), returnsNormally);
     });
 

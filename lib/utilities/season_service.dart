@@ -2,10 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'app_preferences.dart';
 import 'debug_utils.dart';
 
-/// SeasonService — zentraler ChangeNotifier für saisonalen State.
-///
-/// Ersetzt verstreute globale Variablen (cachedIsChristmas, cachedIsEaster)
-/// und ValueNotifier (snowfallEnabledNotifier, easterEffectEnabledNotifier).
+/// Gemeinsamer Zustand der Saison-Effekte.
 class SeasonService extends ChangeNotifier {
   late bool _isChristmas;
   late bool _isEaster;

@@ -1,14 +1,6 @@
 import 'package:flutter/material.dart';
 
-/// Unified configurable button widget replacing duplicated button patterns.
-///
-/// Supports all button variants in the app:
-/// - Selection buttons (icon + title + chevron)
-/// - Size buttons (icon + title + subtitle + chevron)
-/// - Game mode buttons (icon + title + chevron)
-/// - Settings buttons (icon + title, no trailing)
-/// - Settings link buttons (icon + title + external link icon)
-/// - Theme buttons (custom leading widget + title + check icon + optional border)
+/// Einheitlicher Button für Auswahl, Größe, Modus, Einstellungen und Themes.
 class AppButton extends StatelessWidget {
   /// Leading icon. Ignored if [leadingWidget] is provided.
   final IconData? icon;
@@ -25,15 +17,13 @@ class AppButton extends StatelessWidget {
   /// Button title text.
   final String title;
 
-  /// Whether the title is a localization key that should be resolved.
-  /// If false, title is used as-is.
+  /// Ob [title] ein Übersetzungsschlüssel ist.
   final bool localizeTitle;
 
   /// Optional subtitle displayed below the title.
   final String? subtitle;
 
-  /// Trailing widget. Common options: chevron_right, open_in_new, check icon.
-  /// If null, no trailing widget is shown.
+  /// Widget am rechten Rand, null für keines.
   final Widget? trailing;
 
   /// Called when the button is tapped.

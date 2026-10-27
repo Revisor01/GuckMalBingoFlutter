@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-/// AppColors - Portiert von Swift
-/// Alle Farben und Gradients der App
+/// Farben und Verläufe der App.
 class AppColors {
   // Hauptfarben - Türkis-Grün matt
   static const Color primary = Color.fromRGBO(95, 211, 188, 1.0); // #5FD3BC

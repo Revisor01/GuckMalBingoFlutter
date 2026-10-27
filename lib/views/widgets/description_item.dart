@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-/// Wiederverwendbares Beschreibungs-Widget für Footer-Sektionen
-/// Zeigt einen Titel (bold) und eine Beschreibung (leicht transparent)
+/// Titel und Beschreibung für Footer-Abschnitte.
 class DescriptionItem extends StatelessWidget {
   final String title;
   final String description;

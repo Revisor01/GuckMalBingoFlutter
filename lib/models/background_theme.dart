@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import '../utilities/app_preferences.dart';
 import '../utilities/debug_utils.dart';
 
-/// BackgroundTheme Enum - Portiert von Swift
-/// Verschiedene Farbthemen für Hintergrund-Gradients
+/// Farbthemen für den Hintergrund-Verlauf.
 enum BackgroundTheme {
   lightBlue('lightBlue', 'themeLightblue'),
   bluePurple('bluePurple', 'themeBluepurple'),
@@ -330,8 +329,7 @@ enum BackgroundTheme {
       this == BackgroundTheme.autumn ||
       this == BackgroundTheme.halloween;
 
-  /// Das Theme der gerade laufenden Saison, sonst null.
-  /// Halloween liegt im Herbst und hat Vorrang.
+  /// Das Theme der laufenden Saison oder null; Halloween hat Vorrang vor Herbst.
   static BackgroundTheme? currentSeasonalTheme() {
     if (isChristmasSeason()) return BackgroundTheme.christmas;
     if (isEasterSeason()) return BackgroundTheme.easter;
@@ -340,19 +338,13 @@ enum BackgroundTheme {
     return null;
   }
 
-  /// Eindeutiger Schlüssel pro Saison und Jahr, z.B. 'autumn-2026'.
-  /// Die Weihnachtszeit im Januar gehört zum Vorjahr.
+  /// Schlüssel je Saison und Jahr (z. B. 'autumn-2026'); Januar-Weihnachten zählt zum Vorjahr.
   static String seasonKey(BackgroundTheme theme, DateTime date) {
     final year = theme == BackgroundTheme.christmas && date.month == 1 ? date.year - 1 : date.year;
     return '${theme.value}-$year';
   }
 
-  /// Lade das Theme beim App-Start.
-  ///
-  /// - Beginnt eine Saison (einmal pro Saison und Jahr), wird auf ihr Theme
-  ///   umgeschaltet und ihr Effekt eingeschaltet.
-  /// - Innerhalb der Saison bleibt eine eigene Wahl erhalten.
-  /// - Nach Saisonende kommt das Theme von vor der Saison zurück.
+  /// Lädt das Theme beim Start und schaltet zu Saisonbeginn um, danach zurück auf die eigene Wahl.
   static BackgroundTheme loadSavedTheme() {
     final prefs = AppPreferences.instance;
     final saved = _migratedSavedTheme(prefs);
@@ -361,8 +353,7 @@ enum BackgroundTheme {
     if (season != null) {
       final key = seasonKey(season, getCurrentDate());
       if (prefs.seasonThemeApplied != key) {
-        // Nur eine eigene (nicht-saisonale) Wahl merken – beim Wechsel
-        // Herbst → Halloween → Herbst bleibt die ursprüngliche Wahl stehen
+        // Nur nicht-saisonale Wahl merken, sonst geht sie bei Herbst → Halloween → Herbst verloren.
         if (saved == null || !saved.isSeasonal) {
           prefs.setThemeBeforeSeason((saved ?? BackgroundTheme.lightBlue).value);
         }
@@ -429,8 +420,7 @@ enum BackgroundTheme {
   }
 }
 
-/// Ein Symbol im Hintergrundmuster: Material-Icon oder weiße Silhouette
-/// aus assets/images/patterns/.
+/// Ein Symbol im Hintergrundmuster: Material-Icon oder Silhouette aus assets/images/patterns/.
 class BackgroundSymbol {
   final IconData? icon;
   final String? assetName;

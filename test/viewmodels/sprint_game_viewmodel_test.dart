@@ -38,10 +38,7 @@ void main() {
       vm = SprintGameViewModel(config: _testConfig());
     });
 
-    // Test 1: markFound() erhoeht score um 1
-    // Note: This test runs first and the GameAudioPlayer singleton initializes
-    // for the first time here. An async platform channel error fires after
-    // the test completes — this is expected behavior matching BingoGameViewModel tests.
+    // Der Plattformkanal-Fehler nach diesem ersten Test ist erwartet, wie bei BingoGameViewModel.
     test('markFound() increases score by 1', () {
       final initialScore = vm.score;
       vm.markFound();

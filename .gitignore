@@ -62,9 +62,7 @@ android/app/upload-keystore.jks
 .playwright-mcp/
 node_modules/
 
-# Grafik-Quellen (gehören in social-posts-studio, Projekt guckmal.json)
-# Store-Screenshots und Poster wurden am 2026-08-01 aus der History entfernt —
-# sie hatten das Repo auf 823 MB aufgebläht. Text-Metadaten bleiben getrackt.
+# Grafik-Quellen liegen in social-posts-studio.
 *.psd
 .planning/phases/28-store-assets/assets/
 
