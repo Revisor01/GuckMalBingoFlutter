@@ -5,7 +5,7 @@ Alle nennenswerten Änderungen an diesem Projekt werden in dieser Datei dokument
 Das Format basiert auf [Keep a Changelog 1.1.0](https://keepachangelog.com/de/1.1.0/),
 und dieses Projekt folgt [Semantic Versioning 2.0.0](https://semver.org/lang/de/).
 
-## [Unreleased]
+## [Unreleased] - 2.1.1
 
 ### Geändert
 - Neue Lizenz: Der Quelltext ist öffentlich einsehbar, damit Eltern nachprüfen können, was die App tut. Selbst bauen, nutzen und weitergeben braucht eine schriftliche Erlaubnis
