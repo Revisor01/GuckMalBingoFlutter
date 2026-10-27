@@ -22,7 +22,7 @@ dependencies:
 
   # Storage
   shared_preferences: ^2.5.6
-  flutter_secure_storage: ^10.3.4
+  flutter_secure_storage: ^11.2.0
 
   # Utils
   intl: ^0.20.0
