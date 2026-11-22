@@ -42,7 +42,7 @@ und dieses Projekt folgt [Semantic Versioning 2.0.0](https://semver.org/lang/de/
 
 ## [2.0.2] — 2026-07-30
 
-Ausgeliefert als Build 38 (App Store + Google Play).
+Im App Store und bei Google Play.
 
 ### Geändert
 - Dependency-Updates für Flutter-3.44-Kompatibilität (41 Pakete aktualisiert)
@@ -58,7 +58,6 @@ Ausgeliefert als Build 38 (App Store + Google Play).
 
 ## [2.0.1] — 2026-04-15
 
-Ausgeliefert als Build 33.
 
 ### Geändert
 - **Duell → Sprint**: Spielmodus vollständig umbenannt — ARB-Keys in 6 Sprachen, `GameMode.sprint`, Dateien, Klassen, Tests, Store-Listings und Marketing-Copy
@@ -74,7 +73,7 @@ Ausgeliefert als Build 33.
 
 ## [2.0.0] — 2026-04-13
 
-Ausgeliefert als Build 29 (iOS-Release; Android zunächst zurückgestellt).
+Zunächst nur im App Store; Android folgte später.
 
 ### Hinzugefügt
 - `PrivacyInfo.xcprivacy` für die App-Store-Compliance
@@ -87,14 +86,14 @@ Ausgeliefert als Build 29 (iOS-Release; Android zunächst zurückgestellt).
 
 ## [1.8.1] — 2026-04-10
 
-Ausgeliefert als Build 28.
+1.3.0 bis 1.8.1 sind Zwischenstände für die Testphase; im App Store folgte auf 1.2.1 direkt 2.0.0.
+
 
 ### Hinzugefügt
 - Eigene Duell-Onboarding-Seite mit Zwei-Geräte-Visualisierung
 
-## [1.8.0] — 2026-04-10
+## [1.8.0] — 2026-04-04
 
-Ausgeliefert als Build 27.
 
 ### Hinzugefügt
 - Rating-Button auf der Info-Seite, abgesichert hinter dem Parental Gate
@@ -128,9 +127,8 @@ Ausgeliefert als Build 27.
 - Überspringen im Duell braucht langes Drücken, damit es nicht versehentlich passiert
 - Animationen pausieren, solange die App im Hintergrund ist
 
-## [1.6.0] — 2026-04-04
+## [1.6.0] — 2026-03-28
 
-Ausgeliefert als Build 26.
 
 ### Geändert
 - `SharedPreferences` durch `flutter_secure_storage` ersetzt (inklusive Duell-State)
@@ -147,9 +145,18 @@ Ausgeliefert als Build 26.
 ### Sonstiges
 - `O(n)`-`indexOf` beim Speichern des Spielstands durch `O(1)`-Map-Lookup ersetzt
 
+## [1.5.1] — 2026-04-02
+
+Geplanter Zwischenstand ohne eigenen Build; die Inhalte kamen mit der nächsten Fassung.
+
+### Behoben
+- Der Schalter für den Oster-Effekt ist in allen sechs Sprachen beschriftet, vorher nur auf Deutsch
+
+### Geändert
+- Alle Auswahlbildschirme nutzen dieselben Knöpfe
+
 ## [1.5.0] — 2026-03-28
 
-Ausgeliefert als Build 22.
 
 ### Hinzugefügt
 - Spielstand-Persistenz: speichern, fortsetzen und löschen
@@ -173,7 +180,6 @@ Ausgeliefert als Build 22.
 
 ## [1.4.0] — 2026-03-27
 
-Ausgeliefert als Build 21.
 
 ### Hinzugefügt
 - **Oster-Special**: Oster-Theme, Blütenblatt-Effekt und saisonale Integration
@@ -195,9 +201,12 @@ Ausgeliefert als Build 21.
 ### Entfernt
 - Ungenutzte Felder: `playerName` aus `GameConfig`, `sfSymbol`/`id` aus `BingoItem`, `uuid`-Abhängigkeit
 
+## [1.3.0] — 2026-03-27
+
+Nur als Tag gesetzt, ohne eigenen Build; die Änderungen stehen unter 1.4.0.
+
 ## [1.2.0] — 2025-12-09
 
-Ausgeliefert als Build 19.
 
 ### Hinzugefügt
 - Onboarding-Tutorial für neue Spielerinnen und Spieler, mit rotierendem Bingo-Raster
@@ -215,7 +224,6 @@ Ausgeliefert als Build 19.
 
 ## [1.1.0] — 2025-12-04
 
-Ausgeliefert als Build 4.
 
 ### Hinzugefügt
 - **Weihnachts-Special** (1. Dez – 6. Jan): Schneefall-Overlay mit Ein/Aus-Schalter, grün-rotes Weihnachts-Theme, Weihnachts-Glocken und Victory-Sounds, saisonale Items (Weihnachtsmarkt, Weihnachtsdeko und weitere)
@@ -251,3 +259,4 @@ Ausgeliefert als Build 4.
 [1.6.0]: https://github.com/Revisor01/GuckMalBingoFlutter/compare/1.5.0...1.6.0
 [1.5.0]: https://github.com/Revisor01/GuckMalBingoFlutter/compare/1.4.0...1.5.0
 [1.4.0]: https://github.com/Revisor01/GuckMalBingoFlutter/compare/1.3.0...1.4.0
+[1.3.0]: https://github.com/Revisor01/GuckMalBingoFlutter/releases/tag/1.3.0
